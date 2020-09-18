@@ -1,6 +1,6 @@
 {
     "name": "monei/monei-php-sdk",
-    "description": "The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.",
+    "description": "The MONEI SDK will allow you to interact with our API in an easy and predictable way.",
     "keywords": [
         "monei",
         "monei pay",
