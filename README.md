@@ -16,18 +16,18 @@ PHP 5.5 and later
 
 ### Composer
 
-To install the bindings via [Composer](http://getcomposer.org/), add the following to `composer.json`:
+To install the bindings via [Composer](http://getcomposer.org/), run the following command:
+
+```bash
+composer require monei/monei-php-sdk
+```
+
+Or add the following to `composer.json`:
 
 ```json
 {
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/monei/monei-php-sdk.git"
-    }
-  ],
   "require": {
-    "monei/monei-php-sdk": "*@dev"
+    "monei/monei-php-sdk": "0.1.0"
   }
 }
 ```
