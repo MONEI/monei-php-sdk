@@ -43,8 +43,10 @@ class MoneiClient
         string $apiKey,
         Configuration $config = null
     ) {
-        $this->config = $config ?: Configuration::getDefaultConfiguration()
-            ->setApiKey('Authorization', $apiKey);
+        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->config->setApiKey('Authorization', $apiKey);
+        $this->config->setUserAgent('monei-php-sdk@1.0.1');
+
         $this->payments = new PaymentsApi(null, $this->config);
     }
 
