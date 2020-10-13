@@ -526,7 +526,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets session_id
      *
-     * @param string|null $session_id The session ID used to initialize MONEI payment widget. A unique identifier within your system that adds security to the payment process. This is required if a payment token (not permanent) was already generated.
+     * @param string|null $session_id A unique identifier within your system that adds security to the payment process. You need to pass the same session ID as the one used on the frontend to initialize MONEI Component (if you needed to). This is required if a payment token (not permanent) was already generated in the frontend.
      *
      * @return $this
      */
