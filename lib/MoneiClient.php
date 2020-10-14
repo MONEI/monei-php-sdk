@@ -75,7 +75,7 @@ class MoneiClient
         $hmac = hash_hmac('SHA256', $parts['t'] . '.' . $body, $this->config->getApiKey('Authorization'));
 
         if ($hmac !== $parts['v1']) {
-            throw new ApiException("[401] Signature verification failed", 401);
+            throw new ApiException('[401] Signature verification failed', 401);
         }
 
         return json_decode($body);
