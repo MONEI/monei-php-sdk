@@ -76,9 +76,10 @@ class Payment implements ModelInterface, ArrayAccess
         'shipping_details' => '\OpenAPI\Client\Model\PaymentShippingDetails',
         'refunded_amount' => 'int',
         'last_refund_amount' => 'int',
-        'last_refund_reason' => 'string',
+        'last_refund_reason' => '\OpenAPI\Client\Model\PaymentLastRefundReason',
         'cancellation_reason' => '\OpenAPI\Client\Model\PaymentCancellationReason',
         'session_details' => '\OpenAPI\Client\Model\PaymentSessionDetails',
+        'trace_details' => '\OpenAPI\Client\Model\PaymentTraceDetails',
         'next_action' => '\OpenAPI\Client\Model\PaymentNextAction',
         'created_at' => 'int',
         'updated_at' => 'int'
@@ -112,6 +113,7 @@ class Payment implements ModelInterface, ArrayAccess
         'last_refund_reason' => null,
         'cancellation_reason' => null,
         'session_details' => null,
+        'trace_details' => null,
         'next_action' => null,
         'created_at' => 'int64',
         'updated_at' => 'int64'
@@ -166,6 +168,7 @@ class Payment implements ModelInterface, ArrayAccess
         'last_refund_reason' => 'lastRefundReason',
         'cancellation_reason' => 'cancellationReason',
         'session_details' => 'sessionDetails',
+        'trace_details' => 'traceDetails',
         'next_action' => 'nextAction',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt'
@@ -199,6 +202,7 @@ class Payment implements ModelInterface, ArrayAccess
         'last_refund_reason' => 'setLastRefundReason',
         'cancellation_reason' => 'setCancellationReason',
         'session_details' => 'setSessionDetails',
+        'trace_details' => 'setTraceDetails',
         'next_action' => 'setNextAction',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt'
@@ -232,6 +236,7 @@ class Payment implements ModelInterface, ArrayAccess
         'last_refund_reason' => 'getLastRefundReason',
         'cancellation_reason' => 'getCancellationReason',
         'session_details' => 'getSessionDetails',
+        'trace_details' => 'getTraceDetails',
         'next_action' => 'getNextAction',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt'
@@ -319,6 +324,7 @@ class Payment implements ModelInterface, ArrayAccess
         $this->container['last_refund_reason'] = isset($data['last_refund_reason']) ? $data['last_refund_reason'] : null;
         $this->container['cancellation_reason'] = isset($data['cancellation_reason']) ? $data['cancellation_reason'] : null;
         $this->container['session_details'] = isset($data['session_details']) ? $data['session_details'] : null;
+        $this->container['trace_details'] = isset($data['trace_details']) ? $data['trace_details'] : null;
         $this->container['next_action'] = isset($data['next_action']) ? $data['next_action'] : null;
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
@@ -807,7 +813,7 @@ class Payment implements ModelInterface, ArrayAccess
     /**
      * Gets last_refund_reason
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\PaymentLastRefundReason|null
      */
     public function getLastRefundReason()
     {
@@ -817,7 +823,7 @@ class Payment implements ModelInterface, ArrayAccess
     /**
      * Sets last_refund_reason
      *
-     * @param string|null $last_refund_reason The reason of the last refund transaction.
+     * @param \OpenAPI\Client\Model\PaymentLastRefundReason|null $last_refund_reason last_refund_reason
      *
      * @return $this
      */
@@ -872,6 +878,30 @@ class Payment implements ModelInterface, ArrayAccess
     public function setSessionDetails($session_details)
     {
         $this->container['session_details'] = $session_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets trace_details
+     *
+     * @return \OpenAPI\Client\Model\PaymentTraceDetails|null
+     */
+    public function getTraceDetails()
+    {
+        return $this->container['trace_details'];
+    }
+
+    /**
+     * Sets trace_details
+     *
+     * @param \OpenAPI\Client\Model\PaymentTraceDetails|null $trace_details trace_details
+     *
+     * @return $this
+     */
+    public function setTraceDetails($trace_details)
+    {
+        $this->container['trace_details'] = $trace_details;
 
         return $this;
     }

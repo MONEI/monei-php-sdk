@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethod
+ * PaymentRecurring
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethod Class Doc Comment
+ * PaymentRecurring Class Doc Comment
  *
  * @category Class
- * @description Details about the payment method at the time of the transaction.
+ * @description Specific configurations for recurring payments. Will only be used when &#x60;transactionType&#x60; is &#x60;RECURRING&#x60;.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentPaymentMethod implements ModelInterface, ArrayAccess
+class PaymentRecurring implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethod';
+    protected static $openAPIModelName = 'Payment-Recurring';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'method' => 'string',
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCard',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizum',
-        'paypal' => '\OpenAPI\Client\Model\PaymentPaymentMethodPaypal'
+        'expiry' => 'string',
+        'frequency' => 'int'
     ];
 
     /**
@@ -70,10 +68,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'method' => null,
-        'card' => null,
-        'bizum' => null,
-        'paypal' => null
+        'expiry' => null,
+        'frequency' => 'int32'
     ];
 
     /**
@@ -103,10 +99,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'method' => 'method',
-        'card' => 'card',
-        'bizum' => 'bizum',
-        'paypal' => 'paypal'
+        'expiry' => 'expiry',
+        'frequency' => 'frequency'
     ];
 
     /**
@@ -115,10 +109,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'method' => 'setMethod',
-        'card' => 'setCard',
-        'bizum' => 'setBizum',
-        'paypal' => 'setPaypal'
+        'expiry' => 'setExpiry',
+        'frequency' => 'setFrequency'
     ];
 
     /**
@@ -127,10 +119,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'method' => 'getMethod',
-        'card' => 'getCard',
-        'bizum' => 'getBizum',
-        'paypal' => 'getPaypal'
+        'expiry' => 'getExpiry',
+        'frequency' => 'getFrequency'
     ];
 
     /**
@@ -174,29 +164,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const METHOD_CARD = 'card';
-    const METHOD_BIZUM = 'bizum';
-    const METHOD_GOOGLE_PAY = 'googlePay';
-    const METHOD_APPLE_PAY = 'applePay';
-    const METHOD_PAYPAL = 'paypal';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMethodAllowableValues()
-    {
-        return [
-            self::METHOD_CARD,
-            self::METHOD_BIZUM,
-            self::METHOD_GOOGLE_PAY,
-            self::METHOD_APPLE_PAY,
-            self::METHOD_PAYPAL,
-        ];
-    }
     
 
     /**
@@ -214,10 +183,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['method'] = isset($data['method']) ? $data['method'] : null;
-        $this->container['card'] = isset($data['card']) ? $data['card'] : null;
-        $this->container['bizum'] = isset($data['bizum']) ? $data['bizum'] : null;
-        $this->container['paypal'] = isset($data['paypal']) ? $data['paypal'] : null;
+        $this->container['expiry'] = isset($data['expiry']) ? $data['expiry'] : '*(The payment method or card expiration)*';
+        $this->container['frequency'] = isset($data['frequency']) ? $data['frequency'] : 25;
     }
 
     /**
@@ -228,14 +195,6 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($this->container['method']) && !in_array($this->container['method'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'method', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -253,106 +212,49 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets method
+     * Gets expiry
      *
      * @return string|null
      */
-    public function getMethod()
+    public function getExpiry()
     {
-        return $this->container['method'];
+        return $this->container['expiry'];
     }
 
     /**
-     * Sets method
+     * Sets expiry
      *
-     * @param string|null $method Payment method type.
+     * @param string|null $expiry Date after which no further recurring payments will be performed. Must be formatted as `YYYYMMDD`.
      *
      * @return $this
      */
-    public function setMethod($method)
+    public function setExpiry($expiry)
     {
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($method) && !in_array($method, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'method', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['method'] = $method;
+        $this->container['expiry'] = $expiry;
 
         return $this;
     }
 
     /**
-     * Gets card
+     * Gets frequency
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCard|null
+     * @return int|null
      */
-    public function getCard()
+    public function getFrequency()
     {
-        return $this->container['card'];
+        return $this->container['frequency'];
     }
 
     /**
-     * Sets card
+     * Sets frequency
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCard|null $card card
+     * @param int|null $frequency The minimum number of **days** between the different recurring payments.
      *
      * @return $this
      */
-    public function setCard($card)
+    public function setFrequency($frequency)
     {
-        $this->container['card'] = $card;
-
-        return $this;
-    }
-
-    /**
-     * Gets bizum
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null
-     */
-    public function getBizum()
-    {
-        return $this->container['bizum'];
-    }
-
-    /**
-     * Sets bizum
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null $bizum bizum
-     *
-     * @return $this
-     */
-    public function setBizum($bizum)
-    {
-        $this->container['bizum'] = $bizum;
-
-        return $this;
-    }
-
-    /**
-     * Gets paypal
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null
-     */
-    public function getPaypal()
-    {
-        return $this->container['paypal'];
-    }
-
-    /**
-     * Sets paypal
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null $paypal paypal
-     *
-     * @return $this
-     */
-    public function setPaypal($paypal)
-    {
-        $this->container['paypal'] = $paypal;
+        $this->container['frequency'] = $frequency;
 
         return $this;
     }
