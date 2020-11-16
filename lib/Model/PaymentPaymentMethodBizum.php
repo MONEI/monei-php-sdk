@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethod
+ * PaymentPaymentMethodBizum
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethod Class Doc Comment
+ * PaymentPaymentMethodBizum Class Doc Comment
  *
  * @category Class
- * @description Details about the payment method at the time of the transaction.
+ * @description Details about the Bizum account used as payment method at the time of the transaction.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentPaymentMethod implements ModelInterface, ArrayAccess
+class PaymentPaymentMethodBizum implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethod';
+    protected static $openAPIModelName = 'Payment-PaymentMethodBizum';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'method' => 'string',
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCard',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizum',
-        'paypal' => '\OpenAPI\Client\Model\PaymentPaymentMethodPaypal'
+        'phone_number' => 'string'
     ];
 
     /**
@@ -70,10 +67,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'method' => null,
-        'card' => null,
-        'bizum' => null,
-        'paypal' => null
+        'phone_number' => null
     ];
 
     /**
@@ -103,10 +97,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'method' => 'method',
-        'card' => 'card',
-        'bizum' => 'bizum',
-        'paypal' => 'paypal'
+        'phone_number' => 'phoneNumber'
     ];
 
     /**
@@ -115,10 +106,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'method' => 'setMethod',
-        'card' => 'setCard',
-        'bizum' => 'setBizum',
-        'paypal' => 'setPaypal'
+        'phone_number' => 'setPhoneNumber'
     ];
 
     /**
@@ -127,10 +115,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'method' => 'getMethod',
-        'card' => 'getCard',
-        'bizum' => 'getBizum',
-        'paypal' => 'getPaypal'
+        'phone_number' => 'getPhoneNumber'
     ];
 
     /**
@@ -174,29 +159,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const METHOD_CARD = 'card';
-    const METHOD_BIZUM = 'bizum';
-    const METHOD_GOOGLE_PAY = 'googlePay';
-    const METHOD_APPLE_PAY = 'applePay';
-    const METHOD_PAYPAL = 'paypal';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMethodAllowableValues()
-    {
-        return [
-            self::METHOD_CARD,
-            self::METHOD_BIZUM,
-            self::METHOD_GOOGLE_PAY,
-            self::METHOD_APPLE_PAY,
-            self::METHOD_PAYPAL,
-        ];
-    }
     
 
     /**
@@ -214,10 +178,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['method'] = isset($data['method']) ? $data['method'] : null;
-        $this->container['card'] = isset($data['card']) ? $data['card'] : null;
-        $this->container['bizum'] = isset($data['bizum']) ? $data['bizum'] : null;
-        $this->container['paypal'] = isset($data['paypal']) ? $data['paypal'] : null;
+        $this->container['phone_number'] = isset($data['phone_number']) ? $data['phone_number'] : null;
     }
 
     /**
@@ -228,14 +189,6 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($this->container['method']) && !in_array($this->container['method'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'method', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -253,106 +206,25 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets method
+     * Gets phone_number
      *
      * @return string|null
      */
-    public function getMethod()
+    public function getPhoneNumber()
     {
-        return $this->container['method'];
+        return $this->container['phone_number'];
     }
 
     /**
-     * Sets method
+     * Sets phone_number
      *
-     * @param string|null $method Payment method type.
+     * @param string|null $phone_number The phone number used to pay with `bizum`.
      *
      * @return $this
      */
-    public function setMethod($method)
+    public function setPhoneNumber($phone_number)
     {
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($method) && !in_array($method, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'method', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['method'] = $method;
-
-        return $this;
-    }
-
-    /**
-     * Gets card
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCard|null
-     */
-    public function getCard()
-    {
-        return $this->container['card'];
-    }
-
-    /**
-     * Sets card
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCard|null $card card
-     *
-     * @return $this
-     */
-    public function setCard($card)
-    {
-        $this->container['card'] = $card;
-
-        return $this;
-    }
-
-    /**
-     * Gets bizum
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null
-     */
-    public function getBizum()
-    {
-        return $this->container['bizum'];
-    }
-
-    /**
-     * Sets bizum
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null $bizum bizum
-     *
-     * @return $this
-     */
-    public function setBizum($bizum)
-    {
-        $this->container['bizum'] = $bizum;
-
-        return $this;
-    }
-
-    /**
-     * Gets paypal
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null
-     */
-    public function getPaypal()
-    {
-        return $this->container['paypal'];
-    }
-
-    /**
-     * Sets paypal
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null $paypal paypal
-     *
-     * @return $this
-     */
-    public function setPaypal($paypal)
-    {
-        $this->container['paypal'] = $paypal;
+        $this->container['phone_number'] = $phone_number;
 
         return $this;
     }

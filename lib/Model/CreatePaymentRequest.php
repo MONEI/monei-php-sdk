@@ -68,8 +68,9 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'session_id' => 'string',
         'generate_payment_token' => 'bool',
         'payment_method' => '\OpenAPI\Client\Model\PaymentPaymentMethodInput',
-        'allowed_payment_methods' => '\OpenAPI\Client\Model\PaymentAllowedPaymentMethods',
+        'allowed_payment_methods' => '\OpenAPI\Client\Model\PaymentPaymentMethods',
         'transaction_type' => '\OpenAPI\Client\Model\PaymentTransactionType',
+        'recurring' => '\OpenAPI\Client\Model\PaymentRecurring',
         'description' => 'string',
         'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
         'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
@@ -96,6 +97,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => null,
         'allowed_payment_methods' => null,
         'transaction_type' => null,
+        'recurring' => null,
         'description' => null,
         'customer' => null,
         'billing_details' => null,
@@ -143,6 +145,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => 'paymentMethod',
         'allowed_payment_methods' => 'allowedPaymentMethods',
         'transaction_type' => 'transactionType',
+        'recurring' => 'recurring',
         'description' => 'description',
         'customer' => 'customer',
         'billing_details' => 'billingDetails',
@@ -169,6 +172,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => 'setPaymentMethod',
         'allowed_payment_methods' => 'setAllowedPaymentMethods',
         'transaction_type' => 'setTransactionType',
+        'recurring' => 'setRecurring',
         'description' => 'setDescription',
         'customer' => 'setCustomer',
         'billing_details' => 'setBillingDetails',
@@ -195,6 +199,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => 'getPaymentMethod',
         'allowed_payment_methods' => 'getAllowedPaymentMethods',
         'transaction_type' => 'getTransactionType',
+        'recurring' => 'getRecurring',
         'description' => 'getDescription',
         'customer' => 'getCustomer',
         'billing_details' => 'getBillingDetails',
@@ -275,6 +280,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         $this->container['payment_method'] = isset($data['payment_method']) ? $data['payment_method'] : null;
         $this->container['allowed_payment_methods'] = isset($data['allowed_payment_methods']) ? $data['allowed_payment_methods'] : null;
         $this->container['transaction_type'] = isset($data['transaction_type']) ? $data['transaction_type'] : null;
+        $this->container['recurring'] = isset($data['recurring']) ? $data['recurring'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['customer'] = isset($data['customer']) ? $data['customer'] : null;
         $this->container['billing_details'] = isset($data['billing_details']) ? $data['billing_details'] : null;
@@ -588,7 +594,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Gets allowed_payment_methods
      *
-     * @return \OpenAPI\Client\Model\PaymentAllowedPaymentMethods|null
+     * @return \OpenAPI\Client\Model\PaymentPaymentMethods|null
      */
     public function getAllowedPaymentMethods()
     {
@@ -598,7 +604,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets allowed_payment_methods
      *
-     * @param \OpenAPI\Client\Model\PaymentAllowedPaymentMethods|null $allowed_payment_methods allowed_payment_methods
+     * @param \OpenAPI\Client\Model\PaymentPaymentMethods|null $allowed_payment_methods allowed_payment_methods
      *
      * @return $this
      */
@@ -629,6 +635,30 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     public function setTransactionType($transaction_type)
     {
         $this->container['transaction_type'] = $transaction_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurring
+     *
+     * @return \OpenAPI\Client\Model\PaymentRecurring|null
+     */
+    public function getRecurring()
+    {
+        return $this->container['recurring'];
+    }
+
+    /**
+     * Sets recurring
+     *
+     * @param \OpenAPI\Client\Model\PaymentRecurring|null $recurring recurring
+     *
+     * @return $this
+     */
+    public function setRecurring($recurring)
+    {
+        $this->container['recurring'] = $recurring;
 
         return $this;
     }

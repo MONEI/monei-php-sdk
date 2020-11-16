@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentTransactionType
+ * PaymentLastRefundReason
  *
  * PHP version 5
  *
@@ -31,22 +31,22 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentTransactionType Class Doc Comment
+ * PaymentLastRefundReason Class Doc Comment
  *
  * @category Class
- * @description Controls when the funds will be captured.   - &#x60;SALE&#x60; - **Default**. MONEI automatically captures funds     when the customer authorizes the payment.   - &#x60;AUTH&#x60; - Place a hold on the funds when the customer authorizes     the payment, but don’t capture the funds until later.   - &#x60;RECURRING&#x60; - To specify the start of a recurring payment (or subscription).     Specific configurations can be set in the &#x60;recurring&#x60; parameter.
+ * @description The reason of the last refund transaction.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentTransactionType
+class PaymentLastRefundReason
 {
     /**
      * Possible values of this enum
      */
-    const SALE = 'SALE';
-    const AUTH = 'AUTH';
-    const RECURRING = 'RECURRING';
+    const DUPLICATED = 'duplicated';
+    const FRAUDULENT = 'fraudulent';
+    const REQUESTED_BY_CUSTOMER = 'requested_by_customer';
     
     /**
      * Gets allowable values of the enum
@@ -55,9 +55,9 @@ class PaymentTransactionType
     public static function getAllowableEnumValues()
     {
         return [
-            self::SALE,
-            self::AUTH,
-            self::RECURRING,
+            self::DUPLICATED,
+            self::FRAUDULENT,
+            self::REQUESTED_BY_CUSTOMER,
         ];
     }
 }

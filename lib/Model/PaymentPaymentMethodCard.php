@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethod
+ * PaymentPaymentMethodCard
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethod Class Doc Comment
+ * PaymentPaymentMethodCard Class Doc Comment
  *
  * @category Class
- * @description Details about the payment method at the time of the transaction.
+ * @description Details about the card used as payment method at the time of the transaction.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentPaymentMethod implements ModelInterface, ArrayAccess
+class PaymentPaymentMethodCard implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethod';
+    protected static $openAPIModelName = 'Payment-PaymentMethodCard';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,12 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'method' => 'string',
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCard',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizum',
-        'paypal' => '\OpenAPI\Client\Model\PaymentPaymentMethodPaypal'
+        'country' => 'string',
+        'brand' => 'string',
+        'type' => 'string',
+        'three_d_secure' => 'bool',
+        'three_d_secure_version' => 'string',
+        'last4' => 'string'
     ];
 
     /**
@@ -70,10 +72,12 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'method' => null,
-        'card' => null,
-        'bizum' => null,
-        'paypal' => null
+        'country' => null,
+        'brand' => null,
+        'type' => null,
+        'three_d_secure' => null,
+        'three_d_secure_version' => null,
+        'last4' => null
     ];
 
     /**
@@ -103,10 +107,12 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'method' => 'method',
-        'card' => 'card',
-        'bizum' => 'bizum',
-        'paypal' => 'paypal'
+        'country' => 'country',
+        'brand' => 'brand',
+        'type' => 'type',
+        'three_d_secure' => 'threeDSecure',
+        'three_d_secure_version' => 'threeDSecureVersion',
+        'last4' => 'last4'
     ];
 
     /**
@@ -115,10 +121,12 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'method' => 'setMethod',
-        'card' => 'setCard',
-        'bizum' => 'setBizum',
-        'paypal' => 'setPaypal'
+        'country' => 'setCountry',
+        'brand' => 'setBrand',
+        'type' => 'setType',
+        'three_d_secure' => 'setThreeDSecure',
+        'three_d_secure_version' => 'setThreeDSecureVersion',
+        'last4' => 'setLast4'
     ];
 
     /**
@@ -127,10 +135,12 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'method' => 'getMethod',
-        'card' => 'getCard',
-        'bizum' => 'getBizum',
-        'paypal' => 'getPaypal'
+        'country' => 'getCountry',
+        'brand' => 'getBrand',
+        'type' => 'getType',
+        'three_d_secure' => 'getThreeDSecure',
+        'three_d_secure_version' => 'getThreeDSecureVersion',
+        'last4' => 'getLast4'
     ];
 
     /**
@@ -174,11 +184,15 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const METHOD_CARD = 'card';
-    const METHOD_BIZUM = 'bizum';
-    const METHOD_GOOGLE_PAY = 'googlePay';
-    const METHOD_APPLE_PAY = 'applePay';
-    const METHOD_PAYPAL = 'paypal';
+    const BRAND_VISA = 'visa';
+    const BRAND_MASTERCARD = 'mastercard';
+    const BRAND_DINERS = 'diners';
+    const BRAND_AMEX = 'amex';
+    const BRAND_JCB = 'jcb';
+    const BRAND_UNIONPAY = 'unionpay';
+    const BRAND_UNKNOWN = 'unknown';
+    const TYPE_DEBIT = 'debit';
+    const TYPE_CREDIT = 'credit';
     
 
     
@@ -187,14 +201,29 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      *
      * @return string[]
      */
-    public function getMethodAllowableValues()
+    public function getBrandAllowableValues()
     {
         return [
-            self::METHOD_CARD,
-            self::METHOD_BIZUM,
-            self::METHOD_GOOGLE_PAY,
-            self::METHOD_APPLE_PAY,
-            self::METHOD_PAYPAL,
+            self::BRAND_VISA,
+            self::BRAND_MASTERCARD,
+            self::BRAND_DINERS,
+            self::BRAND_AMEX,
+            self::BRAND_JCB,
+            self::BRAND_UNIONPAY,
+            self::BRAND_UNKNOWN,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_DEBIT,
+            self::TYPE_CREDIT,
         ];
     }
     
@@ -214,10 +243,12 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['method'] = isset($data['method']) ? $data['method'] : null;
-        $this->container['card'] = isset($data['card']) ? $data['card'] : null;
-        $this->container['bizum'] = isset($data['bizum']) ? $data['bizum'] : null;
-        $this->container['paypal'] = isset($data['paypal']) ? $data['paypal'] : null;
+        $this->container['country'] = isset($data['country']) ? $data['country'] : null;
+        $this->container['brand'] = isset($data['brand']) ? $data['brand'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['three_d_secure'] = isset($data['three_d_secure']) ? $data['three_d_secure'] : null;
+        $this->container['three_d_secure_version'] = isset($data['three_d_secure_version']) ? $data['three_d_secure_version'] : null;
+        $this->container['last4'] = isset($data['last4']) ? $data['last4'] : null;
     }
 
     /**
@@ -229,10 +260,18 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($this->container['method']) && !in_array($this->container['method'], $allowedValues, true)) {
+        $allowedValues = $this->getBrandAllowableValues();
+        if (!is_null($this->container['brand']) && !in_array($this->container['brand'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'method', must be one of '%s'",
+                "invalid value for 'brand', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
                 implode("', '", $allowedValues)
             );
         }
@@ -253,106 +292,163 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets method
+     * Gets country
      *
      * @return string|null
      */
-    public function getMethod()
+    public function getCountry()
     {
-        return $this->container['method'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets method
+     * Sets country
      *
-     * @param string|null $method Payment method type.
+     * @param string|null $country Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
      *
      * @return $this
      */
-    public function setMethod($method)
+    public function setCountry($country)
     {
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($method) && !in_array($method, $allowedValues, true)) {
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets brand
+     *
+     * @return string|null
+     */
+    public function getBrand()
+    {
+        return $this->container['brand'];
+    }
+
+    /**
+     * Sets brand
+     *
+     * @param string|null $brand Card brand.
+     *
+     * @return $this
+     */
+    public function setBrand($brand)
+    {
+        $allowedValues = $this->getBrandAllowableValues();
+        if (!is_null($brand) && !in_array($brand, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'method', must be one of '%s'",
+                    "Invalid value for 'brand', must be one of '%s'",
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['method'] = $method;
+        $this->container['brand'] = $brand;
 
         return $this;
     }
 
     /**
-     * Gets card
+     * Gets type
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCard|null
+     * @return string|null
      */
-    public function getCard()
+    public function getType()
     {
-        return $this->container['card'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets card
+     * Sets type
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCard|null $card card
+     * @param string|null $type Card type `debit` or `credit`.
      *
      * @return $this
      */
-    public function setCard($card)
+    public function setType($type)
     {
-        $this->container['card'] = $card;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets bizum
+     * Gets three_d_secure
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null
+     * @return bool|null
      */
-    public function getBizum()
+    public function getThreeDSecure()
     {
-        return $this->container['bizum'];
+        return $this->container['three_d_secure'];
     }
 
     /**
-     * Sets bizum
+     * Sets three_d_secure
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null $bizum bizum
+     * @param bool|null $three_d_secure Wether this transaction used 3D Secure authentication.
      *
      * @return $this
      */
-    public function setBizum($bizum)
+    public function setThreeDSecure($three_d_secure)
     {
-        $this->container['bizum'] = $bizum;
+        $this->container['three_d_secure'] = $three_d_secure;
 
         return $this;
     }
 
     /**
-     * Gets paypal
+     * Gets three_d_secure_version
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null
+     * @return string|null
      */
-    public function getPaypal()
+    public function getThreeDSecureVersion()
     {
-        return $this->container['paypal'];
+        return $this->container['three_d_secure_version'];
     }
 
     /**
-     * Sets paypal
+     * Sets three_d_secure_version
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null $paypal paypal
+     * @param string|null $three_d_secure_version The protocol version of the 3DS challenge.
      *
      * @return $this
      */
-    public function setPaypal($paypal)
+    public function setThreeDSecureVersion($three_d_secure_version)
     {
-        $this->container['paypal'] = $paypal;
+        $this->container['three_d_secure_version'] = $three_d_secure_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets last4
+     *
+     * @return string|null
+     */
+    public function getLast4()
+    {
+        return $this->container['last4'];
+    }
+
+    /**
+     * Sets last4
+     *
+     * @param string|null $last4 The last four digits of the card.
+     *
+     * @return $this
+     */
+    public function setLast4($last4)
+    {
+        $this->container['last4'] = $last4;
 
         return $this;
     }

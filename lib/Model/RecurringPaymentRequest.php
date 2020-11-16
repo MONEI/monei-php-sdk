@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethod
+ * RecurringPaymentRequest
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethod Class Doc Comment
+ * RecurringPaymentRequest Class Doc Comment
  *
  * @category Class
- * @description Details about the payment method at the time of the transaction.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentPaymentMethod implements ModelInterface, ArrayAccess
+class RecurringPaymentRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethod';
+    protected static $openAPIModelName = 'RecurringPaymentRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +57,13 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'method' => 'string',
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCard',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizum',
-        'paypal' => '\OpenAPI\Client\Model\PaymentPaymentMethodPaypal'
+        'order_id' => 'string',
+        'amount' => 'int',
+        'description' => 'string',
+        'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
+        'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
+        'shipping_details' => '\OpenAPI\Client\Model\PaymentShippingDetails',
+        'callback_url' => 'string'
     ];
 
     /**
@@ -70,10 +72,13 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'method' => null,
-        'card' => null,
-        'bizum' => null,
-        'paypal' => null
+        'order_id' => null,
+        'amount' => null,
+        'description' => null,
+        'customer' => null,
+        'billing_details' => null,
+        'shipping_details' => null,
+        'callback_url' => null
     ];
 
     /**
@@ -103,10 +108,13 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'method' => 'method',
-        'card' => 'card',
-        'bizum' => 'bizum',
-        'paypal' => 'paypal'
+        'order_id' => 'orderId',
+        'amount' => 'amount',
+        'description' => 'description',
+        'customer' => 'customer',
+        'billing_details' => 'billingDetails',
+        'shipping_details' => 'shippingDetails',
+        'callback_url' => 'callbackUrl'
     ];
 
     /**
@@ -115,10 +123,13 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'method' => 'setMethod',
-        'card' => 'setCard',
-        'bizum' => 'setBizum',
-        'paypal' => 'setPaypal'
+        'order_id' => 'setOrderId',
+        'amount' => 'setAmount',
+        'description' => 'setDescription',
+        'customer' => 'setCustomer',
+        'billing_details' => 'setBillingDetails',
+        'shipping_details' => 'setShippingDetails',
+        'callback_url' => 'setCallbackUrl'
     ];
 
     /**
@@ -127,10 +138,13 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'method' => 'getMethod',
-        'card' => 'getCard',
-        'bizum' => 'getBizum',
-        'paypal' => 'getPaypal'
+        'order_id' => 'getOrderId',
+        'amount' => 'getAmount',
+        'description' => 'getDescription',
+        'customer' => 'getCustomer',
+        'billing_details' => 'getBillingDetails',
+        'shipping_details' => 'getShippingDetails',
+        'callback_url' => 'getCallbackUrl'
     ];
 
     /**
@@ -174,29 +188,8 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const METHOD_CARD = 'card';
-    const METHOD_BIZUM = 'bizum';
-    const METHOD_GOOGLE_PAY = 'googlePay';
-    const METHOD_APPLE_PAY = 'applePay';
-    const METHOD_PAYPAL = 'paypal';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMethodAllowableValues()
-    {
-        return [
-            self::METHOD_CARD,
-            self::METHOD_BIZUM,
-            self::METHOD_GOOGLE_PAY,
-            self::METHOD_APPLE_PAY,
-            self::METHOD_PAYPAL,
-        ];
-    }
     
 
     /**
@@ -214,10 +207,13 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['method'] = isset($data['method']) ? $data['method'] : null;
-        $this->container['card'] = isset($data['card']) ? $data['card'] : null;
-        $this->container['bizum'] = isset($data['bizum']) ? $data['bizum'] : null;
-        $this->container['paypal'] = isset($data['paypal']) ? $data['paypal'] : null;
+        $this->container['order_id'] = isset($data['order_id']) ? $data['order_id'] : null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['customer'] = isset($data['customer']) ? $data['customer'] : null;
+        $this->container['billing_details'] = isset($data['billing_details']) ? $data['billing_details'] : null;
+        $this->container['shipping_details'] = isset($data['shipping_details']) ? $data['shipping_details'] : null;
+        $this->container['callback_url'] = isset($data['callback_url']) ? $data['callback_url'] : null;
     }
 
     /**
@@ -229,14 +225,9 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($this->container['method']) && !in_array($this->container['method'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'method', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['order_id'] === null) {
+            $invalidProperties[] = "'order_id' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -253,106 +244,169 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets method
+     * Gets order_id
+     *
+     * @return string
+     */
+    public function getOrderId()
+    {
+        return $this->container['order_id'];
+    }
+
+    /**
+     * Sets order_id
+     *
+     * @param string $order_id An order ID from your system. A unique identifier that can be used to reconcile the payment with your internal system.
+     *
+     * @return $this
+     */
+    public function setOrderId($order_id)
+    {
+        $this->container['order_id'] = $order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets amount
+     *
+     * @return int|null
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param int|null $amount The amount to collected by this subsequent payment. A positive integer representing how much to charge in the smallest currency unit (e.g., 100 cents to charge 1.00 USD).
+     *
+     * @return $this
+     */
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
      *
      * @return string|null
      */
-    public function getMethod()
+    public function getDescription()
     {
-        return $this->container['method'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets method
+     * Sets description
      *
-     * @param string|null $method Payment method type.
+     * @param string|null $description An arbitrary string attached to the payment. Often useful for displaying to users.
      *
      * @return $this
      */
-    public function setMethod($method)
+    public function setDescription($description)
     {
-        $allowedValues = $this->getMethodAllowableValues();
-        if (!is_null($method) && !in_array($method, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'method', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['method'] = $method;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets card
+     * Gets customer
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCard|null
+     * @return \OpenAPI\Client\Model\PaymentCustomer|null
      */
-    public function getCard()
+    public function getCustomer()
     {
-        return $this->container['card'];
+        return $this->container['customer'];
     }
 
     /**
-     * Sets card
+     * Sets customer
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCard|null $card card
+     * @param \OpenAPI\Client\Model\PaymentCustomer|null $customer customer
      *
      * @return $this
      */
-    public function setCard($card)
+    public function setCustomer($customer)
     {
-        $this->container['card'] = $card;
+        $this->container['customer'] = $customer;
 
         return $this;
     }
 
     /**
-     * Gets bizum
+     * Gets billing_details
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null
+     * @return \OpenAPI\Client\Model\PaymentBillingDetails|null
      */
-    public function getBizum()
+    public function getBillingDetails()
     {
-        return $this->container['bizum'];
+        return $this->container['billing_details'];
     }
 
     /**
-     * Sets bizum
+     * Sets billing_details
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizum|null $bizum bizum
+     * @param \OpenAPI\Client\Model\PaymentBillingDetails|null $billing_details billing_details
      *
      * @return $this
      */
-    public function setBizum($bizum)
+    public function setBillingDetails($billing_details)
     {
-        $this->container['bizum'] = $bizum;
+        $this->container['billing_details'] = $billing_details;
 
         return $this;
     }
 
     /**
-     * Gets paypal
+     * Gets shipping_details
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null
+     * @return \OpenAPI\Client\Model\PaymentShippingDetails|null
      */
-    public function getPaypal()
+    public function getShippingDetails()
     {
-        return $this->container['paypal'];
+        return $this->container['shipping_details'];
     }
 
     /**
-     * Sets paypal
+     * Sets shipping_details
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodPaypal|null $paypal paypal
+     * @param \OpenAPI\Client\Model\PaymentShippingDetails|null $shipping_details shipping_details
      *
      * @return $this
      */
-    public function setPaypal($paypal)
+    public function setShippingDetails($shipping_details)
     {
-        $this->container['paypal'] = $paypal;
+        $this->container['shipping_details'] = $shipping_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets callback_url
+     *
+     * @return string|null
+     */
+    public function getCallbackUrl()
+    {
+        return $this->container['callback_url'];
+    }
+
+    /**
+     * Sets callback_url
+     *
+     * @param string|null $callback_url The URL to which a payment result should be sent asynchronously.
+     *
+     * @return $this
+     */
+    public function setCallbackUrl($callback_url)
+    {
+        $this->container['callback_url'] = $callback_url;
 
         return $this;
     }

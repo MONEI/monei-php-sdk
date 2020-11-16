@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentSessionDetails
+ * PaymentTraceDetails
  *
  * PHP version 5
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentSessionDetails Class Doc Comment
+ * PaymentTraceDetails Class Doc Comment
  *
  * @category Class
  * @description Information related to the browsing session of the user who initiated the payment.
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentSessionDetails implements ModelInterface, ArrayAccess
+class PaymentTraceDetails implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-SessionDetails';
+    protected static $openAPIModelName = 'Payment-TraceDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -69,7 +69,9 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
         'os_version' => 'string',
         'source' => 'string',
         'source_version' => 'string',
-        'user_agent' => 'string'
+        'user_agent' => 'string',
+        'user_id' => 'string',
+        'user_email' => 'string'
     ];
 
     /**
@@ -89,7 +91,9 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
         'os_version' => null,
         'source' => null,
         'source_version' => null,
-        'user_agent' => null
+        'user_agent' => null,
+        'user_id' => null,
+        'user_email' => null
     ];
 
     /**
@@ -130,7 +134,9 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
         'os_version' => 'osVersion',
         'source' => 'source',
         'source_version' => 'sourceVersion',
-        'user_agent' => 'userAgent'
+        'user_agent' => 'userAgent',
+        'user_id' => 'userId',
+        'user_email' => 'userEmail'
     ];
 
     /**
@@ -150,7 +156,9 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
         'os_version' => 'setOsVersion',
         'source' => 'setSource',
         'source_version' => 'setSourceVersion',
-        'user_agent' => 'setUserAgent'
+        'user_agent' => 'setUserAgent',
+        'user_id' => 'setUserId',
+        'user_email' => 'setUserEmail'
     ];
 
     /**
@@ -170,7 +178,9 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
         'os_version' => 'getOsVersion',
         'source' => 'getSource',
         'source_version' => 'getSourceVersion',
-        'user_agent' => 'getUserAgent'
+        'user_agent' => 'getUserAgent',
+        'user_id' => 'getUserId',
+        'user_email' => 'getUserEmail'
     ];
 
     /**
@@ -245,6 +255,8 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
         $this->container['source'] = isset($data['source']) ? $data['source'] : null;
         $this->container['source_version'] = isset($data['source_version']) ? $data['source_version'] : null;
         $this->container['user_agent'] = isset($data['user_agent']) ? $data['user_agent'] : null;
+        $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
+        $this->container['user_email'] = isset($data['user_email']) ? $data['user_email'] : null;
     }
 
     /**
@@ -555,6 +567,54 @@ class PaymentSessionDetails implements ModelInterface, ArrayAccess
     public function setUserAgent($user_agent)
     {
         $this->container['user_agent'] = $user_agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param string|null $user_id The ID of the user that started the operation.
+     *
+     * @return $this
+     */
+    public function setUserId($user_id)
+    {
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_email
+     *
+     * @return string|null
+     */
+    public function getUserEmail()
+    {
+        return $this->container['user_email'];
+    }
+
+    /**
+     * Sets user_email
+     *
+     * @param string|null $user_email The email of the user that started the operation.
+     *
+     * @return $this
+     */
+    public function setUserEmail($user_email)
+    {
+        $this->container['user_email'] = $user_email;
 
         return $this;
     }
