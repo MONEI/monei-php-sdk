@@ -70,7 +70,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => '\OpenAPI\Client\Model\PaymentPaymentMethodInput',
         'allowed_payment_methods' => '\OpenAPI\Client\Model\PaymentPaymentMethods',
         'transaction_type' => '\OpenAPI\Client\Model\PaymentTransactionType',
-        'recurring' => '\OpenAPI\Client\Model\PaymentRecurring',
+        'sequence' => '\OpenAPI\Client\Model\PaymentSequence',
         'description' => 'string',
         'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
         'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
@@ -97,7 +97,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => null,
         'allowed_payment_methods' => null,
         'transaction_type' => null,
-        'recurring' => null,
+        'sequence' => null,
         'description' => null,
         'customer' => null,
         'billing_details' => null,
@@ -145,7 +145,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => 'paymentMethod',
         'allowed_payment_methods' => 'allowedPaymentMethods',
         'transaction_type' => 'transactionType',
-        'recurring' => 'recurring',
+        'sequence' => 'sequence',
         'description' => 'description',
         'customer' => 'customer',
         'billing_details' => 'billingDetails',
@@ -172,7 +172,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => 'setPaymentMethod',
         'allowed_payment_methods' => 'setAllowedPaymentMethods',
         'transaction_type' => 'setTransactionType',
-        'recurring' => 'setRecurring',
+        'sequence' => 'setSequence',
         'description' => 'setDescription',
         'customer' => 'setCustomer',
         'billing_details' => 'setBillingDetails',
@@ -199,7 +199,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'payment_method' => 'getPaymentMethod',
         'allowed_payment_methods' => 'getAllowedPaymentMethods',
         'transaction_type' => 'getTransactionType',
-        'recurring' => 'getRecurring',
+        'sequence' => 'getSequence',
         'description' => 'getDescription',
         'customer' => 'getCustomer',
         'billing_details' => 'getBillingDetails',
@@ -280,7 +280,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         $this->container['payment_method'] = isset($data['payment_method']) ? $data['payment_method'] : null;
         $this->container['allowed_payment_methods'] = isset($data['allowed_payment_methods']) ? $data['allowed_payment_methods'] : null;
         $this->container['transaction_type'] = isset($data['transaction_type']) ? $data['transaction_type'] : null;
-        $this->container['recurring'] = isset($data['recurring']) ? $data['recurring'] : null;
+        $this->container['sequence'] = isset($data['sequence']) ? $data['sequence'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['customer'] = isset($data['customer']) ? $data['customer'] : null;
         $this->container['billing_details'] = isset($data['billing_details']) ? $data['billing_details'] : null;
@@ -640,25 +640,25 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets recurring
+     * Gets sequence
      *
-     * @return \OpenAPI\Client\Model\PaymentRecurring|null
+     * @return \OpenAPI\Client\Model\PaymentSequence|null
      */
-    public function getRecurring()
+    public function getSequence()
     {
-        return $this->container['recurring'];
+        return $this->container['sequence'];
     }
 
     /**
-     * Sets recurring
+     * Sets sequence
      *
-     * @param \OpenAPI\Client\Model\PaymentRecurring|null $recurring recurring
+     * @param \OpenAPI\Client\Model\PaymentSequence|null $sequence sequence
      *
      * @return $this
      */
-    public function setRecurring($recurring)
+    public function setSequence($sequence)
     {
-        $this->container['recurring'] = $recurring;
+        $this->container['sequence'] = $sequence;
 
         return $this;
     }

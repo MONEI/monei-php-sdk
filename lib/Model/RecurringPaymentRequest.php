@@ -59,6 +59,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'order_id' => 'string',
         'amount' => 'int',
+        'transaction_type' => 'PaymentTransactionType',
         'description' => 'string',
         'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
         'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
@@ -74,6 +75,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'order_id' => null,
         'amount' => null,
+        'transaction_type' => null,
         'description' => null,
         'customer' => null,
         'billing_details' => null,
@@ -110,6 +112,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'order_id' => 'orderId',
         'amount' => 'amount',
+        'transaction_type' => 'transactionType',
         'description' => 'description',
         'customer' => 'customer',
         'billing_details' => 'billingDetails',
@@ -125,6 +128,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     protected static $setters = [
         'order_id' => 'setOrderId',
         'amount' => 'setAmount',
+        'transaction_type' => 'setTransactionType',
         'description' => 'setDescription',
         'customer' => 'setCustomer',
         'billing_details' => 'setBillingDetails',
@@ -140,6 +144,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     protected static $getters = [
         'order_id' => 'getOrderId',
         'amount' => 'getAmount',
+        'transaction_type' => 'getTransactionType',
         'description' => 'getDescription',
         'customer' => 'getCustomer',
         'billing_details' => 'getBillingDetails',
@@ -209,6 +214,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     {
         $this->container['order_id'] = isset($data['order_id']) ? $data['order_id'] : null;
         $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['transaction_type'] = isset($data['transaction_type']) ? $data['transaction_type'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['customer'] = isset($data['customer']) ? $data['customer'] : null;
         $this->container['billing_details'] = isset($data['billing_details']) ? $data['billing_details'] : null;
@@ -287,6 +293,30 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     public function setAmount($amount)
     {
         $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets transaction_type
+     *
+     * @return PaymentTransactionType|null
+     */
+    public function getTransactionType()
+    {
+        return $this->container['transaction_type'];
+    }
+
+    /**
+     * Sets transaction_type
+     *
+     * @param PaymentTransactionType|null $transaction_type Same as the `transactionType` parameter from [create payment](https://docs.monei.net/api/#operation/payments_create). If not sent, it will default in the same transaction type used in the initial payment.
+     *
+     * @return $this
+     */
+    public function setTransactionType($transaction_type)
+    {
+        $this->container['transaction_type'] = $transaction_type;
 
         return $this;
     }

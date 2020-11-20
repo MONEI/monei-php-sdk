@@ -34,7 +34,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * PaymentTransactionType Class Doc Comment
  *
  * @category Class
- * @description Controls when the funds will be captured.   - &#x60;SALE&#x60; - **Default**. MONEI automatically captures funds     when the customer authorizes the payment.   - &#x60;AUTH&#x60; - Place a hold on the funds when the customer authorizes     the payment, but don’t capture the funds until later.   - &#x60;RECURRING&#x60; - To specify the start of a recurring payment (or subscription).     Specific configurations can be set in the &#x60;recurring&#x60; parameter.
+ * @description Controls when the funds will be captured.   - &#x60;SALE&#x60; - **Default**. MONEI automatically captures funds     when the customer authorizes the payment.   - &#x60;AUTH&#x60; - Place a hold on the funds when the customer authorizes     the payment, but don’t capture the funds until later.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -46,7 +46,6 @@ class PaymentTransactionType
      */
     const SALE = 'SALE';
     const AUTH = 'AUTH';
-    const RECURRING = 'RECURRING';
     
     /**
      * Gets allowable values of the enum
@@ -57,7 +56,6 @@ class PaymentTransactionType
         return [
             self::SALE,
             self::AUTH,
-            self::RECURRING,
         ];
     }
 }

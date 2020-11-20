@@ -1529,16 +1529,16 @@ class PaymentsApi
      *
      * Recurring Payment
      *
-     * @param  string $id The payment ID (required)
+     * @param  string $sequence_id The sequence ID (required)
      * @param  \OpenAPI\Client\Model\RecurringPaymentRequest $recurring_payment_request recurring_payment_request (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Payment
      */
-    public function recurring($id, $recurring_payment_request = null)
+    public function recurring($sequence_id, $recurring_payment_request = null)
     {
-        list($response) = $this->recurringWithHttpInfo($id, $recurring_payment_request);
+        list($response) = $this->recurringWithHttpInfo($sequence_id, $recurring_payment_request);
         return $response;
     }
 
@@ -1547,16 +1547,16 @@ class PaymentsApi
      *
      * Recurring Payment
      *
-     * @param  string $id The payment ID (required)
+     * @param  string $sequence_id The sequence ID (required)
      * @param  \OpenAPI\Client\Model\RecurringPaymentRequest $recurring_payment_request (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Payment, HTTP status code, HTTP response headers (array of strings)
      */
-    public function recurringWithHttpInfo($id, $recurring_payment_request = null)
+    public function recurringWithHttpInfo($sequence_id, $recurring_payment_request = null)
     {
-        $request = $this->recurringRequest($id, $recurring_payment_request);
+        $request = $this->recurringRequest($sequence_id, $recurring_payment_request);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1636,15 +1636,15 @@ class PaymentsApi
      *
      * Recurring Payment
      *
-     * @param  string $id The payment ID (required)
+     * @param  string $sequence_id The sequence ID (required)
      * @param  \OpenAPI\Client\Model\RecurringPaymentRequest $recurring_payment_request (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function recurringAsync($id, $recurring_payment_request = null)
+    public function recurringAsync($sequence_id, $recurring_payment_request = null)
     {
-        return $this->recurringAsyncWithHttpInfo($id, $recurring_payment_request)
+        return $this->recurringAsyncWithHttpInfo($sequence_id, $recurring_payment_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1657,16 +1657,16 @@ class PaymentsApi
      *
      * Recurring Payment
      *
-     * @param  string $id The payment ID (required)
+     * @param  string $sequence_id The sequence ID (required)
      * @param  \OpenAPI\Client\Model\RecurringPaymentRequest $recurring_payment_request (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function recurringAsyncWithHttpInfo($id, $recurring_payment_request = null)
+    public function recurringAsyncWithHttpInfo($sequence_id, $recurring_payment_request = null)
     {
         $returnType = '\OpenAPI\Client\Model\Payment';
-        $request = $this->recurringRequest($id, $recurring_payment_request);
+        $request = $this->recurringRequest($sequence_id, $recurring_payment_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1705,22 +1705,22 @@ class PaymentsApi
     /**
      * Create request for operation 'recurring'
      *
-     * @param  string $id The payment ID (required)
+     * @param  string $sequence_id The sequence ID (required)
      * @param  \OpenAPI\Client\Model\RecurringPaymentRequest $recurring_payment_request (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function recurringRequest($id, $recurring_payment_request = null)
+    protected function recurringRequest($sequence_id, $recurring_payment_request = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // verify the required parameter 'sequence_id' is set
+        if ($sequence_id === null || (is_array($sequence_id) && count($sequence_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling recurring'
+                'Missing the required parameter $sequence_id when calling recurring'
             );
         }
 
-        $resourcePath = '/payments/{id}/recurring';
+        $resourcePath = '/payments/{sequenceId}/recurring';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1730,10 +1730,10 @@ class PaymentsApi
 
 
         // path params
-        if ($id !== null) {
+        if ($sequence_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
+                '{' . 'sequenceId' . '}',
+                ObjectSerializer::toPathValue($sequence_id),
                 $resourcePath
             );
         }
