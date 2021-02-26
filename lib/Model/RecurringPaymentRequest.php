@@ -310,7 +310,7 @@ class RecurringPaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets transaction_type
      *
-     * @param PaymentTransactionType|null $transaction_type Same as the `transactionType` parameter from [create payment](https://docs.monei.net/api/#operation/payments_create). If not sent, it will default in the same transaction type used in the initial payment.
+     * @param PaymentTransactionType|null $transaction_type Same as the `transactionType` parameter from [create payment](https://docs.monei.com/api/#operation/payments_create). If not sent, it will default in the same transaction type used in the initial payment.
      *
      * @return $this
      */

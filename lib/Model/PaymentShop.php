@@ -36,7 +36,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * PaymentShop Class Doc Comment
  *
  * @category Class
- * @description The information about the shop (used in [hosted payment page](https://docs.monei.net/docs/use-prebuilt-payment-page)).
+ * @description The information about the shop (used in [hosted payment page](https://docs.monei.com/docs/use-prebuilt-payment-page)).
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
