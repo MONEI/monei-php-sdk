@@ -1,6 +1,6 @@
 <?php
 /**
- * CapturePaymentRequest
+ * ConfirmPaymentRequestPaymentMethod
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CapturePaymentRequest Class Doc Comment
+ * ConfirmPaymentRequestPaymentMethod Class Doc Comment
  *
  * @category Class
+ * @description Additional information about the payment method used for this payment.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class CapturePaymentRequest implements ModelInterface, ArrayAccess
+class ConfirmPaymentRequestPaymentMethod implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CapturePaymentRequest';
+    protected static $openAPIModelName = 'ConfirmPaymentRequest_paymentMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +58,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => 'int'
+        'card' => '\OpenAPI\Client\Model\ConfirmPaymentRequestPaymentMethodCard'
     ];
 
     /**
@@ -66,7 +67,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'amount' => null
+        'card' => null
     ];
 
     /**
@@ -96,7 +97,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'amount' => 'amount'
+        'card' => 'card'
     ];
 
     /**
@@ -105,7 +106,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'amount' => 'setAmount'
+        'card' => 'setCard'
     ];
 
     /**
@@ -114,7 +115,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'amount' => 'getAmount'
+        'card' => 'getCard'
     ];
 
     /**
@@ -177,7 +178,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['card'] = isset($data['card']) ? $data['card'] : null;
     }
 
     /**
@@ -205,25 +206,25 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets amount
+     * Gets card
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\ConfirmPaymentRequestPaymentMethodCard|null
      */
-    public function getAmount()
+    public function getCard()
     {
-        return $this->container['amount'];
+        return $this->container['card'];
     }
 
     /**
-     * Sets amount
+     * Sets card
      *
-     * @param int|null $amount The amount to capture, which must be less than or equal to the original amount. Any additional amount will be automatically refunded.
+     * @param \OpenAPI\Client\Model\ConfirmPaymentRequestPaymentMethodCard|null $card card
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setCard($card)
     {
-        $this->container['amount'] = $amount;
+        $this->container['card'] = $card;
 
         return $this;
     }

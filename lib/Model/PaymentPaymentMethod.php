@@ -13,7 +13,7 @@
 /**
  * MONEI API v1
  *
- * The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+ * The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. <br/><br/> **Base URL:** https://api.monei.com/v1 <br/><br/> **Client libraries:** <ul>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-php-sdk\">PHP SDK</a></li>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-python-sdk\">Python SDK</a></li>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-node-sdk\">Node.js SDK</a></li> </ul>
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -178,7 +178,9 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
     const METHOD_BIZUM = 'bizum';
     const METHOD_GOOGLE_PAY = 'googlePay';
     const METHOD_APPLE_PAY = 'applePay';
+    const METHOD_CLICK_TO_PAY = 'clickToPay';
     const METHOD_PAYPAL = 'paypal';
+    const METHOD_COFIDIS = 'cofidis';
     
 
     
@@ -194,7 +196,9 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess
             self::METHOD_BIZUM,
             self::METHOD_GOOGLE_PAY,
             self::METHOD_APPLE_PAY,
+            self::METHOD_CLICK_TO_PAY,
             self::METHOD_PAYPAL,
+            self::METHOD_COFIDIS,
         ];
     }
     

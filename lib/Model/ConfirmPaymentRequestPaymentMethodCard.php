@@ -1,6 +1,6 @@
 <?php
 /**
- * CapturePaymentRequest
+ * ConfirmPaymentRequestPaymentMethodCard
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CapturePaymentRequest Class Doc Comment
+ * ConfirmPaymentRequestPaymentMethodCard Class Doc Comment
  *
  * @category Class
+ * @description Additional information about the card used for this payment.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class CapturePaymentRequest implements ModelInterface, ArrayAccess
+class ConfirmPaymentRequestPaymentMethodCard implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CapturePaymentRequest';
+    protected static $openAPIModelName = 'ConfirmPaymentRequest_paymentMethod_card';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +58,8 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => 'int'
+        'cardholder_name' => 'string',
+        'cardholder_email' => 'string'
     ];
 
     /**
@@ -66,7 +68,8 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'amount' => null
+        'cardholder_name' => null,
+        'cardholder_email' => null
     ];
 
     /**
@@ -96,7 +99,8 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'amount' => 'amount'
+        'cardholder_name' => 'cardholderName',
+        'cardholder_email' => 'cardholderEmail'
     ];
 
     /**
@@ -105,7 +109,8 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'amount' => 'setAmount'
+        'cardholder_name' => 'setCardholderName',
+        'cardholder_email' => 'setCardholderEmail'
     ];
 
     /**
@@ -114,7 +119,8 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'amount' => 'getAmount'
+        'cardholder_name' => 'getCardholderName',
+        'cardholder_email' => 'getCardholderEmail'
     ];
 
     /**
@@ -177,7 +183,8 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['cardholder_name'] = isset($data['cardholder_name']) ? $data['cardholder_name'] : null;
+        $this->container['cardholder_email'] = isset($data['cardholder_email']) ? $data['cardholder_email'] : null;
     }
 
     /**
@@ -205,25 +212,49 @@ class CapturePaymentRequest implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets amount
+     * Gets cardholder_name
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getAmount()
+    public function getCardholderName()
     {
-        return $this->container['amount'];
+        return $this->container['cardholder_name'];
     }
 
     /**
-     * Sets amount
+     * Sets cardholder_name
      *
-     * @param int|null $amount The amount to capture, which must be less than or equal to the original amount. Any additional amount will be automatically refunded.
+     * @param string|null $cardholder_name The cardholder's name, as stated in the credit card.
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setCardholderName($cardholder_name)
     {
-        $this->container['amount'] = $amount;
+        $this->container['cardholder_name'] = $cardholder_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardholder_email
+     *
+     * @return string|null
+     */
+    public function getCardholderEmail()
+    {
+        return $this->container['cardholder_email'];
+    }
+
+    /**
+     * Sets cardholder_email
+     *
+     * @param string|null $cardholder_email The cardholder's email address.
+     *
+     * @return $this
+     */
+    public function setCardholderEmail($cardholder_email)
+    {
+        $this->container['cardholder_email'] = $cardholder_email;
 
         return $this;
     }
