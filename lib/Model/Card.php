@@ -13,7 +13,7 @@
 /**
  * MONEI API v1
  *
- * The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+ * The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. <br/><br/> **Base URL:** https://api.monei.com/v1 <br/><br/> **Client libraries:** <ul>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-php-sdk\">PHP SDK</a></li>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-python-sdk\">Python SDK</a></li>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-node-sdk\">Node.js SDK</a></li> </ul>
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -60,7 +60,9 @@ class Card implements ModelInterface, ArrayAccess
         'number' => 'string',
         'cvc' => 'string',
         'exp_month' => 'string',
-        'exp_year' => 'string'
+        'exp_year' => 'string',
+        'cardholder_name' => 'string',
+        'cardholder_email' => 'string'
     ];
 
     /**
@@ -72,7 +74,9 @@ class Card implements ModelInterface, ArrayAccess
         'number' => null,
         'cvc' => null,
         'exp_month' => null,
-        'exp_year' => null
+        'exp_year' => null,
+        'cardholder_name' => null,
+        'cardholder_email' => null
     ];
 
     /**
@@ -105,7 +109,9 @@ class Card implements ModelInterface, ArrayAccess
         'number' => 'number',
         'cvc' => 'cvc',
         'exp_month' => 'expMonth',
-        'exp_year' => 'expYear'
+        'exp_year' => 'expYear',
+        'cardholder_name' => 'cardholderName',
+        'cardholder_email' => 'cardholderEmail'
     ];
 
     /**
@@ -117,7 +123,9 @@ class Card implements ModelInterface, ArrayAccess
         'number' => 'setNumber',
         'cvc' => 'setCvc',
         'exp_month' => 'setExpMonth',
-        'exp_year' => 'setExpYear'
+        'exp_year' => 'setExpYear',
+        'cardholder_name' => 'setCardholderName',
+        'cardholder_email' => 'setCardholderEmail'
     ];
 
     /**
@@ -129,7 +137,9 @@ class Card implements ModelInterface, ArrayAccess
         'number' => 'getNumber',
         'cvc' => 'getCvc',
         'exp_month' => 'getExpMonth',
-        'exp_year' => 'getExpYear'
+        'exp_year' => 'getExpYear',
+        'cardholder_name' => 'getCardholderName',
+        'cardholder_email' => 'getCardholderEmail'
     ];
 
     /**
@@ -196,6 +206,8 @@ class Card implements ModelInterface, ArrayAccess
         $this->container['cvc'] = isset($data['cvc']) ? $data['cvc'] : null;
         $this->container['exp_month'] = isset($data['exp_month']) ? $data['exp_month'] : null;
         $this->container['exp_year'] = isset($data['exp_year']) ? $data['exp_year'] : null;
+        $this->container['cardholder_name'] = isset($data['cardholder_name']) ? $data['cardholder_name'] : null;
+        $this->container['cardholder_email'] = isset($data['cardholder_email']) ? $data['cardholder_email'] : null;
     }
 
     /**
@@ -314,6 +326,54 @@ class Card implements ModelInterface, ArrayAccess
     public function setExpYear($exp_year)
     {
         $this->container['exp_year'] = $exp_year;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardholder_name
+     *
+     * @return string|null
+     */
+    public function getCardholderName()
+    {
+        return $this->container['cardholder_name'];
+    }
+
+    /**
+     * Sets cardholder_name
+     *
+     * @param string|null $cardholder_name The cardholder's name, as stated in the credit card.
+     *
+     * @return $this
+     */
+    public function setCardholderName($cardholder_name)
+    {
+        $this->container['cardholder_name'] = $cardholder_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardholder_email
+     *
+     * @return string|null
+     */
+    public function getCardholderEmail()
+    {
+        return $this->container['cardholder_email'];
+    }
+
+    /**
+     * Sets cardholder_email
+     *
+     * @param string|null $cardholder_email The cardholder's email address.
+     *
+     * @return $this
+     */
+    public function setCardholderEmail($cardholder_email)
+    {
+        $this->container['cardholder_email'] = $cardholder_email;
 
         return $this;
     }

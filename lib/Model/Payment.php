@@ -13,7 +13,7 @@
 /**
  * MONEI API v1
  *
- * The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+ * The MONEI API is organized around [REST](https://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. <br/><br/> **Base URL:** https://api.monei.com/v1 <br/><br/> **Client libraries:** <ul>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-php-sdk\">PHP SDK</a></li>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-python-sdk\">Python SDK</a></li>   <li><a target=\"_blank\" href=\"https://github.com/MONEI/monei-node-sdk\">Node.js SDK</a></li> </ul>
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -69,8 +69,6 @@ class Payment implements ModelInterface, ArrayAccess
         'status_code' => 'string',
         'status_message' => 'string',
         'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
-        'payment_token' => 'string',
-        'payment_method' => '\OpenAPI\Client\Model\PaymentPaymentMethod',
         'shop' => '\OpenAPI\Client\Model\PaymentShop',
         'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
         'shipping_details' => '\OpenAPI\Client\Model\PaymentShippingDetails',
@@ -80,6 +78,10 @@ class Payment implements ModelInterface, ArrayAccess
         'cancellation_reason' => '\OpenAPI\Client\Model\PaymentCancellationReason',
         'session_details' => '\OpenAPI\Client\Model\PaymentSessionDetails',
         'trace_details' => '\OpenAPI\Client\Model\PaymentTraceDetails',
+        'payment_token' => 'string',
+        'payment_method' => '\OpenAPI\Client\Model\PaymentPaymentMethod',
+        'sequence' => '\OpenAPI\Client\Model\PaymentSequence',
+        'sequence_id' => 'string',
         'next_action' => '\OpenAPI\Client\Model\PaymentNextAction',
         'created_at' => 'int',
         'updated_at' => 'int'
@@ -103,8 +105,6 @@ class Payment implements ModelInterface, ArrayAccess
         'status_code' => null,
         'status_message' => null,
         'customer' => null,
-        'payment_token' => null,
-        'payment_method' => null,
         'shop' => null,
         'billing_details' => null,
         'shipping_details' => null,
@@ -114,6 +114,10 @@ class Payment implements ModelInterface, ArrayAccess
         'cancellation_reason' => null,
         'session_details' => null,
         'trace_details' => null,
+        'payment_token' => null,
+        'payment_method' => null,
+        'sequence' => null,
+        'sequence_id' => null,
         'next_action' => null,
         'created_at' => 'int64',
         'updated_at' => 'int64'
@@ -158,8 +162,6 @@ class Payment implements ModelInterface, ArrayAccess
         'status_code' => 'statusCode',
         'status_message' => 'statusMessage',
         'customer' => 'customer',
-        'payment_token' => 'paymentToken',
-        'payment_method' => 'paymentMethod',
         'shop' => 'shop',
         'billing_details' => 'billingDetails',
         'shipping_details' => 'shippingDetails',
@@ -169,6 +171,10 @@ class Payment implements ModelInterface, ArrayAccess
         'cancellation_reason' => 'cancellationReason',
         'session_details' => 'sessionDetails',
         'trace_details' => 'traceDetails',
+        'payment_token' => 'paymentToken',
+        'payment_method' => 'paymentMethod',
+        'sequence' => 'sequence',
+        'sequence_id' => 'sequenceId',
         'next_action' => 'nextAction',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt'
@@ -192,8 +198,6 @@ class Payment implements ModelInterface, ArrayAccess
         'status_code' => 'setStatusCode',
         'status_message' => 'setStatusMessage',
         'customer' => 'setCustomer',
-        'payment_token' => 'setPaymentToken',
-        'payment_method' => 'setPaymentMethod',
         'shop' => 'setShop',
         'billing_details' => 'setBillingDetails',
         'shipping_details' => 'setShippingDetails',
@@ -203,6 +207,10 @@ class Payment implements ModelInterface, ArrayAccess
         'cancellation_reason' => 'setCancellationReason',
         'session_details' => 'setSessionDetails',
         'trace_details' => 'setTraceDetails',
+        'payment_token' => 'setPaymentToken',
+        'payment_method' => 'setPaymentMethod',
+        'sequence' => 'setSequence',
+        'sequence_id' => 'setSequenceId',
         'next_action' => 'setNextAction',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt'
@@ -226,8 +234,6 @@ class Payment implements ModelInterface, ArrayAccess
         'status_code' => 'getStatusCode',
         'status_message' => 'getStatusMessage',
         'customer' => 'getCustomer',
-        'payment_token' => 'getPaymentToken',
-        'payment_method' => 'getPaymentMethod',
         'shop' => 'getShop',
         'billing_details' => 'getBillingDetails',
         'shipping_details' => 'getShippingDetails',
@@ -237,6 +243,10 @@ class Payment implements ModelInterface, ArrayAccess
         'cancellation_reason' => 'getCancellationReason',
         'session_details' => 'getSessionDetails',
         'trace_details' => 'getTraceDetails',
+        'payment_token' => 'getPaymentToken',
+        'payment_method' => 'getPaymentMethod',
+        'sequence' => 'getSequence',
+        'sequence_id' => 'getSequenceId',
         'next_action' => 'getNextAction',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt'
@@ -314,8 +324,6 @@ class Payment implements ModelInterface, ArrayAccess
         $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
         $this->container['status_message'] = isset($data['status_message']) ? $data['status_message'] : null;
         $this->container['customer'] = isset($data['customer']) ? $data['customer'] : null;
-        $this->container['payment_token'] = isset($data['payment_token']) ? $data['payment_token'] : null;
-        $this->container['payment_method'] = isset($data['payment_method']) ? $data['payment_method'] : null;
         $this->container['shop'] = isset($data['shop']) ? $data['shop'] : null;
         $this->container['billing_details'] = isset($data['billing_details']) ? $data['billing_details'] : null;
         $this->container['shipping_details'] = isset($data['shipping_details']) ? $data['shipping_details'] : null;
@@ -325,6 +333,10 @@ class Payment implements ModelInterface, ArrayAccess
         $this->container['cancellation_reason'] = isset($data['cancellation_reason']) ? $data['cancellation_reason'] : null;
         $this->container['session_details'] = isset($data['session_details']) ? $data['session_details'] : null;
         $this->container['trace_details'] = isset($data['trace_details']) ? $data['trace_details'] : null;
+        $this->container['payment_token'] = isset($data['payment_token']) ? $data['payment_token'] : null;
+        $this->container['payment_method'] = isset($data['payment_method']) ? $data['payment_method'] : null;
+        $this->container['sequence'] = isset($data['sequence']) ? $data['sequence'] : null;
+        $this->container['sequence_id'] = isset($data['sequence_id']) ? $data['sequence_id'] : null;
         $this->container['next_action'] = isset($data['next_action']) ? $data['next_action'] : null;
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
@@ -643,54 +655,6 @@ class Payment implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets payment_token
-     *
-     * @return string|null
-     */
-    public function getPaymentToken()
-    {
-        return $this->container['payment_token'];
-    }
-
-    /**
-     * Sets payment_token
-     *
-     * @param string|null $payment_token A permanent token represents a payment method used in the payment. Pass `generatePaymentToken: true` when you creating a payment to generate it. You can pass it as `paymentToken` parameter to create other payments with the same payment method. This token does not expire, and should only be used server-side.
-     *
-     * @return $this
-     */
-    public function setPaymentToken($payment_token)
-    {
-        $this->container['payment_token'] = $payment_token;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_method
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethod|null
-     */
-    public function getPaymentMethod()
-    {
-        return $this->container['payment_method'];
-    }
-
-    /**
-     * Sets payment_method
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethod|null $payment_method payment_method
-     *
-     * @return $this
-     */
-    public function setPaymentMethod($payment_method)
-    {
-        $this->container['payment_method'] = $payment_method;
-
-        return $this;
-    }
-
-    /**
      * Gets shop
      *
      * @return \OpenAPI\Client\Model\PaymentShop|null
@@ -902,6 +866,102 @@ class Payment implements ModelInterface, ArrayAccess
     public function setTraceDetails($trace_details)
     {
         $this->container['trace_details'] = $trace_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_token
+     *
+     * @return string|null
+     */
+    public function getPaymentToken()
+    {
+        return $this->container['payment_token'];
+    }
+
+    /**
+     * Sets payment_token
+     *
+     * @param string|null $payment_token A permanent token represents a payment method used in the payment. Pass `generatePaymentToken: true` when you creating a payment to generate it. You can pass it as `paymentToken` parameter to create other payments with the same payment method. This token does not expire, and should only be used server-side.
+     *
+     * @return $this
+     */
+    public function setPaymentToken($payment_token)
+    {
+        $this->container['payment_token'] = $payment_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_method
+     *
+     * @return \OpenAPI\Client\Model\PaymentPaymentMethod|null
+     */
+    public function getPaymentMethod()
+    {
+        return $this->container['payment_method'];
+    }
+
+    /**
+     * Sets payment_method
+     *
+     * @param \OpenAPI\Client\Model\PaymentPaymentMethod|null $payment_method payment_method
+     *
+     * @return $this
+     */
+    public function setPaymentMethod($payment_method)
+    {
+        $this->container['payment_method'] = $payment_method;
+
+        return $this;
+    }
+
+    /**
+     * Gets sequence
+     *
+     * @return \OpenAPI\Client\Model\PaymentSequence|null
+     */
+    public function getSequence()
+    {
+        return $this->container['sequence'];
+    }
+
+    /**
+     * Sets sequence
+     *
+     * @param \OpenAPI\Client\Model\PaymentSequence|null $sequence sequence
+     *
+     * @return $this
+     */
+    public function setSequence($sequence)
+    {
+        $this->container['sequence'] = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * Gets sequence_id
+     *
+     * @return string|null
+     */
+    public function getSequenceId()
+    {
+        return $this->container['sequence_id'];
+    }
+
+    /**
+     * Sets sequence_id
+     *
+     * @param string|null $sequence_id A permanent identifier that refers to the initial payment of a sequence of payments. This value needs to be sent in the path for `RECURRING` payments.
+     *
+     * @return $this
+     */
+    public function setSequenceId($sequence_id)
+    {
+        $this->container['sequence_id'] = $sequence_id;
 
         return $this;
     }
