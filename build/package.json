@@ -16,7 +16,7 @@
   },
   "release-it": {
     "git": {
-      "tagName": "v${version}",
+      "tagName": "${version}",
       "commitMessage": "chore: release v${version}"
     },
     "github": {
