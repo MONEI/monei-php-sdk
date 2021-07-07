@@ -24,6 +24,11 @@
     },
     "npm": {
       "publish": false
+    },
+    "hooks": {
+      "before:init": [
+        "yarn build"
+      ]
     }
   }
 }
