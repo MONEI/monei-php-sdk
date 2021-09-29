@@ -31,9 +31,10 @@
     },
     "plugins": {
       "@release-it/bumper": {
-        "out": [
-          "config.json"
-        ]
+        "out": {
+          "file": "config.json",
+          "path": "packageVersion"
+        }
       }
     }
   }
