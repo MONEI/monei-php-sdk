@@ -33,13 +33,9 @@
         "out": [
           {
             "file": "config.json",
-            "path": "packageVersion"
+            "path": "artifactVersion"
           },
-          "../lib/MoneiClient.php",
-          {
-            "file": "config.json",
-            "path": "packageVersion"
-          }
+          "../lib/MoneiClient.php"
         ]
       }
     }
