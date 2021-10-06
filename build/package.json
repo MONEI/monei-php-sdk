@@ -30,7 +30,10 @@
     },
     "plugins": {
       "@release-it/bumper": {
-        "out": ["config.json" , "../lib/MoneiClient.php"]
+        "out": [{
+          "file": "config.json",
+          "path": "packageVersion"
+        }, "../lib/MoneiClient.php"]
       }
     }
   }
