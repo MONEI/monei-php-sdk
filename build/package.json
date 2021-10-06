@@ -1,6 +1,6 @@
 {
   "name": "monei-php-sdk",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "MONEI PHP SDK",
   "author": "monei",
   "scripts": {
@@ -30,10 +30,13 @@
     },
     "plugins": {
       "@release-it/bumper": {
-        "out": [{
-          "file": "config.json",
-          "path": "packageVersion"
-        }, "../lib/MoneiClient.php"]
+        "out": [
+          {
+            "file": "config.json",
+            "path": "packageVersion"
+          },
+          "../lib/MoneiClient.php"
+        ]
       }
     }
   }
