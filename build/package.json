@@ -5,7 +5,6 @@
   "author": "monei",
   "scripts": {
     "build": "openapi-generator generate -i https://js.monei.com/api/v1/openapi.json -g php --remove-operation-id-prefix -c ./config.json -o ../",
-    "prepare": "yarn run build",
     "release": "release-it"
   },
   "license": "MIT",
