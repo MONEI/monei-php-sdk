@@ -26,7 +26,7 @@
       "publish": false
     },
     "hooks": {
-      "after:bump": "yarn build"
+      "after:bump": "yarn run build && git add -A"
     },
     "plugins": {
       "@release-it/bumper": {
@@ -35,7 +35,11 @@
             "file": "config.json",
             "path": "packageVersion"
           },
-          "../lib/MoneiClient.php"
+          "../lib/MoneiClient.php",
+          {
+            "file": "config.json",
+            "path": "packageVersion"
+          }
         ]
       }
     }
