@@ -73,6 +73,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'sequence' => '\OpenAPI\Client\Model\PaymentSequence',
         'point_of_sale_id' => 'string',
         'subscription_id' => 'string',
+        'auto_recover' => 'bool',
         'description' => 'string',
         'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
         'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
@@ -102,6 +103,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'sequence' => null,
         'point_of_sale_id' => null,
         'subscription_id' => null,
+        'auto_recover' => null,
         'description' => null,
         'customer' => null,
         'billing_details' => null,
@@ -152,6 +154,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'sequence' => 'sequence',
         'point_of_sale_id' => 'pointOfSaleId',
         'subscription_id' => 'subscriptionId',
+        'auto_recover' => 'autoRecover',
         'description' => 'description',
         'customer' => 'customer',
         'billing_details' => 'billingDetails',
@@ -181,6 +184,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'sequence' => 'setSequence',
         'point_of_sale_id' => 'setPointOfSaleId',
         'subscription_id' => 'setSubscriptionId',
+        'auto_recover' => 'setAutoRecover',
         'description' => 'setDescription',
         'customer' => 'setCustomer',
         'billing_details' => 'setBillingDetails',
@@ -210,6 +214,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         'sequence' => 'getSequence',
         'point_of_sale_id' => 'getPointOfSaleId',
         'subscription_id' => 'getSubscriptionId',
+        'auto_recover' => 'getAutoRecover',
         'description' => 'getDescription',
         'customer' => 'getCustomer',
         'billing_details' => 'getBillingDetails',
@@ -293,6 +298,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         $this->container['sequence'] = isset($data['sequence']) ? $data['sequence'] : null;
         $this->container['point_of_sale_id'] = isset($data['point_of_sale_id']) ? $data['point_of_sale_id'] : null;
         $this->container['subscription_id'] = isset($data['subscription_id']) ? $data['subscription_id'] : null;
+        $this->container['auto_recover'] = isset($data['auto_recover']) ? $data['auto_recover'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['customer'] = isset($data['customer']) ? $data['customer'] : null;
         $this->container['billing_details'] = isset($data['billing_details']) ? $data['billing_details'] : null;
@@ -719,6 +725,30 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     public function setSubscriptionId($subscription_id)
     {
         $this->container['subscription_id'] = $subscription_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_recover
+     *
+     * @return bool|null
+     */
+    public function getAutoRecover()
+    {
+        return $this->container['auto_recover'];
+    }
+
+    /**
+     * Sets auto_recover
+     *
+     * @param bool|null $auto_recover If set to `true`, the new payment will be automatically created when customer visits the payment link of the previously failed payment. (set this value to `true` to create \"Pay By Link\" payments).
+     *
+     * @return $this
+     */
+    public function setAutoRecover($auto_recover)
+    {
+        $this->container['auto_recover'] = $auto_recover;
 
         return $this;
     }
