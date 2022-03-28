@@ -324,12 +324,6 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
         if ($this->container['order_id'] === null) {
             $invalidProperties[] = "'order_id' can't be null";
         }
-        if ($this->container['callback_url'] === null) {
-            $invalidProperties[] = "'callback_url' can't be null";
-        }
-        if ($this->container['complete_url'] === null) {
-            $invalidProperties[] = "'complete_url' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -420,7 +414,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Gets callback_url
      *
-     * @return string
+     * @return string|null
      */
     public function getCallbackUrl()
     {
@@ -430,7 +424,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets callback_url
      *
-     * @param string $callback_url The URL to which a payment result should be sent asynchronously.
+     * @param string|null $callback_url The URL to which a payment result should be sent asynchronously.
      *
      * @return $this
      */
@@ -444,7 +438,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Gets complete_url
      *
-     * @return string
+     * @return string|null
      */
     public function getCompleteUrl()
     {
@@ -454,7 +448,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets complete_url
      *
-     * @param string $complete_url The URL the customer will be directed to after transaction completed (successful or failed - except if `failUrl` is provided).
+     * @param string|null $complete_url The URL the customer will be directed to after transaction completed (successful or failed - except if `failUrl` is provided).
      *
      * @return $this
      */
@@ -742,7 +736,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess
     /**
      * Sets auto_recover
      *
-     * @param bool|null $auto_recover If set to `true`, the new payment will be automatically created when customer visits the payment link of the previously failed payment. (set this value to `true` to create \"Pay By Link\" payments).
+     * @param bool|null $auto_recover If set to `true`, the new payment will be automatically created when customer visits the payment link of the previously failed payment. Is automatically set to `true` if `completeUrl` is not provided.(set this value to `true` to create \"Pay By Link\" payments).
      *
      * @return $this
      */
