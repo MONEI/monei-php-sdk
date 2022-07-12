@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentRefundReason
+ * PaymentMessageChannel
  *
  * PHP version 5
  *
@@ -31,22 +31,21 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentRefundReason Class Doc Comment
+ * PaymentMessageChannel Class Doc Comment
  *
  * @category Class
- * @description The reason for refunding the Payment.
+ * @description The channel used to send the payment message. if &#x60;customerEmail&#x60; or &#x60;customerPhone&#x60; is provided this parameter is ignored.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentRefundReason
+class PaymentMessageChannel
 {
     /**
      * Possible values of this enum
      */
-    const DUPLICATED = 'duplicated';
-    const FRAUDULENT = 'fraudulent';
-    const REQUESTED_BY_CUSTOMER = 'requested_by_customer';
+    const EMAIL = 'EMAIL';
+    const SMS = 'SMS';
     
     /**
      * Gets allowable values of the enum
@@ -55,9 +54,8 @@ class PaymentRefundReason
     public static function getAllowableEnumValues()
     {
         return [
-            self::DUPLICATED,
-            self::FRAUDULENT,
-            self::REQUESTED_BY_CUSTOMER,
+            self::EMAIL,
+            self::SMS,
         ];
     }
 }

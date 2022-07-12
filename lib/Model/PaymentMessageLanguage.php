@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentRefundReason
+ * PaymentMessageLanguage
  *
  * PHP version 5
  *
@@ -31,22 +31,26 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentRefundReason Class Doc Comment
+ * PaymentMessageLanguage Class Doc Comment
  *
  * @category Class
- * @description The reason for refunding the Payment.
+ * @description The language of message sent to the customer. If not provided the default customer language is used if available.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentRefundReason
+class PaymentMessageLanguage
 {
     /**
      * Possible values of this enum
      */
-    const DUPLICATED = 'duplicated';
-    const FRAUDULENT = 'fraudulent';
-    const REQUESTED_BY_CUSTOMER = 'requested_by_customer';
+    const EN = 'en';
+    const ES = 'es';
+    const CA = 'ca';
+    const PT = 'pt';
+    const DE = 'de';
+    const IT = 'it';
+    const FR = 'fr';
     
     /**
      * Gets allowable values of the enum
@@ -55,9 +59,13 @@ class PaymentRefundReason
     public static function getAllowableEnumValues()
     {
         return [
-            self::DUPLICATED,
-            self::FRAUDULENT,
-            self::REQUESTED_BY_CUSTOMER,
+            self::EN,
+            self::ES,
+            self::CA,
+            self::PT,
+            self::DE,
+            self::IT,
+            self::FR,
         ];
     }
 }
