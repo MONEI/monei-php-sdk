@@ -32,7 +32,7 @@ class MoneiClient
     /**
      * SDK Version.
      */
-    const SDK_VERSION = '1.2.1';
+    const SDK_VERSION = '2.0.0';
 
     /**
      * @var Configuration
