@@ -1,4 +1,3 @@
-.gitignore
 .php-cs-fixer.dist.php
 .travis.yml
 git_push.sh
@@ -60,4 +59,3 @@ lib/Model/SubscriptionStatus.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/DomainRegister200ResponseTest.php
