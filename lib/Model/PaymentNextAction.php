@@ -189,6 +189,7 @@ class PaymentNextAction implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_CHALLENGE,
             self::TYPE_FRICTIONLESS_CHALLENGE,
             self::TYPE_COMPLETE,
+            self::TYPE_BIZUM_CHALLENGE
         ];
     }
 
