@@ -175,6 +175,7 @@ class PaymentNextAction implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const TYPE_CHALLENGE = 'CHALLENGE';
     public const TYPE_FRICTIONLESS_CHALLENGE = 'FRICTIONLESS_CHALLENGE';
     public const TYPE_COMPLETE = 'COMPLETE';
+    public const TYPE_BIZUM_CHALLENGE = 'BIZUM_CHALLENGE';
 
     /**
      * Gets allowable values of the enum
