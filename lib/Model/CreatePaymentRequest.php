@@ -78,7 +78,8 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer' => '\OpenAPI\Client\Model\PaymentCustomer',
         'billing_details' => '\OpenAPI\Client\Model\PaymentBillingDetails',
         'shipping_details' => '\OpenAPI\Client\Model\PaymentShippingDetails',
-        'session_details' => '\OpenAPI\Client\Model\PaymentSessionDetails'
+        'session_details' => '\OpenAPI\Client\Model\PaymentSessionDetails',
+        'expire_at' => 'float'
     ];
 
     /**
@@ -110,7 +111,8 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer' => null,
         'billing_details' => null,
         'shipping_details' => null,
-        'session_details' => null
+        'session_details' => null,
+        'expire_at' => 'int64'
     ];
 
     /**
@@ -161,7 +163,8 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer' => 'customer',
         'billing_details' => 'billingDetails',
         'shipping_details' => 'shippingDetails',
-        'session_details' => 'sessionDetails'
+        'session_details' => 'sessionDetails',
+        'expire_at' => 'expireAt'
     ];
 
     /**
@@ -191,7 +194,8 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer' => 'setCustomer',
         'billing_details' => 'setBillingDetails',
         'shipping_details' => 'setShippingDetails',
-        'session_details' => 'setSessionDetails'
+        'session_details' => 'setSessionDetails',
+        'expire_at' => 'setExpireAt'
     ];
 
     /**
@@ -221,7 +225,8 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer' => 'getCustomer',
         'billing_details' => 'getBillingDetails',
         'shipping_details' => 'getShippingDetails',
-        'session_details' => 'getSessionDetails'
+        'session_details' => 'getSessionDetails',
+        'expire_at' => 'getExpireAt'
     ];
 
     /**
@@ -303,6 +308,7 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->container['billing_details'] = $data['billing_details'] ?? null;
         $this->container['shipping_details'] = $data['shipping_details'] ?? null;
         $this->container['session_details'] = $data['session_details'] ?? null;
+        $this->container['expire_at'] = $data['expire_at'] ?? null;
     }
 
     /**
@@ -862,6 +868,30 @@ class CreatePaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setSessionDetails($session_details)
     {
         $this->container['session_details'] = $session_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets expire_at
+     *
+     * @return float|null
+     */
+    public function getExpireAt()
+    {
+        return $this->container['expire_at'];
+    }
+
+    /**
+     * Sets expire_at
+     *
+     * @param float|null $expire_at Payment expiration time.
+     *
+     * @return self
+     */
+    public function setExpireAt($expire_at)
+    {
+        $this->container['expire_at'] = $expire_at;
 
         return $this;
     }
