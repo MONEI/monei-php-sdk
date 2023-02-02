@@ -1,6 +1,6 @@
 <?php
 /**
- * RegisterDomainRequest
+ * PaymentPaymentMethodCardInput
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RegisterDomainRequest Class Doc Comment
+ * PaymentPaymentMethodCardInput Class Doc Comment
  *
  * @category Class
+ * @description Details about the card used as payment method. If provided, MONEI will try to confirm the payment directly.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentPaymentMethodCardInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RegisterDomainRequest';
+    protected static $openAPIModelName = 'Payment-PaymentMethodCardInput';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +58,12 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'domain_name' => 'string'
+        'number' => 'string',
+        'cvc' => 'string',
+        'exp_month' => 'string',
+        'exp_year' => 'string',
+        'cardholder_name' => 'string',
+        'cardholder_email' => 'string'
     ];
 
     /**
@@ -68,7 +74,12 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'domain_name' => null
+        'number' => null,
+        'cvc' => null,
+        'exp_month' => null,
+        'exp_year' => null,
+        'cardholder_name' => null,
+        'cardholder_email' => null
     ];
 
     /**
@@ -98,7 +109,12 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'domain_name' => 'domainName'
+        'number' => 'number',
+        'cvc' => 'cvc',
+        'exp_month' => 'expMonth',
+        'exp_year' => 'expYear',
+        'cardholder_name' => 'cardholderName',
+        'cardholder_email' => 'cardholderEmail'
     ];
 
     /**
@@ -107,7 +123,12 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'domain_name' => 'setDomainName'
+        'number' => 'setNumber',
+        'cvc' => 'setCvc',
+        'exp_month' => 'setExpMonth',
+        'exp_year' => 'setExpYear',
+        'cardholder_name' => 'setCardholderName',
+        'cardholder_email' => 'setCardholderEmail'
     ];
 
     /**
@@ -116,7 +137,12 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'domain_name' => 'getDomainName'
+        'number' => 'getNumber',
+        'cvc' => 'getCvc',
+        'exp_month' => 'getExpMonth',
+        'exp_year' => 'getExpYear',
+        'cardholder_name' => 'getCardholderName',
+        'cardholder_email' => 'getCardholderEmail'
     ];
 
     /**
@@ -176,7 +202,12 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['domain_name'] = $data['domain_name'] ?? null;
+        $this->container['number'] = $data['number'] ?? null;
+        $this->container['cvc'] = $data['cvc'] ?? null;
+        $this->container['exp_month'] = $data['exp_month'] ?? null;
+        $this->container['exp_year'] = $data['exp_year'] ?? null;
+        $this->container['cardholder_name'] = $data['cardholder_name'] ?? null;
+        $this->container['cardholder_email'] = $data['cardholder_email'] ?? null;
     }
 
     /**
@@ -188,9 +219,6 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['domain_name'] === null) {
-            $invalidProperties[] = "'domain_name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -207,25 +235,145 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets domain_name
+     * Gets number
      *
-     * @return string
+     * @return string|null
      */
-    public function getDomainName()
+    public function getNumber()
     {
-        return $this->container['domain_name'];
+        return $this->container['number'];
     }
 
     /**
-     * Sets domain_name
+     * Sets number
      *
-     * @param string $domain_name The domain name to register for Apple Pay.
+     * @param string|null $number The card number, as a string without any separators.
      *
      * @return self
      */
-    public function setDomainName($domain_name)
+    public function setNumber($number)
     {
-        $this->container['domain_name'] = $domain_name;
+        $this->container['number'] = $number;
+
+        return $this;
+    }
+
+    /**
+     * Gets cvc
+     *
+     * @return string|null
+     */
+    public function getCvc()
+    {
+        return $this->container['cvc'];
+    }
+
+    /**
+     * Sets cvc
+     *
+     * @param string|null $cvc Card security code.
+     *
+     * @return self
+     */
+    public function setCvc($cvc)
+    {
+        $this->container['cvc'] = $cvc;
+
+        return $this;
+    }
+
+    /**
+     * Gets exp_month
+     *
+     * @return string|null
+     */
+    public function getExpMonth()
+    {
+        return $this->container['exp_month'];
+    }
+
+    /**
+     * Sets exp_month
+     *
+     * @param string|null $exp_month Two-digit number representing the card’s expiration month.
+     *
+     * @return self
+     */
+    public function setExpMonth($exp_month)
+    {
+        $this->container['exp_month'] = $exp_month;
+
+        return $this;
+    }
+
+    /**
+     * Gets exp_year
+     *
+     * @return string|null
+     */
+    public function getExpYear()
+    {
+        return $this->container['exp_year'];
+    }
+
+    /**
+     * Sets exp_year
+     *
+     * @param string|null $exp_year Two-digit number representing the card’s expiration year.
+     *
+     * @return self
+     */
+    public function setExpYear($exp_year)
+    {
+        $this->container['exp_year'] = $exp_year;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardholder_name
+     *
+     * @return string|null
+     */
+    public function getCardholderName()
+    {
+        return $this->container['cardholder_name'];
+    }
+
+    /**
+     * Sets cardholder_name
+     *
+     * @param string|null $cardholder_name The cardholder's name, as stated in the credit card.
+     *
+     * @return self
+     */
+    public function setCardholderName($cardholder_name)
+    {
+        $this->container['cardholder_name'] = $cardholder_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets cardholder_email
+     *
+     * @return string|null
+     */
+    public function getCardholderEmail()
+    {
+        return $this->container['cardholder_email'];
+    }
+
+    /**
+     * Sets cardholder_email
+     *
+     * @param string|null $cardholder_email The cardholder's email address.
+     *
+     * @return self
+     */
+    public function setCardholderEmail($cardholder_email)
+    {
+        $this->container['cardholder_email'] = $cardholder_email;
 
         return $this;
     }

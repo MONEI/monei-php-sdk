@@ -12,7 +12,6 @@ lib/Model/Address.php
 lib/Model/CancelPaymentRequest.php
 lib/Model/CancelSubscriptionRequest.php
 lib/Model/CapturePaymentRequest.php
-lib/Model/Card.php
 lib/Model/ConfirmPaymentRequest.php
 lib/Model/ConfirmPaymentRequestPaymentMethod.php
 lib/Model/ConfirmPaymentRequestPaymentMethodCard.php
@@ -32,7 +31,9 @@ lib/Model/PaymentMessageLanguage.php
 lib/Model/PaymentNextAction.php
 lib/Model/PaymentPaymentMethod.php
 lib/Model/PaymentPaymentMethodBizum.php
+lib/Model/PaymentPaymentMethodBizumInput.php
 lib/Model/PaymentPaymentMethodCard.php
+lib/Model/PaymentPaymentMethodCardInput.php
 lib/Model/PaymentPaymentMethodCofidis.php
 lib/Model/PaymentPaymentMethodInput.php
 lib/Model/PaymentPaymentMethodPaypal.php

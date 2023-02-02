@@ -1,6 +1,6 @@
 <?php
 /**
- * RegisterDomainRequest
+ * PaymentPaymentMethodBizumInput
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * RegisterDomainRequest Class Doc Comment
+ * PaymentPaymentMethodBizumInput Class Doc Comment
  *
  * @category Class
+ * @description Details about the Bizum account used for this payment. If provided phone number is valid and registered in Bizum, MONEI will try to confirm the payment directly.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentPaymentMethodBizumInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RegisterDomainRequest';
+    protected static $openAPIModelName = 'Payment-PaymentMethodBizumInput';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +58,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'domain_name' => 'string'
+        'phone_number' => 'string'
     ];
 
     /**
@@ -68,7 +69,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'domain_name' => null
+        'phone_number' => null
     ];
 
     /**
@@ -98,7 +99,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'domain_name' => 'domainName'
+        'phone_number' => 'phoneNumber'
     ];
 
     /**
@@ -107,7 +108,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'domain_name' => 'setDomainName'
+        'phone_number' => 'setPhoneNumber'
     ];
 
     /**
@@ -116,7 +117,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'domain_name' => 'getDomainName'
+        'phone_number' => 'getPhoneNumber'
     ];
 
     /**
@@ -176,7 +177,7 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['domain_name'] = $data['domain_name'] ?? null;
+        $this->container['phone_number'] = $data['phone_number'] ?? null;
     }
 
     /**
@@ -188,9 +189,6 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['domain_name'] === null) {
-            $invalidProperties[] = "'domain_name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -207,25 +205,25 @@ class RegisterDomainRequest implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets domain_name
+     * Gets phone_number
      *
-     * @return string
+     * @return string|null
      */
-    public function getDomainName()
+    public function getPhoneNumber()
     {
-        return $this->container['domain_name'];
+        return $this->container['phone_number'];
     }
 
     /**
-     * Sets domain_name
+     * Sets phone_number
      *
-     * @param string $domain_name The domain name to register for Apple Pay.
+     * @param string|null $phone_number The phone number used to pay with `bizum`.
      *
      * @return self
      */
-    public function setDomainName($domain_name)
+    public function setPhoneNumber($phone_number)
     {
-        $this->container['domain_name'] = $domain_name;
+        $this->container['phone_number'] = $phone_number;
 
         return $this;
     }

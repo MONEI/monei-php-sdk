@@ -45,6 +45,16 @@ class MoneiClient
     public $payments;
 
     /**
+     * @var SubscriptionsApi
+     */
+    public $subscriptions;
+
+    /**
+     * @var ApplePayDomainApi
+     */
+    public $applePayDomain;
+
+    /**
      * @param string          $apiKey
      * @param Configuration   $config
      */
