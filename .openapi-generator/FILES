@@ -61,4 +61,3 @@ lib/Model/SubscriptionStatus.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/SendPaymentRequestTest.php

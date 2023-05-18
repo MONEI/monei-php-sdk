@@ -1,6 +1,6 @@
 {
   "packageName": "MONEI PHP SDK",
-  "artifactVersion": "2.1.2",
+  "artifactVersion": "2.2.0",
   "gitHost": "github.com",
   "gitUserId": "monei",
   "gitRepoId": "monei-php-sdk"
