@@ -2761,13 +2761,13 @@ class PaymentsApi
      * Send Payment Request
      *
      * @param  string $id The payment ID (required)
-     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request send_payment_request (optional)
+     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request send_payment_request (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Payment
      */
-    public function sendRequest($id, $send_payment_request = null)
+    public function sendRequest($id, $send_payment_request)
     {
         list($response) = $this->sendRequestWithHttpInfo($id, $send_payment_request);
         return $response;
@@ -2779,13 +2779,13 @@ class PaymentsApi
      * Send Payment Request
      *
      * @param  string $id The payment ID (required)
-     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (optional)
+     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Payment, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendRequestWithHttpInfo($id, $send_payment_request = null)
+    public function sendRequestWithHttpInfo($id, $send_payment_request)
     {
         $request = $this->sendRequestRequest($id, $send_payment_request);
 
@@ -2879,12 +2879,12 @@ class PaymentsApi
      * Send Payment Request
      *
      * @param  string $id The payment ID (required)
-     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (optional)
+     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendRequestAsync($id, $send_payment_request = null)
+    public function sendRequestAsync($id, $send_payment_request)
     {
         return $this->sendRequestAsyncWithHttpInfo($id, $send_payment_request)
             ->then(
@@ -2900,12 +2900,12 @@ class PaymentsApi
      * Send Payment Request
      *
      * @param  string $id The payment ID (required)
-     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (optional)
+     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendRequestAsyncWithHttpInfo($id, $send_payment_request = null)
+    public function sendRequestAsyncWithHttpInfo($id, $send_payment_request)
     {
         $returnType = '\OpenAPI\Client\Model\Payment';
         $request = $this->sendRequestRequest($id, $send_payment_request);
@@ -2950,17 +2950,23 @@ class PaymentsApi
      * Create request for operation 'sendRequest'
      *
      * @param  string $id The payment ID (required)
-     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (optional)
+     * @param  \OpenAPI\Client\Model\SendPaymentRequest $send_payment_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendRequestRequest($id, $send_payment_request = null)
+    public function sendRequestRequest($id, $send_payment_request)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling sendRequest'
+            );
+        }
+        // verify the required parameter 'send_payment_request' is set
+        if ($send_payment_request === null || (is_array($send_payment_request) && count($send_payment_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $send_payment_request when calling sendRequest'
             );
         }
 

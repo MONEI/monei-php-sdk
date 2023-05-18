@@ -194,6 +194,9 @@ class SendPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['phone_number'] === null) {
+            $invalidProperties[] = "'phone_number' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -212,7 +215,7 @@ class SendPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets phone_number
      *
-     * @return string|null
+     * @return string
      */
     public function getPhoneNumber()
     {
@@ -222,7 +225,7 @@ class SendPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets phone_number
      *
-     * @param string|null $phone_number Phone number in E.164 format. The customer will receive payment link on this phone number.
+     * @param string $phone_number Phone number in E.164 format. The customer will receive payment link on this phone number.
      *
      * @return self
      */
