@@ -51,6 +51,7 @@ lib/Model/RefundPaymentRequest.php
 lib/Model/RegisterDomainRequest.php
 lib/Model/SendPaymentLinkRequest.php
 lib/Model/SendPaymentReceiptRequest.php
+lib/Model/SendPaymentRequest.php
 lib/Model/Subscription.php
 lib/Model/SubscriptionInterval.php
 lib/Model/SubscriptionLastPayment.php
@@ -60,3 +61,4 @@ lib/Model/SubscriptionStatus.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/SendPaymentRequestTest.php

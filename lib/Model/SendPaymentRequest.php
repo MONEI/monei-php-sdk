@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentShop
+ * SendPaymentRequest
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentShop Class Doc Comment
+ * SendPaymentRequest Class Doc Comment
  *
  * @category Class
- * @description The information about the shop (used in [hosted payment page](https://docs.monei.com/docs/use-prebuilt-payment-page)).
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
+class SendPaymentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-Shop';
+    protected static $openAPIModelName = 'SendPaymentRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +57,8 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'country' => 'string'
+        'phone_number' => 'string',
+        'language' => '\OpenAPI\Client\Model\PaymentMessageLanguage'
     ];
 
     /**
@@ -70,8 +69,8 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'country' => null
+        'phone_number' => null,
+        'language' => null
     ];
 
     /**
@@ -101,8 +100,8 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'country' => 'country'
+        'phone_number' => 'phoneNumber',
+        'language' => 'language'
     ];
 
     /**
@@ -111,8 +110,8 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'country' => 'setCountry'
+        'phone_number' => 'setPhoneNumber',
+        'language' => 'setLanguage'
     ];
 
     /**
@@ -121,8 +120,8 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'country' => 'getCountry'
+        'phone_number' => 'getPhoneNumber',
+        'language' => 'getLanguage'
     ];
 
     /**
@@ -182,8 +181,8 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['country'] = $data['country'] ?? null;
+        $this->container['phone_number'] = $data['phone_number'] ?? null;
+        $this->container['language'] = $data['language'] ?? null;
     }
 
     /**
@@ -211,49 +210,49 @@ class PaymentShop implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
+     * Gets phone_number
      *
      * @return string|null
      */
-    public function getName()
+    public function getPhoneNumber()
     {
-        return $this->container['name'];
+        return $this->container['phone_number'];
     }
 
     /**
-     * Sets name
+     * Sets phone_number
      *
-     * @param string|null $name The shop name.
+     * @param string|null $phone_number Phone number in E.164 format. The customer will receive payment link on this phone number.
      *
      * @return self
      */
-    public function setName($name)
+    public function setPhoneNumber($phone_number)
     {
-        $this->container['name'] = $name;
+        $this->container['phone_number'] = $phone_number;
 
         return $this;
     }
 
     /**
-     * Gets country
+     * Gets language
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\PaymentMessageLanguage|null
      */
-    public function getCountry()
+    public function getLanguage()
     {
-        return $this->container['country'];
+        return $this->container['language'];
     }
 
     /**
-     * Sets country
+     * Sets language
      *
-     * @param string|null $country Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     * @param \OpenAPI\Client\Model\PaymentMessageLanguage|null $language language
      *
      * @return self
      */
-    public function setCountry($country)
+    public function setLanguage($language)
     {
-        $this->container['country'] = $country;
+        $this->container['language'] = $language;
 
         return $this;
     }
