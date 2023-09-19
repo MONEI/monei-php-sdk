@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethodInput
+ * ValidateBizumPhoneRequest
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethodInput Class Doc Comment
+ * ValidateBizumPhoneRequest Class Doc Comment
  *
  * @category Class
- * @description An information about a payment method used for this payment. We recommend using &#x60;paymentToken&#x60; instead, as it is more secure way to pass sensitive payment information. Processing credit card information on your server requires [PCI DSS compliance](https://www.investopedia.com/terms/p/pci-compliance.asp).
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class ValidateBizumPhoneRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethodInput';
+    protected static $openAPIModelName = 'ValidateBizumPhoneRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +57,9 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCardInput',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizumInput'
+        'account_id' => 'string',
+        'payment_id' => 'string',
+        'phone_number' => 'string'
     ];
 
     /**
@@ -70,8 +70,9 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'card' => null,
-        'bizum' => null
+        'account_id' => null,
+        'payment_id' => null,
+        'phone_number' => null
     ];
 
     /**
@@ -101,8 +102,9 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'card' => 'card',
-        'bizum' => 'bizum'
+        'account_id' => 'accountId',
+        'payment_id' => 'paymentId',
+        'phone_number' => 'phoneNumber'
     ];
 
     /**
@@ -111,8 +113,9 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'card' => 'setCard',
-        'bizum' => 'setBizum'
+        'account_id' => 'setAccountId',
+        'payment_id' => 'setPaymentId',
+        'phone_number' => 'setPhoneNumber'
     ];
 
     /**
@@ -121,8 +124,9 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'card' => 'getCard',
-        'bizum' => 'getBizum'
+        'account_id' => 'getAccountId',
+        'payment_id' => 'getPaymentId',
+        'phone_number' => 'getPhoneNumber'
     ];
 
     /**
@@ -182,8 +186,9 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['card'] = $data['card'] ?? null;
-        $this->container['bizum'] = $data['bizum'] ?? null;
+        $this->container['account_id'] = $data['account_id'] ?? null;
+        $this->container['payment_id'] = $data['payment_id'] ?? null;
+        $this->container['phone_number'] = $data['phone_number'] ?? null;
     }
 
     /**
@@ -195,6 +200,12 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
+        if ($this->container['account_id'] === null) {
+            $invalidProperties[] = "'account_id' can't be null";
+        }
+        if ($this->container['phone_number'] === null) {
+            $invalidProperties[] = "'phone_number' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -211,49 +222,73 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets card
+     * Gets account_id
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null
+     * @return string
      */
-    public function getCard()
+    public function getAccountId()
     {
-        return $this->container['card'];
+        return $this->container['account_id'];
     }
 
     /**
-     * Sets card
+     * Sets account_id
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null $card card
+     * @param string $account_id MONEI Account identifier.
      *
      * @return self
      */
-    public function setCard($card)
+    public function setAccountId($account_id)
     {
-        $this->container['card'] = $card;
+        $this->container['account_id'] = $account_id;
 
         return $this;
     }
 
     /**
-     * Gets bizum
+     * Gets payment_id
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null
+     * @return string|null
      */
-    public function getBizum()
+    public function getPaymentId()
     {
-        return $this->container['bizum'];
+        return $this->container['payment_id'];
     }
 
     /**
-     * Sets bizum
+     * Sets payment_id
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null $bizum bizum
+     * @param string|null $payment_id Unique identifier for the payment.
      *
      * @return self
      */
-    public function setBizum($bizum)
+    public function setPaymentId($payment_id)
     {
-        $this->container['bizum'] = $bizum;
+        $this->container['payment_id'] = $payment_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets phone_number
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->container['phone_number'];
+    }
+
+    /**
+     * Sets phone_number
+     *
+     * @param string $phone_number Phone number in E.164 format.
+     *
+     * @return self
+     */
+    public function setPhoneNumber($phone_number)
+    {
+        $this->container['phone_number'] = $phone_number;
 
         return $this;
     }

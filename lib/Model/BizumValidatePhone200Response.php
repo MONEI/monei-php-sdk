@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethodInput
+ * BizumValidatePhone200Response
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethodInput Class Doc Comment
+ * BizumValidatePhone200Response Class Doc Comment
  *
  * @category Class
- * @description An information about a payment method used for this payment. We recommend using &#x60;paymentToken&#x60; instead, as it is more secure way to pass sensitive payment information. Processing credit card information on your server requires [PCI DSS compliance](https://www.investopedia.com/terms/p/pci-compliance.asp).
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class BizumValidatePhone200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethodInput';
+    protected static $openAPIModelName = 'bizum_validate_phone_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +57,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCardInput',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizumInput'
+        'is_valid' => 'bool'
     ];
 
     /**
@@ -70,8 +68,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'card' => null,
-        'bizum' => null
+        'is_valid' => null
     ];
 
     /**
@@ -101,8 +98,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'card' => 'card',
-        'bizum' => 'bizum'
+        'is_valid' => 'isValid'
     ];
 
     /**
@@ -111,8 +107,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'card' => 'setCard',
-        'bizum' => 'setBizum'
+        'is_valid' => 'setIsValid'
     ];
 
     /**
@@ -121,8 +116,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'card' => 'getCard',
-        'bizum' => 'getBizum'
+        'is_valid' => 'getIsValid'
     ];
 
     /**
@@ -182,8 +176,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['card'] = $data['card'] ?? null;
-        $this->container['bizum'] = $data['bizum'] ?? null;
+        $this->container['is_valid'] = $data['is_valid'] ?? null;
     }
 
     /**
@@ -211,49 +204,25 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets card
+     * Gets is_valid
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null
+     * @return bool|null
      */
-    public function getCard()
+    public function getIsValid()
     {
-        return $this->container['card'];
+        return $this->container['is_valid'];
     }
 
     /**
-     * Sets card
+     * Sets is_valid
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null $card card
+     * @param bool|null $is_valid is_valid
      *
      * @return self
      */
-    public function setCard($card)
+    public function setIsValid($is_valid)
     {
-        $this->container['card'] = $card;
-
-        return $this;
-    }
-
-    /**
-     * Gets bizum
-     *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null
-     */
-    public function getBizum()
-    {
-        return $this->container['bizum'];
-    }
-
-    /**
-     * Sets bizum
-     *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null $bizum bizum
-     *
-     * @return self
-     */
-    public function setBizum($bizum)
-    {
-        $this->container['bizum'] = $bizum;
+        $this->container['is_valid'] = $is_valid;
 
         return $this;
     }

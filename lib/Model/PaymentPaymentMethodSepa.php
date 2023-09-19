@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethodInput
+ * PaymentPaymentMethodSepa
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethodInput Class Doc Comment
+ * PaymentPaymentMethodSepa Class Doc Comment
  *
  * @category Class
- * @description An information about a payment method used for this payment. We recommend using &#x60;paymentToken&#x60; instead, as it is more secure way to pass sensitive payment information. Processing credit card information on your server requires [PCI DSS compliance](https://www.investopedia.com/terms/p/pci-compliance.asp).
+ * @description Details from SEPA order used as payment method at the time of the transaction.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentPaymentMethodSepa implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethodInput';
+    protected static $openAPIModelName = 'Payment-PaymentMethodSepa';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,15 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCardInput',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizumInput'
+        'accountholder_address' => 'string',
+        'accountholder_email' => 'string',
+        'accountholder_name' => 'string',
+        'country_code' => 'string',
+        'bank_address' => 'string',
+        'bank_code' => 'string',
+        'bank_name' => 'string',
+        'bic' => 'string',
+        'last4' => 'string'
     ];
 
     /**
@@ -70,8 +77,15 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'card' => null,
-        'bizum' => null
+        'accountholder_address' => null,
+        'accountholder_email' => null,
+        'accountholder_name' => null,
+        'country_code' => null,
+        'bank_address' => null,
+        'bank_code' => null,
+        'bank_name' => null,
+        'bic' => null,
+        'last4' => null
     ];
 
     /**
@@ -101,8 +115,15 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'card' => 'card',
-        'bizum' => 'bizum'
+        'accountholder_address' => 'accountholderAddress',
+        'accountholder_email' => 'accountholderEmail',
+        'accountholder_name' => 'accountholderName',
+        'country_code' => 'countryCode',
+        'bank_address' => 'bankAddress',
+        'bank_code' => 'bankCode',
+        'bank_name' => 'bankName',
+        'bic' => 'bic',
+        'last4' => 'last4'
     ];
 
     /**
@@ -111,8 +132,15 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'card' => 'setCard',
-        'bizum' => 'setBizum'
+        'accountholder_address' => 'setAccountholderAddress',
+        'accountholder_email' => 'setAccountholderEmail',
+        'accountholder_name' => 'setAccountholderName',
+        'country_code' => 'setCountryCode',
+        'bank_address' => 'setBankAddress',
+        'bank_code' => 'setBankCode',
+        'bank_name' => 'setBankName',
+        'bic' => 'setBic',
+        'last4' => 'setLast4'
     ];
 
     /**
@@ -121,8 +149,15 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'card' => 'getCard',
-        'bizum' => 'getBizum'
+        'accountholder_address' => 'getAccountholderAddress',
+        'accountholder_email' => 'getAccountholderEmail',
+        'accountholder_name' => 'getAccountholderName',
+        'country_code' => 'getCountryCode',
+        'bank_address' => 'getBankAddress',
+        'bank_code' => 'getBankCode',
+        'bank_name' => 'getBankName',
+        'bic' => 'getBic',
+        'last4' => 'getLast4'
     ];
 
     /**
@@ -182,8 +217,15 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['card'] = $data['card'] ?? null;
-        $this->container['bizum'] = $data['bizum'] ?? null;
+        $this->container['accountholder_address'] = $data['accountholder_address'] ?? null;
+        $this->container['accountholder_email'] = $data['accountholder_email'] ?? null;
+        $this->container['accountholder_name'] = $data['accountholder_name'] ?? null;
+        $this->container['country_code'] = $data['country_code'] ?? null;
+        $this->container['bank_address'] = $data['bank_address'] ?? null;
+        $this->container['bank_code'] = $data['bank_code'] ?? null;
+        $this->container['bank_name'] = $data['bank_name'] ?? null;
+        $this->container['bic'] = $data['bic'] ?? null;
+        $this->container['last4'] = $data['last4'] ?? null;
     }
 
     /**
@@ -211,49 +253,217 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets card
+     * Gets accountholder_address
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null
+     * @return string|null
      */
-    public function getCard()
+    public function getAccountholderAddress()
     {
-        return $this->container['card'];
+        return $this->container['accountholder_address'];
     }
 
     /**
-     * Sets card
+     * Sets accountholder_address
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null $card card
+     * @param string|null $accountholder_address The address of the account holder.
      *
      * @return self
      */
-    public function setCard($card)
+    public function setAccountholderAddress($accountholder_address)
     {
-        $this->container['card'] = $card;
+        $this->container['accountholder_address'] = $accountholder_address;
 
         return $this;
     }
 
     /**
-     * Gets bizum
+     * Gets accountholder_email
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null
+     * @return string|null
      */
-    public function getBizum()
+    public function getAccountholderEmail()
     {
-        return $this->container['bizum'];
+        return $this->container['accountholder_email'];
     }
 
     /**
-     * Sets bizum
+     * Sets accountholder_email
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null $bizum bizum
+     * @param string|null $accountholder_email The email of the account holder.
      *
      * @return self
      */
-    public function setBizum($bizum)
+    public function setAccountholderEmail($accountholder_email)
     {
-        $this->container['bizum'] = $bizum;
+        $this->container['accountholder_email'] = $accountholder_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets accountholder_name
+     *
+     * @return string|null
+     */
+    public function getAccountholderName()
+    {
+        return $this->container['accountholder_name'];
+    }
+
+    /**
+     * Sets accountholder_name
+     *
+     * @param string|null $accountholder_name The name of the account holder.
+     *
+     * @return self
+     */
+    public function setAccountholderName($accountholder_name)
+    {
+        $this->container['accountholder_name'] = $accountholder_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets country_code
+     *
+     * @return string|null
+     */
+    public function getCountryCode()
+    {
+        return $this->container['country_code'];
+    }
+
+    /**
+     * Sets country_code
+     *
+     * @param string|null $country_code The country code of the account holder.
+     *
+     * @return self
+     */
+    public function setCountryCode($country_code)
+    {
+        $this->container['country_code'] = $country_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank_address
+     *
+     * @return string|null
+     */
+    public function getBankAddress()
+    {
+        return $this->container['bank_address'];
+    }
+
+    /**
+     * Sets bank_address
+     *
+     * @param string|null $bank_address The address of the bank.
+     *
+     * @return self
+     */
+    public function setBankAddress($bank_address)
+    {
+        $this->container['bank_address'] = $bank_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank_code
+     *
+     * @return string|null
+     */
+    public function getBankCode()
+    {
+        return $this->container['bank_code'];
+    }
+
+    /**
+     * Sets bank_code
+     *
+     * @param string|null $bank_code The code of the bank.
+     *
+     * @return self
+     */
+    public function setBankCode($bank_code)
+    {
+        $this->container['bank_code'] = $bank_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank_name
+     *
+     * @return string|null
+     */
+    public function getBankName()
+    {
+        return $this->container['bank_name'];
+    }
+
+    /**
+     * Sets bank_name
+     *
+     * @param string|null $bank_name The name of the bank.
+     *
+     * @return self
+     */
+    public function setBankName($bank_name)
+    {
+        $this->container['bank_name'] = $bank_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets bic
+     *
+     * @return string|null
+     */
+    public function getBic()
+    {
+        return $this->container['bic'];
+    }
+
+    /**
+     * Sets bic
+     *
+     * @param string|null $bic The BIC of the bank.
+     *
+     * @return self
+     */
+    public function setBic($bic)
+    {
+        $this->container['bic'] = $bic;
+
+        return $this;
+    }
+
+    /**
+     * Gets last4
+     *
+     * @return string|null
+     */
+    public function getLast4()
+    {
+        return $this->container['last4'];
+    }
+
+    /**
+     * Sets last4
+     *
+     * @param string|null $last4 The last 4 digits of the IBAN.
+     *
+     * @return self
+     */
+    public function setLast4($last4)
+    {
+        $this->container['last4'] = $last4;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * PaymentPaymentMethodInput
+ * PaymentPaymentMethodKlarna
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PaymentPaymentMethodInput Class Doc Comment
+ * PaymentPaymentMethodKlarna Class Doc Comment
  *
  * @category Class
- * @description An information about a payment method used for this payment. We recommend using &#x60;paymentToken&#x60; instead, as it is more secure way to pass sensitive payment information. Processing credit card information on your server requires [PCI DSS compliance](https://www.investopedia.com/terms/p/pci-compliance.asp).
+ * @description Details from Klarna order used as payment method at the time of the transaction.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaymentPaymentMethodKlarna implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payment-PaymentMethodInput';
+    protected static $openAPIModelName = 'Payment-PaymentMethodKlarna';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'card' => '\OpenAPI\Client\Model\PaymentPaymentMethodCardInput',
-        'bizum' => '\OpenAPI\Client\Model\PaymentPaymentMethodBizumInput'
+        'billing_category' => 'Enum',
+        'auth_payment_method' => 'Enum'
     ];
 
     /**
@@ -70,8 +70,8 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'card' => null,
-        'bizum' => null
+        'billing_category' => null,
+        'auth_payment_method' => null
     ];
 
     /**
@@ -101,8 +101,8 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'card' => 'card',
-        'bizum' => 'bizum'
+        'billing_category' => 'billingCategory',
+        'auth_payment_method' => 'authPaymentMethod'
     ];
 
     /**
@@ -111,8 +111,8 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'card' => 'setCard',
-        'bizum' => 'setBizum'
+        'billing_category' => 'setBillingCategory',
+        'auth_payment_method' => 'setAuthPaymentMethod'
     ];
 
     /**
@@ -121,8 +121,8 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'card' => 'getCard',
-        'bizum' => 'getBizum'
+        'billing_category' => 'getBillingCategory',
+        'auth_payment_method' => 'getAuthPaymentMethod'
     ];
 
     /**
@@ -166,6 +166,56 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
+    public const BILLING_CATEGORY_PAY_LATER = 'PAY_LATER';
+    public const BILLING_CATEGORY_PAY_NOW = 'PAY_NOW';
+    public const BILLING_CATEGORY_SLICE_IT = 'SLICE_IT';
+    public const BILLING_CATEGORY_SLICE_IT_BY_CARD = 'SLICE_IT_BY_CARD';
+    public const AUTH_PAYMENT_METHOD_INVOICE = 'invoice';
+    public const AUTH_PAYMENT_METHOD_FIXED_AMOUNT = 'fixed_amount';
+    public const AUTH_PAYMENT_METHOD_PIX = 'pix';
+    public const AUTH_PAYMENT_METHOD_BASE_ACCOUNT = 'base_account';
+    public const AUTH_PAYMENT_METHOD_DEFERRED_INTEREST = 'deferred_interest';
+    public const AUTH_PAYMENT_METHOD_DIRECT_DEBIT = 'direct_debit';
+    public const AUTH_PAYMENT_METHOD_DIRECT_BANK_TRANSFER = 'direct_bank_transfer';
+    public const AUTH_PAYMENT_METHOD_B2B_INVOICE = 'b2b_invoice';
+    public const AUTH_PAYMENT_METHOD_CARD = 'card';
+    public const AUTH_PAYMENT_METHOD_SLICE_IT_BY_CARD = 'slice_it_by_card';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getBillingCategoryAllowableValues()
+    {
+        return [
+            self::BILLING_CATEGORY_PAY_LATER,
+            self::BILLING_CATEGORY_PAY_NOW,
+            self::BILLING_CATEGORY_SLICE_IT,
+            self::BILLING_CATEGORY_SLICE_IT_BY_CARD,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAuthPaymentMethodAllowableValues()
+    {
+        return [
+            self::AUTH_PAYMENT_METHOD_INVOICE,
+            self::AUTH_PAYMENT_METHOD_FIXED_AMOUNT,
+            self::AUTH_PAYMENT_METHOD_PIX,
+            self::AUTH_PAYMENT_METHOD_BASE_ACCOUNT,
+            self::AUTH_PAYMENT_METHOD_DEFERRED_INTEREST,
+            self::AUTH_PAYMENT_METHOD_DIRECT_DEBIT,
+            self::AUTH_PAYMENT_METHOD_DIRECT_BANK_TRANSFER,
+            self::AUTH_PAYMENT_METHOD_B2B_INVOICE,
+            self::AUTH_PAYMENT_METHOD_CARD,
+            self::AUTH_PAYMENT_METHOD_SLICE_IT_BY_CARD,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -182,8 +232,8 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['card'] = $data['card'] ?? null;
-        $this->container['bizum'] = $data['bizum'] ?? null;
+        $this->container['billing_category'] = $data['billing_category'] ?? null;
+        $this->container['auth_payment_method'] = $data['auth_payment_method'] ?? null;
     }
 
     /**
@@ -194,6 +244,24 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getBillingCategoryAllowableValues();
+        if (!is_null($this->container['billing_category']) && !in_array($this->container['billing_category'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'billing_category', must be one of '%s'",
+                $this->container['billing_category'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAuthPaymentMethodAllowableValues();
+        if (!is_null($this->container['auth_payment_method']) && !in_array($this->container['auth_payment_method'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'auth_payment_method', must be one of '%s'",
+                $this->container['auth_payment_method'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -211,49 +279,69 @@ class PaymentPaymentMethodInput implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets card
+     * Gets billing_category
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null
+     * @return Enum|null
      */
-    public function getCard()
+    public function getBillingCategory()
     {
-        return $this->container['card'];
+        return $this->container['billing_category'];
     }
 
     /**
-     * Sets card
+     * Sets billing_category
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodCardInput|null $card card
+     * @param Enum|null $billing_category billing_category
      *
      * @return self
      */
-    public function setCard($card)
+    public function setBillingCategory($billing_category)
     {
-        $this->container['card'] = $card;
+        $allowedValues = $this->getBillingCategoryAllowableValues();
+        if (!is_null($billing_category) && !in_array($billing_category, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'billing_category', must be one of '%s'",
+                    $billing_category,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['billing_category'] = $billing_category;
 
         return $this;
     }
 
     /**
-     * Gets bizum
+     * Gets auth_payment_method
      *
-     * @return \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null
+     * @return Enum|null
      */
-    public function getBizum()
+    public function getAuthPaymentMethod()
     {
-        return $this->container['bizum'];
+        return $this->container['auth_payment_method'];
     }
 
     /**
-     * Sets bizum
+     * Sets auth_payment_method
      *
-     * @param \OpenAPI\Client\Model\PaymentPaymentMethodBizumInput|null $bizum bizum
+     * @param Enum|null $auth_payment_method auth_payment_method
      *
      * @return self
      */
-    public function setBizum($bizum)
+    public function setAuthPaymentMethod($auth_payment_method)
     {
-        $this->container['bizum'] = $bizum;
+        $allowedValues = $this->getAuthPaymentMethodAllowableValues();
+        if (!is_null($auth_payment_method) && !in_array($auth_payment_method, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'auth_payment_method', must be one of '%s'",
+                    $auth_payment_method,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['auth_payment_method'] = $auth_payment_method;
 
         return $this;
     }

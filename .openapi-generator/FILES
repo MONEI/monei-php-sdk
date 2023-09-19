@@ -2,6 +2,7 @@
 .travis.yml
 git_push.sh
 lib/Api/ApplePayDomainApi.php
+lib/Api/BizumApi.php
 lib/Api/PaymentsApi.php
 lib/Api/SubscriptionsApi.php
 lib/ApiException.php
@@ -9,6 +10,7 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/ActivateSubscriptionRequest.php
 lib/Model/Address.php
+lib/Model/BizumValidatePhone200Response.php
 lib/Model/CancelPaymentRequest.php
 lib/Model/CancelSubscriptionRequest.php
 lib/Model/CapturePaymentRequest.php
@@ -36,7 +38,11 @@ lib/Model/PaymentPaymentMethodCard.php
 lib/Model/PaymentPaymentMethodCardInput.php
 lib/Model/PaymentPaymentMethodCofidis.php
 lib/Model/PaymentPaymentMethodInput.php
+lib/Model/PaymentPaymentMethodKlarna.php
+lib/Model/PaymentPaymentMethodMbway.php
 lib/Model/PaymentPaymentMethodPaypal.php
+lib/Model/PaymentPaymentMethodSepa.php
+lib/Model/PaymentPaymentMethodTrustly.php
 lib/Model/PaymentRefundReason.php
 lib/Model/PaymentSequence.php
 lib/Model/PaymentSequenceRecurring.php
@@ -59,5 +65,13 @@ lib/Model/SubscriptionPaymentMethod.php
 lib/Model/SubscriptionPaymentMethodCard.php
 lib/Model/SubscriptionStatus.php
 lib/Model/UpdateSubscriptionRequest.php
+lib/Model/ValidateBizumPhoneRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Api/BizumApiTest.php
+test/Model/BizumValidatePhone200ResponseTest.php
+test/Model/PaymentPaymentMethodKlarnaTest.php
+test/Model/PaymentPaymentMethodMbwayTest.php
+test/Model/PaymentPaymentMethodSepaTest.php
+test/Model/PaymentPaymentMethodTrustlyTest.php
+test/Model/ValidateBizumPhoneRequestTest.php

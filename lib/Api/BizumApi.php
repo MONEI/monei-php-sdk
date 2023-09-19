@@ -1,6 +1,6 @@
 <?php
 /**
- * ApplePayDomainApi
+ * BizumApi
  * PHP version 7.4
  *
  * @category Class
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * ApplePayDomainApi Class Doc Comment
+ * BizumApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ApplePayDomainApi
+class BizumApi
 {
     /**
      * @var ClientInterface
@@ -116,36 +116,36 @@ class ApplePayDomainApi
     }
 
     /**
-     * Operation register
+     * Operation validatePhone
      *
-     * Register
+     * Validate Phone
      *
-     * @param  \OpenAPI\Client\Model\RegisterDomainRequest $register_domain_request register_domain_request (required)
+     * @param  \OpenAPI\Client\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request validate_bizum_phone_request (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DomainRegister200Response
+     * @return \OpenAPI\Client\Model\BizumValidatePhone200Response
      */
-    public function register($register_domain_request)
+    public function validatePhone($validate_bizum_phone_request)
     {
-        list($response) = $this->registerWithHttpInfo($register_domain_request);
+        list($response) = $this->validatePhoneWithHttpInfo($validate_bizum_phone_request);
         return $response;
     }
 
     /**
-     * Operation registerWithHttpInfo
+     * Operation validatePhoneWithHttpInfo
      *
-     * Register
+     * Validate Phone
      *
-     * @param  \OpenAPI\Client\Model\RegisterDomainRequest $register_domain_request (required)
+     * @param  \OpenAPI\Client\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DomainRegister200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\BizumValidatePhone200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function registerWithHttpInfo($register_domain_request)
+    public function validatePhoneWithHttpInfo($validate_bizum_phone_request)
     {
-        $request = $this->registerRequest($register_domain_request);
+        $request = $this->validatePhoneRequest($validate_bizum_phone_request);
 
         try {
             $options = $this->createHttpClientOption();
@@ -184,23 +184,23 @@ class ApplePayDomainApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DomainRegister200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\BizumValidatePhone200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DomainRegister200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\BizumValidatePhone200Response' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DomainRegister200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\BizumValidatePhone200Response', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\DomainRegister200Response';
+            $returnType = '\OpenAPI\Client\Model\BizumValidatePhone200Response';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -221,7 +221,7 @@ class ApplePayDomainApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DomainRegister200Response',
+                        '\OpenAPI\Client\Model\BizumValidatePhone200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -232,18 +232,18 @@ class ApplePayDomainApi
     }
 
     /**
-     * Operation registerAsync
+     * Operation validatePhoneAsync
      *
-     * Register
+     * Validate Phone
      *
-     * @param  \OpenAPI\Client\Model\RegisterDomainRequest $register_domain_request (required)
+     * @param  \OpenAPI\Client\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function registerAsync($register_domain_request)
+    public function validatePhoneAsync($validate_bizum_phone_request)
     {
-        return $this->registerAsyncWithHttpInfo($register_domain_request)
+        return $this->validatePhoneAsyncWithHttpInfo($validate_bizum_phone_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -252,19 +252,19 @@ class ApplePayDomainApi
     }
 
     /**
-     * Operation registerAsyncWithHttpInfo
+     * Operation validatePhoneAsyncWithHttpInfo
      *
-     * Register
+     * Validate Phone
      *
-     * @param  \OpenAPI\Client\Model\RegisterDomainRequest $register_domain_request (required)
+     * @param  \OpenAPI\Client\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function registerAsyncWithHttpInfo($register_domain_request)
+    public function validatePhoneAsyncWithHttpInfo($validate_bizum_phone_request)
     {
-        $returnType = '\OpenAPI\Client\Model\DomainRegister200Response';
-        $request = $this->registerRequest($register_domain_request);
+        $returnType = '\OpenAPI\Client\Model\BizumValidatePhone200Response';
+        $request = $this->validatePhoneRequest($validate_bizum_phone_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -303,23 +303,23 @@ class ApplePayDomainApi
     }
 
     /**
-     * Create request for operation 'register'
+     * Create request for operation 'validatePhone'
      *
-     * @param  \OpenAPI\Client\Model\RegisterDomainRequest $register_domain_request (required)
+     * @param  \OpenAPI\Client\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function registerRequest($register_domain_request)
+    public function validatePhoneRequest($validate_bizum_phone_request)
     {
-        // verify the required parameter 'register_domain_request' is set
-        if ($register_domain_request === null || (is_array($register_domain_request) && count($register_domain_request) === 0)) {
+        // verify the required parameter 'validate_bizum_phone_request' is set
+        if ($validate_bizum_phone_request === null || (is_array($validate_bizum_phone_request) && count($validate_bizum_phone_request) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $register_domain_request when calling register'
+                'Missing the required parameter $validate_bizum_phone_request when calling validatePhone'
             );
         }
 
-        $resourcePath = '/apple-pay/domains';
+        $resourcePath = '/bizum/validate-phone';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -342,11 +342,11 @@ class ApplePayDomainApi
         }
 
         // for model (json/xml)
-        if (isset($register_domain_request)) {
+        if (isset($validate_bizum_phone_request)) {
             if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($register_domain_request));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($validate_bizum_phone_request));
             } else {
-                $httpBody = $register_domain_request;
+                $httpBody = $validate_bizum_phone_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -372,11 +372,6 @@ class ApplePayDomainApi
             }
         }
 
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
