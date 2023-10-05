@@ -68,10 +68,3 @@ lib/Model/UpdateSubscriptionRequest.php
 lib/Model/ValidateBizumPhoneRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/BizumApiTest.php
-test/Model/BizumValidatePhone200ResponseTest.php
-test/Model/PaymentPaymentMethodKlarnaTest.php
-test/Model/PaymentPaymentMethodMbwayTest.php
-test/Model/PaymentPaymentMethodSepaTest.php
-test/Model/PaymentPaymentMethodTrustlyTest.php
-test/Model/ValidateBizumPhoneRequestTest.php
