@@ -1,3 +1,4 @@
+.php-cs-fixer.dist.php
 lib/Api/ApplePayDomainApi.php
 lib/Api/BizumApi.php
 lib/Api/PaymentsApi.php
