@@ -41,7 +41,14 @@
     "autoload-dev": {
         "psr-4": {
             "OpenAPI\\Client\\": "test/",
-            "Monei\\" : "lib/"
+            "Monei\\": "lib/"
         }
+    },
+    "archive": {
+        "exclude": [
+            "test/",
+            "build/",
+            "vendor/"
+        ]
     }
 }

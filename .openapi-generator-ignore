@@ -22,3 +22,7 @@ README.md
 lib/MoneiClient.php
 docs/**
 build/**
+
+# Prevent generator from creating these files:
+git_push.sh
+.travis.yml

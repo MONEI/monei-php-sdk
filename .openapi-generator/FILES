@@ -1,6 +1,3 @@
-.php-cs-fixer.dist.php
-.travis.yml
-git_push.sh
 lib/Api/ApplePayDomainApi.php
 lib/Api/BizumApi.php
 lib/Api/PaymentsApi.php
