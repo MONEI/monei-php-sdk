@@ -9,7 +9,6 @@
     "release": "release-it"
   },
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "2.5.1",
     "@release-it/bumper": "^4.0.0",
@@ -40,5 +39,6 @@
         ]
       }
     }
-  }
+  },
+  "packageManager": "yarn@4.2.1"
 }
