@@ -206,22 +206,23 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
+    public const METHOD_ALIPAY = 'alipay';
     public const METHOD_CARD = 'card';
     public const METHOD_BIZUM = 'bizum';
-    public const METHOD_GOOGLE_PAY = 'googlePay';
-    public const METHOD_APPLE_PAY = 'applePay';
-    public const METHOD_CLICK_TO_PAY = 'clickToPay';
     public const METHOD_PAYPAL = 'paypal';
     public const METHOD_COFIDIS = 'cofidis';
     public const METHOD_COFIDIS_LOAN = 'cofidisLoan';
-    public const METHOD_I_DEAL = 'iDeal';
     public const METHOD_MBWAY = 'mbway';
     public const METHOD_MULTIBANCO = 'multibanco';
+    public const METHOD_I_DEAL = 'iDeal';
+    public const METHOD_BANCONTACT = 'bancontact';
     public const METHOD_SOFORT = 'sofort';
     public const METHOD_TRUSTLY = 'trustly';
     public const METHOD_SEPA = 'sepa';
     public const METHOD_KLARNA = 'klarna';
     public const METHOD_GIROPAY = 'giropay';
+    public const METHOD_EPS = 'eps';
+    public const METHOD_BLIK = 'blik';
 
     /**
      * Gets allowable values of the enum
@@ -231,22 +232,23 @@ class PaymentPaymentMethod implements ModelInterface, ArrayAccess, \JsonSerializ
     public function getMethodAllowableValues()
     {
         return [
+            self::METHOD_ALIPAY,
             self::METHOD_CARD,
             self::METHOD_BIZUM,
-            self::METHOD_GOOGLE_PAY,
-            self::METHOD_APPLE_PAY,
-            self::METHOD_CLICK_TO_PAY,
             self::METHOD_PAYPAL,
             self::METHOD_COFIDIS,
             self::METHOD_COFIDIS_LOAN,
-            self::METHOD_I_DEAL,
             self::METHOD_MBWAY,
             self::METHOD_MULTIBANCO,
+            self::METHOD_I_DEAL,
+            self::METHOD_BANCONTACT,
             self::METHOD_SOFORT,
             self::METHOD_TRUSTLY,
             self::METHOD_SEPA,
             self::METHOD_KLARNA,
             self::METHOD_GIROPAY,
+            self::METHOD_EPS,
+            self::METHOD_BLIK,
         ];
     }
 
