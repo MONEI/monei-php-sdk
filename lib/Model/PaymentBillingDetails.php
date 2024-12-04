@@ -247,7 +247,7 @@ class PaymentBillingDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets name
      *
-     * @param string|null $name The customer’s billing full name.
+     * @param string|null $name The customer's billing full name.
      *
      * @return self
      */
@@ -271,7 +271,7 @@ class PaymentBillingDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets email
      *
-     * @param string|null $email The customer’s billing email address.
+     * @param string|null $email The customer's billing email address.
      *
      * @return self
      */
@@ -295,7 +295,7 @@ class PaymentBillingDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets phone
      *
-     * @param string|null $phone The customer’s billing phone number.
+     * @param string|null $phone The customer's billing phone number in E.164 format.
      *
      * @return self
      */

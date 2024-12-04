@@ -228,7 +228,7 @@ class PaymentCustomer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      *
-     * @param string|null $email The customer’s email address.
+     * @param string|null $email The customer's email address.
      *
      * @return self
      */
@@ -252,7 +252,7 @@ class PaymentCustomer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name The customer’s full name or business name.
+     * @param string|null $name The customer's full name or business name.
      *
      * @return self
      */
@@ -276,7 +276,7 @@ class PaymentCustomer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets phone
      *
-     * @param string|null $phone The customer’s phone number.
+     * @param string|null $phone The customer's phone number in E.164 format.
      *
      * @return self
      */

@@ -217,7 +217,7 @@ class PaymentPaymentMethodMbway implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets phone_number
      *
-     * @param string|null $phone_number The phone number used to pay with `mbway`.
+     * @param string|null $phone_number Phone number in E.164 format used to pay with `mbway`.
      *
      * @return self
      */

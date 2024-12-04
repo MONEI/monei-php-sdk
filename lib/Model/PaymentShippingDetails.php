@@ -247,7 +247,7 @@ class PaymentShippingDetails implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets name
      *
-     * @param string|null $name The shipping customer’s full name.
+     * @param string|null $name The shipping customer's full name.
      *
      * @return self
      */
@@ -271,7 +271,7 @@ class PaymentShippingDetails implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets email
      *
-     * @param string|null $email The shipping customer’s email address.
+     * @param string|null $email The shipping customer's email address.
      *
      * @return self
      */
@@ -295,7 +295,7 @@ class PaymentShippingDetails implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets phone
      *
-     * @param string|null $phone The shipping customer’s phone number.
+     * @param string|null $phone The shipping customer's phone number in E.164 format.
      *
      * @return self
      */

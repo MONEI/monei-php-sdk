@@ -217,7 +217,7 @@ class PaymentPaymentMethodBizumInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets phone_number
      *
-     * @param string|null $phone_number The phone number used to pay with `bizum`.
+     * @param string|null $phone_number Phone number in E.164 format used to pay with `bizum`.
      *
      * @return self
      */
