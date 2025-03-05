@@ -41,7 +41,12 @@
     "autoload-dev": {
         "psr-4": {
             "OpenAPI\\Client\\": "test/",
-            "Monei\\": "lib/"
+            "Monei\\": "lib/",
+            "Tests\\": "test/"
         }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage"
     }
 }
