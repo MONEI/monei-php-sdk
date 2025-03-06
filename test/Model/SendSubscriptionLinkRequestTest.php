@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendSubscriptionLinkRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SendSubscriptionLinkRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

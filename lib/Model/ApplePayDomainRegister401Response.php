@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApplePayDomainRegister401Response
  *
@@ -425,7 +426,7 @@ class ApplePayDomainRegister401Response implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

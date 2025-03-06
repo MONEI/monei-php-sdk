@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AddressTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AddressTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

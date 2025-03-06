@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CancelPaymentRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CancelPaymentRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataBizumTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataBizumTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

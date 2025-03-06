@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataClickToPayDiscoverTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataClickToPayDiscoverTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

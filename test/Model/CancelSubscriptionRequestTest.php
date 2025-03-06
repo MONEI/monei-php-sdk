@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CancelSubscriptionRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CancelSubscriptionRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

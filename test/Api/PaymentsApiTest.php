@@ -69,7 +69,9 @@ class PaymentsApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void {}
+    public static function setUpBeforeClass(): void
+    {
+    }
 
     /**
      * Setup before running each test case
@@ -109,7 +111,9 @@ class PaymentsApiTest extends TestCase
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void {}
+    public static function tearDownAfterClass(): void
+    {
+    }
 
     /**
      * Test case for cancel
@@ -231,7 +235,7 @@ class PaymentsApiTest extends TestCase
     {
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => 'pay_123456789',
@@ -242,7 +246,7 @@ class PaymentsApiTest extends TestCase
                 'description' => 'Test payment'
             ])
         ));
-        
+
         // Create a payment request
         $createRequest = (object)[
             'amount' => 1000,
@@ -250,16 +254,16 @@ class PaymentsApiTest extends TestCase
             'orderId' => 'order_123',
             'description' => 'Test payment'
         ];
-        
+
         // Call the API method - we don't care about the response for this test
         $this->paymentsApi->create($createRequest);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('POST', $request->getMethod());
         $this->assertStringContainsString("/payments", $request->getUri()->getPath());
-        
+
         // Check the request body
         $requestBody = json_decode($request->getBody()->getContents(), true);
         $this->assertEquals(1000, $requestBody['amount']);
@@ -313,10 +317,10 @@ class PaymentsApiTest extends TestCase
     public function testRecurring()
     {
         $sequenceId = 'seq_123456789';
-        
+
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => 'pay_123456789',
@@ -326,25 +330,25 @@ class PaymentsApiTest extends TestCase
                 'sequenceId' => $sequenceId
             ])
         ));
-        
+
         // Create a recurring payment request
         $recurringRequest = (object)[
             'amount' => 1000,
             'currency' => 'EUR'
         ];
-        
+
         // Call the API method - we don't care about the response for this test
         $this->paymentsApi->recurring($sequenceId, $recurringRequest);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('POST', $request->getMethod());
-        
+
         // The actual path might vary based on the API implementation
         // We'll just check that the sequence ID is in the path
         $this->assertStringContainsString($sequenceId, (string)$request->getUri());
-        
+
         // Check the request body
         $requestBody = json_decode($request->getBody()->getContents(), true);
         $this->assertEquals(1000, $requestBody['amount']);
@@ -482,10 +486,10 @@ class PaymentsApiTest extends TestCase
     public function testSendRequest()
     {
         $paymentId = 'pay_123456789';
-        
+
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => $paymentId,
@@ -494,22 +498,22 @@ class PaymentsApiTest extends TestCase
                 'currency' => 'EUR'
             ])
         ));
-        
+
         // Create a send request
         $sendRequest = (object)['email' => 'customer@example.com'];
-        
+
         // Call the API method - we don't care about the response for this test
         $this->paymentsApi->sendRequest($paymentId, $sendRequest);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('POST', $request->getMethod());
-        
+
         // The actual path might vary based on the API implementation
         // We'll just check that the payment ID is in the path
         $this->assertStringContainsString($paymentId, (string)$request->getUri());
-        
+
         // Check the request body
         $requestBody = json_decode($request->getBody()->getContents(), true);
         $this->assertEquals('customer@example.com', $requestBody['email']);

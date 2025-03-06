@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PauseSubscriptionRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PauseSubscriptionRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

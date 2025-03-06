@@ -32,6 +32,7 @@ For collecting customer and payment information in the browser, use [monei.js](h
   - [Development](#development)
     - [Building the SDK](#building-the-sdk)
   - [Tests](#tests)
+  - [Code Style](#code-style)
   - [Documentation](#documentation)
 
 ## Requirements
@@ -517,6 +518,22 @@ To run the unit tests:
 ```bash
 composer install
 ./vendor/bin/phpunit
+```
+
+## Code Style
+
+This project follows the [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standard. We use [PHP CS Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to enforce the coding standards.
+
+To check the code style:
+
+```bash
+composer cs-check
+```
+
+To automatically fix code style issues:
+
+```bash
+composer cs-fix
 ```
 
 ## Documentation

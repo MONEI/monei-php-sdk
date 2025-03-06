@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentPaymentMethodPaypalTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentPaymentMethodPaypalTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

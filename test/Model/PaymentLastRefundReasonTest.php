@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentLastRefundReasonTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentLastRefundReasonTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

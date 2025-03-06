@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ActivateSubscriptionRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ActivateSubscriptionRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

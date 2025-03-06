@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentPaymentMethodCofidisTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentPaymentMethodCofidisTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

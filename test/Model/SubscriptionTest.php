@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SubscriptionTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SubscriptionTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

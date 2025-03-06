@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentSessionDetailsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentSessionDetailsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

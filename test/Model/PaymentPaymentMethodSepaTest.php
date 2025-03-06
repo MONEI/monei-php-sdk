@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentPaymentMethodSepaTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentPaymentMethodSepaTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

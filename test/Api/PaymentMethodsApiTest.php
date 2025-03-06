@@ -69,7 +69,9 @@ class PaymentMethodsApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void {}
+    public static function setUpBeforeClass(): void
+    {
+    }
 
     /**
      * Setup before running each test case
@@ -78,21 +80,21 @@ class PaymentMethodsApiTest extends TestCase
     {
         // Create a mock handler
         $this->mockHandler = new MockHandler();
-        
+
         // Create a handler stack with the mock handler
         $handlerStack = HandlerStack::create($this->mockHandler);
-        
+
         // Add history middleware to the handler stack
         $history = Middleware::history($this->container);
         $handlerStack->push($history);
-        
+
         // Create a Guzzle client with the handler stack
         $client = new Client(['handler' => $handlerStack]);
-        
+
         // Create a configuration with a dummy API key
         $config = Configuration::getDefaultConfiguration();
         $config->setApiKey('Authorization', 'test_api_key');
-        
+
         // Create the API instance with the mock client
         $this->paymentMethodsApi = new PaymentMethodsApi($client, $config);
     }
@@ -109,7 +111,9 @@ class PaymentMethodsApiTest extends TestCase
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void {}
+    public static function tearDownAfterClass(): void
+    {
+    }
 
     /**
      * Test case for get
@@ -119,10 +123,10 @@ class PaymentMethodsApiTest extends TestCase
     public function testGet()
     {
         $paymentMethodId = 'pm_123456789';
-        
+
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => $paymentMethodId,
@@ -135,15 +139,15 @@ class PaymentMethodsApiTest extends TestCase
                 ]
             ])
         ));
-        
+
         // Call the API method - we don't care about the response for this test
         $this->paymentMethodsApi->get($paymentMethodId);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('GET', $request->getMethod());
-        
+
         // The actual path might vary based on the API implementation
         // We'll just check that the payment method ID is in the path
         $this->assertStringContainsString($paymentMethodId, (string)$request->getUri());

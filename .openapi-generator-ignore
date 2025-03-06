@@ -24,6 +24,9 @@ phpunit.xml.dist
 docs/**
 node_modules/**
 .yarn/**
+.php_cs
+.php-cs-fixer.dist.php
+.php-cs-fixer.php
 
 # Prevent generator from creating these files:
 git_push.sh

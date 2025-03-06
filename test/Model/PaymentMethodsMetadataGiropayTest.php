@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataGiropayTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataGiropayTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

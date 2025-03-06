@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SubscriptionRetryScheduleInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SubscriptionRetryScheduleInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

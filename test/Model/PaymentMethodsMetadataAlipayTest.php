@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataAlipayTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataAlipayTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

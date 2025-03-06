@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SubscriptionPaymentMethodCardTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SubscriptionPaymentMethodCardTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

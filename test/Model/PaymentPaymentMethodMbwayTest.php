@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentPaymentMethodMbwayTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentPaymentMethodMbwayTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

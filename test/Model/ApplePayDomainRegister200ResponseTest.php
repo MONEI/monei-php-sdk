@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApplePayDomainRegister200ResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ApplePayDomainRegister200ResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

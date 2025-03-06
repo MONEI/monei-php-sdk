@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ConfirmPaymentRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfirmPaymentRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

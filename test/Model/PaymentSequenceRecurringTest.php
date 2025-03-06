@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentSequenceRecurringTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentSequenceRecurringTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

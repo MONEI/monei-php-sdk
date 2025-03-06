@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataGooglePayTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataGooglePayTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

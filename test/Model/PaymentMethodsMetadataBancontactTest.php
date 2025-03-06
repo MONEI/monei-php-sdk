@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataBancontactTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataBancontactTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

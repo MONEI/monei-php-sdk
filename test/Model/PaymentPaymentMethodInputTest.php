@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentPaymentMethodInputTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentPaymentMethodInputTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

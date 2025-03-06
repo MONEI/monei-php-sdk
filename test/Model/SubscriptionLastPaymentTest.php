@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SubscriptionLastPaymentTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SubscriptionLastPaymentTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

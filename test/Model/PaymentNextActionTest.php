@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentNextActionTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentNextActionTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

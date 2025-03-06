@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataIDealTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataIDealTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

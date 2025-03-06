@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataBlikTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMethodsMetadataBlikTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

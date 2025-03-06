@@ -69,7 +69,9 @@ class SubscriptionsApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void {}
+    public static function setUpBeforeClass(): void
+    {
+    }
 
     /**
      * Setup before running each test case
@@ -109,7 +111,9 @@ class SubscriptionsApiTest extends TestCase
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void {}
+    public static function tearDownAfterClass(): void
+    {
+    }
 
     /**
      * Test case for activate
@@ -197,10 +201,10 @@ class SubscriptionsApiTest extends TestCase
     public function testCreate()
     {
         $subscriptionId = 'sub_123456789';
-        
+
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => $subscriptionId,
@@ -212,7 +216,7 @@ class SubscriptionsApiTest extends TestCase
                 'customerId' => 'cus_123456789'
             ])
         ));
-        
+
         // Create a subscription request
         $createRequest = (object)[
             'amount' => 1000,
@@ -221,16 +225,16 @@ class SubscriptionsApiTest extends TestCase
             'paymentMethodId' => 'pm_123456789',
             'customerId' => 'cus_123456789'
         ];
-        
+
         // Call the API method - we don't care about the response for this test
         $this->subscriptionsApi->create($createRequest);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('POST', $request->getMethod());
         $this->assertStringContainsString("/subscriptions", $request->getUri()->getPath());
-        
+
         // Check the request body
         $requestBody = json_decode($request->getBody()->getContents(), true);
         $this->assertEquals(1000, $requestBody['amount']);
@@ -248,10 +252,10 @@ class SubscriptionsApiTest extends TestCase
     public function testGet()
     {
         $subscriptionId = 'sub_123456789';
-        
+
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => $subscriptionId,
@@ -263,10 +267,10 @@ class SubscriptionsApiTest extends TestCase
                 'customerId' => 'cus_123456789'
             ])
         ));
-        
+
         // Call the API method - we don't care about the response for this test
         $this->subscriptionsApi->get($subscriptionId);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
@@ -444,10 +448,10 @@ class SubscriptionsApiTest extends TestCase
     public function testUpdate()
     {
         $subscriptionId = 'sub_123456789';
-        
+
         // Queue a mock response
         $this->mockHandler->append(new Response(
-            200, 
+            200,
             ['Content-Type' => 'application/json'],
             json_encode([
                 'id' => $subscriptionId,
@@ -460,22 +464,22 @@ class SubscriptionsApiTest extends TestCase
                 'customerId' => 'cus_123456789'
             ])
         ));
-        
+
         // Create an update request
         $updateRequest = (object)[
             'amount' => 2000,
             'metadata' => ['plan' => 'premium']
         ];
-        
+
         // Call the API method - we don't care about the response for this test
         $this->subscriptionsApi->update($subscriptionId, $updateRequest);
-        
+
         // Check the request
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('PUT', $request->getMethod());
         $this->assertStringContainsString("subscriptions/{$subscriptionId}", $request->getUri()->getPath());
-        
+
         // Check the request body
         $requestBody = json_decode($request->getBody()->getContents(), true);
         $this->assertEquals(2000, $requestBody['amount']);

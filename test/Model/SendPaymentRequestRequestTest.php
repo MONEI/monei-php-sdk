@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendPaymentRequestRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SendPaymentRequestRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

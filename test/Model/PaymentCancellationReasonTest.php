@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentCancellationReasonTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentCancellationReasonTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

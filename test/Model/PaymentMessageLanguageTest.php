@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMessageLanguageTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PaymentMessageLanguageTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */
