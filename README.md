@@ -1,5 +1,10 @@
 # MONEI PHP SDK
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/monei/monei-php-sdk.svg)](https://packagist.org/packages/monei/monei-php-sdk)
+[![Total Downloads](https://img.shields.io/packagist/dt/monei/monei-php-sdk.svg)](https://packagist.org/packages/monei/monei-php-sdk)
+[![License](https://img.shields.io/packagist/l/monei/monei-php-sdk.svg)](https://packagist.org/packages/monei/monei-php-sdk)
+[![PHP Version](https://img.shields.io/packagist/php-v/monei/monei-php-sdk.svg)](https://packagist.org/packages/monei/monei-php-sdk)
+
 The MONEI PHP SDK provides convenient access to the [MONEI](https://monei.com/) API from applications written in server-side PHP.
 
 For collecting customer and payment information in the browser, use [monei.js](https://docs.monei.com/docs/monei-js-overview).
