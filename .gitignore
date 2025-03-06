@@ -479,8 +479,8 @@ composer.lock
 .php-cs-fixer.cache
 .php-version
 
-build/node_modules/
-build/openapi.json
+node_modules/
+openapi.json
 test.php
 
 .idea
@@ -488,9 +488,9 @@ test.php
 .phpunit.result.cache
 
 # Yarn
-/build/.yarn/*
-!/build/.yarn/patches
-!/build/.yarn/plugins
-!/build/.yarn/releases
-!/build/.yarn/sdks
-!/build/.yarn/versions
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+!/.yarn/versions

@@ -7,7 +7,7 @@
       "monei-php": {
         "generatorName": "php",
         "inputSpec": "https://js.monei.com/api/v1/openapi.json",
-        "output": "../",
+        "output": "./",
         "removeOperationIdPrefix": true,
         "additionalProperties": {
           "configFile": "./config.json"
@@ -16,7 +16,7 @@
       "monei-php-local": {
         "generatorName": "php",
         "inputSpec": "./openapi.json",
-        "output": "../",
+        "output": "./",
         "removeOperationIdPrefix": true,
         "additionalProperties": {
           "configFile": "./config.json"
@@ -24,4 +24,4 @@
       }
     }
   }
-}
+} 

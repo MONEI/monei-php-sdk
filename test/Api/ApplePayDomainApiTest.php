@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApplePayDomainApiTest
  * PHP version 7.4
@@ -30,6 +31,14 @@ namespace OpenAPI\Client\Test\Api;
 use \OpenAPI\Client\Configuration;
 use \OpenAPI\Client\ApiException;
 use \OpenAPI\Client\ObjectSerializer;
+use \OpenAPI\Client\Api\ApplePayDomainApi;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Middleware;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,19 +51,50 @@ use PHPUnit\Framework\TestCase;
  */
 class ApplePayDomainApiTest extends TestCase
 {
+    /**
+     * @var ApplePayDomainApi
+     */
+    protected $applePayDomainApi;
+
+    /**
+     * @var MockHandler
+     */
+    protected $mockHandler;
+
+    /**
+     * @var array
+     */
+    protected $container = [];
 
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void
-    {
-    }
+    public static function setUpBeforeClass(): void {}
 
     /**
      * Setup before running each test case
      */
     public function setUp(): void
     {
+        // Create a mock handler
+        $this->mockHandler = new MockHandler();
+
+        // Create a handler stack with the mock handler
+        $handlerStack = HandlerStack::create($this->mockHandler);
+
+        // Add history middleware to the handler stack
+        $history = Middleware::history($this->container);
+        $handlerStack->push($history);
+
+        // Create a Guzzle client with the handler stack
+        $client = new Client(['handler' => $handlerStack]);
+
+        // Create a configuration with a dummy API key
+        $config = Configuration::getDefaultConfiguration();
+        $config->setApiKey('Authorization', 'test_api_key');
+
+        // Create the API instance with the mock client
+        $this->applePayDomainApi = new ApplePayDomainApi($client, $config);
     }
 
     /**
@@ -62,24 +102,49 @@ class ApplePayDomainApiTest extends TestCase
      */
     public function tearDown(): void
     {
+        $this->mockHandler->reset();
+        $this->container = [];
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void
-    {
-    }
+    public static function tearDownAfterClass(): void {}
 
     /**
      * Test case for register
      *
-     * Register Domain.
-     *
+     * Register Apple Pay Domain.
      */
     public function testRegister()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $domain = 'example.com';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => 'dom_123456789',
+                'domain' => $domain,
+                'status' => 'ACTIVE'
+            ])
+        ));
+
+        // Create a register domain request
+        $registerRequest = (object)['domain' => $domain];
+
+        // Call the API method - we don't care about the response for this test
+        $this->applePayDomainApi->register($registerRequest);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/apple-pay/domains", $request->getUri()->getPath());
+
+        // Check the request body
+        $requestBody = json_decode($request->getBody()->getContents(), true);
+        $this->assertEquals($domain, $requestBody['domain']);
     }
 }

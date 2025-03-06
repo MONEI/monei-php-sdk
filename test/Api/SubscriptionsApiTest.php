@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SubscriptionsApiTest
  * PHP version 7.4
@@ -30,6 +31,14 @@ namespace OpenAPI\Client\Test\Api;
 use \OpenAPI\Client\Configuration;
 use \OpenAPI\Client\ApiException;
 use \OpenAPI\Client\ObjectSerializer;
+use \OpenAPI\Client\Api\SubscriptionsApi;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Middleware;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,19 +51,50 @@ use PHPUnit\Framework\TestCase;
  */
 class SubscriptionsApiTest extends TestCase
 {
+    /**
+     * @var SubscriptionsApi
+     */
+    protected $subscriptionsApi;
+
+    /**
+     * @var MockHandler
+     */
+    protected $mockHandler;
+
+    /**
+     * @var array
+     */
+    protected $container = [];
 
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void
-    {
-    }
+    public static function setUpBeforeClass(): void {}
 
     /**
      * Setup before running each test case
      */
     public function setUp(): void
     {
+        // Create a mock handler
+        $this->mockHandler = new MockHandler();
+
+        // Create a handler stack with the mock handler
+        $handlerStack = HandlerStack::create($this->mockHandler);
+
+        // Add history middleware to the handler stack
+        $history = Middleware::history($this->container);
+        $handlerStack->push($history);
+
+        // Create a Guzzle client with the handler stack
+        $client = new Client(['handler' => $handlerStack]);
+
+        // Create a configuration with a dummy API key
+        $config = Configuration::getDefaultConfiguration();
+        $config->setApiKey('Authorization', 'test_api_key');
+
+        // Create the API instance with the mock client
+        $this->subscriptionsApi = new SubscriptionsApi($client, $config);
     }
 
     /**
@@ -62,120 +102,383 @@ class SubscriptionsApiTest extends TestCase
      */
     public function tearDown(): void
     {
+        $this->mockHandler->reset();
+        $this->container = [];
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void
-    {
-    }
+    public static function tearDownAfterClass(): void {}
 
     /**
      * Test case for activate
      *
      * Activate Subscription.
-     *
      */
     public function testActivate()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month'
+            ])
+        ));
+
+        // Call the API method
+        $result = $this->subscriptionsApi->activate($subscriptionId);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions/{$subscriptionId}/activate", $request->getUri()->getPath());
+
+        // Check the response
+        $this->assertEquals($subscriptionId, $result['id']);
+        $this->assertEquals('ACTIVE', $result['status']);
+        $this->assertEquals(1000, $result['amount']);
+        $this->assertEquals('EUR', $result['currency']);
+        $this->assertEquals('month', $result['interval']);
     }
 
     /**
      * Test case for cancel
      *
      * Cancel Subscription.
-     *
      */
     public function testCancel()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'CANCELED',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month'
+            ])
+        ));
+
+        // Call the API method
+        $result = $this->subscriptionsApi->cancel($subscriptionId);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions/{$subscriptionId}/cancel", $request->getUri()->getPath());
+
+        // Check the response
+        $this->assertEquals($subscriptionId, $result['id']);
+        $this->assertEquals('CANCELED', $result['status']);
+        $this->assertEquals(1000, $result['amount']);
+        $this->assertEquals('EUR', $result['currency']);
+        $this->assertEquals('month', $result['interval']);
     }
 
     /**
      * Test case for create
      *
      * Create Subscription.
-     *
      */
     public function testCreate()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+        
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200, 
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month',
+                'paymentMethodId' => 'pm_123456789',
+                'customerId' => 'cus_123456789'
+            ])
+        ));
+        
+        // Create a subscription request
+        $createRequest = (object)[
+            'amount' => 1000,
+            'currency' => 'EUR',
+            'interval' => 'month',
+            'paymentMethodId' => 'pm_123456789',
+            'customerId' => 'cus_123456789'
+        ];
+        
+        // Call the API method - we don't care about the response for this test
+        $this->subscriptionsApi->create($createRequest);
+        
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions", $request->getUri()->getPath());
+        
+        // Check the request body
+        $requestBody = json_decode($request->getBody()->getContents(), true);
+        $this->assertEquals(1000, $requestBody['amount']);
+        $this->assertEquals('EUR', $requestBody['currency']);
+        $this->assertEquals('month', $requestBody['interval']);
+        $this->assertEquals('pm_123456789', $requestBody['paymentMethodId']);
+        $this->assertEquals('cus_123456789', $requestBody['customerId']);
     }
 
     /**
      * Test case for get
      *
      * Get Subscription.
-     *
      */
     public function testGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+        
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200, 
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month',
+                'paymentMethodId' => 'pm_123456789',
+                'customerId' => 'cus_123456789'
+            ])
+        ));
+        
+        // Call the API method - we don't care about the response for this test
+        $this->subscriptionsApi->get($subscriptionId);
+        
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertStringContainsString("subscriptions/{$subscriptionId}", $request->getUri()->getPath());
     }
 
     /**
      * Test case for pause
      *
      * Pause Subscription.
-     *
      */
     public function testPause()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'PAUSED',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month'
+            ])
+        ));
+
+        // Call the API method
+        $result = $this->subscriptionsApi->pause($subscriptionId);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions/{$subscriptionId}/pause", $request->getUri()->getPath());
+
+        // Check the response
+        $this->assertEquals($subscriptionId, $result['id']);
+        $this->assertEquals('PAUSED', $result['status']);
+        $this->assertEquals(1000, $result['amount']);
+        $this->assertEquals('EUR', $result['currency']);
+        $this->assertEquals('month', $result['interval']);
     }
 
     /**
      * Test case for resume
      *
      * Resume Subscription.
-     *
      */
     public function testResume()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month'
+            ])
+        ));
+
+        // Call the API method
+        $result = $this->subscriptionsApi->resume($subscriptionId);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions/{$subscriptionId}/resume", $request->getUri()->getPath());
+
+        // Check the response
+        $this->assertEquals($subscriptionId, $result['id']);
+        $this->assertEquals('ACTIVE', $result['status']);
+        $this->assertEquals(1000, $result['amount']);
+        $this->assertEquals('EUR', $result['currency']);
+        $this->assertEquals('month', $result['interval']);
     }
 
     /**
      * Test case for sendLink
      *
      * Send Subscription Link.
-     *
      */
     public function testSendLink()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month'
+            ])
+        ));
+
+        // Create a send link request
+        $sendLinkRequest = (object)['email' => 'customer@example.com'];
+
+        // Call the API method
+        $result = $this->subscriptionsApi->sendLink($subscriptionId, $sendLinkRequest);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions/{$subscriptionId}/link", $request->getUri()->getPath());
+
+        // Check the response
+        $this->assertEquals($subscriptionId, $result['id']);
+        $this->assertEquals('ACTIVE', $result['status']);
+        $this->assertEquals(1000, $result['amount']);
+        $this->assertEquals('EUR', $result['currency']);
+        $this->assertEquals('month', $result['interval']);
     }
 
     /**
      * Test case for sendStatus
      *
      * Send Subscription Status.
-     *
      */
     public function testSendStatus()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 1000,
+                'currency' => 'EUR',
+                'interval' => 'month'
+            ])
+        ));
+
+        // Create a send status request
+        $sendStatusRequest = (object)['email' => 'customer@example.com'];
+
+        // Call the API method
+        $result = $this->subscriptionsApi->sendStatus($subscriptionId, $sendStatusRequest);
+
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringContainsString("/subscriptions/{$subscriptionId}/status", $request->getUri()->getPath());
+
+        // Check the response
+        $this->assertEquals($subscriptionId, $result['id']);
+        $this->assertEquals('ACTIVE', $result['status']);
+        $this->assertEquals(1000, $result['amount']);
+        $this->assertEquals('EUR', $result['currency']);
+        $this->assertEquals('month', $result['interval']);
     }
 
     /**
      * Test case for update
      *
      * Update Subscription.
-     *
      */
     public function testUpdate()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $subscriptionId = 'sub_123456789';
+        
+        // Queue a mock response
+        $this->mockHandler->append(new Response(
+            200, 
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => $subscriptionId,
+                'status' => 'ACTIVE',
+                'amount' => 2000,
+                'currency' => 'EUR',
+                'interval' => 'month',
+                'metadata' => ['plan' => 'premium'],
+                'paymentMethodId' => 'pm_123456789',
+                'customerId' => 'cus_123456789'
+            ])
+        ));
+        
+        // Create an update request
+        $updateRequest = (object)[
+            'amount' => 2000,
+            'metadata' => ['plan' => 'premium']
+        ];
+        
+        // Call the API method - we don't care about the response for this test
+        $this->subscriptionsApi->update($subscriptionId, $updateRequest);
+        
+        // Check the request
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('PUT', $request->getMethod());
+        $this->assertStringContainsString("subscriptions/{$subscriptionId}", $request->getUri()->getPath());
+        
+        // Check the request body
+        $requestBody = json_decode($request->getBody()->getContents(), true);
+        $this->assertEquals(2000, $requestBody['amount']);
+        $this->assertEquals(['plan' => 'premium'], $requestBody['metadata']);
     }
 }
