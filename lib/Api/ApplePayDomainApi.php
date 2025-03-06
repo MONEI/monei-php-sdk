@@ -1,5 +1,4 @@
 <?php
-
 /**
  * ApplePayDomainApi
  * PHP version 7.4
@@ -180,7 +179,7 @@ class ApplePayDomainApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\ApplePayDomainRegister200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * SubscriptionRetryScheduleInner
  *
@@ -474,7 +473,7 @@ class SubscriptionRetryScheduleInner implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

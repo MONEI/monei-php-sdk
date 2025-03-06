@@ -1,5 +1,4 @@
 <?php
-
 /**
  * ApiException
  * PHP version 7.4

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * BizumValidatePhone200Response
  *
@@ -380,7 +379,7 @@ class BizumValidatePhone200Response implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

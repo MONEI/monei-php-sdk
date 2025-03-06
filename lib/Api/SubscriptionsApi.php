@@ -1,5 +1,4 @@
 <?php
-
 /**
  * SubscriptionsApi
  * PHP version 7.4
@@ -206,7 +205,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -742,7 +741,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1276,7 +1275,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1798,7 +1797,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2323,7 +2322,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2857,7 +2856,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3382,7 +3381,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3918,7 +3917,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4454,7 +4453,7 @@ class SubscriptionsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch ($statusCode) {
+            switch($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Subscription' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

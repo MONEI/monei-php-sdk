@@ -1,5 +1,4 @@
 <?php
-
 /**
  * SendSubscriptionLinkRequest
  *
@@ -518,7 +517,7 @@ class SendSubscriptionLinkRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

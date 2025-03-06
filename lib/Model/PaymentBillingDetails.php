@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PaymentBillingDetails
  *
@@ -551,7 +550,7 @@ class PaymentBillingDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

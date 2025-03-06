@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PaymentTraceDetails
  *
@@ -993,7 +992,7 @@ class PaymentTraceDetails implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
