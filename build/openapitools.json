@@ -2,6 +2,34 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "6.0.1"
+    "version": "7.12.0",
+    "generators": {
+      "monei-php": {
+        "generatorName": "php",
+        "inputSpec": "https://js.monei.com/api/v1/openapi.json",
+        "output": "../",
+        "removeOperationIdPrefix": true,
+        "additionalProperties": {
+          "packageName": "MONEI-PHP-SDK",
+          "artifactVersion": "2.5.1",
+          "gitHost": "github.com",
+          "gitUserId": "monei",
+          "gitRepoId": "monei-php-sdk"
+        }
+      },
+      "monei-php-local": {
+        "generatorName": "php",
+        "inputSpec": "https://js.monei.com/api/v1/openapi.json",
+        "output": "../",
+        "removeOperationIdPrefix": true,
+        "additionalProperties": {
+          "packageName": "MONEI-PHP-SDK",
+          "artifactVersion": "2.5.1",
+          "gitHost": "github.com",
+          "gitUserId": "monei",
+          "gitRepoId": "monei-php-sdk"
+        }
+      }
+    }
   }
 }

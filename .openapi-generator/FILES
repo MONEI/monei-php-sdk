@@ -10,12 +10,6 @@ lib/HeaderSelector.php
 lib/Model/ActivateSubscriptionRequest.php
 lib/Model/Address.php
 lib/Model/ApplePayDomainRegister200Response.php
-lib/Model/ApplePayDomainRegister400Response.php
-lib/Model/ApplePayDomainRegister401Response.php
-lib/Model/ApplePayDomainRegister404Response.php
-lib/Model/ApplePayDomainRegister422Response.php
-lib/Model/ApplePayDomainRegister500Response.php
-lib/Model/ApplePayDomainRegister503Response.php
 lib/Model/BizumValidatePhone200Response.php
 lib/Model/CancelPaymentRequest.php
 lib/Model/CancelSubscriptionRequest.php

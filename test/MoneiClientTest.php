@@ -23,8 +23,6 @@ class MoneiClientTest extends TestCase
      */
     public function testAccountIdInConstructor()
     {
-        $this->markTestIncomplete('This test requires a custom User-Agent to be set.');
-
         // Set a custom User-Agent first
         $this->moneiClient->setUserAgent('TestPlatform/1.0');
 
@@ -95,8 +93,6 @@ class MoneiClientTest extends TestCase
 
     public function testSetAccountId()
     {
-        $this->markTestIncomplete('This test requires a custom User-Agent to be set.');
-
         // Set a custom User-Agent first
         $this->moneiClient->setUserAgent('TestPlatform/1.0');
 
