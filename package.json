@@ -4,9 +4,12 @@
   "description": "MONEI PHP SDK",
   "author": "monei",
   "scripts": {
-    "build": "openapi-generator-cli generate --generator-key monei-php",
-    "build:local": "openapi-generator-cli generate --generator-key monei-php-local",
-    "release": "release-it"
+    "build": "openapi-generator-cli generate --generator-key monei-php && yarn postbuild",
+    "build:local": "openapi-generator-cli generate --generator-key monei-php-local && yarn postbuild",
+    "release": "release-it",
+    "cs-fix": "composer cs-fix",
+    "test": "composer test",
+    "postbuild": "yarn cs-fix && yarn test"
   },
   "license": "MIT",
   "devDependencies": {
@@ -26,7 +29,7 @@
       "publish": false
     },
     "hooks": {
-      "after:bump": "yarn run build && git add -A"
+      "after:bump": "yarn run build && yarn run postbuild && git add -A"
     },
     "plugins": {
       "@release-it/bumper": {

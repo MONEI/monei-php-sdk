@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentsApi
  * PHP version 7.4
@@ -208,7 +209,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -744,7 +745,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1280,7 +1281,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1814,7 +1815,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2336,7 +2337,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2861,7 +2862,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3397,7 +3398,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3933,7 +3934,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4469,7 +4470,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5005,7 +5006,7 @@ class PaymentsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\Payment' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

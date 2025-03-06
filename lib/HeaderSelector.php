@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HeaderSelector
  * PHP version 7.4
@@ -53,7 +54,7 @@ class HeaderSelector
         }
 
         if (!$isMultipart) {
-            if($contentType === '') {
+            if ($contentType === '') {
                 $contentType = 'application/json';
             }
 
@@ -105,17 +106,18 @@ class HeaderSelector
     {
         return preg_match('~^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)~', $searchString) === 1;
     }
-    
+
     /**
     * Select all items from a list containing a JSON mime type
     *
     * @param array $mimeList
     * @return array
     */
-    private function selectJsonMimeList(array $mimeList): array {
+    private function selectJsonMimeList(array $mimeList): array
+    {
         $jsonMimeList = [];
         foreach ($mimeList as $mime) {
-            if($this->isJsonMime($mime)) {
+            if ($this->isJsonMime($mime)) {
                 $jsonMimeList[] = $mime;
             }
         }
@@ -157,7 +159,7 @@ class HeaderSelector
 
         $hasMoreThan28Headers = count($accept) > 28;
 
-        foreach($processedHeaders as $headers) {
+        foreach ($processedHeaders as $headers) {
             if (count($headers) > 0) {
                 $acceptHeaders[] = $this->adjustWeight($headers, $currentWeight, $hasMoreThan28Headers);
             }
@@ -207,8 +209,7 @@ class HeaderSelector
 
         $acceptHeaders = [];
         foreach ($headers as $index => $header) {
-            if($index > 0 && $headers[$index - 1]['weight'] > $header['weight'])
-            {
+            if ($index > 0 && $headers[$index - 1]['weight'] > $header['weight']) {
                 $currentWeight = $this->getNextWeight($currentWeight, $hasMoreThan28Headers);
             }
 
@@ -229,7 +230,7 @@ class HeaderSelector
      */
     private function buildAcceptHeader(string $header, int $weight): string
     {
-        if($weight === 1000) {
+        if ($weight === 1000) {
             return $header;
         }
 
@@ -268,6 +269,6 @@ class HeaderSelector
             return $currentWeight - 1;
         }
 
-        return $currentWeight - 10 ** floor( log10($currentWeight - 1) );
+        return $currentWeight - 10 ** floor(log10($currentWeight - 1));
     }
 }

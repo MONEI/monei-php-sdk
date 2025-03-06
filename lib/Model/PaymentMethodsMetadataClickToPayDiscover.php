@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsMetadataClickToPayDiscover
  *
@@ -413,7 +414,7 @@ class PaymentMethodsMetadataClickToPayDiscover implements ModelInterface, ArrayA
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

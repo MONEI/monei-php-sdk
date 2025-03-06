@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BizumApi
  * PHP version 7.4
@@ -179,7 +180,7 @@ class BizumApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\BizumValidatePhone200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentPaymentMethodBizumInput
  *
@@ -380,7 +381,7 @@ class PaymentPaymentMethodBizumInput implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

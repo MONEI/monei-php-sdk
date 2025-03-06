@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PaymentMethodsApi
  * PHP version 7.4
@@ -181,7 +182,7 @@ class PaymentMethodsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\OpenAPI\Client\Model\PaymentMethods' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
