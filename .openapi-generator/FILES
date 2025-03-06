@@ -90,4 +90,3 @@ lib/Model/SubscriptionStatus.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/Model/ValidateBizumPhoneRequest.php
 lib/ObjectSerializer.php
-phpunit.xml.dist

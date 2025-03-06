@@ -20,6 +20,7 @@ composer.json
 .gitignore
 README.md
 lib/MoneiClient.php
+phpunit.xml.dist
 docs/**
 build/**
 
