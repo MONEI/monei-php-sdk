@@ -10,24 +10,16 @@
         "output": "../",
         "removeOperationIdPrefix": true,
         "additionalProperties": {
-          "packageName": "MONEI-PHP-SDK",
-          "artifactVersion": "2.5.1",
-          "gitHost": "github.com",
-          "gitUserId": "monei",
-          "gitRepoId": "monei-php-sdk"
+          "configFile": "./config.json"
         }
       },
       "monei-php-local": {
         "generatorName": "php",
-        "inputSpec": "https://js.monei.com/api/v1/openapi.json",
+        "inputSpec": "./openapi.json",
         "output": "../",
         "removeOperationIdPrefix": true,
         "additionalProperties": {
-          "packageName": "MONEI-PHP-SDK",
-          "artifactVersion": "2.5.1",
-          "gitHost": "github.com",
-          "gitUserId": "monei",
-          "gitRepoId": "monei-php-sdk"
+          "configFile": "./config.json"
         }
       }
     }

@@ -32,12 +32,8 @@
       "@release-it/bumper": {
         "out": [
           {
-            "file": "openapitools.json",
-            "path": "generator-cli.generators.monei-php.additionalProperties.artifactVersion"
-          },
-          {
-            "file": "openapitools.json",
-            "path": "generator-cli.generators.monei-php-local.additionalProperties.artifactVersion"
+            "file": "config.json",
+            "path": "artifactVersion"
           },
           "../lib/MoneiClient.php"
         ]
