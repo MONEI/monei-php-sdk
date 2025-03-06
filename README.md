@@ -17,12 +17,17 @@ For collecting customer and payment information in the browser, use [monei.js](h
     - [Refunding a Payment](#refunding-a-payment)
   - [Integration Methods](#integration-methods)
     - [Using the Prebuilt Payment Page](#using-the-prebuilt-payment-page)
+      - [Features](#features)
+      - [Integration Flow](#integration-flow)
   - [Webhooks](#webhooks)
     - [Signature Verification](#signature-verification)
-    - [Important Notes About Webhooks](#important-notes-about-webhooks)
+    - [Handling Payment Callbacks](#handling-payment-callbacks)
+      - [Important Notes About Webhooks](#important-notes-about-webhooks)
   - [MONEI Connect for Partners](#monei-connect-for-partners)
     - [Account ID](#account-id)
+      - [Setting Account ID after initialization](#setting-account-id-after-initialization)
     - [Custom User-Agent](#custom-user-agent)
+      - [Examples with Proper User-Agent Format](#examples-with-proper-user-agent-format)
     - [Managing Multiple Merchant Accounts](#managing-multiple-merchant-accounts)
   - [Tests](#tests)
   - [Documentation](#documentation)
@@ -176,6 +181,20 @@ try {
 
 MONEI Hosted Payment Page is the simplest way to securely collect payments from your customers without building your own payment form.
 
+#### Features
+
+- **Designed to remove friction** — Real-time card validation with built-in error messaging
+- **Mobile-ready** — Fully responsive design
+- **International** — Supports 13 languages
+- **Multiple payment methods** — Supports multiple payment methods including Cards, PayPal, Bizum, GooglePay, Apple Pay & Click to Pay
+- **Customization and branding** — Customizable logo, buttons and background color
+- **3D Secure** — Supports 3D Secure - SCA verification process
+- **Fraud and compliance** — Simplified PCI compliance and SCA-ready
+
+You can customize the appearance in your MONEI Dashboard → Settings → Branding.
+
+#### Integration Flow
+
 1. **Create a payment on your server**
 
 ```php
@@ -211,22 +230,28 @@ try {
 ?>
 ```
 
-2. **Customer completes the payment**
+2. **Redirect the customer to the payment page**
+
+After creating a payment, you'll receive a response with a `nextAction.redirectUrl`. Redirect your customer to this URL to show them the MONEI Hosted payment page.
+
+3. **Customer completes the payment**
 
 The customer enters their payment information and completes any required verification steps (like 3D Secure).
 
-3. **Customer is redirected back to your website**
+4. **Customer is redirected back to your website**
 
 - If the customer completes the payment, they are redirected to the `successUrl` with a `payment_id` query parameter
 - If the customer cancels, they are redirected to the `failureUrl`
 
-4. **Receive asynchronous notification**
+5. **Receive asynchronous notification**
 
 MONEI sends an HTTP POST request to your `callbackUrl` with the payment result. This ensures you receive the payment status even if the customer closes their browser during the redirect.
 
 For more information about the hosted payment page, visit the [MONEI Hosted Payment Page documentation](https://docs.monei.com/docs/integrations/use-prebuilt-payment-page).
 
 ## Webhooks
+
+Webhooks can be configured in the [MONEI Dashboard → Settings → Webhooks](https://dashboard.monei.com/settings/webhooks).
 
 ### Signature Verification
 
@@ -236,9 +261,11 @@ When receiving webhooks from MONEI, you should verify the signature to ensure th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\PaymentStatus;
+
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
-// Get the raw request body
+// Parse raw body for signature verification
 $rawBody = file_get_contents('php://input');
 
 // Get the signature from the headers
@@ -252,7 +279,7 @@ try {
     $eventType = $payload->type;
     
     // The data field contains the Payment object
-    $payment = $payload->data;
+    $payment = $payload->object;
     
     // Access Payment object properties directly
     $paymentId = $payment->id;
@@ -283,7 +310,55 @@ try {
 ?>
 ```
 
-### Important Notes About Webhooks
+### Handling Payment Callbacks
+
+MONEI sends an HTTP POST request to your `callbackUrl` with the payment result. This ensures you receive the payment status even if the customer closes their browser during the redirect.
+
+Example of handling the callback in a PHP script:
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use OpenAPI\Client\Model\PaymentStatus;
+
+$monei = new Monei\MoneiClient('YOUR_API_KEY');
+
+// Parse raw body for signature verification
+$rawBody = file_get_contents('php://input');
+$signature = $_SERVER['HTTP_MONEI_SIGNATURE'] ?? '';
+
+try {
+    // Verify the signature
+    $payload = $monei->verifySignature($rawBody, $signature);
+    $payment = $payload->data;
+    
+    // Update your order status based on the payment status
+    if ($payment->status === PaymentStatus::SUCCEEDED) {
+        // Payment successful - fulfill the order
+        // Update your database, send confirmation email, etc.
+    } else if ($payment->status === PaymentStatus::FAILED) {
+        // Payment failed - notify the customer
+        // Log the failure, update your database, etc.
+    } else if ($payment->status === PaymentStatus::AUTHORIZED) {
+        // Payment is authorized but not yet captured
+        // You can capture it later
+    } else if ($payment->status === PaymentStatus::CANCELED) {
+        // Payment was canceled
+    }
+    
+    // Acknowledge receipt of the webhook
+    http_response_code(200);
+    echo json_encode(['received' => true]);
+} catch (\OpenAPI\Client\ApiException $e) {
+    // Invalid signature
+    http_response_code(401);
+    echo json_encode(['error' => 'Invalid signature']);
+}
+?>
+```
+
+#### Important Notes About Webhooks
 
 1. Always verify the signature to ensure the webhook is coming from MONEI
 2. Use the raw request body for signature verification
@@ -295,7 +370,7 @@ For more information about webhooks, visit the [MONEI Webhooks documentation](ht
 
 ## MONEI Connect for Partners
 
-If you're a platform or marketplace integrating with MONEI, you can make API calls on behalf of your merchants using MONEI Connect. This feature is specifically for MONEI partners who have a partner API key.
+If you're a partner or platform integrating with MONEI, you can act on behalf of your merchants by providing their Account ID. This is part of [MONEI Connect](https://docs.monei.com/docs/monei-connect/), which allows platforms to manage multiple merchant accounts.
 
 **Important:** When using Account ID functionality, you must:
 
@@ -306,6 +381,8 @@ For more information about MONEI Connect and becoming a partner, visit the [MONE
 
 ### Account ID
 
+#### Setting Account ID after initialization
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
@@ -313,8 +390,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 // Initialize with your partner API key
 $monei = new Monei\MoneiClient('YOUR_PARTNER_API_KEY');
 
-// Set a custom User-Agent for your platform (required when using Account ID)
-// Format should be: MONEI/<PARTNER_NAME>/<VERSION>
+// Set a custom User-Agent for your platform (required before setting Account ID)
 $monei->setUserAgent('MONEI/YourPlatform/1.0.0');
 
 // Set Account ID to act on behalf of a merchant
@@ -347,6 +423,8 @@ MONEI/<PARTNER_NAME>/<VERSION>
 For example: `MONEI/YourPlatform/1.0.0`
 
 This format helps MONEI identify your platform in API requests and is required when using the Partner API Key.
+
+#### Examples with Proper User-Agent Format
 
 ```php
 <?php
