@@ -22,7 +22,8 @@ README.md
 lib/MoneiClient.php
 phpunit.xml.dist
 docs/**
-build/**
+node_modules/**
+.yarn/**
 
 # Prevent generator from creating these files:
 git_push.sh

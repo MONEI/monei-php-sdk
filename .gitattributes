@@ -1,4 +1,5 @@
 test/ export-ignore
-build/ export-ignore
 .openapi-generator/ export-ignore
 .openapi-generator-ignore export-ignore
+node_modules/ export-ignore
+.yarn/ export-ignore

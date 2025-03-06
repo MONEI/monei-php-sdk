@@ -29,6 +29,8 @@ For collecting customer and payment information in the browser, use [monei.js](h
     - [Custom User-Agent](#custom-user-agent)
       - [Examples with Proper User-Agent Format](#examples-with-proper-user-agent-format)
     - [Managing Multiple Merchant Accounts](#managing-multiple-merchant-accounts)
+  - [Development](#development)
+    - [Building the SDK](#building-the-sdk)
   - [Tests](#tests)
   - [Documentation](#documentation)
 
@@ -489,6 +491,23 @@ $merchantAccounts = ['merchant_1', 'merchant_2', 'merchant_3'];
 $results = processPaymentsForMerchants($monei, $merchantAccounts);
 print_r($results);
 ?>
+```
+
+## Development
+
+### Building the SDK
+
+The SDK is built using OpenAPI Generator. To build the SDK from the OpenAPI specification:
+
+```bash
+# Install dependencies
+yarn install
+
+# Generate SDK from remote OpenAPI spec
+yarn build
+
+# Generate SDK from local OpenAPI spec
+yarn build:local
 ```
 
 ## Tests
