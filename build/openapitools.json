@@ -11,7 +11,7 @@
         "removeOperationIdPrefix": true,
         "additionalProperties": {
           "packageName": "MONEI-PHP-SDK",
-          "artifactVersion": "2.5.1",
+          "artifactVersion": "2.6.0",
           "gitHost": "github.com",
           "gitUserId": "monei",
           "gitRepoId": "monei-php-sdk"
@@ -24,7 +24,7 @@
         "removeOperationIdPrefix": true,
         "additionalProperties": {
           "packageName": "MONEI-PHP-SDK",
-          "artifactVersion": "2.5.1",
+          "artifactVersion": "2.6.0",
           "gitHost": "github.com",
           "gitUserId": "monei",
           "gitRepoId": "monei-php-sdk"
