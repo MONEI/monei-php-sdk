@@ -3,6 +3,7 @@
   "version": "2.6.8",
   "description": "MONEI PHP SDK",
   "author": "monei",
+  "type": "module",
   "scripts": {
     "build": "openapi-generator-cli generate --generator-key monei-php && yarn postbuild",
     "build:local": "openapi-generator-cli generate --generator-key monei-php-local && yarn postbuild",
