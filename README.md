@@ -16,6 +16,11 @@ For collecting customer and payment information in the browser, use [monei.js](h
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Basic Usage](#basic-usage)
+    - [API Keys](#api-keys)
+      - [Types of API Keys](#types-of-api-keys)
+      - [API Key Security](#api-key-security)
+    - [Test Mode](#test-mode)
+    - [Basic Client Usage](#basic-client-usage)
   - [Payment Operations](#payment-operations)
     - [Creating a Payment](#creating-a-payment)
     - [Retrieving a Payment](#retrieving-a-payment)
@@ -56,7 +61,51 @@ Then run `composer install`
 
 ## Basic Usage
 
-The MONEI API uses API key to authenticate requests. You can view and manage your API key in the [MONEI Dashboard](https://dashboard.monei.com/settings/api).
+### API Keys
+
+The MONEI API uses API keys for authentication. You can obtain and manage your API keys in the [MONEI Dashboard](https://dashboard.monei.com/settings/api).
+
+#### Types of API Keys
+
+MONEI provides two types of API keys:
+
+- **Test API Keys**: Use these for development and testing. Transactions made with test API keys are not processed by real payment providers.
+- **Live API Keys**: Use these in production environments. Transactions made with live API keys are processed by real payment providers and will move actual money.
+
+Each API key has a distinct prefix that indicates its environment:
+
+- Test API keys start with `pk_test_` (e.g., `pk_test_12345abcdef`)
+- Live API keys start with `pk_live_` (e.g., `pk_live_12345abcdef`)
+
+By checking the prefix of an API key, you can quickly determine which environment you're working in. This is especially useful when you're managing multiple projects or environments.
+
+#### API Key Security
+
+Your API keys carry significant privileges, so be sure to keep them secure:
+
+- Keep your API keys confidential and never share them in publicly accessible areas such as GitHub, client-side code, or in your frontend application.
+- Use environment variables or a secure vault to store your API keys.
+- Restrict API key access to only the IP addresses that need them.
+- Regularly rotate your API keys, especially if you suspect they may have been compromised.
+
+```php
+// Example of loading API key from environment variable (recommended)
+$apiKey = getenv('MONEI_API_KEY');
+$monei = new Monei\MoneiClient($apiKey);
+```
+
+### Test Mode
+
+To test your integration with MONEI, you need to switch to **test mode** using the toggle in the header of your MONEI Dashboard. When in test mode:
+
+1. Generate your test API key in MONEI Dashboard → Settings → API Access
+2. Configure your payment methods using test credentials in MONEI Dashboard → Settings → Payment Methods
+
+**Important:** Account ID and API key generated in test mode are different from those in live (production) mode and can only be used for testing purposes.
+
+When using test mode, you can simulate various payment scenarios using test card numbers, Bizum phone numbers, and PayPal accounts provided in the [MONEI Testing documentation](https://docs.monei.com/docs/testing/).
+
+### Basic Client Usage
 
 ```php
 <?php
