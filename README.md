@@ -42,7 +42,7 @@ For collecting customer and payment information in the browser, use [monei.js](h
 
 ## Requirements
 
-PHP 7.2 and later
+- PHP 7.4 or later
 
 ## Installation
 
