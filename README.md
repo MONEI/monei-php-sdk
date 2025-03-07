@@ -116,12 +116,12 @@ $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
     // Using request classes for better type safety and IDE autocompletion
-    $request = new \OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
         'amount' => 1250, // 12.50€
-        'orderId' => '100100000001',
+        'order_id' => '100100000001',
         'currency' => 'EUR',
         'description' => 'Items description',
-        'customer' => new \OpenAPI\Client\Model\Customer([
+        'customer' => new OpenAPI\Client\Model\PaymentCustomer([
             'email' => 'john.doe@monei.com',
             'name' => 'John Doe'
         ])
@@ -148,27 +148,27 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $request = new \OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
         'amount' => 1999, // Amount in cents (19.99)
-        'orderId' => '12345',
+        'order_id' => '12345',
         'currency' => 'EUR',
         'description' => 'Order #12345',
-        'customer' => new \OpenAPI\Client\Model\Customer([
+        'customer' => new OpenAPI\Client\Model\PaymentCustomer([
             'email' => 'customer@example.com',
             'name' => 'John Doe',
             'phone' => '+34600000000'
         ]),
-        'billingDetails' => new \OpenAPI\Client\Model\BillingDetails([
-            'address' => new \OpenAPI\Client\Model\Address([
+        'billing_details' => new OpenAPI\Client\Model\PaymentBillingDetails([
+            'address' => new OpenAPI\Client\Model\Address([
                 'line1' => '123 Main St',
                 'city' => 'Barcelona',
                 'country' => 'ES',
-                'postalCode' => '08001'
+                'zip' => '08001'
             ])
         ]),
-        'successUrl' => 'https://example.com/success',
-        'failureUrl' => 'https://example.com/failure',
-        'callbackUrl' => 'https://example.com/webhook'
+        'complete_url' => 'https://example.com/success',
+        'fail_url' => 'https://example.com/failure',
+        'callback_url' => 'https://example.com/webhook'
     ]);
     
     $result = $monei->payments->create($request);
@@ -192,7 +192,7 @@ $monei = new Monei\MoneiClient('YOUR_API_KEY');
 try {
     $payment = $monei->payments->getPayment('pay_123456789');
     echo "Payment status: " . $payment->getStatus() . PHP_EOL;
-} catch (\OpenAPI\Client\ApiException $e) {
+} catch (OpenAPI\Client\ApiException $e) {
     echo 'Error retrieving payment: ', $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -209,14 +209,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $refundRequest = new \OpenAPI\Client\Model\RefundPaymentRequest([
+    $refundRequest = new OpenAPI\Client\Model\RefundPaymentRequest([
         'amount' => 500, // Partial refund of 5.00€
-        'reason' => 'Customer request'
+        'refund_reason' => 'Customer request'
     ]);
     
     $result = $monei->payments->refund('pay_123456789', $refundRequest);
     echo "Refund created with ID: " . $result->getId() . PHP_EOL;
-} catch (\OpenAPI\Client\ApiException $e) {
+} catch (OpenAPI\Client\ApiException $e) {
     echo 'Error refunding payment: ', $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -251,17 +251,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $request = new \OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
         'amount' => 110, // Amount in cents (1.10)
         'currency' => 'EUR',
-        'orderId' => '14379133960355',
+        'order_id' => '14379133960355',
         'description' => 'Test Shop - #14379133960355',
-        'customer' => new \OpenAPI\Client\Model\Customer([
+        'customer' => new OpenAPI\Client\Model\PaymentCustomer([
             'email' => 'customer@example.com'
         ]),
-        'callbackUrl' => 'https://example.com/checkout/callback', // For asynchronous notifications
-        'successUrl' => 'https://example.com/checkout/complete', // Redirect after payment
-        'failureUrl' => 'https://example.com/checkout/cancel' // Redirect if customer cancels
+        'callback_url' => 'https://example.com/checkout/callback', // For asynchronous notifications
+        'complete_url' => 'https://example.com/checkout/complete', // Redirect after payment
+        'fail_url' => 'https://example.com/checkout/cancel' // Redirect if customer cancels
     ]);
     
     $result = $monei->payments->create($request);
@@ -287,12 +287,12 @@ The customer enters their payment information and completes any required verific
 
 4. **Customer is redirected back to your website**
 
-- If the customer completes the payment, they are redirected to the `successUrl` with a `payment_id` query parameter
-- If the customer cancels, they are redirected to the `failureUrl`
+- If the customer completes the payment, they are redirected to the `complete_url` with a `payment_id` query parameter
+- If the customer cancels, they are redirected to the `fail_url`
 
 5. **Receive asynchronous notification**
 
-MONEI sends an HTTP POST request to your `callbackUrl` with the payment result. This ensures you receive the payment status even if the customer closes their browser during the redirect.
+MONEI sends an HTTP POST request to your `callback_url` with the payment result. This ensures you receive the payment status even if the customer closes their browser during the redirect.
 
 For more information about the hosted payment page, visit the [MONEI Hosted Payment Page documentation](https://docs.monei.com/docs/integrations/use-prebuilt-payment-page).
 
@@ -349,7 +349,7 @@ try {
     
     http_response_code(200);
     echo json_encode(['received' => true]);
-} catch (\OpenAPI\Client\ApiException $e) {
+} catch (OpenAPI\Client\ApiException $e) {
     // Invalid signature
     http_response_code(401);
     echo json_encode(['error' => 'Invalid signature']);
@@ -359,7 +359,7 @@ try {
 
 ### Handling Payment Callbacks
 
-MONEI sends an HTTP POST request to your `callbackUrl` with the payment result. This ensures you receive the payment status even if the customer closes their browser during the redirect.
+MONEI sends an HTTP POST request to your `callback_url` with the payment result. This ensures you receive the payment status even if the customer closes their browser during the redirect.
 
 Example of handling the callback in a PHP script:
 
@@ -397,7 +397,7 @@ try {
     // Acknowledge receipt of the webhook
     http_response_code(200);
     echo json_encode(['received' => true]);
-} catch (\OpenAPI\Client\ApiException $e) {
+} catch (OpenAPI\Client\ApiException $e) {
     // Invalid signature
     http_response_code(401);
     echo json_encode(['error' => 'Invalid signature']);
@@ -445,9 +445,9 @@ $monei->setAccountId('MERCHANT_ACCOUNT_ID');
 
 // Make API calls on behalf of the merchant
 try {
-    $request = new \OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
         'amount' => 1250,
-        'orderId' => '12345',
+        'order_id' => '12345',
         'currency' => 'EUR'
     ]);
     
@@ -509,9 +509,9 @@ function processPaymentsForMerchants($monei, $merchantAccounts) {
 
         // Process payment for this merchant
         try {
-            $request = new \OpenAPI\Client\Model\CreatePaymentRequest([
+            $request = new OpenAPI\Client\Model\CreatePaymentRequest([
                 'amount' => 1000,
-                'orderId' => 'order-' . $merchantId . '-' . time(),
+                'order_id' => 'order-' . $merchantId . '-' . time(),
                 'currency' => 'EUR'
             ]);
             
