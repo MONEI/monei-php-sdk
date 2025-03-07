@@ -52,16 +52,6 @@ Install the package using Composer:
 composer require monei/monei-php-sdk
 ```
 
-Or add the following to `composer.json`:
-
-```json
-{
-  "require": {
-    "monei/monei-php-sdk": "^1.2.0"
-  }
-}
-```
-
 Then run `composer install`
 
 ## Basic Usage
