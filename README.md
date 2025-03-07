@@ -111,17 +111,20 @@ When using test mode, you can simulate various payment scenarios using test card
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\CreatePaymentRequest;
+use OpenAPI\Client\Model\PaymentCustomer;
+
 // Instantiate the client using the API key
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
     // Using request classes for better type safety and IDE autocompletion
-    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new CreatePaymentRequest([
         'amount' => 1250, // 12.50€
         'order_id' => '100100000001',
         'currency' => 'EUR',
         'description' => 'Items description',
-        'customer' => new OpenAPI\Client\Model\PaymentCustomer([
+        'customer' => new PaymentCustomer([
             'email' => 'john.doe@monei.com',
             'name' => 'John Doe'
         ])
@@ -145,21 +148,26 @@ Create a payment with customer information:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\CreatePaymentRequest;
+use OpenAPI\Client\Model\PaymentCustomer;
+use OpenAPI\Client\Model\PaymentBillingDetails;
+use OpenAPI\Client\Model\Address;
+
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new CreatePaymentRequest([
         'amount' => 1999, // Amount in cents (19.99)
         'order_id' => '12345',
         'currency' => 'EUR',
         'description' => 'Order #12345',
-        'customer' => new OpenAPI\Client\Model\PaymentCustomer([
+        'customer' => new PaymentCustomer([
             'email' => 'customer@example.com',
             'name' => 'John Doe',
             'phone' => '+34600000000'
         ]),
-        'billing_details' => new OpenAPI\Client\Model\PaymentBillingDetails([
-            'address' => new OpenAPI\Client\Model\Address([
+        'billing_details' => new PaymentBillingDetails([
+            'address' => new Address([
                 'line1' => '123 Main St',
                 'city' => 'Barcelona',
                 'country' => 'ES',
@@ -187,12 +195,14 @@ Retrieve an existing payment by ID:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\ApiException;
+
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
     $payment = $monei->payments->getPayment('pay_123456789');
     echo "Payment status: " . $payment->getStatus() . PHP_EOL;
-} catch (OpenAPI\Client\ApiException $e) {
+} catch (ApiException $e) {
     echo 'Error retrieving payment: ', $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -206,17 +216,20 @@ Process a full or partial refund:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\RefundPaymentRequest;
+use OpenAPI\Client\ApiException;
+
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $refundRequest = new OpenAPI\Client\Model\RefundPaymentRequest([
+    $refundRequest = new RefundPaymentRequest([
         'amount' => 500, // Partial refund of 5.00€
         'refund_reason' => 'Customer request'
     ]);
     
     $result = $monei->payments->refund('pay_123456789', $refundRequest);
     echo "Refund created with ID: " . $result->getId() . PHP_EOL;
-} catch (OpenAPI\Client\ApiException $e) {
+} catch (ApiException $e) {
     echo 'Error refunding payment: ', $e->getMessage(), PHP_EOL;
 }
 ?>
@@ -248,15 +261,18 @@ You can customize the appearance in your MONEI Dashboard → Settings → Brandi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\CreatePaymentRequest;
+use OpenAPI\Client\Model\PaymentCustomer;
+
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new CreatePaymentRequest([
         'amount' => 110, // Amount in cents (1.10)
         'currency' => 'EUR',
         'order_id' => '14379133960355',
         'description' => 'Test Shop - #14379133960355',
-        'customer' => new OpenAPI\Client\Model\PaymentCustomer([
+        'customer' => new PaymentCustomer([
             'email' => 'customer@example.com'
         ]),
         'callback_url' => 'https://example.com/checkout/callback', // For asynchronous notifications
@@ -309,6 +325,7 @@ When receiving webhooks from MONEI, you should verify the signature to ensure th
 require_once(__DIR__ . '/vendor/autoload.php');
 
 use OpenAPI\Client\Model\PaymentStatus;
+use OpenAPI\Client\ApiException;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -349,7 +366,7 @@ try {
     
     http_response_code(200);
     echo json_encode(['received' => true]);
-} catch (OpenAPI\Client\ApiException $e) {
+} catch (ApiException $e) {
     // Invalid signature
     http_response_code(401);
     echo json_encode(['error' => 'Invalid signature']);
@@ -368,6 +385,7 @@ Example of handling the callback in a PHP script:
 require_once(__DIR__ . '/vendor/autoload.php');
 
 use OpenAPI\Client\Model\PaymentStatus;
+use OpenAPI\Client\ApiException;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -397,7 +415,7 @@ try {
     // Acknowledge receipt of the webhook
     http_response_code(200);
     echo json_encode(['received' => true]);
-} catch (OpenAPI\Client\ApiException $e) {
+} catch (ApiException $e) {
     // Invalid signature
     http_response_code(401);
     echo json_encode(['error' => 'Invalid signature']);
@@ -434,6 +452,8 @@ For more information about MONEI Connect and becoming a partner, visit the [MONE
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\CreatePaymentRequest;
+
 // Initialize with your partner API key
 $monei = new Monei\MoneiClient('YOUR_PARTNER_API_KEY');
 
@@ -445,7 +465,7 @@ $monei->setAccountId('MERCHANT_ACCOUNT_ID');
 
 // Make API calls on behalf of the merchant
 try {
-    $request = new OpenAPI\Client\Model\CreatePaymentRequest([
+    $request = new CreatePaymentRequest([
         'amount' => 1250,
         'order_id' => '12345',
         'currency' => 'EUR'
@@ -493,6 +513,8 @@ $monei->setUserAgent('MONEI/PaymentHub/3.0.1');
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use OpenAPI\Client\Model\CreatePaymentRequest;
+
 // Initialize with your partner API key
 $monei = new Monei\MoneiClient('YOUR_PARTNER_API_KEY');
 
@@ -509,7 +531,7 @@ function processPaymentsForMerchants($monei, $merchantAccounts) {
 
         // Process payment for this merchant
         try {
-            $request = new OpenAPI\Client\Model\CreatePaymentRequest([
+            $request = new CreatePaymentRequest([
                 'amount' => 1000,
                 'order_id' => 'order-' . $merchantId . '-' . time(),
                 'currency' => 'EUR'
