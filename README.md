@@ -98,8 +98,8 @@ $monei = new Monei\MoneiClient($apiKey);
 
 To test your integration with MONEI, you need to switch to **test mode** using the toggle in the header of your MONEI Dashboard. When in test mode:
 
-1. Generate your test API key in MONEI Dashboard → Settings → API Access
-2. Configure your payment methods using test credentials in MONEI Dashboard → Settings → Payment Methods
+1. Generate your test API key in [MONEI Dashboard → Settings → API Access](https://dashboard.monei.com/settings/api)
+2. Configure your payment methods in [MONEI Dashboard → Settings → Payment Methods](https://dashboard.monei.com/settings/payment-methods)
 
 **Important:** Account ID and API key generated in test mode are different from those in live (production) mode and can only be used for testing purposes.
 
