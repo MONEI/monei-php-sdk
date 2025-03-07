@@ -3,3 +3,24 @@ test/ export-ignore
 .openapi-generator-ignore export-ignore
 node_modules/ export-ignore
 .yarn/ export-ignore
+# Development files
+.husky/ export-ignore
+.github/ export-ignore
+.php-cs-fixer.php export-ignore
+.php-cs-fixer.cache export-ignore
+.phpunit.result.cache export-ignore
+.php-version export-ignore
+phpunit.xml export-ignore
+commitlint.config.js export-ignore
+openapitools.json export-ignore
+package.json export-ignore
+yarn.lock export-ignore
+.yarnrc.yml export-ignore
+test.php export-ignore
+# Documentation and configuration
+CHANGELOG.md export-ignore
+openapi.json export-ignore
+# IDE and system files
+.DS_Store export-ignore
+.idea/ export-ignore
+.vscode/ export-ignore
