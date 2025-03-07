@@ -37,7 +37,7 @@ class MoneiClient
     /**
      * @var string
      */
-    public const SDK_VERSION = '2.6.6';
+    public const SDK_VERSION = '2.6.7';
 
     /**
      * @var string
