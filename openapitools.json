@@ -10,7 +10,7 @@
         "output": "./",
         "removeOperationIdPrefix": true,
         "additionalProperties": {
-          "configFile": "./config.json"
+          "invokerPackage": "Monei"
         }
       },
       "monei-php-local": {
@@ -19,9 +19,9 @@
         "output": "./",
         "removeOperationIdPrefix": true,
         "additionalProperties": {
-          "configFile": "./config.json"
+          "invokerPackage": "Monei"
         }
       }
     }
   }
-} 
+}

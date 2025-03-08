@@ -13,12 +13,12 @@
 
 namespace Monei;
 
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\Api\PaymentsApi;
-use OpenAPI\Client\Api\SubscriptionsApi;
-use OpenAPI\Client\Api\ApplePayDomainApi;
-use OpenAPI\Client\Api\PaymentMethodsApi;
+use Monei\ApiException;
+use Monei\Configuration;
+use Monei\Api\PaymentsApi;
+use Monei\Api\SubscriptionsApi;
+use Monei\Api\ApplePayDomainApi;
+use Monei\Api\PaymentMethodsApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -28,7 +28,7 @@ use Psr\Http\Message\RequestInterface;
  * PaymentsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Monei\
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

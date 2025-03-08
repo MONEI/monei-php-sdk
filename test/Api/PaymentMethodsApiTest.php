@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Monei\
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,12 +26,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace OpenAPI\Client\Test\Api;
+namespace Monei\Test\Api;
 
-use \OpenAPI\Client\Configuration;
-use \OpenAPI\Client\ApiException;
-use \OpenAPI\Client\ObjectSerializer;
-use \OpenAPI\Client\Api\PaymentMethodsApi;
+use Monei\Configuration;
+use Monei\ApiException;
+use Monei\ObjectSerializer;
+use Monei\Api\PaymentMethodsApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -45,7 +45,7 @@ use PHPUnit\Framework\TestCase;
  * PaymentMethodsApiTest Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Monei\
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

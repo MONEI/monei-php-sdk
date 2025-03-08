@@ -6,7 +6,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Monei\
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Monei\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description Controls when the funds will be captured.   - &#x60;SALE&#x60; - **Default**. MONEI automatically captures funds     when the customer authorizes the payment.   - &#x60;AUTH&#x60; - Place a hold on the funds when the customer authorizes     the payment, but don&#39;t capture the funds until later.   - &#x60;PAYOUT&#x60; - Send funds to the customer   - &#x60;VERIF&#x60; - Verify the card without placing a hold or capturing funds.
- * @package     OpenAPI\Client
+ * @package     Monei\
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

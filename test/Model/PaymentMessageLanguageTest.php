@@ -6,7 +6,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Monei\
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Monei\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description The language of message sent to the customer. If not provided the default customer language is used if available.
- * @package     OpenAPI\Client
+ * @package     Monei\
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

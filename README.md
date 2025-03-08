@@ -111,8 +111,8 @@ When using test mode, you can simulate various payment scenarios using test card
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\CreatePaymentRequest;
-use OpenAPI\Client\Model\PaymentCustomer;
+use Monei\Model\CreatePaymentRequest;
+use Monei\Model\PaymentCustomer;
 
 // Instantiate the client using the API key
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
@@ -148,10 +148,10 @@ Create a payment with customer information:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\CreatePaymentRequest;
-use OpenAPI\Client\Model\PaymentCustomer;
-use OpenAPI\Client\Model\PaymentBillingDetails;
-use OpenAPI\Client\Model\Address;
+use Monei\Model\CreatePaymentRequest;
+use Monei\Model\PaymentCustomer;
+use Monei\Model\PaymentBillingDetails;
+use Monei\Model\Address;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -195,7 +195,7 @@ Retrieve an existing payment by ID:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\ApiException;
+use Monei\ApiException;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -216,8 +216,8 @@ Process a full or partial refund:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\RefundPaymentRequest;
-use OpenAPI\Client\ApiException;
+use Monei\Model\RefundPaymentRequest;
+use Monei\ApiException;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -261,8 +261,8 @@ You can customize the appearance in your MONEI Dashboard → Settings → Brandi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\CreatePaymentRequest;
-use OpenAPI\Client\Model\PaymentCustomer;
+use Monei\Model\CreatePaymentRequest;
+use Monei\Model\PaymentCustomer;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -324,8 +324,8 @@ When receiving webhooks from MONEI, you should verify the signature to ensure th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\PaymentStatus;
-use OpenAPI\Client\ApiException;
+use Monei\Model\PaymentStatus;
+use Monei\ApiException;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -384,8 +384,8 @@ Example of handling the callback in a PHP script:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\PaymentStatus;
-use OpenAPI\Client\ApiException;
+use Monei\Model\PaymentStatus;
+use Monei\ApiException;
 
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
@@ -450,7 +450,7 @@ For more information about MONEI Connect and becoming a partner, visit the [MONE
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\CreatePaymentRequest;
+use Monei\Model\CreatePaymentRequest;
 
 // Initialize with your partner API key
 $monei = new Monei\MoneiClient('YOUR_PARTNER_API_KEY');
@@ -511,7 +511,7 @@ $monei->setUserAgent('MONEI/PaymentHub/3.0.1');
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-use OpenAPI\Client\Model\CreatePaymentRequest;
+use Monei\Model\CreatePaymentRequest;
 
 // Initialize with your partner API key
 $monei = new Monei\MoneiClient('YOUR_PARTNER_API_KEY');

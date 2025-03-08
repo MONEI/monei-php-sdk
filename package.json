@@ -24,35 +24,5 @@
     "husky": "^9.0.11",
     "release-it": "^18.1.2"
   },
-  "release-it": {
-    "git": {
-      "tagName": "${version}",
-      "commitMessage": "chore: release v${version}"
-    },
-    "github": {
-      "release": true
-    },
-    "npm": {
-      "publish": false
-    },
-    "hooks": {
-      "after:bump": "yarn run build && yarn run postbuild && git add -A"
-    },
-    "plugins": {
-      "@release-it/bumper": {
-        "out": [
-          {
-            "file": "config.json",
-            "path": "artifactVersion"
-          },
-          "lib/MoneiClient.php"
-        ]
-      },
-      "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "CHANGELOG.md"
-      }
-    }
-  },
   "packageManager": "yarn@4.7.0"
 }

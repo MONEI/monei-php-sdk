@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+ <testCaseClass name="Monei\Test\Api\ApplePayDomainApiTest">
+  <testCaseMethod name="testRegister" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Api\BizumApiTest">
+  <testCaseMethod name="testValidatePhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testValidatePhoneInvalid" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Api\PaymentMethodsApiTest">
+  <testCaseMethod name="testGet" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Api\PaymentsApiTest">
+  <testCaseMethod name="testCancel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testCapture" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testConfirm" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testCreate" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testGet" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testRecurring" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testRefund" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testSendLink" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testSendReceipt" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testSendRequest" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Api\SubscriptionsApiTest">
+  <testCaseMethod name="testActivate" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testCancel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testCreate" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testGet" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPause" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testResume" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testSendLink" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testSendStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testUpdate" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ApiExceptionHandlingTest">
+  <testCaseMethod name="testTryCatchExceptionHandling" groups="default"/>
+  <testCaseMethod name="testHandlingDifferentErrorTypes" groups="default"/>
+  <testCaseMethod name="testExtractingDetailedErrorInfo" groups="default"/>
+  <testCaseMethod name="testRetryAfterException" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ApiExceptionHeadersTest">
+  <testCaseMethod name="testHeadersStorage" groups="default"/>
+  <testCaseMethod name="testEmptyHeaders" groups="default"/>
+  <testCaseMethod name="testNullHeaders" groups="default"/>
+  <testCaseMethod name="testResponseBodyStorage" groups="default"/>
+  <testCaseMethod name="testResponseObjectStorage" groups="default"/>
+  <testCaseMethod name="testRealWorldErrorResponse" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ApiExceptionIntegrationTest">
+  <testCaseMethod name="testBadRequestException" groups="default"/>
+  <testCaseMethod name="testUnauthorizedException" groups="default"/>
+  <testCaseMethod name="testNotFoundException" groups="default"/>
+  <testCaseMethod name="testRateLimitException" groups="default"/>
+  <testCaseMethod name="testValidationErrorException" groups="default"/>
+  <testCaseMethod name="testServerErrorException" groups="default"/>
+  <testCaseMethod name="testMalformedJsonResponse" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ApiExceptionResponseTest">
+  <testCaseMethod name="testBadRequestException" groups="default"/>
+  <testCaseMethod name="testUnauthorizedException" groups="default"/>
+  <testCaseMethod name="testNotFoundException" groups="default"/>
+  <testCaseMethod name="testRateLimitException" groups="default"/>
+  <testCaseMethod name="testServerErrorException" groups="default"/>
+  <testCaseMethod name="testResponseObjectDeserialization" groups="default"/>
+  <testCaseMethod name="testMalformedJsonResponse" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ApiExceptionTest">
+  <testCaseMethod name="testConstructor" groups="default"/>
+  <testCaseMethod name="testConstructorWithEmptyParams" groups="default"/>
+  <testCaseMethod name="testResponseObject" groups="default"/>
+  <testCaseMethod name="testWithJsonResponseBody" groups="default"/>
+  <testCaseMethod name="testWithStdClassResponseBody" groups="default"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#0"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#1"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#2"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#3"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#4"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#5"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#6"/>
+  <testCaseMethod name="testWithVariousHttpStatusCodes" groups="default" dataSet="#7"/>
+  <testCaseMethod name="testWithComplexResponseObject" groups="default"/>
+  <testCaseMethod name="testWithRateLimitHeaders" groups="default"/>
+  <testCaseMethod name="testConstructorWithMessageAndCode" groups="default"/>
+  <testCaseMethod name="testConstructorWithResponseHeaders" groups="default"/>
+  <testCaseMethod name="testConstructorWithResponseBody" groups="default"/>
+  <testCaseMethod name="testSetAndGetResponseObject" groups="default"/>
+  <testCaseMethod name="testGetResponseObjectWithJsonBody" groups="default"/>
+  <testCaseMethod name="testGetResponseObjectWithNonJsonBody" groups="default"/>
+  <testCaseMethod name="testGetResponseObjectWithEmptyBody" groups="default"/>
+  <testCaseMethod name="testGetResponseObjectWithNullBody" groups="default"/>
+  <testCaseMethod name="testGetResponseObjectWithInvalidJsonBody" groups="default"/>
+  <testCaseMethod name="testGetResponseHeadersWithNoHeaders" groups="default"/>
+  <testCaseMethod name="testGetResponseBodyWithNoBody" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ConfigurationTest">
+  <testCaseMethod name="testGetDefaultConfiguration" groups="default"/>
+  <testCaseMethod name="testSetApiKey" groups="default"/>
+  <testCaseMethod name="testSetApiKeyPrefix" groups="default"/>
+  <testCaseMethod name="testGetApiKeyWithPrefix" groups="default"/>
+  <testCaseMethod name="testGetApiKeyWithPrefixNoPrefix" groups="default"/>
+  <testCaseMethod name="testGetApiKeyWithPrefixNoKey" groups="default"/>
+  <testCaseMethod name="testSetUserAgent" groups="default"/>
+  <testCaseMethod name="testGetHostWithTrailingSlash" groups="default"/>
+  <testCaseMethod name="testGetHostWithoutTrailingSlash" groups="default"/>
+  <testCaseMethod name="testSetDebug" groups="default"/>
+  <testCaseMethod name="testSetTempFolderPath" groups="default"/>
+  <testCaseMethod name="testToDebugReport" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\HeaderSelectorTest">
+  <testCaseMethod name="testSelectHeadersWithEmptyAccept" groups="default"/>
+  <testCaseMethod name="testSelectHeadersWithEmptyContentType" groups="default"/>
+  <testCaseMethod name="testSelectHeadersWithJsonAccept" groups="default"/>
+  <testCaseMethod name="testSelectHeadersWithMultipleAccept" groups="default"/>
+  <testCaseMethod name="testSelectHeadersWithJsonContentType" groups="default"/>
+  <testCaseMethod name="testSelectHeadersWithMultipleContentTypes" groups="default"/>
+  <testCaseMethod name="testSelectHeadersForMultipart" groups="default"/>
+  <testCaseMethod name="testSelectHeadersForMultipartWithEmptyAccept" groups="default"/>
+  <testCaseMethod name="testSelectHeadersWithJsonVariant" groups="default"/>
+  <testCaseMethod name="testSelectContentTypeDefaultsToJson" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ActivateSubscriptionRequestTest">
+  <testCaseMethod name="testActivateSubscriptionRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentToken" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySessionId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAddAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySequenceId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCompleteUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyFailUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancelUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\AddressTest">
+  <testCaseMethod name="testAddress" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountry" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCity" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLine1" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLine2" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyZip" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyState" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ApplePayDomainRegister200ResponseTest">
+  <testCaseMethod name="testApplePayDomainRegister200Response" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySuccess" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\BadRequestErrorAllOfTest">
+  <testCaseMethod name="testBadRequestErrorAllOf" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\BadRequestErrorTest">
+  <testCaseMethod name="testBadRequestError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\BizumValidatePhone200ResponseTest">
+  <testCaseMethod name="testBizumValidatePhone200Response" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIsValid" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\CancelPaymentRequestTest">
+  <testCaseMethod name="testCancelPaymentRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancellationReason" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\CancelSubscriptionRequestTest">
+  <testCaseMethod name="testCancelSubscriptionRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancelAtPeriodEnd" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\CapturePaymentRequestTest">
+  <testCaseMethod name="testCapturePaymentRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ConfirmPaymentRequestPaymentMethodCardTest">
+  <testCaseMethod name="testConfirmPaymentRequestPaymentMethodCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCardholderName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCardholderEmail" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ConfirmPaymentRequestPaymentMethodTest">
+  <testCaseMethod name="testConfirmPaymentRequestPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCard" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ConfirmPaymentRequestTest">
+  <testCaseMethod name="testConfirmPaymentRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentToken" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyGeneratePaymentToken" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\CreatePaymentRequestTest">
+  <testCaseMethod name="testCreatePaymentRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrency" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOrderId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCompleteUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyFailUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancelUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentToken" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySessionId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyGeneratePaymentToken" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAllowedPaymentMethods" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTransactionType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySequence" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStoreId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPointOfSaleId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySubscriptionId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAutoRecover" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDescription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySessionDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyExpireAt" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\CreateSubscriptionRequestTest">
+  <testCaseMethod name="testCreateSubscriptionRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrency" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyInterval" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIntervalCount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDescription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTrialPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTrialPeriodDays" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRetrySchedule" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ErrorBaseTest">
+  <testCaseMethod name="testErrorBase" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ErrorTest">
+  <testCaseMethod name="testError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\InternalServerErrorAllOfTest">
+  <testCaseMethod name="testInternalServerErrorAllOf" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\InternalServerErrorTest">
+  <testCaseMethod name="testInternalServerError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\NotFoundErrorAllOfTest">
+  <testCaseMethod name="testNotFoundErrorAllOf" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\NotFoundErrorTest">
+  <testCaseMethod name="testNotFoundError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PauseSubscriptionRequestTest">
+  <testCaseMethod name="testPauseSubscriptionRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPauseAtPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPauseIntervalCount" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentBillingDetailsTest">
+  <testCaseMethod name="testPaymentBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCompany" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTaxId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAddress" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentCancellationReasonTest">
+  <testCaseMethod name="testPaymentCancellationReason" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentCustomerTest">
+  <testCaseMethod name="testPaymentCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhone" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentLastRefundReasonTest">
+  <testCaseMethod name="testPaymentLastRefundReason" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMessageChannelTest">
+  <testCaseMethod name="testPaymentMessageChannel" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMessageLanguageTest">
+  <testCaseMethod name="testPaymentMessageLanguage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataAlipayTest">
+  <testCaseMethod name="testPaymentMethodsMetadataAlipay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataApplePayTest">
+  <testCaseMethod name="testPaymentMethodsMetadataApplePay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMerchantId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataBancontactTest">
+  <testCaseMethod name="testPaymentMethodsMetadataBancontact" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataBizumTest">
+  <testCaseMethod name="testPaymentMethodsMetadataBizum" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataBlikTest">
+  <testCaseMethod name="testPaymentMethodsMetadataBlik" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataCardTest">
+  <testCaseMethod name="testPaymentMethodsMetadataCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrands" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataClickToPayDiscoverTest">
+  <testCaseMethod name="testPaymentMethodsMetadataClickToPayDiscover" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySrciDpaId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySrcInitiatorId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataClickToPayMastercardTest">
+  <testCaseMethod name="testPaymentMethodsMetadataClickToPayMastercard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySrciDpaId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySrcInitiatorId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataClickToPayTest">
+  <testCaseMethod name="testPaymentMethodsMetadataClickToPay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTokenSupport" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPreselected" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyVisa" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMastercard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDiscover" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataClickToPayVisaTest">
+  <testCaseMethod name="testPaymentMethodsMetadataClickToPayVisa" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySrciDpaId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySrcInitiatorId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataEpsTest">
+  <testCaseMethod name="testPaymentMethodsMetadataEps" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataGiropayTest">
+  <testCaseMethod name="testPaymentMethodsMetadataGiropay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataGooglePayTest">
+  <testCaseMethod name="testPaymentMethodsMetadataGooglePay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMerchantId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCvcRequired" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataIDealTest">
+  <testCaseMethod name="testPaymentMethodsMetadataIDeal" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataKlarnaTest">
+  <testCaseMethod name="testPaymentMethodsMetadataKlarna" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataMbwayTest">
+  <testCaseMethod name="testPaymentMethodsMetadataMbway" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataSepaTest">
+  <testCaseMethod name="testPaymentMethodsMetadataSepa" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataSofortTest">
+  <testCaseMethod name="testPaymentMethodsMetadataSofort" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataTest">
+  <testCaseMethod name="testPaymentMethodsMetadata" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAlipay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBancontact" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBizum" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBlik" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyEps" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIDeal" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMbway" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMultibanco" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySofort" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTrustly" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySepa" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyKlarna" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyGiropay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyGooglePay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyApplePay" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyClickToPay" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsMetadataTrustlyTest">
+  <testCaseMethod name="testPaymentMethodsMetadataTrustly" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountries" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentMethodsTest">
+  <testCaseMethod name="testPaymentMethods" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLivemode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentMethods" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMerchantName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMerchantUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountryCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrency" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentNextActionTest">
+  <testCaseMethod name="testPaymentNextAction" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMustRedirect" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRedirectUrl" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodBizumInputTest">
+  <testCaseMethod name="testPaymentPaymentMethodBizumInput" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhoneNumber" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodBizumTest">
+  <testCaseMethod name="testPaymentPaymentMethodBizum" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhoneNumber" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodCardInputTest">
+  <testCaseMethod name="testPaymentPaymentMethodCardInput" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyNumber" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCvc" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyExpMonth" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyExpYear" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCardholderName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCardholderEmail" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodCardTest">
+  <testCaseMethod name="testPaymentPaymentMethodCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountry" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrand" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyThreeDSecure" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyThreeDSecureVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyThreeDSecureFlow" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyExpiration" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLast4" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTokenizationMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCardholderName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCardholderEmail" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodCofidisTest">
+  <testCaseMethod name="testPaymentPaymentMethodCofidis" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOrderId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodInputTest">
+  <testCaseMethod name="testPaymentPaymentMethodInput" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBizum" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodKlarnaTest">
+  <testCaseMethod name="testPaymentPaymentMethodKlarna" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingCategory" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAuthPaymentMethod" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodMbwayTest">
+  <testCaseMethod name="testPaymentPaymentMethodMbway" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhoneNumber" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodPaypalTest">
+  <testCaseMethod name="testPaymentPaymentMethodPaypal" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOrderId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodSepaTest">
+  <testCaseMethod name="testPaymentPaymentMethodSepa" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountholderAddress" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountholderEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountholderName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountryCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBankAddress" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBankCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBankName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBic" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLast4" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodTest">
+  <testCaseMethod name="testPaymentPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBizum" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaypal" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCofidis" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCofidisLoan" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMbway" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTrustly" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySepa" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyKlarna" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentPaymentMethodTrustlyTest">
+  <testCaseMethod name="testPaymentPaymentMethodTrustly" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerId" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentRefundReasonTest">
+  <testCaseMethod name="testPaymentRefundReason" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentSequenceRecurringTest">
+  <testCaseMethod name="testPaymentSequenceRecurring" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyExpiry" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyFrequency" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentSequenceTest">
+  <testCaseMethod name="testPaymentSequence" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRecurring" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentSessionDetailsTest">
+  <testCaseMethod name="testPaymentSessionDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIp" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountryCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLang" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDeviceType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDeviceModel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowser" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOs" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOsVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySource" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySourceVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyUserAgent" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserAccept" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserColorDepth" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserScreenHeight" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserScreenWidth" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserTimezoneOffset" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentShippingDetailsTest">
+  <testCaseMethod name="testPaymentShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCompany" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTaxId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAddress" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentShopTest">
+  <testCaseMethod name="testPaymentShop" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyName" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountry" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentStatusTest">
+  <testCaseMethod name="testPaymentStatus" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentTest">
+  <testCaseMethod name="testPayment" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrency" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOrderId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDescription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAuthorizationCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLivemode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShop" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRefundedAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLastRefundAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLastRefundReason" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancellationReason" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySessionDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTraceDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentToken" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySequence" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySequenceId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStoreId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPointOfSaleId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyNextAction" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCreatedAt" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyUpdatedAt" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentTraceDetailsTest">
+  <testCaseMethod name="testPaymentTraceDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIp" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountryCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLang" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDeviceType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDeviceModel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowser" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOs" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOsVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySource" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySourceVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyUserAgent" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserAccept" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserColorDepth" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserScreenHeight" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserScreenWidth" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrowserTimezoneOffset" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyUserId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyUserEmail" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\PaymentTransactionTypeTest">
+  <testCaseMethod name="testPaymentTransactionType" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\RecurringPaymentRequestTest">
+  <testCaseMethod name="testRecurringPaymentRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyOrderId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTransactionType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDescription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\RefundPaymentRequestTest">
+  <testCaseMethod name="testRefundPaymentRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRefundReason" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\RegisterApplePayDomainRequestTest">
+  <testCaseMethod name="testRegisterApplePayDomainRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDomainName" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SendPaymentLinkRequestTest">
+  <testCaseMethod name="testSendPaymentLinkRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerPhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyChannel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLanguage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SendPaymentReceiptRequestTest">
+  <testCaseMethod name="testSendPaymentReceiptRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerPhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyChannel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLanguage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SendPaymentRequestRequestTest">
+  <testCaseMethod name="testSendPaymentRequestRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhoneNumber" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLanguage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SendSubscriptionLinkRequestTest">
+  <testCaseMethod name="testSendSubscriptionLinkRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerPhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyChannel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLanguage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SendSubscriptionStatusRequestTest">
+  <testCaseMethod name="testSendSubscriptionStatusRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerEmail" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomerPhone" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyChannel" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLanguage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ServiceUnavailableErrorAllOfTest">
+  <testCaseMethod name="testServiceUnavailableErrorAllOf" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ServiceUnavailableErrorTest">
+  <testCaseMethod name="testServiceUnavailableError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionIntervalTest">
+  <testCaseMethod name="testSubscriptionInterval" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionLastPaymentTest">
+  <testCaseMethod name="testSubscriptionLastPayment" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionPaymentMethodCardTest">
+  <testCaseMethod name="testSubscriptionPaymentMethodCard" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCountry" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBrand" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyType" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyThreeDSecure" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyThreeDSecureVersion" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyExpiration" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLast4" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionPaymentMethodTest">
+  <testCaseMethod name="testSubscriptionPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCard" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionRetryScheduleInnerTest">
+  <testCaseMethod name="testSubscriptionRetryScheduleInner" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyInterval" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIntervalCount" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionStatusTest">
+  <testCaseMethod name="testSubscriptionStatus" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\SubscriptionTest">
+  <testCaseMethod name="testSubscription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrency" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDescription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLivemode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyInterval" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIntervalCount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPauseIntervalCount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLastOrderId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyLastPayment" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentMethod" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrentPeriodStart" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCurrentPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTrialPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyNextPaymentAt" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRetryCount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRetrySchedule" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancelAtPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPauseAtPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTraceDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertySequenceId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCreatedAt" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyUpdatedAt" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\UnauthorizedErrorAllOfTest">
+  <testCaseMethod name="testUnauthorizedErrorAllOf" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\UnauthorizedErrorTest">
+  <testCaseMethod name="testUnauthorizedError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\UnprocessableEntityErrorAllOfTest">
+  <testCaseMethod name="testUnprocessableEntityErrorAllOf" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\UnprocessableEntityErrorTest">
+  <testCaseMethod name="testUnprocessableEntityError" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatus" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyStatusCode" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMessage" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRequestTime" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\UpdateSubscriptionRequestTest">
+  <testCaseMethod name="testUpdateSubscriptionRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAmount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyInterval" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyIntervalCount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyDescription" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCustomer" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyBillingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyShippingDetails" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyTrialPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentCallbackUrl" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPauseAtPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyCancelAtPeriodEnd" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPauseIntervalCount" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyRetrySchedule" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyMetadata" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Monei\Test\Model\ValidateBizumPhoneRequestTest">
+  <testCaseMethod name="testValidateBizumPhoneRequest" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyAccountId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPaymentId" groups="OpenAPI Generator team"/>
+  <testCaseMethod name="testPropertyPhoneNumber" groups="OpenAPI Generator team"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\MoneiClientTest">
+  <testCaseMethod name="testAccountIdInConstructor" groups="default"/>
+  <testCaseMethod name="testUserAgent" groups="default"/>
+  <testCaseMethod name="testRequireCustomUserAgentWithAccountId" groups="default"/>
+  <testCaseMethod name="testCustomUserAgentWithAccountId" groups="default"/>
+  <testCaseMethod name="testSetAccountId" groups="default"/>
+  <testCaseMethod name="testSetAccountIdRequiresCustomUserAgent" groups="default"/>
+  <testCaseMethod name="testSetUserAgentAndAccountId" groups="default"/>
+  <testCaseMethod name="testVerifySignatureCorrectly" groups="default"/>
+  <testCaseMethod name="testVerifySignatureFailsWithInvalidSignature" groups="default"/>
+  <testCaseMethod name="testVerifySignatureWithMalformedSignature" groups="default"/>
+  <testCaseMethod name="testApiInstancesAreInitialized" groups="default"/>
+  <testCaseMethod name="testConfigurationIsAccessible" groups="default"/>
+  <testCaseMethod name="testCustomConfigurationIsUsed" groups="default"/>
+  <testCaseMethod name="testAccountIdHeaderIsAdded" groups="default"/>
+  <testCaseMethod name="testNullAccountIdDoesNotAddHeader" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\ObjectSerializerTest">
+  <testCaseMethod name="testSetDateTimeFormat" groups="default"/>
+  <testCaseMethod name="testSanitizeFilename" groups="default"/>
+  <testCaseMethod name="testSanitizeTimestamp" groups="default"/>
+  <testCaseMethod name="testToPathValue" groups="default"/>
+  <testCaseMethod name="testToHeaderValue" groups="default"/>
+  <testCaseMethod name="testToFormValue" groups="default"/>
+  <testCaseMethod name="testToString" groups="default"/>
+  <testCaseMethod name="testConvertBoolToQueryStringFormat" groups="default"/>
+  <testCaseMethod name="testSerializeCollection" groups="default"/>
+  <testCaseMethod name="testToQueryValueWithString" groups="default"/>
+  <testCaseMethod name="testToQueryValueWithArray" groups="default"/>
+  <testCaseMethod name="testToQueryValueWithObject" groups="default"/>
+  <testCaseMethod name="testBuildQuery" groups="default"/>
+  <testCaseMethod name="testSanitizeForSerializationWithScalar" groups="default"/>
+  <testCaseMethod name="testSanitizeForSerializationWithNull" groups="default"/>
+  <testCaseMethod name="testSanitizeForSerializationWithArray" groups="default"/>
+  <testCaseMethod name="testSanitizeForSerializationWithDateTime" groups="default"/>
+  <testCaseMethod name="testSanitizeForSerializationWithObject" groups="default"/>
+  <testCaseMethod name="testDeserializeWithNull" groups="default"/>
+  <testCaseMethod name="testDeserializeWithString" groups="default"/>
+  <testCaseMethod name="testDeserializeWithInteger" groups="default"/>
+  <testCaseMethod name="testDeserializeWithFloat" groups="default"/>
+  <testCaseMethod name="testDeserializeWithBoolean" groups="default"/>
+  <testCaseMethod name="testDeserializeWithArray" groups="default"/>
+  <testCaseMethod name="testDeserializeWithDateTime" groups="default"/>
+  <testCaseMethod name="testDeserializeWithEnum" groups="default"/>
+ </testCaseClass>
+ <testCaseClass name="Tests\RateLimitExceptionTest">
+  <testCaseMethod name="testRateLimitExceptionDirectCreation" groups="default"/>
+  <testCaseMethod name="testRateLimitExceptionWithMockApi" groups="default"/>
+  <testCaseMethod name="testRateLimitExceptionWithRetry" groups="default"/>
+ </testCaseClass>
+</tests>

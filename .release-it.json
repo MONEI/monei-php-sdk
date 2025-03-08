@@ -1,0 +1,26 @@
+{
+  "git": {
+    "tagName": "${version}",
+    "commitMessage": "chore: release v${version}"
+  },
+  "github": {
+    "release": true
+  },
+  "npm": {
+    "publish": false
+  },
+  "hooks": {
+    "after:bump": "yarn run build && yarn run postbuild && git add -A"
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "out": [
+        "lib/MoneiClient.php"
+      ]
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md"
+    }
+  }
+} 

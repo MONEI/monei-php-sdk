@@ -6,7 +6,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Monei\
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Monei\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description This field needs to be sent in order to mark the beginning of a sequence of payments (recurring/subscriptions, installments, and so). Specific configurations can be set in the inside properties (&#x60;recurring&#x60;).
- * @package     OpenAPI\Client
+ * @package     Monei\
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
