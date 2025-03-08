@@ -1,5 +1,10 @@
 # Changelog
 
+## <small>2.6.11 (2025-03-08)</small>
+
+* chore: remove deprecated Apple Pay domain response models and update test files ([c6eaad0](https://github.com/MONEI/monei-php-sdk/commit/c6eaad0))
+* docs: remove outdated MONEI webhooks documentation link ([03eac80](https://github.com/MONEI/monei-php-sdk/commit/03eac80))
+
 ## <small>2.6.10 (2025-03-07)</small>
 
 * chore: downgrade OpenAPI generator version and update SDK ([6a4b6ff](https://github.com/MONEI/monei-php-sdk/commit/6a4b6ff))
