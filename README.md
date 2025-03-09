@@ -395,8 +395,7 @@ $signature = $_SERVER['HTTP_MONEI_SIGNATURE'] ?? '';
 
 try {
     // Verify the signature
-    $payload = $monei->verifySignature($rawBody, $signature);
-    $payment = $payload->data;
+    $payment = $monei->verifySignature($rawBody, $signature);
     
     // Update your order status based on the payment status
     if ($payment->status === PaymentStatus::SUCCEEDED) {
