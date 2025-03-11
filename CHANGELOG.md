@@ -1,5 +1,11 @@
 # Changelog
 
+## <small>2.6.12 (2025-03-11)</small>
+
+* chore: update commitlint configuration to disable body line length limit ([857196e](https://github.com/MONEI/monei-php-sdk/commit/857196e))
+* chore: update SDK to OpenAPI document version 1.5.8 ([b07c169](https://github.com/MONEI/monei-php-sdk/commit/b07c169))
+* fix: update MONEI webhook signature verification method ([c6c8e21](https://github.com/MONEI/monei-php-sdk/commit/c6c8e21))
+
 ## <small>2.6.11 (2025-03-08)</small>
 
 * chore: remove deprecated Apple Pay domain response models and update test files ([c6eaad0](https://github.com/MONEI/monei-php-sdk/commit/c6eaad0))
