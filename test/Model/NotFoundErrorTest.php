@@ -78,7 +78,7 @@ class NotFoundErrorTest extends TestCase
     {
         $error = new NotFoundError();
         $this->assertInstanceOf(NotFoundError::class, $error);
-        
+
         // Test with constructor parameters
         $data = [
             'status' => 'error',
@@ -87,7 +87,7 @@ class NotFoundErrorTest extends TestCase
             'request_id' => 'req_123456789',
             'request_time' => new \DateTime('2023-01-15T12:34:56Z')
         ];
-        
+
         $error = new NotFoundError($data);
         $this->assertEquals($data['status'], $error->getStatus());
         $this->assertEquals($data['status_code'], $error->getStatusCode());

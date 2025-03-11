@@ -54,22 +54,30 @@ class CreatePaymentRequestTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass(): void {}
+    public static function setUpBeforeClass(): void
+    {
+    }
 
     /**
      * Setup before running each test case
      */
-    public function setUp(): void {}
+    public function setUp(): void
+    {
+    }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown(): void {}
+    public function tearDown(): void
+    {
+    }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void {}
+    public static function tearDownAfterClass(): void
+    {
+    }
 
     /**
      * Test "CreatePaymentRequest"
@@ -269,17 +277,17 @@ class CreatePaymentRequestTest extends TestCase
     public function testPropertySequence()
     {
         $paymentRequest = new CreatePaymentRequest();
-        
+
         // Test with null value
         $this->assertNull($paymentRequest->getSequence());
-        
+
         // Test with PaymentSequence object
         $sequence = new PaymentSequence();
         $sequence->setType('recurring');
-        
+
         $paymentRequest->setSequence($sequence);
         $retrievedSequence = $paymentRequest->getSequence();
-        
+
         $this->assertInstanceOf(PaymentSequence::class, $retrievedSequence);
         $this->assertEquals('recurring', $retrievedSequence->getType());
     }

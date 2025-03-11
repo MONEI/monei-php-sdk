@@ -85,9 +85,9 @@ class SubscriptionStatusTest extends TestCase
             'PAUSED',
             'CANCELED'
         ];
-        
+
         $this->assertEquals($expected, SubscriptionStatus::getAllowableEnumValues());
-        
+
         // Test individual constants
         $this->assertEquals('PENDING', SubscriptionStatus::PENDING);
         $this->assertEquals('EXPIRED', SubscriptionStatus::EXPIRED);
