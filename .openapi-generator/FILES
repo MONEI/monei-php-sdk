@@ -8,6 +8,7 @@ lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/ActivateSubscriptionRequest.php
 lib/Model/Address.php
+lib/Model/ApiException.php
 lib/Model/ApplePayDomainRegister200Response.php
 lib/Model/BadRequestError.php
 lib/Model/BadRequestErrorAllOf.php
@@ -20,7 +21,6 @@ lib/Model/ConfirmPaymentRequestPaymentMethod.php
 lib/Model/ConfirmPaymentRequestPaymentMethodCard.php
 lib/Model/CreatePaymentRequest.php
 lib/Model/CreateSubscriptionRequest.php
-lib/Model/ErrorBase.php
 lib/Model/InternalServerError.php
 lib/Model/InternalServerErrorAllOf.php
 lib/Model/ModelInterface.php
