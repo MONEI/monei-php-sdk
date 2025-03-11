@@ -75,8 +75,20 @@ class NotFoundErrorAllOfTest extends TestCase
      */
     public function testNotFoundErrorAllOf()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\NotFoundErrorAllOf();
+        $this->assertInstanceOf(\Monei\Model\NotFoundErrorAllOf::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'status' => 'success',
+            'status_code' => 404,
+            'message' => 'Test message',
+        ];
+
+        $model = new \Monei\Model\NotFoundErrorAllOf($data);
+        $this->assertEquals($data['status'], $model->getStatus());
+        $this->assertEquals($data['status_code'], $model->getStatusCode());
+        $this->assertEquals($data['message'], $model->getMessage());
     }
 
     /**
@@ -84,8 +96,10 @@ class NotFoundErrorAllOfTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\NotFoundErrorAllOf();
+        $expected = 'success';
+        $model->setStatus($expected);
+        $this->assertEquals($expected, $model->getStatus());
     }
 
     /**
@@ -93,8 +107,10 @@ class NotFoundErrorAllOfTest extends TestCase
      */
     public function testPropertyStatusCode()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\NotFoundErrorAllOf();
+        $expected = 404;
+        $model->setStatusCode($expected);
+        $this->assertEquals($expected, $model->getStatusCode());
     }
 
     /**
@@ -102,7 +118,9 @@ class NotFoundErrorAllOfTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\NotFoundErrorAllOf();
+        $expected = 'Test message';
+        $model->setMessage($expected);
+        $this->assertEquals($expected, $model->getMessage());
     }
 }

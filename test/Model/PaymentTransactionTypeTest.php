@@ -75,7 +75,19 @@ class PaymentTransactionTypeTest extends TestCase
      */
     public function testPaymentTransactionType()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $expected = [
+            'SALE',
+            'AUTH',
+            'PAYOUT',
+            'VERIF',
+        ];
+
+        $this->assertEquals($expected, \Monei\Model\PaymentTransactionType::getAllowableEnumValues());
+
+        // Test individual constants
+        $this->assertEquals('SALE', \Monei\Model\PaymentTransactionType::SALE);
+        $this->assertEquals('AUTH', \Monei\Model\PaymentTransactionType::AUTH);
+        $this->assertEquals('PAYOUT', \Monei\Model\PaymentTransactionType::PAYOUT);
+        $this->assertEquals('VERIF', \Monei\Model\PaymentTransactionType::VERIF);
     }
 }

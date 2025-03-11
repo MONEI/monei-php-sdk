@@ -75,8 +75,16 @@ class PaymentMethodsMetadataBancontactTest extends TestCase
      */
     public function testPaymentMethodsMetadataBancontact()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataBancontact();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataBancontact::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataBancontact($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataBancontactTest extends TestCase
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataBancontact();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

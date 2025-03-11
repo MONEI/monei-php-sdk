@@ -75,8 +75,16 @@ class CancelSubscriptionRequestTest extends TestCase
      */
     public function testCancelSubscriptionRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CancelSubscriptionRequest();
+        $this->assertInstanceOf(\Monei\Model\CancelSubscriptionRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'cancel_at_period_end' => true,
+        ];
+
+        $model = new \Monei\Model\CancelSubscriptionRequest($data);
+        $this->assertEquals($data['cancel_at_period_end'], $model->getCancelAtPeriodEnd());
     }
 
     /**
@@ -84,7 +92,9 @@ class CancelSubscriptionRequestTest extends TestCase
      */
     public function testPropertyCancelAtPeriodEnd()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CancelSubscriptionRequest();
+        $expected = true;
+        $model->setCancelAtPeriodEnd($expected);
+        $this->assertEquals($expected, $model->getCancelAtPeriodEnd());
     }
 }

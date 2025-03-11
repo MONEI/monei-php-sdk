@@ -75,16 +75,27 @@ class PaymentMethodsMetadataSofortTest extends TestCase
      */
     public function testPaymentMethodsMetadataSofort()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
+        $model = new \Monei\Model\PaymentMethodsMetadataSofort();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataSofort::class, $model);
 
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataSofort($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
+    }    /**
+     * Test attribute "countries"
+     */
     /**
      * Test attribute "countries"
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataSofort();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

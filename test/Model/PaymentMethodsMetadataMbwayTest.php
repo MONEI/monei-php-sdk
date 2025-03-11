@@ -75,16 +75,27 @@ class PaymentMethodsMetadataMbwayTest extends TestCase
      */
     public function testPaymentMethodsMetadataMbway()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
+        $model = new \Monei\Model\PaymentMethodsMetadataMbway();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataMbway::class, $model);
 
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataMbway($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
+    }    /**
+     * Test attribute "countries"
+     */
     /**
      * Test attribute "countries"
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataMbway();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

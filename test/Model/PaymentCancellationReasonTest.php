@@ -75,7 +75,17 @@ class PaymentCancellationReasonTest extends TestCase
      */
     public function testPaymentCancellationReason()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $expected = [
+            'duplicated',
+            'fraudulent',
+            'requested_by_customer',
+        ];
+
+        $this->assertEquals($expected, \Monei\Model\PaymentCancellationReason::getAllowableEnumValues());
+
+        // Test individual constants
+        $this->assertEquals('duplicated', \Monei\Model\PaymentCancellationReason::DUPLICATED);
+        $this->assertEquals('fraudulent', \Monei\Model\PaymentCancellationReason::FRAUDULENT);
+        $this->assertEquals('requested_by_customer', \Monei\Model\PaymentCancellationReason::REQUESTED_BY_CUSTOMER);
     }
 }

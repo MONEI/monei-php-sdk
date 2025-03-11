@@ -75,16 +75,25 @@ class PaymentMethodsMetadataIDealTest extends TestCase
      */
     public function testPaymentMethodsMetadataIDeal()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
+        $model = new \Monei\Model\PaymentMethodsMetadataIDeal();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataIDeal::class, $model);
 
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataIDeal($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
+    }
     /**
      * Test attribute "countries"
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataIDeal();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

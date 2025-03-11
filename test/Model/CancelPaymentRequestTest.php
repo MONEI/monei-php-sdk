@@ -75,8 +75,16 @@ class CancelPaymentRequestTest extends TestCase
      */
     public function testCancelPaymentRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CancelPaymentRequest();
+        $this->assertInstanceOf(\Monei\Model\CancelPaymentRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'cancellation_reason' => new \Monei\Model\PaymentCancellationReason(),
+        ];
+
+        $model = new \Monei\Model\CancelPaymentRequest($data);
+        $this->assertEquals($data['cancellation_reason'], $model->getCancellationReason());
     }
 
     /**
@@ -84,7 +92,15 @@ class CancelPaymentRequestTest extends TestCase
      */
     public function testPropertyCancellationReason()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CancelPaymentRequest();
+
+        // Test with null value
+        $this->assertNull($model->getCancellationReason());
+
+        // Test with PaymentCancellationReason object
+        $expected = new \Monei\Model\PaymentCancellationReason();
+
+        $model->setCancellationReason($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentCancellationReason::class, $model->getCancellationReason());
     }
 }

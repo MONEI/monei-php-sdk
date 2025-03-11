@@ -75,8 +75,16 @@ class PaymentMethodsMetadataApplePayTest extends TestCase
      */
     public function testPaymentMethodsMetadataApplePay()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataApplePay();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataApplePay::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'merchant_id' => 'test_123',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataApplePay($data);
+        $this->assertEquals($data['merchant_id'], $model->getMerchantId());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataApplePayTest extends TestCase
      */
     public function testPropertyMerchantId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataApplePay();
+        $expected = 'test_123';
+        $model->setMerchantId($expected);
+        $this->assertEquals($expected, $model->getMerchantId());
     }
 }

@@ -75,8 +75,28 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testConfirmPaymentRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+        $this->assertInstanceOf(\Monei\Model\ConfirmPaymentRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'payment_token' => 'test_value',
+            'payment_method' => new \Monei\Model\ConfirmPaymentRequestPaymentMethod(),
+            'generate_payment_token' => true,
+            'customer' => new \Monei\Model\PaymentCustomer(),
+            'billing_details' => new \Monei\Model\PaymentBillingDetails(),
+            'shipping_details' => new \Monei\Model\PaymentShippingDetails(),
+            'metadata' => (object) ['test_key' => 'test_value'],
+        ];
+
+        $model = new \Monei\Model\ConfirmPaymentRequest($data);
+        $this->assertEquals($data['payment_token'], $model->getPaymentToken());
+        $this->assertEquals($data['payment_method'], $model->getPaymentMethod());
+        $this->assertEquals($data['generate_payment_token'], $model->getGeneratePaymentToken());
+        $this->assertEquals($data['customer'], $model->getCustomer());
+        $this->assertEquals($data['billing_details'], $model->getBillingDetails());
+        $this->assertEquals($data['shipping_details'], $model->getShippingDetails());
+        $this->assertEquals($data['metadata'], $model->getMetadata());
     }
 
     /**
@@ -84,8 +104,10 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyPaymentToken()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+        $expected = 'test_value';
+        $model->setPaymentToken($expected);
+        $this->assertEquals($expected, $model->getPaymentToken());
     }
 
     /**
@@ -93,8 +115,21 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyPaymentMethod()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+
+        // Test with null value
+        $this->assertNull($model->getPaymentMethod());
+
+        // Test with ConfirmPaymentRequestPaymentMethod object
+        $expected = new \Monei\Model\ConfirmPaymentRequestPaymentMethod();
+
+        $card = new \Monei\Model\ConfirmPaymentRequestPaymentMethodCard();
+        $card->setCardholderName('Test User');
+        $expected->setCard($card);
+
+        $model->setPaymentMethod($expected);
+        $this->assertInstanceOf(\Monei\Model\ConfirmPaymentRequestPaymentMethod::class, $model->getPaymentMethod());
+        $this->assertEquals('Test User', $model->getPaymentMethod()->getCard()->getCardholderName());
     }
 
     /**
@@ -102,8 +137,10 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyGeneratePaymentToken()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+        $expected = true;
+        $model->setGeneratePaymentToken($expected);
+        $this->assertEquals($expected, $model->getGeneratePaymentToken());
     }
 
     /**
@@ -111,8 +148,18 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyCustomer()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+
+        // Test with null value
+        $this->assertNull($model->getCustomer());
+
+        // Test with PaymentCustomer object
+        $expected = new \Monei\Model\PaymentCustomer();
+        $expected->setName('Test Name');
+
+        $model->setCustomer($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentCustomer::class, $model->getCustomer());
+        $this->assertEquals('Test Name', $model->getCustomer()->getName());
     }
 
     /**
@@ -120,8 +167,16 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyBillingDetails()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+
+        // Test with null value
+        $this->assertNull($model->getBillingDetails());
+
+        // Test with PaymentBillingDetails object
+        $expected = new \Monei\Model\PaymentBillingDetails();
+
+        $model->setBillingDetails($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentBillingDetails::class, $model->getBillingDetails());
     }
 
     /**
@@ -129,8 +184,16 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyShippingDetails()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+
+        // Test with null value
+        $this->assertNull($model->getShippingDetails());
+
+        // Test with PaymentShippingDetails object
+        $expected = new \Monei\Model\PaymentShippingDetails();
+
+        $model->setShippingDetails($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentShippingDetails::class, $model->getShippingDetails());
     }
 
     /**
@@ -138,7 +201,9 @@ class ConfirmPaymentRequestTest extends TestCase
      */
     public function testPropertyMetadata()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequest();
+        $expected = (object) ['test_key' => 'test_value'];
+        $model->setMetadata($expected);
+        $this->assertEquals($expected, $model->getMetadata());
     }
 }

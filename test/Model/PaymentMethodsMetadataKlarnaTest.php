@@ -75,16 +75,25 @@ class PaymentMethodsMetadataKlarnaTest extends TestCase
      */
     public function testPaymentMethodsMetadataKlarna()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
+        $model = new \Monei\Model\PaymentMethodsMetadataKlarna();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataKlarna::class, $model);
 
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataKlarna($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
+    }
     /**
      * Test attribute "countries"
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataKlarna();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

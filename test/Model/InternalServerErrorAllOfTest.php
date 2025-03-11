@@ -75,8 +75,20 @@ class InternalServerErrorAllOfTest extends TestCase
      */
     public function testInternalServerErrorAllOf()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerErrorAllOf();
+        $this->assertInstanceOf(\Monei\Model\InternalServerErrorAllOf::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'status' => 'success',
+            'status_code' => 404,
+            'message' => 'Test message',
+        ];
+
+        $model = new \Monei\Model\InternalServerErrorAllOf($data);
+        $this->assertEquals($data['status'], $model->getStatus());
+        $this->assertEquals($data['status_code'], $model->getStatusCode());
+        $this->assertEquals($data['message'], $model->getMessage());
     }
 
     /**
@@ -84,8 +96,10 @@ class InternalServerErrorAllOfTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerErrorAllOf();
+        $expected = 'success';
+        $model->setStatus($expected);
+        $this->assertEquals($expected, $model->getStatus());
     }
 
     /**
@@ -93,8 +107,10 @@ class InternalServerErrorAllOfTest extends TestCase
      */
     public function testPropertyStatusCode()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerErrorAllOf();
+        $expected = 404;
+        $model->setStatusCode($expected);
+        $this->assertEquals($expected, $model->getStatusCode());
     }
 
     /**
@@ -102,7 +118,9 @@ class InternalServerErrorAllOfTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerErrorAllOf();
+        $expected = 'Test message';
+        $model->setMessage($expected);
+        $this->assertEquals($expected, $model->getMessage());
     }
 }

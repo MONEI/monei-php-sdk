@@ -75,8 +75,16 @@ class ConfirmPaymentRequestPaymentMethodTest extends TestCase
      */
     public function testConfirmPaymentRequestPaymentMethod()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequestPaymentMethod();
+        $this->assertInstanceOf(\Monei\Model\ConfirmPaymentRequestPaymentMethod::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'card' => new \Monei\Model\ConfirmPaymentRequestPaymentMethodCard(),
+        ];
+
+        $model = new \Monei\Model\ConfirmPaymentRequestPaymentMethod($data);
+        $this->assertEquals($data['card'], $model->getCard());
     }
 
     /**
@@ -84,7 +92,17 @@ class ConfirmPaymentRequestPaymentMethodTest extends TestCase
      */
     public function testPropertyCard()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ConfirmPaymentRequestPaymentMethod();
+
+        // Test with null value
+        $this->assertNull($model->getCard());
+
+        // Test with ConfirmPaymentRequestPaymentMethodCard object
+        $expected = new \Monei\Model\ConfirmPaymentRequestPaymentMethodCard();
+        $expected->setCardholderName('Test Name');
+
+        $model->setCard($expected);
+        $this->assertInstanceOf(\Monei\Model\ConfirmPaymentRequestPaymentMethodCard::class, $model->getCard());
+        $this->assertEquals('Test Name', $model->getCard()->getCardholderName());
     }
 }

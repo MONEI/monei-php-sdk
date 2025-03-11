@@ -75,8 +75,16 @@ class ApplePayDomainRegister200ResponseTest extends TestCase
      */
     public function testApplePayDomainRegister200Response()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ApplePayDomainRegister200Response();
+        $this->assertInstanceOf(\Monei\Model\ApplePayDomainRegister200Response::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'success' => true,
+        ];
+
+        $model = new \Monei\Model\ApplePayDomainRegister200Response($data);
+        $this->assertEquals($data['success'], $model->getSuccess());
     }
 
     /**
@@ -84,7 +92,9 @@ class ApplePayDomainRegister200ResponseTest extends TestCase
      */
     public function testPropertySuccess()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ApplePayDomainRegister200Response();
+        $expected = true;
+        $model->setSuccess($expected);
+        $this->assertEquals($expected, $model->getSuccess());
     }
 }

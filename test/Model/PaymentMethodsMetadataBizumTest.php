@@ -75,8 +75,16 @@ class PaymentMethodsMetadataBizumTest extends TestCase
      */
     public function testPaymentMethodsMetadataBizum()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataBizum();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataBizum::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataBizum($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataBizumTest extends TestCase
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataBizum();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

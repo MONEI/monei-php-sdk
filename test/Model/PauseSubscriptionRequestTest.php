@@ -75,8 +75,18 @@ class PauseSubscriptionRequestTest extends TestCase
      */
     public function testPauseSubscriptionRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PauseSubscriptionRequest();
+        $this->assertInstanceOf(\Monei\Model\PauseSubscriptionRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'pause_at_period_end' => true,
+            'pause_interval_count' => 123,
+        ];
+
+        $model = new \Monei\Model\PauseSubscriptionRequest($data);
+        $this->assertEquals($data['pause_at_period_end'], $model->getPauseAtPeriodEnd());
+        $this->assertEquals($data['pause_interval_count'], $model->getPauseIntervalCount());
     }
 
     /**
@@ -84,8 +94,10 @@ class PauseSubscriptionRequestTest extends TestCase
      */
     public function testPropertyPauseAtPeriodEnd()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PauseSubscriptionRequest();
+        $expected = true;
+        $model->setPauseAtPeriodEnd($expected);
+        $this->assertEquals($expected, $model->getPauseAtPeriodEnd());
     }
 
     /**
@@ -93,7 +105,9 @@ class PauseSubscriptionRequestTest extends TestCase
      */
     public function testPropertyPauseIntervalCount()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PauseSubscriptionRequest();
+        $expected = 123;
+        $model->setPauseIntervalCount($expected);
+        $this->assertEquals($expected, $model->getPauseIntervalCount());
     }
 }

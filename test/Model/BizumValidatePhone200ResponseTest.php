@@ -75,8 +75,16 @@ class BizumValidatePhone200ResponseTest extends TestCase
      */
     public function testBizumValidatePhone200Response()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\BizumValidatePhone200Response();
+        $this->assertInstanceOf(\Monei\Model\BizumValidatePhone200Response::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'is_valid' => true,
+        ];
+
+        $model = new \Monei\Model\BizumValidatePhone200Response($data);
+        $this->assertEquals($data['is_valid'], $model->getIsValid());
     }
 
     /**
@@ -84,7 +92,9 @@ class BizumValidatePhone200ResponseTest extends TestCase
      */
     public function testPropertyIsValid()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\BizumValidatePhone200Response();
+        $expected = true;
+        $model->setIsValid($expected);
+        $this->assertEquals($expected, $model->getIsValid());
     }
 }

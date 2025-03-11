@@ -75,8 +75,16 @@ class CapturePaymentRequestTest extends TestCase
      */
     public function testCapturePaymentRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CapturePaymentRequest();
+        $this->assertInstanceOf(\Monei\Model\CapturePaymentRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'amount' => 1000,
+        ];
+
+        $model = new \Monei\Model\CapturePaymentRequest($data);
+        $this->assertEquals($data['amount'], $model->getAmount());
     }
 
     /**
@@ -84,7 +92,9 @@ class CapturePaymentRequestTest extends TestCase
      */
     public function testPropertyAmount()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CapturePaymentRequest();
+        $expected = 1000;
+        $model->setAmount($expected);
+        $this->assertEquals($expected, $model->getAmount());
     }
 }

@@ -75,8 +75,16 @@ class PaymentMethodsMetadataGiropayTest extends TestCase
      */
     public function testPaymentMethodsMetadataGiropay()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataGiropay();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataGiropay::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataGiropay($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataGiropayTest extends TestCase
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataGiropay();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

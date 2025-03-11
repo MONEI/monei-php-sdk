@@ -75,8 +75,16 @@ class PaymentMethodsMetadataAlipayTest extends TestCase
      */
     public function testPaymentMethodsMetadataAlipay()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataAlipay();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataAlipay::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataAlipay($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataAlipayTest extends TestCase
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataAlipay();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

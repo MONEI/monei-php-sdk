@@ -75,8 +75,24 @@ class InternalServerErrorTest extends TestCase
      */
     public function testInternalServerError()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerError();
+        $this->assertInstanceOf(\Monei\Model\InternalServerError::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'status' => 'success',
+            'status_code' => 404,
+            'message' => 'Test message',
+            'request_id' => 'test_123',
+            'request_time' => new \DateTime('2023-01-01T12:00:00Z'),
+        ];
+
+        $model = new \Monei\Model\InternalServerError($data);
+        $this->assertEquals($data['status'], $model->getStatus());
+        $this->assertEquals($data['status_code'], $model->getStatusCode());
+        $this->assertEquals($data['message'], $model->getMessage());
+        $this->assertEquals($data['request_id'], $model->getRequestId());
+        $this->assertEquals($data['request_time'], $model->getRequestTime());
     }
 
     /**
@@ -84,8 +100,10 @@ class InternalServerErrorTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerError();
+        $expected = 'success';
+        $model->setStatus($expected);
+        $this->assertEquals($expected, $model->getStatus());
     }
 
     /**
@@ -93,8 +111,10 @@ class InternalServerErrorTest extends TestCase
      */
     public function testPropertyStatusCode()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerError();
+        $expected = 404;
+        $model->setStatusCode($expected);
+        $this->assertEquals($expected, $model->getStatusCode());
     }
 
     /**
@@ -102,8 +122,10 @@ class InternalServerErrorTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerError();
+        $expected = 'Test message';
+        $model->setMessage($expected);
+        $this->assertEquals($expected, $model->getMessage());
     }
 
     /**
@@ -111,8 +133,10 @@ class InternalServerErrorTest extends TestCase
      */
     public function testPropertyRequestId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerError();
+        $expected = 'test_123';
+        $model->setRequestId($expected);
+        $this->assertEquals($expected, $model->getRequestId());
     }
 
     /**
@@ -120,7 +144,15 @@ class InternalServerErrorTest extends TestCase
      */
     public function testPropertyRequestTime()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\InternalServerError();
+
+        // Test with null value
+        $this->assertNull($model->getRequestTime());
+
+        // Test with \DateTime object
+        $expected = new \DateTime('2022-01-01T00:00:00Z');
+
+        $model->setRequestTime($expected);
+        $this->assertInstanceOf(\DateTime::class, $model->getRequestTime());
     }
 }

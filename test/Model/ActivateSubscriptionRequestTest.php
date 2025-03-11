@@ -75,8 +75,30 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testActivateSubscriptionRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $this->assertInstanceOf(\Monei\Model\ActivateSubscriptionRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'payment_token' => 'test_value',
+            'session_id' => 'test_123',
+            'add_amount' => 1000,
+            'sequence_id' => 'test_123',
+            'complete_url' => 'https://example.com',
+            'fail_url' => 'https://example.com',
+            'cancel_url' => 'https://example.com',
+            'metadata' => (object) ['test_key' => 'test_value'],
+        ];
+
+        $model = new \Monei\Model\ActivateSubscriptionRequest($data);
+        $this->assertEquals($data['payment_token'], $model->getPaymentToken());
+        $this->assertEquals($data['session_id'], $model->getSessionId());
+        $this->assertEquals($data['add_amount'], $model->getAddAmount());
+        $this->assertEquals($data['sequence_id'], $model->getSequenceId());
+        $this->assertEquals($data['complete_url'], $model->getCompleteUrl());
+        $this->assertEquals($data['fail_url'], $model->getFailUrl());
+        $this->assertEquals($data['cancel_url'], $model->getCancelUrl());
+        $this->assertEquals($data['metadata'], $model->getMetadata());
     }
 
     /**
@@ -84,8 +106,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyPaymentToken()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 'test_value';
+        $model->setPaymentToken($expected);
+        $this->assertEquals($expected, $model->getPaymentToken());
     }
 
     /**
@@ -93,8 +117,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertySessionId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 'test_123';
+        $model->setSessionId($expected);
+        $this->assertEquals($expected, $model->getSessionId());
     }
 
     /**
@@ -102,8 +128,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyAddAmount()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 1000;
+        $model->setAddAmount($expected);
+        $this->assertEquals($expected, $model->getAddAmount());
     }
 
     /**
@@ -111,8 +139,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertySequenceId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 'test_123';
+        $model->setSequenceId($expected);
+        $this->assertEquals($expected, $model->getSequenceId());
     }
 
     /**
@@ -120,8 +150,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyCompleteUrl()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 'https://example.com';
+        $model->setCompleteUrl($expected);
+        $this->assertEquals($expected, $model->getCompleteUrl());
     }
 
     /**
@@ -129,8 +161,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyFailUrl()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 'https://example.com';
+        $model->setFailUrl($expected);
+        $this->assertEquals($expected, $model->getFailUrl());
     }
 
     /**
@@ -138,8 +172,10 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyCancelUrl()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = 'https://example.com';
+        $model->setCancelUrl($expected);
+        $this->assertEquals($expected, $model->getCancelUrl());
     }
 
     /**
@@ -147,7 +183,9 @@ class ActivateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyMetadata()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\ActivateSubscriptionRequest();
+        $expected = (object) ['test_key' => 'test_value'];
+        $model->setMetadata($expected);
+        $this->assertEquals($expected, $model->getMetadata());
     }
 }

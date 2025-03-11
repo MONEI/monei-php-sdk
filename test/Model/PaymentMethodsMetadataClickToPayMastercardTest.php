@@ -75,8 +75,16 @@ class PaymentMethodsMetadataClickToPayMastercardTest extends TestCase
      */
     public function testPaymentMethodsMetadataClickToPayMastercard()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayMastercard();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataClickToPayMastercard::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'srci_dpa_id' => 'test_123',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayMastercard($data);
+        $this->assertEquals($data['srci_dpa_id'], $model->getSrciDpaId());
     }
 
     /**
@@ -84,16 +92,9 @@ class PaymentMethodsMetadataClickToPayMastercardTest extends TestCase
      */
     public function testPropertySrciDpaId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "src_initiator_id"
-     */
-    public function testPropertySrcInitiatorId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayMastercard();
+        $expected = 'test_123';
+        $model->setSrciDpaId($expected);
+        $this->assertEquals($expected, $model->getSrciDpaId());
     }
 }

@@ -75,8 +75,18 @@ class PaymentMethodsMetadataClickToPayVisaTest extends TestCase
      */
     public function testPaymentMethodsMetadataClickToPayVisa()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayVisa();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataClickToPayVisa::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'srci_dpa_id' => 'test_123',
+            'src_initiator_id' => 'test_123',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayVisa($data);
+        $this->assertEquals($data['srci_dpa_id'], $model->getSrciDpaId());
+        $this->assertEquals($data['src_initiator_id'], $model->getSrcInitiatorId());
     }
 
     /**
@@ -84,8 +94,10 @@ class PaymentMethodsMetadataClickToPayVisaTest extends TestCase
      */
     public function testPropertySrciDpaId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayVisa();
+        $expected = 'test_123';
+        $model->setSrciDpaId($expected);
+        $this->assertEquals($expected, $model->getSrciDpaId());
     }
 
     /**
@@ -93,7 +105,9 @@ class PaymentMethodsMetadataClickToPayVisaTest extends TestCase
      */
     public function testPropertySrcInitiatorId()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPayVisa();
+        $expected = 'test_123';
+        $model->setSrcInitiatorId($expected);
+        $this->assertEquals($expected, $model->getSrcInitiatorId());
     }
 }

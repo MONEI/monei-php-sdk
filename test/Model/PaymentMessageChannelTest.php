@@ -75,7 +75,17 @@ class PaymentMessageChannelTest extends TestCase
      */
     public function testPaymentMessageChannel()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $expected = [
+            'EMAIL',
+            'WHATSAPP',
+            'SMS',
+        ];
+
+        $this->assertEquals($expected, \Monei\Model\PaymentMessageChannel::getAllowableEnumValues());
+
+        // Test individual constants
+        $this->assertEquals('EMAIL', \Monei\Model\PaymentMessageChannel::EMAIL);
+        $this->assertEquals('WHATSAPP', \Monei\Model\PaymentMessageChannel::WHATSAPP);
+        $this->assertEquals('SMS', \Monei\Model\PaymentMessageChannel::SMS);
     }
 }

@@ -75,7 +75,17 @@ class PaymentRefundReasonTest extends TestCase
      */
     public function testPaymentRefundReason()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $expected = [
+            'duplicated',
+            'fraudulent',
+            'requested_by_customer',
+        ];
+
+        $this->assertEquals($expected, \Monei\Model\PaymentRefundReason::getAllowableEnumValues());
+
+        // Test individual constants
+        $this->assertEquals('duplicated', \Monei\Model\PaymentRefundReason::DUPLICATED);
+        $this->assertEquals('fraudulent', \Monei\Model\PaymentRefundReason::FRAUDULENT);
+        $this->assertEquals('requested_by_customer', \Monei\Model\PaymentRefundReason::REQUESTED_BY_CUSTOMER);
     }
 }

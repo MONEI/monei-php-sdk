@@ -75,8 +75,16 @@ class PaymentMethodsMetadataBlikTest extends TestCase
      */
     public function testPaymentMethodsMetadataBlik()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataBlik();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataBlik::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataBlik($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataBlikTest extends TestCase
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataBlik();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

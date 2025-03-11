@@ -75,16 +75,27 @@ class PaymentMethodsMetadataSepaTest extends TestCase
      */
     public function testPaymentMethodsMetadataSepa()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
+        $model = new \Monei\Model\PaymentMethodsMetadataSepa();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataSepa::class, $model);
 
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataSepa($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
+    }    /**
+     * Test attribute "countries"
+     */
     /**
      * Test attribute "countries"
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataSepa();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

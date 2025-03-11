@@ -75,16 +75,27 @@ class PaymentMethodsMetadataTrustlyTest extends TestCase
      */
     public function testPaymentMethodsMetadataTrustly()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
+        $model = new \Monei\Model\PaymentMethodsMetadataTrustly();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataTrustly::class, $model);
 
+        // Test with constructor parameters
+        $data = [
+            'countries' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataTrustly($data);
+        $this->assertEquals($data['countries'], $model->getCountries());
+    }    /**
+     * Test attribute "countries"
+     */
     /**
      * Test attribute "countries"
      */
     public function testPropertyCountries()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataTrustly();
+        $expected = 'test_value';
+        $model->setCountries($expected);
+        $this->assertEquals($expected, $model->getCountries());
     }
 }

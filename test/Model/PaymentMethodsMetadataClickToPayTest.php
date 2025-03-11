@@ -75,8 +75,22 @@ class PaymentMethodsMetadataClickToPayTest extends TestCase
      */
     public function testPaymentMethodsMetadataClickToPay()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPay();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataClickToPay::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'token_support' => true,
+            'discover' => new \Monei\Model\PaymentMethodsMetadataClickToPayDiscover(),
+            'mastercard' => new \Monei\Model\PaymentMethodsMetadataClickToPayMastercard(),
+            'visa' => new \Monei\Model\PaymentMethodsMetadataClickToPayVisa(),
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPay($data);
+        $this->assertEquals($data['token_support'], $model->getTokenSupport());
+        $this->assertEquals($data['discover'], $model->getDiscover());
+        $this->assertEquals($data['mastercard'], $model->getMastercard());
+        $this->assertEquals($data['visa'], $model->getVisa());
     }
 
     /**
@@ -84,35 +98,10 @@ class PaymentMethodsMetadataClickToPayTest extends TestCase
      */
     public function testPropertyTokenSupport()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "preselected"
-     */
-    public function testPropertyPreselected()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "visa"
-     */
-    public function testPropertyVisa()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "mastercard"
-     */
-    public function testPropertyMastercard()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPay();
+        $expected = true;
+        $model->setTokenSupport($expected);
+        $this->assertEquals($expected, $model->getTokenSupport());
     }
 
     /**
@@ -120,7 +109,49 @@ class PaymentMethodsMetadataClickToPayTest extends TestCase
      */
     public function testPropertyDiscover()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPay();
+
+        // Test with null value
+        $this->assertNull($model->getDiscover());
+
+        // Test with PaymentMethodsMetadataClickToPayDiscover object
+        $expected = new \Monei\Model\PaymentMethodsMetadataClickToPayDiscover();
+
+        $model->setDiscover($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataClickToPayDiscover::class, $model->getDiscover());
+    }
+
+    /**
+     * Test attribute "mastercard"
+     */
+    public function testPropertyMastercard()
+    {
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPay();
+
+        // Test with null value
+        $this->assertNull($model->getMastercard());
+
+        // Test with PaymentMethodsMetadataClickToPayMastercard object
+        $expected = new \Monei\Model\PaymentMethodsMetadataClickToPayMastercard();
+
+        $model->setMastercard($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataClickToPayMastercard::class, $model->getMastercard());
+    }
+
+    /**
+     * Test attribute "visa"
+     */
+    public function testPropertyVisa()
+    {
+        $model = new \Monei\Model\PaymentMethodsMetadataClickToPay();
+
+        // Test with null value
+        $this->assertNull($model->getVisa());
+
+        // Test with PaymentMethodsMetadataClickToPayVisa object
+        $expected = new \Monei\Model\PaymentMethodsMetadataClickToPayVisa();
+
+        $model->setVisa($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataClickToPayVisa::class, $model->getVisa());
     }
 }

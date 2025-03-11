@@ -75,7 +75,25 @@ class PaymentMessageLanguageTest extends TestCase
      */
     public function testPaymentMessageLanguage()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $expected = [
+            'en',
+            'es',
+            'ca',
+            'pt',
+            'de',
+            'it',
+            'fr',
+        ];
+
+        $this->assertEquals($expected, \Monei\Model\PaymentMessageLanguage::getAllowableEnumValues());
+
+        // Test individual constants
+        $this->assertEquals('en', \Monei\Model\PaymentMessageLanguage::EN);
+        $this->assertEquals('es', \Monei\Model\PaymentMessageLanguage::ES);
+        $this->assertEquals('ca', \Monei\Model\PaymentMessageLanguage::CA);
+        $this->assertEquals('pt', \Monei\Model\PaymentMessageLanguage::PT);
+        $this->assertEquals('de', \Monei\Model\PaymentMessageLanguage::DE);
+        $this->assertEquals('it', \Monei\Model\PaymentMessageLanguage::IT);
+        $this->assertEquals('fr', \Monei\Model\PaymentMessageLanguage::FR);
     }
 }

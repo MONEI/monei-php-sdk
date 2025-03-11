@@ -75,8 +75,42 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testCreateSubscriptionRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $this->assertInstanceOf(\Monei\Model\CreateSubscriptionRequest::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'amount' => 1000,
+            'currency' => 'EUR',
+            'interval' => 'month',
+            'interval_count' => 1,
+            'description' => 'Test subscription',
+            'customer' => new \Monei\Model\PaymentCustomer(),
+            'billing_details' => new \Monei\Model\PaymentBillingDetails(),
+            'shipping_details' => new \Monei\Model\PaymentShippingDetails(),
+            'trial_period_end' => '2023-01-01T00:00:00Z',
+            'trial_period_days' => 30,
+            'retry_schedule' => [1, 3, 5],
+            'callback_url' => 'https://example.com/callback',
+            'payment_callback_url' => 'https://example.com/payment-callback',
+            'metadata' => (object) ['test_key' => 'test_value'],
+        ];
+
+        $model = new \Monei\Model\CreateSubscriptionRequest($data);
+        $this->assertEquals($data['amount'], $model->getAmount());
+        $this->assertEquals($data['currency'], $model->getCurrency());
+        $this->assertEquals($data['interval'], $model->getInterval());
+        $this->assertEquals($data['interval_count'], $model->getIntervalCount());
+        $this->assertEquals($data['description'], $model->getDescription());
+        $this->assertEquals($data['customer'], $model->getCustomer());
+        $this->assertEquals($data['billing_details'], $model->getBillingDetails());
+        $this->assertEquals($data['shipping_details'], $model->getShippingDetails());
+        $this->assertEquals($data['trial_period_end'], $model->getTrialPeriodEnd());
+        $this->assertEquals($data['trial_period_days'], $model->getTrialPeriodDays());
+        $this->assertEquals($data['retry_schedule'], $model->getRetrySchedule());
+        $this->assertEquals($data['callback_url'], $model->getCallbackUrl());
+        $this->assertEquals($data['payment_callback_url'], $model->getPaymentCallbackUrl());
+        $this->assertEquals($data['metadata'], $model->getMetadata());
     }
 
     /**
@@ -84,8 +118,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyAmount()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 1000;
+        $model->setAmount($expected);
+        $this->assertEquals($expected, $model->getAmount());
     }
 
     /**
@@ -93,8 +129,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyCurrency()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 'EUR';
+        $model->setCurrency($expected);
+        $this->assertEquals($expected, $model->getCurrency());
     }
 
     /**
@@ -102,17 +140,26 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyInterval()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+
+        // Test with valid values
+        $validValues = ['day', 'week', 'month', 'year'];
+        foreach ($validValues as $value) {
+            $model->setInterval($value);
+            $this->assertEquals($value, $model->getInterval());
+        }
     }
+
 
     /**
      * Test attribute "interval_count"
      */
     public function testPropertyIntervalCount()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 3;
+        $model->setIntervalCount($expected);
+        $this->assertEquals($expected, $model->getIntervalCount());
     }
 
     /**
@@ -120,8 +167,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 'Test subscription';
+        $model->setDescription($expected);
+        $this->assertEquals($expected, $model->getDescription());
     }
 
     /**
@@ -129,8 +178,18 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyCustomer()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+
+        // Test with null value
+        $this->assertNull($model->getCustomer());
+
+        // Test with PaymentCustomer object
+        $expected = new \Monei\Model\PaymentCustomer();
+        $expected->setName('Test Name');
+
+        $model->setCustomer($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentCustomer::class, $model->getCustomer());
+        $this->assertEquals('Test Name', $model->getCustomer()->getName());
     }
 
     /**
@@ -138,8 +197,16 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyBillingDetails()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+
+        // Test with null value
+        $this->assertNull($model->getBillingDetails());
+
+        // Test with PaymentBillingDetails object
+        $expected = new \Monei\Model\PaymentBillingDetails();
+
+        $model->setBillingDetails($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentBillingDetails::class, $model->getBillingDetails());
     }
 
     /**
@@ -147,8 +214,16 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyShippingDetails()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+
+        // Test with null value
+        $this->assertNull($model->getShippingDetails());
+
+        // Test with PaymentShippingDetails object
+        $expected = new \Monei\Model\PaymentShippingDetails();
+
+        $model->setShippingDetails($expected);
+        $this->assertInstanceOf(\Monei\Model\PaymentShippingDetails::class, $model->getShippingDetails());
     }
 
     /**
@@ -156,8 +231,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyTrialPeriodEnd()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = '2023-01-01T00:00:00Z';
+        $model->setTrialPeriodEnd($expected);
+        $this->assertEquals($expected, $model->getTrialPeriodEnd());
     }
 
     /**
@@ -165,8 +242,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyTrialPeriodDays()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 30;
+        $model->setTrialPeriodDays($expected);
+        $this->assertEquals($expected, $model->getTrialPeriodDays());
     }
 
     /**
@@ -174,8 +253,15 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyRetrySchedule()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+
+        // Test with null value
+        $this->assertNull($model->getRetrySchedule());
+
+        // Test with array value
+        $expected = [];
+        $model->setRetrySchedule($expected);
+        $this->assertEquals($expected, $model->getRetrySchedule());
     }
 
     /**
@@ -183,8 +269,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyCallbackUrl()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 'https://example.com/callback';
+        $model->setCallbackUrl($expected);
+        $this->assertEquals($expected, $model->getCallbackUrl());
     }
 
     /**
@@ -192,8 +280,10 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyPaymentCallbackUrl()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = 'https://example.com/payment-callback';
+        $model->setPaymentCallbackUrl($expected);
+        $this->assertEquals($expected, $model->getPaymentCallbackUrl());
     }
 
     /**
@@ -201,7 +291,9 @@ class CreateSubscriptionRequestTest extends TestCase
      */
     public function testPropertyMetadata()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\CreateSubscriptionRequest();
+        $expected = (object) ['test_key' => 'test_value'];
+        $model->setMetadata($expected);
+        $this->assertEquals($expected, $model->getMetadata());
     }
 }

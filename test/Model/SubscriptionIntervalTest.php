@@ -75,7 +75,19 @@ class SubscriptionIntervalTest extends TestCase
      */
     public function testSubscriptionInterval()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $expected = [
+            'day',
+            'week',
+            'month',
+            'year',
+        ];
+
+        $this->assertEquals($expected, \Monei\Model\SubscriptionInterval::getAllowableEnumValues());
+
+        // Test individual constants
+        $this->assertEquals('day', \Monei\Model\SubscriptionInterval::DAY);
+        $this->assertEquals('week', \Monei\Model\SubscriptionInterval::WEEK);
+        $this->assertEquals('month', \Monei\Model\SubscriptionInterval::MONTH);
+        $this->assertEquals('year', \Monei\Model\SubscriptionInterval::YEAR);
     }
 }

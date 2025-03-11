@@ -75,8 +75,16 @@ class PaymentMethodsMetadataCardTest extends TestCase
      */
     public function testPaymentMethodsMetadataCard()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataCard();
+        $this->assertInstanceOf(\Monei\Model\PaymentMethodsMetadataCard::class, $model);
+
+        // Test with constructor parameters
+        $data = [
+            'brands' => 'test_value',
+        ];
+
+        $model = new \Monei\Model\PaymentMethodsMetadataCard($data);
+        $this->assertEquals($data['brands'], $model->getBrands());
     }
 
     /**
@@ -84,7 +92,9 @@ class PaymentMethodsMetadataCardTest extends TestCase
      */
     public function testPropertyBrands()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $model = new \Monei\Model\PaymentMethodsMetadataCard();
+        $expected = 'test_value';
+        $model->setBrands($expected);
+        $this->assertEquals($expected, $model->getBrands());
     }
 }
