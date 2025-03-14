@@ -1,5 +1,12 @@
 # Changelog
 
+## <small>2.6.13 (2025-03-14)</small>
+
+* chore: implement missing test methods for model classes ([0e46f02](https://github.com/MONEI/monei-php-sdk/commit/0e46f02))
+* chore: standardize test model files with empty setup and teardown methods ([868c1e0](https://github.com/MONEI/monei-php-sdk/commit/868c1e0))
+* chore: update OpenAPI document version to 1.6.0 ([772fa1b](https://github.com/MONEI/monei-php-sdk/commit/772fa1b))
+* chore: update package test files with package name correction ([fccdd49](https://github.com/MONEI/monei-php-sdk/commit/fccdd49))
+
 ## <small>2.6.12 (2025-03-11)</small>
 
 * chore: update commitlint configuration to disable body line length limit ([857196e](https://github.com/MONEI/monei-php-sdk/commit/857196e))
