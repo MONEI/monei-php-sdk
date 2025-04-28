@@ -69,6 +69,11 @@ class MoneiClient
      * @var ApplePayDomainApi
      */
     public $applePayDomain;
+    
+    /**
+     * @var BizumApi
+     */
+    public $bizum;
 
     /**
      * @var string|null
