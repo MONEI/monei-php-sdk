@@ -1,5 +1,11 @@
 # Changelog
 
+## <small>2.6.14 (2025-04-29)</small>
+
+* chore: update OpenAPI document version to 1.6.1 ([3b9c845](https://github.com/MONEI/monei-php-sdk/commit/3b9c845))
+* Fix. Bizum api initialization ([593e5ba](https://github.com/MONEI/monei-php-sdk/commit/593e5ba))
+* Update MoneiClient.php ([d0b3b9f](https://github.com/MONEI/monei-php-sdk/commit/d0b3b9f))
+
 ## <small>2.6.13 (2025-03-14)</small>
 
 * chore: implement missing test methods for model classes ([0e46f02](https://github.com/MONEI/monei-php-sdk/commit/0e46f02))
