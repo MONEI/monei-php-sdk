@@ -69,7 +69,7 @@ class MoneiClient
      * @var ApplePayDomainApi
      */
     public $applePayDomain;
-    
+
     /**
      * @var BizumApi
      */
