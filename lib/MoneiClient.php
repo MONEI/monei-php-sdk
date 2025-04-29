@@ -19,6 +19,7 @@ use Monei\Api\PaymentsApi;
 use Monei\Api\SubscriptionsApi;
 use Monei\Api\ApplePayDomainApi;
 use Monei\Api\PaymentMethodsApi;
+use Monei\Api\BizumApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -68,6 +69,11 @@ class MoneiClient
      * @var ApplePayDomainApi
      */
     public $applePayDomain;
+    
+    /**
+     * @var BizumApi
+     */
+    public $bizum;
 
     /**
      * @var string|null
@@ -110,6 +116,7 @@ class MoneiClient
         $this->paymentMethods = new PaymentMethodsApi($this->httpClient, $this->config);
         $this->subscriptions = new SubscriptionsApi($this->httpClient, $this->config);
         $this->applePayDomain = new ApplePayDomainApi($this->httpClient, $this->config);
+        $this->bizum = new BizumApi($this->httpClient, $this->config);
     }
 
     /**
