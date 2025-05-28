@@ -61,7 +61,6 @@ lib/Model/PaymentPaymentMethodBizum.php
 lib/Model/PaymentPaymentMethodBizumInput.php
 lib/Model/PaymentPaymentMethodCard.php
 lib/Model/PaymentPaymentMethodCardInput.php
-lib/Model/PaymentPaymentMethodCofidis.php
 lib/Model/PaymentPaymentMethodInput.php
 lib/Model/PaymentPaymentMethodKlarna.php
 lib/Model/PaymentPaymentMethodMbway.php

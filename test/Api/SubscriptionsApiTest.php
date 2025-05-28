@@ -28,17 +28,17 @@
 
 namespace Monei\Test\Api;
 
-use Monei\Configuration;
-use Monei\ApiException;
-use Monei\ObjectSerializer;
-use Monei\Api\SubscriptionsApi;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use Monei\Api\SubscriptionsApi;
+use Monei\ApiException;
+use Monei\Configuration;
+use Monei\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,9 +69,7 @@ class SubscriptionsApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void
-    {
-    }
+    public static function setUpBeforeClass(): void {}
 
     /**
      * Setup before running each test case
@@ -111,9 +109,7 @@ class SubscriptionsApiTest extends TestCase
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void
-    {
-    }
+    public static function tearDownAfterClass(): void {}
 
     /**
      * Test case for activate
@@ -123,17 +119,22 @@ class SubscriptionsApiTest extends TestCase
     public function testActivate()
     {
         $subscriptionId = 'sub_123456789';
+        $paymentId = 'pay_987654321';  // Payment ID, not subscription ID
 
-        // Queue a mock response
+        // Queue a mock response - this should be a Payment object
         $this->mockHandler->append(new Response(
             200,
             ['Content-Type' => 'application/json'],
             json_encode([
-                'id' => $subscriptionId,
-                'status' => 'ACTIVE',
+                'id' => $paymentId,
                 'amount' => 1000,
                 'currency' => 'EUR',
-                'interval' => 'month'
+                'status' => 'SUCCEEDED',
+                'orderId' => 'order_123',
+                'description' => 'Subscription activation payment',
+                'livemode' => false,
+                'createdAt' => 1640995200,
+                'updatedAt' => 1640995200
             ])
         ));
 
@@ -146,12 +147,16 @@ class SubscriptionsApiTest extends TestCase
         $this->assertEquals('POST', $request->getMethod());
         $this->assertStringContainsString("/subscriptions/{$subscriptionId}/activate", $request->getUri()->getPath());
 
-        // Check the response
-        $this->assertEquals($subscriptionId, $result['id']);
-        $this->assertEquals('ACTIVE', $result['status']);
+        // Check the response - this should be a Payment object
+        $this->assertEquals($paymentId, $result['id']);
+        $this->assertEquals('SUCCEEDED', $result['status']);
         $this->assertEquals(1000, $result['amount']);
         $this->assertEquals('EUR', $result['currency']);
-        $this->assertEquals('month', $result['interval']);
+        $this->assertEquals('order_123', $result['order_id']);
+        $this->assertEquals('Subscription activation payment', $result['description']);
+        $this->assertEquals(false, $result['livemode']);
+        $this->assertEquals(1640995200, $result['created_at']);
+        $this->assertEquals(1640995200, $result['updated_at']);
     }
 
     /**
@@ -218,7 +223,7 @@ class SubscriptionsApiTest extends TestCase
         ));
 
         // Create a subscription request
-        $createRequest = (object)[
+        $createRequest = (object) [
             'amount' => 1000,
             'currency' => 'EUR',
             'interval' => 'month',
@@ -233,7 +238,7 @@ class SubscriptionsApiTest extends TestCase
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
         $this->assertEquals('POST', $request->getMethod());
-        $this->assertStringContainsString("/subscriptions", $request->getUri()->getPath());
+        $this->assertStringContainsString('/subscriptions', $request->getUri()->getPath());
 
         // Check the request body
         $requestBody = json_decode($request->getBody()->getContents(), true);
@@ -379,7 +384,7 @@ class SubscriptionsApiTest extends TestCase
         ));
 
         // Create a send link request
-        $sendLinkRequest = (object)['email' => 'customer@example.com'];
+        $sendLinkRequest = (object) ['email' => 'customer@example.com'];
 
         // Call the API method
         $result = $this->subscriptionsApi->sendLink($subscriptionId, $sendLinkRequest);
@@ -421,7 +426,7 @@ class SubscriptionsApiTest extends TestCase
         ));
 
         // Create a send status request
-        $sendStatusRequest = (object)['email' => 'customer@example.com'];
+        $sendStatusRequest = (object) ['email' => 'customer@example.com'];
 
         // Call the API method
         $result = $this->subscriptionsApi->sendStatus($subscriptionId, $sendStatusRequest);
@@ -466,7 +471,7 @@ class SubscriptionsApiTest extends TestCase
         ));
 
         // Create an update request
-        $updateRequest = (object)[
+        $updateRequest = (object) [
             'amount' => 2000,
             'metadata' => ['plan' => 'premium']
         ];
