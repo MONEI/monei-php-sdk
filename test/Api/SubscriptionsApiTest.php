@@ -69,7 +69,9 @@ class SubscriptionsApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void {}
+    public static function setUpBeforeClass(): void
+    {
+    }
 
     /**
      * Setup before running each test case
@@ -109,7 +111,9 @@ class SubscriptionsApiTest extends TestCase
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void {}
+    public static function tearDownAfterClass(): void
+    {
+    }
 
     /**
      * Test case for activate
