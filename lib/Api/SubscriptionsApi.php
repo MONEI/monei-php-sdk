@@ -28,12 +28,12 @@
 
 namespace Monei\Api;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 use Monei\ApiException;
 use Monei\Configuration;
@@ -188,7 +188,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Payment' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Payment' !== 'string') {
@@ -203,7 +203,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -218,7 +218,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -233,7 +233,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -248,7 +248,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -263,7 +263,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -278,7 +278,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -295,7 +295,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Payment';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -308,6 +308,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -384,8 +385,7 @@ class SubscriptionsApi
      */
     public function activateAsync($id, $activate_subscription_request = null)
     {
-        return $this
-            ->activateAsyncWithHttpInfo($id, $activate_subscription_request)
+        return $this->activateAsyncWithHttpInfo($id, $activate_subscription_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -409,13 +409,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Payment';
         $request = $this->activateRequest($id, $activate_subscription_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -471,6 +470,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -479,6 +480,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -512,8 +514,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -618,7 +622,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -633,7 +637,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -648,7 +652,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -663,7 +667,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -678,7 +682,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -693,7 +697,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -708,7 +712,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -725,7 +729,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -738,6 +742,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -814,8 +819,7 @@ class SubscriptionsApi
      */
     public function cancelAsync($id, $cancel_subscription_request = null)
     {
-        return $this
-            ->cancelAsyncWithHttpInfo($id, $cancel_subscription_request)
+        return $this->cancelAsyncWithHttpInfo($id, $cancel_subscription_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -839,13 +843,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->cancelRequest($id, $cancel_subscription_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -901,6 +904,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -909,6 +914,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -942,8 +948,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1046,7 +1054,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -1061,7 +1069,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -1076,7 +1084,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -1091,7 +1099,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -1106,7 +1114,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -1121,7 +1129,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -1136,7 +1144,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -1153,7 +1161,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -1166,6 +1174,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1241,8 +1250,7 @@ class SubscriptionsApi
      */
     public function createAsync($create_subscription_request)
     {
-        return $this
-            ->createAsyncWithHttpInfo($create_subscription_request)
+        return $this->createAsyncWithHttpInfo($create_subscription_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1265,13 +1273,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->createRequest($create_subscription_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1326,6 +1333,10 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
+
+
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -1358,8 +1369,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1462,7 +1475,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -1477,7 +1490,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -1492,7 +1505,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -1507,7 +1520,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -1522,7 +1535,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -1537,7 +1550,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -1552,7 +1565,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -1569,7 +1582,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -1582,6 +1595,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -1657,8 +1671,7 @@ class SubscriptionsApi
      */
     public function getAsync($id)
     {
-        return $this
-            ->getAsyncWithHttpInfo($id)
+        return $this->getAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1681,13 +1694,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->getRequest($id);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -1742,6 +1754,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -1750,6 +1764,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1777,8 +1792,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1883,7 +1900,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -1898,7 +1915,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -1913,7 +1930,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -1928,7 +1945,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -1943,7 +1960,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -1958,7 +1975,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -1973,7 +1990,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -1990,7 +2007,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -2003,6 +2020,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -2079,8 +2097,7 @@ class SubscriptionsApi
      */
     public function pauseAsync($id, $pause_subscription_request = null)
     {
-        return $this
-            ->pauseAsyncWithHttpInfo($id, $pause_subscription_request)
+        return $this->pauseAsyncWithHttpInfo($id, $pause_subscription_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2104,13 +2121,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->pauseRequest($id, $pause_subscription_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -2166,6 +2182,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -2174,6 +2192,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -2207,8 +2226,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2311,7 +2332,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -2326,7 +2347,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -2341,7 +2362,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -2356,7 +2377,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -2371,7 +2392,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -2386,7 +2407,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -2401,7 +2422,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -2418,7 +2439,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -2431,6 +2452,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -2506,8 +2528,7 @@ class SubscriptionsApi
      */
     public function resumeAsync($id)
     {
-        return $this
-            ->resumeAsyncWithHttpInfo($id)
+        return $this->resumeAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2530,13 +2551,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->resumeRequest($id);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -2591,6 +2611,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -2599,6 +2621,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -2626,8 +2649,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2732,7 +2757,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -2747,7 +2772,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -2762,7 +2787,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -2777,7 +2802,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -2792,7 +2817,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -2807,7 +2832,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -2822,7 +2847,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -2839,7 +2864,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -2852,6 +2877,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -2928,8 +2954,7 @@ class SubscriptionsApi
      */
     public function sendLinkAsync($id, $send_subscription_link_request = null)
     {
-        return $this
-            ->sendLinkAsyncWithHttpInfo($id, $send_subscription_link_request)
+        return $this->sendLinkAsyncWithHttpInfo($id, $send_subscription_link_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2953,13 +2978,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->sendLinkRequest($id, $send_subscription_link_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -3015,6 +3039,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -3023,6 +3049,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -3056,8 +3083,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3162,7 +3191,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -3177,7 +3206,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -3192,7 +3221,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -3207,7 +3236,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -3222,7 +3251,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -3237,7 +3266,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -3252,7 +3281,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -3269,7 +3298,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -3282,6 +3311,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -3358,8 +3388,7 @@ class SubscriptionsApi
      */
     public function sendStatusAsync($id, $send_subscription_status_request = null)
     {
-        return $this
-            ->sendStatusAsyncWithHttpInfo($id, $send_subscription_status_request)
+        return $this->sendStatusAsyncWithHttpInfo($id, $send_subscription_status_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3383,13 +3412,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->sendStatusRequest($id, $send_subscription_status_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -3445,6 +3473,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -3453,6 +3483,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -3486,8 +3517,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3592,7 +3625,7 @@ class SubscriptionsApi
             switch ($statusCode) {
                 case 200:
                     if ('\Monei\Model\Subscription' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\Subscription' !== 'string') {
@@ -3607,7 +3640,7 @@ class SubscriptionsApi
                     ];
                 case 400:
                     if ('\Monei\Model\BadRequestError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\BadRequestError' !== 'string') {
@@ -3622,7 +3655,7 @@ class SubscriptionsApi
                     ];
                 case 401:
                     if ('\Monei\Model\UnauthorizedError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnauthorizedError' !== 'string') {
@@ -3637,7 +3670,7 @@ class SubscriptionsApi
                     ];
                 case 404:
                     if ('\Monei\Model\NotFoundError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\NotFoundError' !== 'string') {
@@ -3652,7 +3685,7 @@ class SubscriptionsApi
                     ];
                 case 422:
                     if ('\Monei\Model\UnprocessableEntityError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\UnprocessableEntityError' !== 'string') {
@@ -3667,7 +3700,7 @@ class SubscriptionsApi
                     ];
                 case 500:
                     if ('\Monei\Model\InternalServerError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\InternalServerError' !== 'string') {
@@ -3682,7 +3715,7 @@ class SubscriptionsApi
                     ];
                 case 503:
                     if ('\Monei\Model\ServiceUnavailableError' === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ('\Monei\Model\ServiceUnavailableError' !== 'string') {
@@ -3699,7 +3732,7 @@ class SubscriptionsApi
 
             $returnType = '\Monei\Model\Subscription';
             if ($returnType === '\SplFileObject') {
-                $content = $response->getBody();  // stream goes to serializer
+                $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
                 if ($returnType !== 'string') {
@@ -3712,6 +3745,7 @@ class SubscriptionsApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
+
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -3788,8 +3822,7 @@ class SubscriptionsApi
      */
     public function updateAsync($id, $update_subscription_request)
     {
-        return $this
-            ->updateAsyncWithHttpInfo($id, $update_subscription_request)
+        return $this->updateAsyncWithHttpInfo($id, $update_subscription_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3813,13 +3846,12 @@ class SubscriptionsApi
         $returnType = '\Monei\Model\Subscription';
         $request = $this->updateRequest($id, $update_subscription_request);
 
-        return $this
-            ->client
+        return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
                     if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody();  // stream goes to serializer
+                        $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                         if ($returnType !== 'string') {
@@ -3881,6 +3913,8 @@ class SubscriptionsApi
         $httpBody = '';
         $multipart = false;
 
+
+
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -3889,6 +3923,7 @@ class SubscriptionsApi
                 $resourcePath
             );
         }
+
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -3922,8 +3957,10 @@ class SubscriptionsApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
+
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
