@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>2.6.16 (2025-05-29)</small>
+
+* chore: update OpenAPI document version to 1.7.0 across all relevant files ([3af8b62](https://github.com/MONEI/monei-php-sdk/commit/3af8b62))
+
 ## <small>2.6.15 (2025-05-28)</small>
 
 * chore: add empty code blocks to setup and teardown methods in SubscriptionsApiTest ([51f7180](https://github.com/MONEI/monei-php-sdk/commit/51f7180))
