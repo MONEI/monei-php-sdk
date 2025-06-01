@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>2.6.17 (2025-06-01)</small>
+
+* chore: downgrade guzzlehttp/guzzle version to ^7.0.0 in composer.json ([70c84ad](https://github.com/MONEI/monei-php-sdk/commit/70c84ad))
+
 ## <small>2.6.16 (2025-05-29)</small>
 
 * chore: update OpenAPI document version to 1.7.0 across all relevant files ([3af8b62](https://github.com/MONEI/monei-php-sdk/commit/3af8b62))
