@@ -1,5 +1,12 @@
 # Changelog
 
+## <small>2.6.18 (2025-07-02)</small>
+
+* chore: clean up whitespace in MoneiClientUserAgentTest ([86246ea](https://github.com/MONEI/monei-php-sdk/commit/86246ea))
+* chore: rename namespace in MoneiClientUserAgentTest to follow project structure ([c50ee2c](https://github.com/MONEI/monei-php-sdk/commit/c50ee2c))
+* chore: reorder use statements and improve user agent condition in MoneiClient ([26e443f](https://github.com/MONEI/monei-php-sdk/commit/26e443f))
+* chore: update MoneiClient to conditionally set default user agent and ensure test isolation ([d439c70](https://github.com/MONEI/monei-php-sdk/commit/d439c70))
+
 ## <small>2.6.17 (2025-06-01)</small>
 
 * chore: downgrade guzzlehttp/guzzle version to ^7.0.0 in composer.json ([70c84ad](https://github.com/MONEI/monei-php-sdk/commit/70c84ad))
