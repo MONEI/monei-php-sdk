@@ -95,7 +95,7 @@ class MoneiClientUserAgentTest extends TestCase
             $userAgentProp->setValue($config, $version);
 
             $client = new MoneiClient('test_api_key', $config);
-            
+
             // Should be replaced with MONEI default
             $this->assertEquals(
                 MoneiClient::DEFAULT_USER_AGENT . MoneiClient::SDK_VERSION,
