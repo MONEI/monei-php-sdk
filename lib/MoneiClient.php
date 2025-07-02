@@ -95,7 +95,11 @@ class MoneiClient
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->config->setApiKey('Authorization', $apiKey);
-        $this->config->setUserAgent(self::DEFAULT_USER_AGENT . self::SDK_VERSION);
+
+        // Only set default user agent if no custom user agent was provided
+        if (strpos($this->config->getUserAgent(), 'OpenAPI-Generator') !== false) {
+            $this->config->setUserAgent(self::DEFAULT_USER_AGENT . self::SDK_VERSION);
+        }
 
         // Create a custom HTTP client with middleware to add the AccountId header if needed
         $stack = HandlerStack::create();
