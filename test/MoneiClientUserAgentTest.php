@@ -1,6 +1,6 @@
 <?php
 
-namespace Monei\Test;
+namespace Tests;
 
 use Monei\Configuration;
 use Monei\MoneiClient;
