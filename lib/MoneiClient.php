@@ -13,16 +13,16 @@
 
 namespace Monei;
 
-use Monei\ApiException;
-use Monei\Configuration;
-use Monei\Api\PaymentsApi;
-use Monei\Api\SubscriptionsApi;
-use Monei\Api\ApplePayDomainApi;
-use Monei\Api\PaymentMethodsApi;
-use Monei\Api\BizumApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use Monei\Api\ApplePayDomainApi;
+use Monei\Api\BizumApi;
+use Monei\Api\PaymentMethodsApi;
+use Monei\Api\PaymentsApi;
+use Monei\Api\SubscriptionsApi;
+use Monei\ApiException;
+use Monei\Configuration;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -95,7 +95,12 @@ class MoneiClient
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->config->setApiKey('Authorization', $apiKey);
-        $this->config->setUserAgent(self::DEFAULT_USER_AGENT . self::SDK_VERSION);
+
+        // Only set default user agent if no custom user agent was provided
+        $currentUserAgent = $this->config->getUserAgent();
+        if (empty($currentUserAgent) || strpos($currentUserAgent, 'OpenAPI-Generator') === 0) {
+            $this->config->setUserAgent(self::DEFAULT_USER_AGENT . self::SDK_VERSION);
+        }
 
         // Create a custom HTTP client with middleware to add the AccountId header if needed
         $stack = HandlerStack::create();
@@ -129,7 +134,7 @@ class MoneiClient
 
     /**
      * Set the account ID to act on behalf of a merchant
-     * 
+     *
      * @param string|null $accountId The merchant's account ID
      * @return void
      */
@@ -140,7 +145,7 @@ class MoneiClient
 
     /**
      * Get the current account ID
-     * 
+     *
      * @return string|null The current account ID
      */
     public function getAccountId()
@@ -150,7 +155,7 @@ class MoneiClient
 
     /**
      * Set a custom User-Agent header
-     * 
+     *
      * @param string $userAgent Custom User-Agent string
      * @return void
      */

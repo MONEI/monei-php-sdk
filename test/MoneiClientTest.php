@@ -25,6 +25,8 @@ class MoneiClientTest extends TestCase
 
     protected function setUp(): void
     {
+        // Reset the default configuration to ensure test isolation
+        Configuration::setDefaultConfiguration(new Configuration());
         $this->moneiClient = new MoneiClient($this->apiKey);
     }
 
