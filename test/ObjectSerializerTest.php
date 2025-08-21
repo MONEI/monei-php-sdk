@@ -54,12 +54,6 @@ class ObjectSerializerTest extends TestCase
         $this->assertEquals('test', $headerValue);
     }
 
-    public function testToFormValue()
-    {
-        $value = 'test';
-        $formValue = ObjectSerializer::toFormValue($value);
-        $this->assertEquals('test', $formValue);
-    }
 
     public function testToString()
     {

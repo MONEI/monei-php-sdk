@@ -5,14 +5,12 @@ lib/Api/PaymentsApi.php
 lib/Api/SubscriptionsApi.php
 lib/ApiException.php
 lib/Configuration.php
+lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/ActivateSubscriptionRequest.php
 lib/Model/Address.php
 lib/Model/ApiException.php
-lib/Model/ApplePayDomainRegister200Response.php
 lib/Model/BadRequestError.php
-lib/Model/BadRequestErrorAllOf.php
-lib/Model/BizumValidatePhone200Response.php
 lib/Model/CancelPaymentRequest.php
 lib/Model/CancelSubscriptionRequest.php
 lib/Model/CapturePaymentRequest.php
@@ -21,11 +19,11 @@ lib/Model/ConfirmPaymentRequestPaymentMethod.php
 lib/Model/ConfirmPaymentRequestPaymentMethodCard.php
 lib/Model/CreatePaymentRequest.php
 lib/Model/CreateSubscriptionRequest.php
+lib/Model/InlineObject.php
+lib/Model/InlineObject1.php
 lib/Model/InternalServerError.php
-lib/Model/InternalServerErrorAllOf.php
 lib/Model/ModelInterface.php
 lib/Model/NotFoundError.php
-lib/Model/NotFoundErrorAllOf.php
 lib/Model/PauseSubscriptionRequest.php
 lib/Model/Payment.php
 lib/Model/PaymentBillingDetails.php
@@ -85,7 +83,6 @@ lib/Model/SendPaymentRequestRequest.php
 lib/Model/SendSubscriptionLinkRequest.php
 lib/Model/SendSubscriptionStatusRequest.php
 lib/Model/ServiceUnavailableError.php
-lib/Model/ServiceUnavailableErrorAllOf.php
 lib/Model/Subscription.php
 lib/Model/SubscriptionInterval.php
 lib/Model/SubscriptionLastPayment.php
@@ -94,9 +91,7 @@ lib/Model/SubscriptionPaymentMethodCard.php
 lib/Model/SubscriptionRetryScheduleInner.php
 lib/Model/SubscriptionStatus.php
 lib/Model/UnauthorizedError.php
-lib/Model/UnauthorizedErrorAllOf.php
 lib/Model/UnprocessableEntityError.php
-lib/Model/UnprocessableEntityErrorAllOf.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/Model/ValidateBizumPhoneRequest.php
 lib/ObjectSerializer.php
