@@ -23,6 +23,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei\Api;
 
 use Monei\Internal\GuzzleHttp\Client;
@@ -39,6 +40,7 @@ use Monei\Configuration;
 use Monei\FormDataProcessor;
 use Monei\HeaderSelector;
 use Monei\ObjectSerializer;
+
 /**
  * PaymentMethodsApi Class Doc Comment
  *
@@ -313,7 +315,7 @@ class PaymentMethodsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

@@ -23,6 +23,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei\Api;
 
 use Monei\Internal\GuzzleHttp\Client;
@@ -39,6 +40,7 @@ use Monei\Configuration;
 use Monei\FormDataProcessor;
 use Monei\HeaderSelector;
 use Monei\ObjectSerializer;
+
 /**
  * PaymentsApi Class Doc Comment
  *
@@ -285,7 +287,7 @@ class PaymentsApi
         if (isset($cancel_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($cancel_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($cancel_payment_request));
             } else {
                 $httpBody = $cancel_payment_request;
             }
@@ -302,7 +304,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -502,7 +504,7 @@ class PaymentsApi
         if (isset($capture_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($capture_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($capture_payment_request));
             } else {
                 $httpBody = $capture_payment_request;
             }
@@ -519,7 +521,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -719,7 +721,7 @@ class PaymentsApi
         if (isset($confirm_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($confirm_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($confirm_payment_request));
             } else {
                 $httpBody = $confirm_payment_request;
             }
@@ -736,7 +738,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -927,7 +929,7 @@ class PaymentsApi
         if (isset($create_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_payment_request));
             } else {
                 $httpBody = $create_payment_request;
             }
@@ -944,7 +946,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1149,7 +1151,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1349,7 +1351,7 @@ class PaymentsApi
         if (isset($recurring_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($recurring_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($recurring_payment_request));
             } else {
                 $httpBody = $recurring_payment_request;
             }
@@ -1366,7 +1368,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1566,7 +1568,7 @@ class PaymentsApi
         if (isset($refund_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($refund_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($refund_payment_request));
             } else {
                 $httpBody = $refund_payment_request;
             }
@@ -1583,7 +1585,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1783,7 +1785,7 @@ class PaymentsApi
         if (isset($send_payment_link_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_payment_link_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_payment_link_request));
             } else {
                 $httpBody = $send_payment_link_request;
             }
@@ -1800,7 +1802,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2000,7 +2002,7 @@ class PaymentsApi
         if (isset($send_payment_receipt_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_payment_receipt_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_payment_receipt_request));
             } else {
                 $httpBody = $send_payment_receipt_request;
             }
@@ -2017,7 +2019,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2221,7 +2223,7 @@ class PaymentsApi
         if (isset($send_payment_request_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_payment_request_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_payment_request_request));
             } else {
                 $httpBody = $send_payment_request_request;
             }
@@ -2238,7 +2240,7 @@ class PaymentsApi
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \Monei\Internal\\Monei\Internal\GuzzleHttp\json_encode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
