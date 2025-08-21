@@ -28,15 +28,15 @@
 
 namespace Monei\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\MultipartStream;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\ClientInterface;
+use Monei\Internal\GuzzleHttp\Exception\ConnectException;
+use Monei\Internal\GuzzleHttp\Exception\RequestException;
+use Monei\Internal\GuzzleHttp\Psr7\MultipartStream;
+use Monei\Internal\GuzzleHttp\Psr7\Request;
+use Monei\Internal\GuzzleHttp\RequestOptions;
+use Monei\Internal\Psr\Http\Message\RequestInterface;
+use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\ApiException;
 use Monei\Configuration;
 use Monei\FormDataProcessor;
@@ -393,7 +393,7 @@ class ApplePayDomainApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['register'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function registerRequest($register_apple_pay_domain_request, string $contentType = self::contentTypes['register'][0])
     {
@@ -427,7 +427,7 @@ class ApplePayDomainApi
         if (isset($register_apple_pay_domain_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($register_apple_pay_domain_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($register_apple_pay_domain_request));
             } else {
                 $httpBody = $register_apple_pay_domain_request;
             }
@@ -448,7 +448,7 @@ class ApplePayDomainApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

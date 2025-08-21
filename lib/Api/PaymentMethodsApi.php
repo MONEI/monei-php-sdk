@@ -28,15 +28,15 @@
 
 namespace Monei\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\MultipartStream;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\ClientInterface;
+use Monei\Internal\GuzzleHttp\Exception\ConnectException;
+use Monei\Internal\GuzzleHttp\Exception\RequestException;
+use Monei\Internal\GuzzleHttp\Psr7\MultipartStream;
+use Monei\Internal\GuzzleHttp\Psr7\Request;
+use Monei\Internal\GuzzleHttp\RequestOptions;
+use Monei\Internal\Psr\Http\Message\RequestInterface;
+use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\ApiException;
 use Monei\Configuration;
 use Monei\FormDataProcessor;
@@ -398,7 +398,7 @@ class PaymentMethodsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['get'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function getRequest($account_id = null, $payment_id = null, string $contentType = self::contentTypes['get'][0])
     {
@@ -459,7 +459,7 @@ class PaymentMethodsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

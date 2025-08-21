@@ -10,7 +10,8 @@
     "release": "release-it",
     "cs-fix": "composer cs-fix",
     "test": "composer test",
-    "postbuild": "yarn cs-fix && yarn test",
+    "scope": "./scripts/scope-dependencies.sh",
+    "postbuild": "yarn scope && yarn cs-fix && yarn test",
     "prepare": "husky",
     "commitlint": "commitlint --edit"
   },

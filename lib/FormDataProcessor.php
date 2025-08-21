@@ -30,8 +30,8 @@ namespace Monei;
 
 use ArrayAccess;
 use DateTime;
-use GuzzleHttp\Psr7\Utils;
-use Psr\Http\Message\StreamInterface;
+use Monei\Internal\GuzzleHttp\Psr7\Utils;
+use Monei\Internal\Psr\Http\Message\StreamInterface;
 use SplFileObject;
 use Monei\Model\ModelInterface;
 

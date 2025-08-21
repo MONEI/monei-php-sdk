@@ -13,6 +13,9 @@ $finder = PhpCsFixer\Finder::create()
         '.git',
         '.github',
         '.openapi-generator',
+        'build-prestashop',
+        'build-prestashop-scoped',
+        'monei-php-sdk-prestashop',
     ])
     ->notPath([
         'test.php',

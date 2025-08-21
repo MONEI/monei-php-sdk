@@ -28,15 +28,15 @@
 
 namespace Monei\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\MultipartStream;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\ClientInterface;
+use Monei\Internal\GuzzleHttp\Exception\ConnectException;
+use Monei\Internal\GuzzleHttp\Exception\RequestException;
+use Monei\Internal\GuzzleHttp\Psr7\MultipartStream;
+use Monei\Internal\GuzzleHttp\Psr7\Request;
+use Monei\Internal\GuzzleHttp\RequestOptions;
+use Monei\Internal\Psr\Http\Message\RequestInterface;
+use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\ApiException;
 use Monei\Configuration;
 use Monei\FormDataProcessor;
@@ -425,7 +425,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancel'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function cancelRequest($id, $cancel_payment_request = null, string $contentType = self::contentTypes['cancel'][0])
     {
@@ -468,7 +468,7 @@ class PaymentsApi
         if (isset($cancel_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($cancel_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($cancel_payment_request));
             } else {
                 $httpBody = $cancel_payment_request;
             }
@@ -489,7 +489,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -795,7 +795,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['capture'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function captureRequest($id, $capture_payment_request = null, string $contentType = self::contentTypes['capture'][0])
     {
@@ -838,7 +838,7 @@ class PaymentsApi
         if (isset($capture_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($capture_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($capture_payment_request));
             } else {
                 $httpBody = $capture_payment_request;
             }
@@ -859,7 +859,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1165,7 +1165,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['confirm'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function confirmRequest($id, $confirm_payment_request = null, string $contentType = self::contentTypes['confirm'][0])
     {
@@ -1208,7 +1208,7 @@ class PaymentsApi
         if (isset($confirm_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($confirm_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($confirm_payment_request));
             } else {
                 $httpBody = $confirm_payment_request;
             }
@@ -1229,7 +1229,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1530,7 +1530,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function createRequest($create_payment_request, string $contentType = self::contentTypes['create'][0])
     {
@@ -1564,7 +1564,7 @@ class PaymentsApi
         if (isset($create_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_payment_request));
             } else {
                 $httpBody = $create_payment_request;
             }
@@ -1585,7 +1585,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1886,7 +1886,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['get'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function getRequest($id, string $contentType = self::contentTypes['get'][0])
     {
@@ -1942,7 +1942,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2248,7 +2248,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['recurring'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function recurringRequest($sequence_id, $recurring_payment_request = null, string $contentType = self::contentTypes['recurring'][0])
     {
@@ -2291,7 +2291,7 @@ class PaymentsApi
         if (isset($recurring_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($recurring_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($recurring_payment_request));
             } else {
                 $httpBody = $recurring_payment_request;
             }
@@ -2312,7 +2312,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2618,7 +2618,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refund'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function refundRequest($id, $refund_payment_request = null, string $contentType = self::contentTypes['refund'][0])
     {
@@ -2661,7 +2661,7 @@ class PaymentsApi
         if (isset($refund_payment_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($refund_payment_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($refund_payment_request));
             } else {
                 $httpBody = $refund_payment_request;
             }
@@ -2682,7 +2682,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2988,7 +2988,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLink'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function sendLinkRequest($id, $send_payment_link_request = null, string $contentType = self::contentTypes['sendLink'][0])
     {
@@ -3031,7 +3031,7 @@ class PaymentsApi
         if (isset($send_payment_link_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_payment_link_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_payment_link_request));
             } else {
                 $httpBody = $send_payment_link_request;
             }
@@ -3052,7 +3052,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3358,7 +3358,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendReceipt'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function sendReceiptRequest($id, $send_payment_receipt_request = null, string $contentType = self::contentTypes['sendReceipt'][0])
     {
@@ -3401,7 +3401,7 @@ class PaymentsApi
         if (isset($send_payment_receipt_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_payment_receipt_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_payment_receipt_request));
             } else {
                 $httpBody = $send_payment_receipt_request;
             }
@@ -3422,7 +3422,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3728,7 +3728,7 @@ class PaymentsApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \Monei\Internal\GuzzleHttp\Psr7\Request
      */
     public function sendRequestRequest($id, $send_payment_request_request, string $contentType = self::contentTypes['sendRequest'][0])
     {
@@ -3777,7 +3777,7 @@ class PaymentsApi
         if (isset($send_payment_request_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_payment_request_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_payment_request_request));
             } else {
                 $httpBody = $send_payment_request_request;
             }
@@ -3798,7 +3798,7 @@ class PaymentsApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = \Monei\Internal\GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

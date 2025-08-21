@@ -13,9 +13,9 @@
 
 namespace Monei;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Middleware;
 use Monei\Api\ApplePayDomainApi;
 use Monei\Api\BizumApi;
 use Monei\Api\PaymentMethodsApi;
@@ -23,7 +23,7 @@ use Monei\Api\PaymentsApi;
 use Monei\Api\SubscriptionsApi;
 use Monei\ApiException;
 use Monei\Configuration;
-use Psr\Http\Message\RequestInterface;
+use Monei\Internal\Psr\Http\Message\RequestInterface;
 
 /**
  * PaymentsApi Class Doc Comment

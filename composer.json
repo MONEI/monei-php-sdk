@@ -36,7 +36,15 @@
     "autoload": {
         "psr-4": {
             "Monei\\": "lib/"
-        }
+        },
+        "classmap": [
+            "lib/Internal/"
+        ],
+        "files": [
+            "lib/Internal/guzzlehttp/guzzle/src/functions.php",
+            "lib/Internal/guzzlehttp/promises/src/functions.php",
+            "lib/Internal/guzzlehttp/psr7/src/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

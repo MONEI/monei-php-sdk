@@ -29,7 +29,7 @@
 
 namespace Monei;
 
-use GuzzleHttp\Psr7\Utils;
+use Monei\Internal\GuzzleHttp\Psr7\Utils;
 use Monei\Model\ModelInterface;
 
 /**
@@ -209,7 +209,7 @@ class ObjectSerializer
 
     /**
      * Take query parameter properties and turn it into an array suitable for
-     * native http_build_query or GuzzleHttp\Psr7\Query::build.
+     * native http_build_query or \Monei\Internal\GuzzleHttp\Psr7\Query::build.
      *
      * @param mixed  $value       Parameter value
      * @param string $paramName   Parameter name
@@ -249,7 +249,7 @@ class ObjectSerializer
         $query = [];
         $value = (in_array($openApiType, ['object', 'array'], true)) ? (array)$value : $value;
 
-        // since \GuzzleHttp\Psr7\Query::build fails with nested arrays
+        // since \Monei\Internal\GuzzleHttp\Psr7\Query::build fails with nested arrays
         // need to flatten array first
         $flattenArray = function ($arr, $name, &$result = []) use (&$flattenArray, $style, $explode) {
             if (!is_array($arr)) {
