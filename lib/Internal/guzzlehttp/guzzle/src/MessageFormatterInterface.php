@@ -4,6 +4,7 @@ namespace Monei\Internal\GuzzleHttp;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
+
 interface MessageFormatterInterface
 {
     /**

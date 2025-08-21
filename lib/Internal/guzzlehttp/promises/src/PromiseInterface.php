@@ -1,6 +1,7 @@
 <?php
 
 declare (strict_types=1);
+
 namespace Monei\Internal\GuzzleHttp\Promise;
 
 /**
@@ -71,10 +72,10 @@ interface PromiseInterface
      *
      * If the promise cannot be waited on, then the promise will be rejected.
      *
-     * @return mixed
      *
      * @throws \LogicException if the promise has no wait function or if the
      *                         promise does not settle after waiting.
+     * @return mixed
      */
     public function wait(bool $unwrap = \true);
 }

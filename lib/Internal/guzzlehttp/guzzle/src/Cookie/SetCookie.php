@@ -332,7 +332,7 @@ class SetCookie
     {
         $cookiePath = $this->getPath();
         // Match on exact matches or when path is the default empty "/"
-        if ($cookiePath === '/' || $cookiePath == $requestPath) {
+        if ($cookiePath === '/' || $cookiePath === $requestPath) {
             return \true;
         }
         // Ensure that the cookie-path is a prefix of the request path.

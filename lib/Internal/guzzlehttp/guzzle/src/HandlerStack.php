@@ -5,6 +5,7 @@ namespace Monei\Internal\GuzzleHttp;
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
+
 /**
  * Creates a composed Guzzle handler function by stacking middlewares on top of
  * an HTTP handler function.

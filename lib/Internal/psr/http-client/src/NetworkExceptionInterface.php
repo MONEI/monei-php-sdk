@@ -3,6 +3,7 @@
 namespace Monei\Internal\Psr\Http\Client;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * Thrown when the request cannot be completed because of network issues.
  *
