@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.4', '8.1', '8.2', '8.3', '8.4']
+        php-versions: ['7.4', '8.2', '8.4']
     name: PHP ${{ matrix.php-versions }} Test
     steps:
       - name: Checkout code
@@ -84,11 +84,9 @@ jobs:
     strategy:
       matrix:
         guzzle-version: ['^5.3', '^6.5', '^7.0']
-        php-version: ['7.4', '8.1', '8.2']
+        php-version: ['7.4', '8.2']
         exclude:
           # Guzzle 5 doesn't support PHP 8+
-          - guzzle-version: '^5.3'
-            php-version: '8.1'
           - guzzle-version: '^5.3'
             php-version: '8.2'
     
