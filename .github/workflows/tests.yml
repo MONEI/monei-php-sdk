@@ -75,7 +75,7 @@ jobs:
           EOF
           
           composer install --no-interaction --prefer-dist --quiet
-          cp ${{ github.workspace }}/scripts/test-guzzle-coexistence.php test.php
+          cp ${{ github.workspace }}/scripts/test-guzzle-compatibility.php test.php
           php test.php
 
   guzzle-compatibility:
@@ -135,5 +135,5 @@ jobs:
           
           # Install and test
           composer install --no-interaction --prefer-dist --quiet
-          cp ${{ github.workspace }}/scripts/test-guzzle-coexistence.php test.php
+          cp ${{ github.workspace }}/scripts/test-guzzle-compatibility.php test.php
           php test.php

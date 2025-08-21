@@ -32,7 +32,7 @@ echo "Testing MONEI SDK with globally installed Guzzle...\n";
 // Check if global Guzzle is available
 if (class_exists('GuzzleHttp\Client')) {
     $globalGuzzleClass = 'GuzzleHttp\Client';
-    
+
     // Try to get version from different properties (varies by Guzzle version)
     if (defined($globalGuzzleClass . '::VERSION')) {
         $globalGuzzleVersion = constant($globalGuzzleClass . '::VERSION');
@@ -51,7 +51,7 @@ if (class_exists('GuzzleHttp\Client')) {
             $globalGuzzleVersion = 'unknown';
         }
     }
-    
+
     echo "Global Guzzle version: " . $globalGuzzleVersion . "\n";
     echo "Global Guzzle class: " . $globalGuzzleClass . "\n";
 } else {
@@ -93,7 +93,7 @@ if (!$allScopedClassesExist) {
 try {
     $config = $monei->getConfig();
     echo "✅ MONEI client getConfig() works\n";
-    
+
     // Check that payments API is available
     if ($monei->payments instanceof \Monei\Api\PaymentsApi) {
         echo "✅ Payments API is available\n";
@@ -101,7 +101,7 @@ try {
         echo "❌ Payments API is not properly initialized\n";
         exit(1);
     }
-    
+
 } catch (Exception $e) {
     echo "❌ Error testing MONEI client: " . $e->getMessage() . "\n";
     exit(1);
@@ -113,11 +113,11 @@ if (class_exists('GuzzleHttp\Client')) {
         // Create a global Guzzle client
         $globalClient = new \GuzzleHttp\Client();
         echo "✅ Global Guzzle client created successfully\n";
-        
+
         // Verify they're different implementations
         $moneiGuzzleClass = 'Monei\Internal\GuzzleHttp\Client';
         $globalGuzzleClass = 'GuzzleHttp\Client';
-        
+
         if ($moneiGuzzleClass !== $globalGuzzleClass) {
             echo "✅ MONEI uses scoped Guzzle (no conflict)\n";
             echo "   - MONEI Guzzle: " . $moneiGuzzleClass . "\n";
@@ -126,7 +126,7 @@ if (class_exists('GuzzleHttp\Client')) {
             echo "❌ MONEI is using global Guzzle (conflict!)\n";
             exit(1);
         }
-        
+
     } catch (Exception $e) {
         echo "❌ Error during coexistence test: " . $e->getMessage() . "\n";
         exit(1);
