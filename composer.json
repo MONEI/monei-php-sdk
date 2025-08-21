@@ -32,10 +32,10 @@
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",
         "ralouphie/getallheaders": "^3.0",
-        "phpunit/phpunit": "^9.6 || ^10.0 || ^11.0",
+        "phpunit/phpunit": "^9.6",
         "squizlabs/php_codesniffer": "^3.13",
         "friendsofphp/php-cs-fixer": "^3.64",
-        "phpunit/php-code-coverage": "^9.2 || ^10.0 || ^11.0"
+        "phpunit/php-code-coverage": "^9.2"
     },
     "autoload": {
         "psr-4": {

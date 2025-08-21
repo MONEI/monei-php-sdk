@@ -88,7 +88,7 @@ class ApiExceptionTest extends TestCase
     /**
      * Data provider for HTTP status codes
      */
-    public static function provideHttpStatusCodes()
+    public function provideHttpStatusCodes()
     {
         return [
             [400, 'Bad Request'],
