@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.8.0 (2025-08-21)
+
+* chore: reduce GitHub Actions test matrix to speed up CI ([7668b65](https://github.com/MONEI/monei-php-sdk/commit/7668b65))
+* fix: add scoped dependencies to require-dev ([cad414c](https://github.com/MONEI/monei-php-sdk/commit/cad414c))
+* fix: rename test script to test-guzzle-compatibility.php ([435f46a](https://github.com/MONEI/monei-php-sdk/commit/435f46a))
+* fix: resolve double namespace issue in API files ([46a3923](https://github.com/MONEI/monei-php-sdk/commit/46a3923))
+* fix: update test-guzzle-coexistence.php to work in CI environment ([6cbf5fc](https://github.com/MONEI/monei-php-sdk/commit/6cbf5fc))
+* fix: use PHPUnit 9 for PHP 7.4+ compatibility ([b65d1e6](https://github.com/MONEI/monei-php-sdk/commit/b65d1e6))
+* test: add better error reporting to compatibility test script ([1f716b1](https://github.com/MONEI/monei-php-sdk/commit/1f716b1))
+* feat: remove external Guzzle dependency ([85abab1](https://github.com/MONEI/monei-php-sdk/commit/85abab1))
+* feat: scope Guzzle dependencies to avoid conflicts ([c743c89](https://github.com/MONEI/monei-php-sdk/commit/c743c89))
+* feat: update dependencies and improve PHP-Scoper integration ([7d33953](https://github.com/MONEI/monei-php-sdk/commit/7d33953))
+
 ## 2.7.0 (2025-08-21)
 
 * fix: update MoneiClient constructor to accept nullable Configuration parameter ([4b884e3](https://github.com/MONEI/monei-php-sdk/commit/4b884e3))
