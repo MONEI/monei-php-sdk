@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.7.0 (2025-08-21)
+
+* fix: update MoneiClient constructor to accept nullable Configuration parameter ([4b884e3](https://github.com/MONEI/monei-php-sdk/commit/4b884e3))
+* chore: update PHP versions in GitHub Actions workflow to include 8.3 and 8.4 ([f2aebd1](https://github.com/MONEI/monei-php-sdk/commit/f2aebd1))
+* refactor: regenerate SDK with OpenAPI Generator 7.14.0 ([33066b9](https://github.com/MONEI/monei-php-sdk/commit/33066b9))
+
 ## <small>2.6.18 (2025-07-02)</small>
 
 * chore: clean up whitespace in MoneiClientUserAgentTest ([86246ea](https://github.com/MONEI/monei-php-sdk/commit/86246ea))
