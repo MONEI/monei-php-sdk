@@ -22,6 +22,13 @@ foreach ($autoloadPaths as $path) {
 
 if (!$autoloadFound) {
     echo "Error: Could not find autoload.php\n";
+    echo "Tried paths:\n";
+    foreach ($autoloadPaths as $path) {
+        echo "  - $path (exists: " . (file_exists($path) ? 'yes' : 'no') . ")\n";
+    }
+    echo "Current directory: " . getcwd() . "\n";
+    echo "Directory contents:\n";
+    system('ls -la');
     exit(1);
 }
 
@@ -60,10 +67,23 @@ if (class_exists('GuzzleHttp\Client')) {
 
 // Create MONEI client (uses scoped Guzzle internally)
 try {
+    if (!class_exists('Monei\MoneiClient')) {
+        echo "❌ MoneiClient class not found. SDK may not be properly installed.\n";
+        echo "Available Monei classes:\n";
+        $classes = get_declared_classes();
+        foreach ($classes as $class) {
+            if (strpos($class, 'Monei') === 0) {
+                echo "  - $class\n";
+            }
+        }
+        exit(1);
+    }
+
     $monei = new MoneiClient('test_api_key');
     echo "✅ MONEI client created successfully\n";
 } catch (Exception $e) {
     echo "❌ Failed to create MONEI client: " . $e->getMessage() . "\n";
+    echo "Error trace:\n" . $e->getTraceAsString() . "\n";
     exit(1);
 }
 
