@@ -7,11 +7,11 @@ use Monei\ApiException;
 use Monei\Configuration;
 use Monei\Api\PaymentsApi;
 use Monei\MoneiClient;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Middleware;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\Handler\MockHandler;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Psr7\Response;
+use Monei\Internal\GuzzleHttp\Middleware;
 
 class ApiExceptionHandlingTest extends TestCase
 {

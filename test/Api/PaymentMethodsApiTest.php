@@ -32,13 +32,13 @@ use Monei\Configuration;
 use Monei\ApiException;
 use Monei\ObjectSerializer;
 use Monei\Api\PaymentMethodsApi;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Middleware;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\Handler\MockHandler;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Psr7\Response;
+use Monei\Internal\GuzzleHttp\Psr7\Request;
+use Monei\Internal\GuzzleHttp\Exception\RequestException;
+use Monei\Internal\GuzzleHttp\Middleware;
 use PHPUnit\Framework\TestCase;
 
 /**

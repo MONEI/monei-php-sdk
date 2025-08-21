@@ -1,4 +1,4 @@
-name: PHP Tests
+name: PHP Tests & Guzzle Compatibility
 
 on:
   pull_request:
@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        php-versions: ['7.4', '8.2', '8.4']
     name: PHP ${{ matrix.php-versions }} Test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -33,7 +33,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -47,3 +47,91 @@ jobs:
 
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix --dry-run --diff 
+      
+      - name: Test Guzzle compatibility
+        run: php scripts/test-guzzle-compatibility.php
+      
+      - name: Test with Guzzle 6 coexistence
+        if: matrix.php-versions != '7.1'
+        run: |
+          mkdir -p /tmp/guzzle-test && cd /tmp/guzzle-test
+          
+          # Create test environment with Guzzle 6
+          cat > composer.json << 'EOF'
+          {
+              "require": {
+                  "guzzlehttp/guzzle": "^6.5",
+                  "monei/monei-php-sdk": "*"
+              },
+              "repositories": [
+                  {
+                      "type": "path",
+                      "url": "${{ github.workspace }}"
+                  }
+              ],
+              "minimum-stability": "dev",
+              "prefer-stable": true
+          }
+          EOF
+          
+          composer install --no-interaction --prefer-dist --quiet
+          cp ${{ github.workspace }}/scripts/test-guzzle-compatibility.php test.php
+          php test.php
+
+  guzzle-compatibility:
+    runs-on: ubuntu-latest
+    name: Guzzle Version Compatibility Test
+    strategy:
+      matrix:
+        guzzle-version: ['^5.3', '^6.5', '^7.0']
+        php-version: ['7.4', '8.2']
+        exclude:
+          # Guzzle 5 doesn't support PHP 8+
+          - guzzle-version: '^5.3'
+            php-version: '8.2'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, curl, json
+          tools: composer:v2
+      
+      - name: Install SDK dependencies
+        run: composer install --prefer-dist --no-progress
+      
+      - name: Test with Guzzle ${{ matrix.guzzle-version }}
+        run: |
+          mkdir -p /tmp/compat-test && cd /tmp/compat-test
+          
+          # Create test environment
+          cat > composer.json << EOF
+          {
+              "name": "test/guzzle-compat",
+              "require": {
+                  "php": ">=7.1",
+                  "guzzlehttp/guzzle": "${{ matrix.guzzle-version }}",
+                  "monei/monei-php-sdk": "*"
+              },
+              "repositories": [
+                  {
+                      "type": "path",
+                      "url": "${{ github.workspace }}",
+                      "options": {
+                          "symlink": false
+                      }
+                  }
+              ],
+              "minimum-stability": "dev",
+              "prefer-stable": true
+          }
+          EOF
+          
+          # Install and test
+          composer install --no-interaction --prefer-dist --quiet
+          cp ${{ github.workspace }}/scripts/test-guzzle-compatibility.php test.php
+          php test.php

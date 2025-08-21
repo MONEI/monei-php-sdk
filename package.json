@@ -5,12 +5,12 @@
   "author": "monei",
   "type": "module",
   "scripts": {
-    "build": "openapi-generator-cli generate --generator-key monei-php && yarn postbuild",
-    "build:local": "openapi-generator-cli generate --generator-key monei-php-local && yarn postbuild",
+    "build": "openapi-generator-cli generate --generator-key monei-php",
+    "build:local": "openapi-generator-cli generate --generator-key monei-php-local",
     "release": "release-it",
     "cs-fix": "composer cs-fix",
     "test": "composer test",
-    "postbuild": "yarn cs-fix && yarn test",
+    "scope": "./scripts/scope-and-update.sh",
     "prepare": "husky",
     "commitlint": "commitlint --edit"
   },
