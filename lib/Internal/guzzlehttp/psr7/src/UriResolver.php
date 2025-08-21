@@ -1,28 +1,24 @@
 <?php
 
+declare (strict_types=1);
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * Resolves a URI reference in the context of a base URI and the opposite way.
  *
  * @author Tobias Schultze
  *
- * @link https://tools.ietf.org/html/rfc3986#section-5
+ * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5
  */
 final class UriResolver
 {
     /**
      * Removes dot segments from a path and returns the new path.
      *
-     * @param string $path
-     *
-     * @return string
-     *
-     * @link http://tools.ietf.org/html/rfc3986#section-5.2.4
+     * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4
      */
-    public static function removeDotSegments($path)
+    public static function removeDotSegments(string $path): string
     {
         if ($path === '' || $path === '/') {
             return $path;
@@ -50,23 +46,18 @@ final class UriResolver
     /**
      * Converts the relative URI into a new URI that is resolved against the base URI.
      *
-     * @param UriInterface $base Base URI
-     * @param UriInterface $rel  Relative URI
-     *
-     * @return UriInterface
-     *
-     * @link http://tools.ietf.org/html/rfc3986#section-5.2
+     * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2
      */
-    public static function resolve(UriInterface $base, UriInterface $rel)
+    public static function resolve(UriInterface $base, UriInterface $rel): UriInterface
     {
         if ((string) $rel === '') {
             // we can simply return the same base URI instance for this same-document reference
             return $base;
         }
-        if ($rel->getScheme() !== '') {
+        if ($rel->getScheme() != '') {
             return $rel->withPath(self::removeDotSegments($rel->getPath()));
         }
-        if ($rel->getAuthority() !== '') {
+        if ($rel->getAuthority() != '') {
             $targetAuthority = $rel->getAuthority();
             $targetPath = self::removeDotSegments($rel->getPath());
             $targetQuery = $rel->getQuery();
@@ -74,11 +65,11 @@ final class UriResolver
             $targetAuthority = $base->getAuthority();
             if ($rel->getPath() === '') {
                 $targetPath = $base->getPath();
-                $targetQuery = $rel->getQuery() !== '' ? $rel->getQuery() : $base->getQuery();
+                $targetQuery = $rel->getQuery() != '' ? $rel->getQuery() : $base->getQuery();
             } else {
                 if ($rel->getPath()[0] === '/') {
                     $targetPath = $rel->getPath();
-                } elseif ($targetAuthority !== '' && $base->getPath() === '') {
+                } else if ($targetAuthority != '' && $base->getPath() === '') {
                     $targetPath = '/' . $rel->getPath();
                 } else {
                     $lastSlashPos = strrpos($base->getPath(), '/');
@@ -114,13 +105,8 @@ final class UriResolver
      * relative-path reference will be returned as-is.
      *
      *    echo UriResolver::relativize($base, new Uri('/a/b/c'));  // prints 'c' as well
-     *
-     * @param UriInterface $base   Base URI
-     * @param UriInterface $target Target URI
-     *
-     * @return UriInterface The relative URI reference
      */
-    public static function relativize(UriInterface $base, UriInterface $target)
+    public static function relativize(UriInterface $base, UriInterface $target): UriInterface
     {
         if ($target->getScheme() !== '' && ($base->getScheme() !== $target->getScheme() || $target->getAuthority() === '' && $base->getAuthority() !== '')) {
             return $target;
@@ -149,12 +135,13 @@ final class UriResolver
         // inherit the base query component when resolving.
         if ($target->getQuery() === '') {
             $segments = explode('/', $target->getPath());
+            /** @var string $lastSegment */
             $lastSegment = end($segments);
             return $emptyPathUri->withPath($lastSegment === '' ? './' : $lastSegment);
         }
         return $emptyPathUri;
     }
-    private static function getRelativePath(UriInterface $base, UriInterface $target)
+    private static function getRelativePath(UriInterface $base, UriInterface $target): string
     {
         $sourceSegments = explode('/', $base->getPath());
         $targetSegments = explode('/', $target->getPath());
@@ -175,7 +162,7 @@ final class UriResolver
         if ('' === $relativePath || \false !== strpos(explode('/', $relativePath, 2)[0], ':')) {
             $relativePath = "./{$relativePath}";
         } elseif ('/' === $relativePath[0]) {
-            if ($base->getAuthority() !== '' && $base->getPath() === '') {
+            if ($base->getAuthority() != '' && $base->getPath() === '') {
                 // In this case an extra slash is added by resolve() automatically. So we must not add one here.
                 $relativePath = ".{$relativePath}";
             } else {

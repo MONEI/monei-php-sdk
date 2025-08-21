@@ -1,12 +1,12 @@
 <?php
 
+declare (strict_types=1);
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use InvalidArgumentException;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * PSR-7 request implementation.
  */
@@ -22,11 +22,11 @@ class Request implements RequestInterface
     /**
      * @param string                               $method  HTTP method
      * @param string|UriInterface                  $uri     URI
-     * @param array                                $headers Request headers
+     * @param (string|string[])[]                  $headers Request headers
      * @param string|resource|StreamInterface|null $body    Request body
      * @param string                               $version Protocol version
      */
-    public function __construct($method, $uri, array $headers = [], $body = null, $version = '1.1')
+    public function __construct(string $method, $uri, array $headers = [], $body = null, string $version = '1.1')
     {
         $this->assertMethod($method);
         if (!$uri instanceof UriInterface) {
@@ -43,7 +43,7 @@ class Request implements RequestInterface
             $this->stream = Utils::streamFor($body);
         }
     }
-    public function getRequestTarget()
+    public function getRequestTarget(): string
     {
         if ($this->requestTarget !== null) {
             return $this->requestTarget;
@@ -52,12 +52,12 @@ class Request implements RequestInterface
         if ($target === '') {
             $target = '/';
         }
-        if ($this->uri->getQuery() !== '') {
+        if ($this->uri->getQuery() != '') {
             $target .= '?' . $this->uri->getQuery();
         }
         return $target;
     }
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget($requestTarget): RequestInterface
     {
         if (preg_match('#\s#', $requestTarget)) {
             throw new InvalidArgumentException('Invalid request target provided; cannot contain whitespace');
@@ -66,22 +66,22 @@ class Request implements RequestInterface
         $new->requestTarget = $requestTarget;
         return $new;
     }
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
-    public function withMethod($method)
+    public function withMethod($method): RequestInterface
     {
         $this->assertMethod($method);
         $new = clone $this;
         $new->method = strtoupper($method);
         return $new;
     }
-    public function getUri()
+    public function getUri(): UriInterface
     {
         return $this->uri;
     }
-    public function withUri(UriInterface $uri, $preserveHost = \false)
+    public function withUri(UriInterface $uri, $preserveHost = \false): RequestInterface
     {
         if ($uri === $this->uri) {
             return $this;
@@ -93,10 +93,10 @@ class Request implements RequestInterface
         }
         return $new;
     }
-    private function updateHostFromUri()
+    private function updateHostFromUri(): void
     {
         $host = $this->uri->getHost();
-        if ($host === '') {
+        if ($host == '') {
             return;
         }
         if (($port = $this->uri->getPort()) !== null) {
@@ -109,13 +109,16 @@ class Request implements RequestInterface
             $this->headerNames['host'] = 'Host';
         }
         // Ensure Host is the first header.
-        // See: http://tools.ietf.org/html/rfc7230#section-5.4
+        // See: https://datatracker.ietf.org/doc/html/rfc7230#section-5.4
         $this->headers = [$header => [$host]] + $this->headers;
     }
-    private function assertMethod($method)
+    /**
+     * @param mixed $method
+     */
+    private function assertMethod($method): void
     {
         if (!is_string($method) || $method === '') {
-            throw new \InvalidArgumentException('Method must be a non-empty string.');
+            throw new InvalidArgumentException('Method must be a non-empty string.');
         }
     }
 }

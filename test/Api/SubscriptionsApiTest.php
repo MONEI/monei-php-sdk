@@ -28,13 +28,13 @@
 
 namespace Monei\Test\Api;
 
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
+use Monei\Internal\GuzzleHttp\Exception\RequestException;
+use Monei\Internal\GuzzleHttp\Handler\MockHandler;
+use Monei\Internal\GuzzleHttp\Psr7\Request;
+use Monei\Internal\GuzzleHttp\Psr7\Response;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Middleware;
 use Monei\Api\SubscriptionsApi;
 use Monei\ApiException;
 use Monei\Configuration;

@@ -5,17 +5,31 @@ namespace Monei\Internal\GuzzleHttp;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * Represents data at the point after it was transferred either successfully
  * or after a network error.
  */
 final class TransferStats
 {
+    /**
+     * @var RequestInterface
+     */
     private $request;
+    /**
+     * @var ResponseInterface|null
+     */
     private $response;
+    /**
+     * @var float|null
+     */
     private $transferTime;
+    /**
+     * @var array
+     */
     private $handlerStats;
+    /**
+     * @var mixed|null
+     */
     private $handlerErrorData;
     /**
      * @param RequestInterface       $request          Request that was sent.
@@ -24,7 +38,7 @@ final class TransferStats
      * @param mixed                  $handlerErrorData Handler error data.
      * @param array                  $handlerStats     Handler specific stats.
      */
-    public function __construct(RequestInterface $request, ResponseInterface $response = null, $transferTime = null, $handlerErrorData = null, $handlerStats = [])
+    public function __construct(RequestInterface $request, ?ResponseInterface $response = null, ?float $transferTime = null, $handlerErrorData = null, array $handlerStats = [])
     {
         $this->request = $request;
         $this->response = $response;
@@ -32,28 +46,21 @@ final class TransferStats
         $this->handlerErrorData = $handlerErrorData;
         $this->handlerStats = $handlerStats;
     }
-    /**
-     * @return RequestInterface
-     */
-    public function getRequest()
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
     /**
      * Returns the response that was received (if any).
-     *
-     * @return ResponseInterface|null
      */
-    public function getResponse()
+    public function getResponse(): ?ResponseInterface
     {
         return $this->response;
     }
     /**
      * Returns true if a response was received.
-     *
-     * @return bool
      */
-    public function hasResponse()
+    public function hasResponse(): bool
     {
         return $this->response !== null;
     }
@@ -72,10 +79,8 @@ final class TransferStats
     }
     /**
      * Get the effective URI the request was sent to.
-     *
-     * @return UriInterface
      */
-    public function getEffectiveUri()
+    public function getEffectiveUri(): UriInterface
     {
         return $this->request->getUri();
     }
@@ -84,16 +89,14 @@ final class TransferStats
      *
      * @return float|null Time in seconds.
      */
-    public function getTransferTime()
+    public function getTransferTime(): ?float
     {
         return $this->transferTime;
     }
     /**
      * Gets an array of all of the handler specific transfer data.
-     *
-     * @return array
      */
-    public function getHandlerStats()
+    public function getHandlerStats(): array
     {
         return $this->handlerStats;
     }
@@ -104,8 +107,8 @@ final class TransferStats
      *
      * @return mixed|null
      */
-    public function getHandlerStat($stat)
+    public function getHandlerStat(string $stat)
     {
-        return isset($this->handlerStats[$stat]) ? $this->handlerStats[$stat] : null;
+        return $this->handlerStats[$stat] ?? null;
     }
 }

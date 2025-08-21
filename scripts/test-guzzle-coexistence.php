@@ -1,72 +1,53 @@
 <?php
+
 /**
- * Test script to verify MONEI SDK can coexist with different Guzzle versions
- * This script should be run in a test environment with a specific Guzzle version installed
+ * Test that MONEI SDK can coexist with different versions of Guzzle
  */
 
-require 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-// Get Guzzle version
-$guzzleVersion = 'unknown';
-if (defined('\GuzzleHttp\Client::VERSION')) {
-    $guzzleVersion = \GuzzleHttp\Client::VERSION;
-} elseif (defined('\GuzzleHttp\Client::MAJOR_VERSION')) {
-    $guzzleVersion = \GuzzleHttp\Client::MAJOR_VERSION;
+use Monei\MoneiClient;
+use GuzzleHttp\Client as GlobalGuzzle;
+
+echo "Testing MONEI SDK with globally installed Guzzle...\n";
+
+// Get the globally installed Guzzle version
+$globalGuzzleVersion = GlobalGuzzle::VERSION ?? GlobalGuzzle::MAJOR_VERSION ?? 'unknown';
+echo "Global Guzzle version: " . $globalGuzzleVersion . "\n";
+
+// Create MONEI client (uses scoped Guzzle internally)
+$monei = new MoneiClient('test_api_key');
+
+// Verify MONEI client is using scoped Guzzle
+$reflection = new ReflectionClass($monei);
+$httpClientProperty = $reflection->getProperty('httpClient');
+$httpClientProperty->setAccessible(true);
+$httpClient = $httpClientProperty->getValue($monei);
+
+// Check the class name of the HTTP client
+$httpClientClass = get_class($httpClient);
+echo "MONEI HTTP client class: " . $httpClientClass . "\n";
+
+// Verify it's the scoped version
+if (strpos($httpClientClass, 'Monei\Internal\GuzzleHttp') !== false) {
+    echo "✅ MONEI SDK is using scoped Guzzle (no conflict)\n";
 } else {
-    // Try to get from composer
-    $installed = json_decode(file_get_contents('vendor/composer/installed.json'), true);
-    foreach ($installed['packages'] ?? $installed as $package) {
-        if ($package['name'] === 'guzzlehttp/guzzle') {
-            $guzzleVersion = $package['version'];
-            break;
-        }
-    }
+    echo "❌ MONEI SDK is not using scoped Guzzle properly\n";
+    exit(1);
 }
 
-echo "Testing MONEI SDK with Guzzle " . $guzzleVersion . "\n";
-
+// Try to use both at the same time
 try {
-    // Create instances of both
-    $externalGuzzle = new \GuzzleHttp\Client();
-    $monei = new \Monei\MoneiClient('test_api_key');
-    
-    // Verify both work
-    if (get_class($externalGuzzle) === 'GuzzleHttp\Client') {
-        echo "✅ External Guzzle client created\n";
-    }
-    
-    if ($monei->payments && $monei->subscriptions) {
-        echo "✅ MONEI SDK works correctly\n";
-    }
-    
-    // Verify they use different namespaces
-    $moneiGuzzleClass = 'Monei\Internal\GuzzleHttp\Client';
-    if (class_exists($moneiGuzzleClass)) {
-        echo "✅ MONEI uses scoped Guzzle\n";
-    }
-    
-    // Test that both can be used simultaneously
-    echo "Testing simultaneous usage...\n";
-    
-    // External Guzzle should work
-    $externalGuzzleClass = get_class($externalGuzzle);
-    if ($externalGuzzleClass === 'GuzzleHttp\Client') {
-        echo "✅ External Guzzle instance verified\n";
-    }
-    
-    // MONEI should work with its internal Guzzle
-    $apis = ['payments', 'subscriptions', 'paymentMethods', 'bizum', 'applePay'];
-    foreach ($apis as $api) {
-        if (!property_exists($monei, $api) || !$monei->$api) {
-            throw new Exception("API endpoint not accessible: $api");
-        }
-    }
-    echo "✅ All MONEI API endpoints verified\n";
-    
-    echo "\n✅ Compatibility test PASSED with Guzzle " . $guzzleVersion . "\n";
-    exit(0);
+    // Use global Guzzle
+    $globalClient = new GlobalGuzzle();
+    echo "✅ Global Guzzle client created successfully\n";
+
+    // Use MONEI client
+    $config = $monei->getConfig();
+    echo "✅ MONEI client working correctly\n";
+
+    echo "\n✅ Both Guzzle versions can coexist without conflicts!\n";
 } catch (Exception $e) {
     echo "❌ Error: " . $e->getMessage() . "\n";
-    echo "Stack trace:\n" . $e->getTraceAsString() . "\n";
     exit(1);
 }

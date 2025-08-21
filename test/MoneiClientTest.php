@@ -10,11 +10,11 @@ use Monei\Api\PaymentsApi;
 use Monei\Api\SubscriptionsApi;
 use Monei\Api\ApplePayDomainApi;
 use Monei\Api\PaymentMethodsApi;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Middleware;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\Handler\MockHandler;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Psr7\Response;
+use Monei\Internal\GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 
 class MoneiClientTest extends TestCase
@@ -81,7 +81,7 @@ class MoneiClientTest extends TestCase
         $httpClient = $httpClientProp->getValue($this->moneiClient);
 
         // Create a request and pass it through the handler stack
-        $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.monei.com/v1');
+        $request = new \Monei\Internal\GuzzleHttp\Psr7\Request('GET', 'https://api.monei.com/v1');
         $handler = $httpClient->getConfig('handler');
 
         // This will trigger the middleware and throw the exception
@@ -132,7 +132,7 @@ class MoneiClientTest extends TestCase
         $httpClient = $httpClientProp->getValue($this->moneiClient);
 
         // Create a request and pass it through the handler stack
-        $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.monei.com/v1');
+        $request = new \Monei\Internal\GuzzleHttp\Psr7\Request('GET', 'https://api.monei.com/v1');
         $handler = $httpClient->getConfig('handler');
 
         // This will trigger the middleware and throw the exception
@@ -269,7 +269,7 @@ class MoneiClientTest extends TestCase
         $client->setAccountId(null);
 
         // Create a request
-        $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.monei.com/v1/test');
+        $request = new \Monei\Internal\GuzzleHttp\Psr7\Request('GET', 'https://api.monei.com/v1/test');
 
         // Apply the middleware function manually
         $modifiedRequest = $request;
