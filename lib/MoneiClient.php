@@ -87,11 +87,11 @@ class MoneiClient
 
     /**
      * @param string          $apiKey
-     * @param Configuration   $config
+     * @param Configuration|null   $config
      */
     public function __construct(
         string $apiKey,
-        Configuration $config = null
+        ?Configuration $config = null
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->config->setApiKey('Authorization', $apiKey);
