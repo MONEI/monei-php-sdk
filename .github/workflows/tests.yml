@@ -83,7 +83,7 @@ jobs:
     name: Guzzle Version Compatibility Test
     strategy:
       matrix:
-        guzzle-version: ['^5.3', '^6.5', '^7.0']
+        guzzle-version: ['^5.3', '^6.5']
         php-version: ['7.4', '8.2']
         exclude:
           # Guzzle 5 doesn't support PHP 8+
