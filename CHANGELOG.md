@@ -1,5 +1,10 @@
 # Changelog
 
+## <small>2.8.1 (2025-08-26)</small>
+
+* chore: update OpenAPI document version to 1.7.2 ([2df4c98](https://github.com/MONEI/monei-php-sdk/commit/2df4c98))
+* chore: update OpenAPI document version to 1.7.2 ([c8e7256](https://github.com/MONEI/monei-php-sdk/commit/c8e7256))
+
 ## 2.8.0 (2025-08-21)
 
 * chore: reduce GitHub Actions test matrix to speed up CI ([7668b65](https://github.com/MONEI/monei-php-sdk/commit/7668b65))
