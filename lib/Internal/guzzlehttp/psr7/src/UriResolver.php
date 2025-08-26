@@ -1,11 +1,9 @@
 <?php
 
 declare (strict_types=1);
-
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * Resolves a URI reference in the context of a base URI and the opposite way.
  *
@@ -56,10 +54,10 @@ final class UriResolver
             // we can simply return the same base URI instance for this same-document reference
             return $base;
         }
-        if ($rel->getScheme() !== '') {
+        if ($rel->getScheme() != '') {
             return $rel->withPath(self::removeDotSegments($rel->getPath()));
         }
-        if ($rel->getAuthority() !== '') {
+        if ($rel->getAuthority() != '') {
             $targetAuthority = $rel->getAuthority();
             $targetPath = self::removeDotSegments($rel->getPath());
             $targetQuery = $rel->getQuery();
@@ -67,11 +65,11 @@ final class UriResolver
             $targetAuthority = $base->getAuthority();
             if ($rel->getPath() === '') {
                 $targetPath = $base->getPath();
-                $targetQuery = $rel->getQuery() !== '' ? $rel->getQuery() : $base->getQuery();
+                $targetQuery = $rel->getQuery() != '' ? $rel->getQuery() : $base->getQuery();
             } else {
                 if ($rel->getPath()[0] === '/') {
                     $targetPath = $rel->getPath();
-                } elseif ($targetAuthority !== '' && $base->getPath() === '') {
+                } else if ($targetAuthority != '' && $base->getPath() === '') {
                     $targetPath = '/' . $rel->getPath();
                 } else {
                     $lastSlashPos = strrpos($base->getPath(), '/');
@@ -164,7 +162,7 @@ final class UriResolver
         if ('' === $relativePath || \false !== strpos(explode('/', $relativePath, 2)[0], ':')) {
             $relativePath = "./{$relativePath}";
         } elseif ('/' === $relativePath[0]) {
-            if ($base->getAuthority() !== '' && $base->getPath() === '') {
+            if ($base->getAuthority() != '' && $base->getPath() === '') {
                 // In this case an extra slash is added by resolve() automatically. So we must not add one here.
                 $relativePath = ".{$relativePath}";
             } else {

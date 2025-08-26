@@ -3,7 +3,6 @@
 namespace Monei\Internal\GuzzleHttp\Handler;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
-
 interface CurlFactoryInterface
 {
     /**

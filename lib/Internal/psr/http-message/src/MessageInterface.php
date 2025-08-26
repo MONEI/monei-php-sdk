@@ -120,8 +120,8 @@ interface MessageInterface
      *
      * @param string $name Case-insensitive header field name.
      * @param string|string[] $value Header value(s).
-     * @throws \InvalidArgumentException for invalid header names or values.
      * @return static
+     * @throws \InvalidArgumentException for invalid header names or values.
      */
     public function withHeader(string $name, $value): MessageInterface;
     /**
@@ -137,8 +137,8 @@ interface MessageInterface
      *
      * @param string $name Case-insensitive header field name to add.
      * @param string|string[] $value Header value(s).
-     * @throws \InvalidArgumentException for invalid header names or values.
      * @return static
+     * @throws \InvalidArgumentException for invalid header names or values.
      */
     public function withAddedHeader(string $name, $value): MessageInterface;
     /**
@@ -170,8 +170,8 @@ interface MessageInterface
      * new body stream.
      *
      * @param StreamInterface $body Body.
-     * @throws \InvalidArgumentException When the body is not valid.
      * @return static
+     * @throws \InvalidArgumentException When the body is not valid.
      */
     public function withBody(StreamInterface $body): MessageInterface;
 }

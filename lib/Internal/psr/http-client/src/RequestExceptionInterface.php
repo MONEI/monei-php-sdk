@@ -3,7 +3,6 @@
 namespace Monei\Internal\Psr\Http\Client;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
-
 /**
  * Exception for when a request failed.
  *

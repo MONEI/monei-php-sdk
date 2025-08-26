@@ -20,9 +20,9 @@ interface UploadedFileFactoryInterface
      * @param string|null $clientFilename Filename as provided by the client, if any.
      * @param string|null $clientMediaType Media type as provided by the client, if any.
      *
+     * @return UploadedFileInterface
      *
      * @throws \InvalidArgumentException If the file resource is not readable.
-     * @return UploadedFileInterface
      */
     public function createUploadedFile(StreamInterface $stream, ?int $size = null, int $error = \UPLOAD_ERR_OK, ?string $clientFilename = null, ?string $clientMediaType = null): UploadedFileInterface;
 }
