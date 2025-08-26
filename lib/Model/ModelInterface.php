@@ -24,6 +24,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei\Model;
 
 /**

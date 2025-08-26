@@ -4,6 +4,7 @@ namespace Monei\Internal\GuzzleHttp\Exception;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
+
 /**
  * Exception when an HTTP error occurs (4xx or 5xx error)
  */

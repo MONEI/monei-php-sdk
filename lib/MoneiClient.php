@@ -10,6 +10,7 @@
  * @author   MONEI
  * @link     https://monei.com
  */
+
 namespace Monei;
 
 use Monei\Internal\GuzzleHttp\Client;
@@ -23,6 +24,7 @@ use Monei\Api\SubscriptionsApi;
 use Monei\ApiException;
 use Monei\Configuration;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * PaymentsApi Class Doc Comment
  *

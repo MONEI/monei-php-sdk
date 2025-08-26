@@ -8,6 +8,7 @@ use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
+
 /**
  * Request redirect middleware.
  *
@@ -119,10 +120,10 @@ class RedirectMiddleware
         // not forcing RFC compliance, but rather emulating what all browsers
         // would do.
         $statusCode = $response->getStatusCode();
-        if ($statusCode == 303 || $statusCode <= 302 && !$options['allow_redirects']['strict']) {
+        if ($statusCode === 303 || $statusCode <= 302 && !$options['allow_redirects']['strict']) {
             $safeMethods = ['GET', 'HEAD', 'OPTIONS'];
             $requestMethod = $request->getMethod();
-            $modify['method'] = in_array($requestMethod, $safeMethods) ? $requestMethod : 'GET';
+            $modify['method'] = in_array($requestMethod, $safeMethods, true) ? $requestMethod : 'GET';
             $modify['body'] = '';
         }
         $uri = self::redirectUri($request, $response, $protocols);
@@ -154,7 +155,7 @@ class RedirectMiddleware
     {
         $location = Psr7\UriResolver::resolve($request->getUri(), new Psr7\Uri($response->getHeaderLine('Location')));
         // Ensure that the redirect URI is allowed based on the protocols.
-        if (!\in_array($location->getScheme(), $protocols)) {
+        if (!\in_array($location->getScheme(), $protocols, true)) {
             throw new BadResponseException(\sprintf('Redirect URI, %s, does not use one of the allowed redirect protocols: %s', $location, \implode(', ', $protocols)), $request, $response);
         }
         return $location;

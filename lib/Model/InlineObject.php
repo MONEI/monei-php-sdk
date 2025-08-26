@@ -24,10 +24,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei\Model;
 
 use ArrayAccess;
 use Monei\ObjectSerializer;
+
 /**
  * InlineObject Class Doc Comment
  *

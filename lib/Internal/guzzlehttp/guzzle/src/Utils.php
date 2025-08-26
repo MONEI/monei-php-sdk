@@ -8,6 +8,7 @@ use Monei\Internal\GuzzleHttp\Handler\CurlMultiHandler;
 use Monei\Internal\GuzzleHttp\Handler\Proxy;
 use Monei\Internal\GuzzleHttp\Handler\StreamHandler;
 use Monei\Internal\Psr\Http\Message\UriInterface;
+
 final class Utils
 {
     /**
@@ -71,9 +72,9 @@ final class Utils
      *
      * The returned handler is not wrapped by any default middlewares.
      *
-     * @return callable(\Psr\Http\Message\RequestInterface, array): Promise\PromiseInterface Returns the best handler for the given system.
      *
      * @throws \RuntimeException if no viable Handler is available.
+     * @return callable(\Psr\Http\Message\RequestInterface, array): Promise\PromiseInterface Returns the best handler for the given system.
      */
     public static function chooseHandler(): callable
     {
@@ -150,7 +151,8 @@ final class Utils
                 return $cached = $filename;
             }
         }
-        throw new \RuntimeException(<<<EOT
+        throw new \RuntimeException(
+            <<<EOT
 No system CA bundle could be found in any of the the common system locations.
 PHP versions earlier than 5.6 are not properly configured to use the system's
 CA bundle by default. In order to verify peer certificates, you will need to
@@ -163,7 +165,7 @@ on disk, you can set the 'openssl.cafile' PHP ini setting to point to the path
 to the file, allowing you to omit the 'verify' request option. See
 https://curl.haxx.se/docs/sslcerts.html for more information.
 EOT
-);
+        );
     }
     /**
      * Creates an associative array of lowercase header names to the actual
@@ -234,9 +236,9 @@ EOT
      * @param int    $depth   User specified recursion depth.
      * @param int    $options Bitmask of JSON decode options.
      *
-     * @return object|array|string|int|float|bool|null
      *
      * @throws InvalidArgumentException if the JSON cannot be decoded.
+     * @return object|array|string|int|float|bool|null
      *
      * @see https://www.php.net/manual/en/function.json-decode.php
      */

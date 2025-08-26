@@ -1,9 +1,11 @@
 <?php
 
 declare (strict_types=1);
+
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\StreamInterface;
+
 /**
  * Converts Guzzle streams into PHP stream resources.
  *
@@ -22,9 +24,9 @@ final class StreamWrapper
      *
      * @param StreamInterface $stream The stream to get a resource for
      *
-     * @return resource
      *
      * @throws \InvalidArgumentException if stream is not readable or writable
+     * @return resource
      */
     public static function getResource(StreamInterface $stream)
     {
@@ -52,7 +54,7 @@ final class StreamWrapper
      */
     public static function register(): void
     {
-        if (!in_array('guzzle', stream_get_wrappers())) {
+        if (!in_array('guzzle', stream_get_wrappers(), true)) {
             stream_wrapper_register('guzzle', __CLASS__);
         }
     }

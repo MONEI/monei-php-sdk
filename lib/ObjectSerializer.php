@@ -24,10 +24,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei;
 
 use Monei\Internal\GuzzleHttp\Psr7\Utils;
 use Monei\Model\ModelInterface;
+
 /**
  * ObjectSerializer Class Doc Comment
  *
@@ -174,14 +176,14 @@ class ObjectSerializer
             case 'number':
             case 'float':
                 return $value !== 0 && $value !== 0.0;
-            # For boolean values, '' is considered empty
+                # For boolean values, '' is considered empty
             case 'bool':
             case 'boolean':
                 return !in_array($value, [\false, 0], \true);
-            # For string values, '' is considered empty.
+                # For string values, '' is considered empty.
             case 'string':
                 return $value === '';
-            # For all the other types, any value at this point can be considered empty.
+                # For all the other types, any value at this point can be considered empty.
             default:
                 return \true;
         }
@@ -262,7 +264,7 @@ class ObjectSerializer
      */
     public static function convertBoolToQueryStringFormat(bool $value)
     {
-        if (\Monei\Configuration::BOOLEAN_FORMAT_STRING == \Monei\Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
+        if (\Monei\Configuration::BOOLEAN_FORMAT_STRING === \Monei\Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
             return $value ? 'true' : 'false';
         }
         return (int) $value;
@@ -333,7 +335,7 @@ class ObjectSerializer
                 return implode(' ', $collection);
             case 'simple':
             case 'csv':
-            // Deliberate fall through. CSV is default format.
+                // Deliberate fall through. CSV is default format.
             default:
                 return implode(',', $collection);
         }
@@ -498,7 +500,7 @@ class ObjectSerializer
         } else {
             throw new \InvalidArgumentException('Invalid type');
         }
-        $castBool = \Monei\Configuration::BOOLEAN_FORMAT_INT == \Monei\Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString() ? function ($v) {
+        $castBool = \Monei\Configuration::BOOLEAN_FORMAT_INT === \Monei\Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString() ? function ($v) {
             return (int) $v;
         } : function ($v) {
             return $v ? 'true' : 'false';
