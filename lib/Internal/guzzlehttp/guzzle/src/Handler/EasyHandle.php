@@ -7,6 +7,7 @@ use Monei\Internal\GuzzleHttp\Utils;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
+
 /**
  * Represents a cURL easy handle and the data it populates.
  *
@@ -79,9 +80,9 @@ final class EasyHandle
     /**
      * @param string $name
      *
-     * @return void
      *
      * @throws \BadMethodCallException
+     * @return void
      */
     public function __get($name)
     {

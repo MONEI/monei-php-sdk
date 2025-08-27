@@ -1,12 +1,14 @@
 <?php
 
 declare (strict_types=1);
+
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use InvalidArgumentException;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
+
 /**
  * PSR-7 request implementation.
  */
@@ -52,7 +54,7 @@ class Request implements RequestInterface
         if ($target === '') {
             $target = '/';
         }
-        if ($this->uri->getQuery() != '') {
+        if ($this->uri->getQuery() !== '') {
             $target .= '?' . $this->uri->getQuery();
         }
         return $target;
@@ -96,7 +98,7 @@ class Request implements RequestInterface
     private function updateHostFromUri(): void
     {
         $host = $this->uri->getHost();
-        if ($host == '') {
+        if ($host === '') {
             return;
         }
         if (($port = $this->uri->getPort()) !== null) {

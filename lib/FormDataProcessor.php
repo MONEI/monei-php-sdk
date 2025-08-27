@@ -23,6 +23,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei;
 
 use ArrayAccess;
@@ -31,6 +32,7 @@ use Monei\Internal\GuzzleHttp\Psr7\Utils;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
 use SplFileObject;
 use Monei\Model\ModelInterface;
+
 /**
  * FormDataProcessor Class Doc Comment
  *

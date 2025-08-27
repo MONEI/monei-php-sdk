@@ -1,12 +1,14 @@
 <?php
 
 declare (strict_types=1);
+
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ServerRequestInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
+
 final class Utils
 {
     /**
@@ -21,7 +23,7 @@ final class Utils
             $key = strtolower((string) $key);
         }
         foreach ($data as $k => $v) {
-            if (!in_array(strtolower((string) $k), $keys)) {
+            if (!in_array(strtolower((string) $k), $keys, true)) {
                 $result[$k] = $v;
             }
         }
@@ -153,7 +155,7 @@ final class Utils
                 if ($port = $changes['uri']->getPort()) {
                     $standardPorts = ['http' => 80, 'https' => 443];
                     $scheme = $changes['uri']->getScheme();
-                    if (isset($standardPorts[$scheme]) && $port != $standardPorts[$scheme]) {
+                    if (isset($standardPorts[$scheme]) && $port !== $standardPorts[$scheme]) {
                         $changes['set_headers']['Host'] .= ':' . $port;
                     }
                 }
@@ -304,9 +306,9 @@ final class Utils
      * @param string $filename File to open
      * @param string $mode     Mode used to open the file
      *
-     * @return resource
      *
      * @throws \RuntimeException if the file cannot be opened
+     * @return resource
      */
     public static function tryFopen(string $filename, string $mode)
     {

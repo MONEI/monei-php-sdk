@@ -7,6 +7,7 @@ use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
+
 /**
  * Client interface for sending HTTP requests.
  */
