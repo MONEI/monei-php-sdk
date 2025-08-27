@@ -1,5 +1,10 @@
 # Changelog
 
+## <small>2.8.2 (2025-08-27)</small>
+
+* chore: update multiple model and API files for consistency and improvements ([38a15f5](https://github.com/MONEI/monei-php-sdk/commit/38a15f5))
+* chore: update multiple model and API files for consistency and improvements ([0e4a30d](https://github.com/MONEI/monei-php-sdk/commit/0e4a30d))
+
 ## <small>2.8.1 (2025-08-26)</small>
 
 * chore: update OpenAPI document version to 1.7.2 ([2df4c98](https://github.com/MONEI/monei-php-sdk/commit/2df4c98))
