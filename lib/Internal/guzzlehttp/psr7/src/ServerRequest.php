@@ -1,7 +1,6 @@
 <?php
 
 declare (strict_types=1);
-
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use InvalidArgumentException;
@@ -9,7 +8,6 @@ use Monei\Internal\Psr\Http\Message\ServerRequestInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
 use Monei\Internal\Psr\Http\Message\UploadedFileInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * Server-side HTTP request
  *

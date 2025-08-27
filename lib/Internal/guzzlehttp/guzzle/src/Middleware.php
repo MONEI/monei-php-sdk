@@ -9,7 +9,6 @@ use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Log\LoggerInterface;
-
 /**
  * Functions used to create and wrap handlers with handler middleware.
  */
@@ -71,9 +70,9 @@ final class Middleware
      *
      * @param array|\ArrayAccess<int, array> $container Container to hold the history (by reference).
      *
+     * @return callable(callable): callable Returns a function that accepts the next handler.
      *
      * @throws \InvalidArgumentException if container is not an array or ArrayAccess.
-     * @return callable(callable): callable Returns a function that accepts the next handler.
      */
     public static function history(&$container): callable
     {
@@ -156,11 +155,11 @@ final class Middleware
      * Middleware that logs requests, responses, and errors using a message
      * formatter.
      *
+     * @phpstan-param \Psr\Log\LogLevel::* $logLevel  Level at which to log requests.
      *
      * @param LoggerInterface                            $logger    Logs messages.
      * @param MessageFormatterInterface|MessageFormatter $formatter Formatter used to create message strings.
      * @param string                                     $logLevel  Level at which to log requests.
-     * @phpstan-param \Psr\Log\LogLevel::* $logLevel  Level at which to log requests.
      *
      * @return callable Returns a function that accepts the next handler.
      */

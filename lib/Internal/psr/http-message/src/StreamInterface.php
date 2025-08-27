@@ -49,8 +49,8 @@ interface StreamInterface
     /**
      * Returns the current position of the file read/write pointer
      *
-     * @throws \RuntimeException on error.
      * @return int Position of the file pointer
+     * @throws \RuntimeException on error.
      */
     public function tell(): int;
     /**
@@ -99,8 +99,8 @@ interface StreamInterface
      * Write data to the stream.
      *
      * @param string $string The string that is to be written.
-     * @throws \RuntimeException on failure.
      * @return int Returns the number of bytes written to the stream.
+     * @throws \RuntimeException on failure.
      */
     public function write(string $string): int;
     /**
@@ -115,17 +115,17 @@ interface StreamInterface
      * @param int $length Read up to $length bytes from the object and return
      *     them. Fewer than $length bytes may be returned if underlying stream
      *     call returns fewer bytes.
-     * @throws \RuntimeException if an error occurs.
      * @return string Returns the data read from the stream, or an empty string
      *     if no bytes are available.
+     * @throws \RuntimeException if an error occurs.
      */
     public function read(int $length): string;
     /**
      * Returns the remaining contents in a string
      *
+     * @return string
      * @throws \RuntimeException if unable to read or an error occurs while
      *     reading.
-     * @return string
      */
     public function getContents(): string;
     /**

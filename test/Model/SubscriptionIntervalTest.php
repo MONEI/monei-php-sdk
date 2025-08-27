@@ -45,30 +45,22 @@ class SubscriptionIntervalTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass(): void
-    {
-    }
+    public static function setUpBeforeClass(): void {}
 
     /**
      * Setup before running each test case
      */
-    public function setUp(): void
-    {
-    }
+    public function setUp(): void {}
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown(): void
-    {
-    }
+    public function tearDown(): void {}
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void
-    {
-    }
+    public static function tearDownAfterClass(): void {}
 
     /**
      * Test "SubscriptionInterval"
@@ -76,6 +68,8 @@ class SubscriptionIntervalTest extends TestCase
     public function testSubscriptionInterval()
     {
         $expected = [
+            'minute',
+            'hour',
             'day',
             'week',
             'month',
@@ -85,6 +79,8 @@ class SubscriptionIntervalTest extends TestCase
         $this->assertEquals($expected, \Monei\Model\SubscriptionInterval::getAllowableEnumValues());
 
         // Test individual constants
+        $this->assertEquals('minute', \Monei\Model\SubscriptionInterval::MINUTE);
+        $this->assertEquals('hour', \Monei\Model\SubscriptionInterval::HOUR);
         $this->assertEquals('day', \Monei\Model\SubscriptionInterval::DAY);
         $this->assertEquals('week', \Monei\Model\SubscriptionInterval::WEEK);
         $this->assertEquals('month', \Monei\Model\SubscriptionInterval::MONTH);
