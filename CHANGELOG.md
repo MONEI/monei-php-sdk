@@ -1,5 +1,10 @@
 # Changelog
 
+## <small>2.8.3 (2025-09-15)</small>
+
+* chore: send PHP version in user agent ([7f58448](https://github.com/MONEI/monei-php-sdk/commit/7f58448))
+* chore: update multiple model and API files for consistency and improvements ([27fa682](https://github.com/MONEI/monei-php-sdk/commit/27fa682))
+
 ## <small>2.8.2 (2025-08-27)</small>
 
 * chore: update multiple model and API files for consistency and improvements ([38a15f5](https://github.com/MONEI/monei-php-sdk/commit/38a15f5))

@@ -36,10 +36,9 @@ use Monei\Configuration;
 class MoneiClient
 {
     /** @var string */
-    public const SDK_VERSION = '2.8.2';
+    public const SDK_VERSION = '2.8.3';
     /** @var string */
     public const DEFAULT_USER_AGENT = 'MONEI/PHP/';
-
     /** @var Configuration */
     protected $config;
     /** @var PaymentsApi */
@@ -56,7 +55,6 @@ class MoneiClient
     protected $accountId;
     /** @var Client */
     protected $httpClient;
-
     /**
      * @param string          $apiKey
      * @param Configuration|null   $config
@@ -89,7 +87,6 @@ class MoneiClient
         $this->applePayDomain = new ApplePayDomainApi($this->httpClient, $this->config);
         $this->bizum = new BizumApi($this->httpClient, $this->config);
     }
-
     /**
      * @return Configuration
      */
@@ -97,7 +94,6 @@ class MoneiClient
     {
         return $this->config;
     }
-
     /**
      * Set the account ID to act on behalf of a merchant
      *
@@ -108,7 +104,6 @@ class MoneiClient
     {
         $this->accountId = $accountId;
     }
-
     /**
      * Get the current account ID
      *
@@ -118,7 +113,6 @@ class MoneiClient
     {
         return $this->accountId;
     }
-
     /**
      * Set a custom User-Agent header
      *
@@ -129,7 +123,6 @@ class MoneiClient
     {
         $this->config->setUserAgent($userAgent);
     }
-
     /**
      * @param string    $body
      * @param string    $signature
