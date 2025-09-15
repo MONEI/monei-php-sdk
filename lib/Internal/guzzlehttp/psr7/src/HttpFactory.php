@@ -1,7 +1,6 @@
 <?php
 
 declare (strict_types=1);
-
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\RequestFactoryInterface;
@@ -16,7 +15,6 @@ use Monei\Internal\Psr\Http\Message\UploadedFileFactoryInterface;
 use Monei\Internal\Psr\Http\Message\UploadedFileInterface;
 use Monei\Internal\Psr\Http\Message\UriFactoryInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * Implements all of the PSR-17 interfaces.
  *

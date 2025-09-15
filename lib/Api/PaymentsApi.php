@@ -23,7 +23,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 namespace Monei\Api;
 
 use Monei\Internal\GuzzleHttp\Client;
@@ -40,7 +39,6 @@ use Monei\Configuration;
 use Monei\FormDataProcessor;
 use Monei\HeaderSelector;
 use Monei\ObjectSerializer;
-
 /**
  * PaymentsApi Class Doc Comment
  *

@@ -13,17 +13,17 @@
 
 namespace Monei;
 
-use Monei\Internal\GuzzleHttp\Client;
-use Monei\Internal\GuzzleHttp\HandlerStack;
-use Monei\Internal\GuzzleHttp\Middleware;
 use Monei\Api\ApplePayDomainApi;
 use Monei\Api\BizumApi;
 use Monei\Api\PaymentMethodsApi;
 use Monei\Api\PaymentsApi;
 use Monei\Api\SubscriptionsApi;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Middleware;
+use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\ApiException;
 use Monei\Configuration;
-use Monei\Internal\Psr\Http\Message\RequestInterface;
 
 /**
  * PaymentsApi Class Doc Comment
@@ -35,46 +35,28 @@ use Monei\Internal\Psr\Http\Message\RequestInterface;
  */
 class MoneiClient
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public const SDK_VERSION = '2.8.2';
-    /**
-     * @var string
-     */
+    /** @var string */
     public const DEFAULT_USER_AGENT = 'MONEI/PHP/';
-    /**
-     * @var Configuration
-     */
+
+    /** @var Configuration */
     protected $config;
-    /**
-     * @var PaymentsApi
-     */
+    /** @var PaymentsApi */
     public $payments;
-    /**
-     * @var PaymentMethodsApi
-     */
+    /** @var PaymentMethodsApi */
     public $paymentMethods;
-    /**
-     * @var SubscriptionsApi
-     */
+    /** @var SubscriptionsApi */
     public $subscriptions;
-    /**
-     * @var ApplePayDomainApi
-     */
+    /** @var ApplePayDomainApi */
     public $applePayDomain;
-    /**
-     * @var BizumApi
-     */
+    /** @var BizumApi */
     public $bizum;
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     protected $accountId;
-    /**
-     * @var Client
-     */
+    /** @var Client */
     protected $httpClient;
+
     /**
      * @param string          $apiKey
      * @param Configuration|null   $config
@@ -107,6 +89,7 @@ class MoneiClient
         $this->applePayDomain = new ApplePayDomainApi($this->httpClient, $this->config);
         $this->bizum = new BizumApi($this->httpClient, $this->config);
     }
+
     /**
      * @return Configuration
      */
@@ -114,6 +97,7 @@ class MoneiClient
     {
         return $this->config;
     }
+
     /**
      * Set the account ID to act on behalf of a merchant
      *
@@ -124,6 +108,7 @@ class MoneiClient
     {
         $this->accountId = $accountId;
     }
+
     /**
      * Get the current account ID
      *
@@ -133,6 +118,7 @@ class MoneiClient
     {
         return $this->accountId;
     }
+
     /**
      * Set a custom User-Agent header
      *
@@ -143,6 +129,7 @@ class MoneiClient
     {
         $this->config->setUserAgent($userAgent);
     }
+
     /**
      * @param string    $body
      * @param string    $signature

@@ -2,19 +2,19 @@
 
 namespace Tests;
 
-use PHPUnit\Framework\TestCase;
-use Monei\MoneiClient;
-use Monei\ApiException;
-use Monei\Configuration;
-use Monei\Api\PaymentsApi;
-use Monei\Api\SubscriptionsApi;
 use Monei\Api\ApplePayDomainApi;
 use Monei\Api\PaymentMethodsApi;
-use Monei\Internal\GuzzleHttp\Client;
+use Monei\Api\PaymentsApi;
+use Monei\Api\SubscriptionsApi;
 use Monei\Internal\GuzzleHttp\Handler\MockHandler;
-use Monei\Internal\GuzzleHttp\HandlerStack;
 use Monei\Internal\GuzzleHttp\Psr7\Response;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\HandlerStack;
 use Monei\Internal\GuzzleHttp\Middleware;
+use Monei\ApiException;
+use Monei\Configuration;
+use Monei\MoneiClient;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 
 class MoneiClientTest extends TestCase
@@ -62,7 +62,7 @@ class MoneiClientTest extends TestCase
 
     /**
      * Test that an exception is thrown when making a request with accountId set but no custom userAgent
-     * 
+     *
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage A custom User-Agent must be set when acting on behalf of a merchant
      */
@@ -176,9 +176,9 @@ class MoneiClientTest extends TestCase
         $rawBody = '{"id":"3690bd3f7294db82fed08c7371bace32","amount":11700,"currency":"EUR","orderId":"588439","status":"SUCCEEDED","message":"Transaction Approved"}';
 
         // Create an invalid signature by using a different timestamp
-        $timestamp = '1602604558'; // Different timestamp
-        $hmac = hash_hmac('SHA256', '1602604555' . '.' . $rawBody, $this->apiKey); // Using original timestamp for HMAC
-        $signature = "t={$timestamp},v1={$hmac}"; // But different timestamp in signature
+        $timestamp = '1602604558';  // Different timestamp
+        $hmac = hash_hmac('SHA256', '1602604555' . '.' . $rawBody, $this->apiKey);  // Using original timestamp for HMAC
+        $signature = "t={$timestamp},v1={$hmac}";  // But different timestamp in signature
 
         // Expect an exception when verifying
         $this->expectException(ApiException::class);
@@ -193,7 +193,7 @@ class MoneiClientTest extends TestCase
         $rawBody = '{"id":"3690bd3f7294db82fed08c7371bace32","amount":11700,"currency":"EUR","orderId":"588439","status":"SUCCEEDED","message":"Transaction Approved"}';
 
         // Create a malformed signature that will cause an exception in the explode/array access
-        $signature = "invalid_format_without_equals_sign";
+        $signature = 'invalid_format_without_equals_sign';
 
         // Expect an exception when verifying
         $this->expectException(\ErrorException::class);

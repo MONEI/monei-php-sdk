@@ -12,7 +12,6 @@ use Monei\Internal\GuzzleHttp\TransferStats;
 use Monei\Internal\GuzzleHttp\Utils;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * Creates curl resources from a request
  *
@@ -155,7 +154,7 @@ class CurlFactory implements CurlFactoryInterface
         $ctx[self::CURL_VERSION_STR] = self::getCurlVersion();
         $factory->release($easy);
         // Retry when nothing is present or when curl failed to rewind.
-        if (empty($easy->options['_err_message']) && (!$easy->errno || $easy->errno === 65)) {
+        if (empty($easy->options['_err_message']) && (!$easy->errno || $easy->errno == 65)) {
             return self::retryFailedRewind($handler, $easy, $ctx);
         }
         return self::createRejection($easy, $ctx);
@@ -507,7 +506,7 @@ class CurlFactory implements CurlFactoryInterface
         // Retry no more than 3 times before giving up.
         if (!isset($easy->options['_curl_retries'])) {
             $easy->options['_curl_retries'] = 1;
-        } elseif ($easy->options['_curl_retries'] === 2) {
+        } elseif ($easy->options['_curl_retries'] == 2) {
             $ctx['error'] = 'The cURL request was retried 3 times ' . 'and did not succeed. The most likely reason for the failure ' . 'is that cURL was unable to rewind the body of the request ' . 'and subsequent retries resulted in the same error. Turn on ' . 'the debug option to see what went wrong. See ' . 'https://bugs.php.net/bug.php?id=47204 for more information.';
             return self::createRejection($easy, $ctx);
         } else {

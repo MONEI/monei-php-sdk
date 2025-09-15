@@ -3,7 +3,6 @@
 namespace Monei\Internal\GuzzleHttp;
 
 use Monei\Internal\Psr\Http\Message\MessageInterface;
-
 interface BodySummarizerInterface
 {
     /**
