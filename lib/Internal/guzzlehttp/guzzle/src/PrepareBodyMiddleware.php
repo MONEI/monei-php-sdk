@@ -4,6 +4,7 @@ namespace Monei\Internal\GuzzleHttp;
 
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * Prepares requests that contain a body, adding the Content-Length,
  * Content-Type, and Expect headers.

@@ -7,6 +7,7 @@ use Monei\Internal\GuzzleHttp\Promise\EachPromise;
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\GuzzleHttp\Promise\PromisorInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * Sends an iterator of requests concurrently using a capped pool size.
  *
@@ -81,10 +82,10 @@ class Pool implements PromisorInterface
      * @param array           $options  Passes through the options available in
      *                                  {@see Pool::__construct}
      *
-     * @return array Returns an array containing the response or an exception
-     *               in the same order that the requests were sent.
      *
      * @throws \InvalidArgumentException if the event format is incorrect.
+     * @return array Returns an array containing the response or an exception
+     *               in the same order that the requests were sent.
      */
     public static function batch(ClientInterface $client, $requests, array $options = []): array
     {

@@ -1,6 +1,7 @@
 <?php
 
 declare (strict_types=1);
+
 namespace Monei\Internal\GuzzleHttp\Promise;
 
 final class Each
