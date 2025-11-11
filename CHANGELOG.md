@@ -1,5 +1,10 @@
 # Changelog
 
+## <small>2.8.4 (2025-11-11)</small>
+
+* chore: update subscription API to include allowed payment methods in requests and responses ([773eb3a](https://github.com/MONEI/monei-php-sdk/commit/773eb3a))
+* chore: update subscription API to include allowed payment methods in requests and responses ([94cc3c4](https://github.com/MONEI/monei-php-sdk/commit/94cc3c4))
+
 ## <small>2.8.3 (2025-09-15)</small>
 
 * chore: send PHP version in user agent ([7f58448](https://github.com/MONEI/monei-php-sdk/commit/7f58448))
