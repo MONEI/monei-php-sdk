@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.9.0 (2025-11-11)
+
+* feat: add Bizum as a payment method to SubscriptionPaymentMethod interface ([33fc36d](https://github.com/MONEI/monei-php-sdk/commit/33fc36d))
+* feat: add Bizum as a payment method to SubscriptionPaymentMethod interface ([afdf04c](https://github.com/MONEI/monei-php-sdk/commit/afdf04c))
+
 ## <small>2.8.4 (2025-11-11)</small>
 
 * chore: update subscription API to include allowed payment methods in requests and responses ([773eb3a](https://github.com/MONEI/monei-php-sdk/commit/773eb3a))
