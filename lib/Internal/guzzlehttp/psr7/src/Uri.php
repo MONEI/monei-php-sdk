@@ -1,12 +1,10 @@
 <?php
 
 declare (strict_types=1);
-
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\GuzzleHttp\Psr7\Exception\MalformedUriException;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * PSR-7 URI implementation.
  *
@@ -126,20 +124,20 @@ class Uri implements UriInterface, \JsonSerializable
     {
         $uri = '';
         // weak type checks to also accept null until we can add scalar type hints
-        if ($scheme !== '') {
+        if ($scheme != '') {
             $uri .= $scheme . ':';
         }
-        if ($authority !== '' || $scheme === 'file') {
+        if ($authority != '' || $scheme === 'file') {
             $uri .= '//' . $authority;
         }
-        if ($authority !== '' && $path !== '' && $path[0] !== '/') {
+        if ($authority != '' && $path != '' && $path[0] != '/') {
             $path = '/' . $path;
         }
         $uri .= $path;
-        if ($query !== '') {
+        if ($query != '') {
             $uri .= '?' . $query;
         }
-        if ($fragment !== '') {
+        if ($fragment != '') {
             $uri .= '#' . $fragment;
         }
         return $uri;

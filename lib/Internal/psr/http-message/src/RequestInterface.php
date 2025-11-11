@@ -76,8 +76,8 @@ interface RequestInterface extends MessageInterface
      * changed request method.
      *
      * @param string $method Case-sensitive method.
-     * @throws \InvalidArgumentException for invalid HTTP methods.
      * @return static
+     * @throws \InvalidArgumentException for invalid HTTP methods.
      */
     public function withMethod(string $method): RequestInterface;
     /**

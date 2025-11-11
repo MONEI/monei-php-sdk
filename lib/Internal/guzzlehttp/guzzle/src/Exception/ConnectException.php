@@ -4,7 +4,6 @@ namespace Monei\Internal\GuzzleHttp\Exception;
 
 use Monei\Internal\Psr\Http\Client\NetworkExceptionInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
-
 /**
  * Exception thrown when a connection cannot be established.
  *

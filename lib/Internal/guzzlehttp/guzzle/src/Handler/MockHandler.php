@@ -11,7 +11,6 @@ use Monei\Internal\GuzzleHttp\Utils;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
-
 /**
  * Handler that returns responses or throw exceptions from a queue.
  *

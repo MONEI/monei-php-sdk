@@ -24,12 +24,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 namespace Monei\Model;
 
 use ArrayAccess;
 use Monei\ObjectSerializer;
-
 /**
  * UpdateSubscriptionRequest Class Doc Comment
  *
@@ -53,7 +51,7 @@ class UpdateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['amount' => 'int', 'interval' => '\Monei\Model\SubscriptionInterval', 'interval_count' => 'int', 'description' => 'string', 'customer' => '\Monei\Model\PaymentCustomer', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'trial_period_end' => 'float', 'callback_url' => 'string', 'payment_callback_url' => 'string', 'pause_at_period_end' => 'bool', 'cancel_at_period_end' => 'bool', 'pause_interval_count' => 'int', 'skip_interval_count' => 'int', 'retry_schedule' => '\Monei\Model\SubscriptionRetryScheduleInner[]', 'metadata' => 'object'];
+    protected static $openAPITypes = ['amount' => 'int', 'interval' => '\Monei\Model\SubscriptionInterval', 'interval_count' => 'int', 'allowed_payment_methods' => '\Monei\Model\SubscriptionPaymentMethods', 'description' => 'string', 'customer' => '\Monei\Model\PaymentCustomer', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'trial_period_end' => 'float', 'callback_url' => 'string', 'payment_callback_url' => 'string', 'pause_at_period_end' => 'bool', 'cancel_at_period_end' => 'bool', 'pause_interval_count' => 'int', 'skip_interval_count' => 'int', 'retry_schedule' => '\Monei\Model\SubscriptionRetryScheduleInner[]', 'metadata' => 'object'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +59,13 @@ class UpdateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['amount' => 'int32', 'interval' => null, 'interval_count' => 'int32', 'description' => null, 'customer' => null, 'billing_details' => null, 'shipping_details' => null, 'trial_period_end' => 'int64', 'callback_url' => null, 'payment_callback_url' => null, 'pause_at_period_end' => null, 'cancel_at_period_end' => null, 'pause_interval_count' => 'int32', 'skip_interval_count' => 'int32', 'retry_schedule' => null, 'metadata' => null];
+    protected static $openAPIFormats = ['amount' => 'int32', 'interval' => null, 'interval_count' => 'int32', 'allowed_payment_methods' => null, 'description' => null, 'customer' => null, 'billing_details' => null, 'shipping_details' => null, 'trial_period_end' => 'int64', 'callback_url' => null, 'payment_callback_url' => null, 'pause_at_period_end' => null, 'cancel_at_period_end' => null, 'pause_interval_count' => 'int32', 'skip_interval_count' => 'int32', 'retry_schedule' => null, 'metadata' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['amount' => \false, 'interval' => \false, 'interval_count' => \false, 'description' => \false, 'customer' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'trial_period_end' => \false, 'callback_url' => \false, 'payment_callback_url' => \false, 'pause_at_period_end' => \false, 'cancel_at_period_end' => \false, 'pause_interval_count' => \false, 'skip_interval_count' => \false, 'retry_schedule' => \false, 'metadata' => \false];
+    protected static array $openAPINullables = ['amount' => \false, 'interval' => \false, 'interval_count' => \false, 'allowed_payment_methods' => \false, 'description' => \false, 'customer' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'trial_period_end' => \false, 'callback_url' => \false, 'payment_callback_url' => \false, 'pause_at_period_end' => \false, 'cancel_at_period_end' => \false, 'pause_interval_count' => \false, 'skip_interval_count' => \false, 'retry_schedule' => \false, 'metadata' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +143,19 @@ class UpdateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['amount' => 'amount', 'interval' => 'interval', 'interval_count' => 'intervalCount', 'description' => 'description', 'customer' => 'customer', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'trial_period_end' => 'trialPeriodEnd', 'callback_url' => 'callbackUrl', 'payment_callback_url' => 'paymentCallbackUrl', 'pause_at_period_end' => 'pauseAtPeriodEnd', 'cancel_at_period_end' => 'cancelAtPeriodEnd', 'pause_interval_count' => 'pauseIntervalCount', 'skip_interval_count' => 'skipIntervalCount', 'retry_schedule' => 'retrySchedule', 'metadata' => 'metadata'];
+    protected static $attributeMap = ['amount' => 'amount', 'interval' => 'interval', 'interval_count' => 'intervalCount', 'allowed_payment_methods' => 'allowedPaymentMethods', 'description' => 'description', 'customer' => 'customer', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'trial_period_end' => 'trialPeriodEnd', 'callback_url' => 'callbackUrl', 'payment_callback_url' => 'paymentCallbackUrl', 'pause_at_period_end' => 'pauseAtPeriodEnd', 'cancel_at_period_end' => 'cancelAtPeriodEnd', 'pause_interval_count' => 'pauseIntervalCount', 'skip_interval_count' => 'skipIntervalCount', 'retry_schedule' => 'retrySchedule', 'metadata' => 'metadata'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['amount' => 'setAmount', 'interval' => 'setInterval', 'interval_count' => 'setIntervalCount', 'description' => 'setDescription', 'customer' => 'setCustomer', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'trial_period_end' => 'setTrialPeriodEnd', 'callback_url' => 'setCallbackUrl', 'payment_callback_url' => 'setPaymentCallbackUrl', 'pause_at_period_end' => 'setPauseAtPeriodEnd', 'cancel_at_period_end' => 'setCancelAtPeriodEnd', 'pause_interval_count' => 'setPauseIntervalCount', 'skip_interval_count' => 'setSkipIntervalCount', 'retry_schedule' => 'setRetrySchedule', 'metadata' => 'setMetadata'];
+    protected static $setters = ['amount' => 'setAmount', 'interval' => 'setInterval', 'interval_count' => 'setIntervalCount', 'allowed_payment_methods' => 'setAllowedPaymentMethods', 'description' => 'setDescription', 'customer' => 'setCustomer', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'trial_period_end' => 'setTrialPeriodEnd', 'callback_url' => 'setCallbackUrl', 'payment_callback_url' => 'setPaymentCallbackUrl', 'pause_at_period_end' => 'setPauseAtPeriodEnd', 'cancel_at_period_end' => 'setCancelAtPeriodEnd', 'pause_interval_count' => 'setPauseIntervalCount', 'skip_interval_count' => 'setSkipIntervalCount', 'retry_schedule' => 'setRetrySchedule', 'metadata' => 'setMetadata'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['amount' => 'getAmount', 'interval' => 'getInterval', 'interval_count' => 'getIntervalCount', 'description' => 'getDescription', 'customer' => 'getCustomer', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'trial_period_end' => 'getTrialPeriodEnd', 'callback_url' => 'getCallbackUrl', 'payment_callback_url' => 'getPaymentCallbackUrl', 'pause_at_period_end' => 'getPauseAtPeriodEnd', 'cancel_at_period_end' => 'getCancelAtPeriodEnd', 'pause_interval_count' => 'getPauseIntervalCount', 'skip_interval_count' => 'getSkipIntervalCount', 'retry_schedule' => 'getRetrySchedule', 'metadata' => 'getMetadata'];
+    protected static $getters = ['amount' => 'getAmount', 'interval' => 'getInterval', 'interval_count' => 'getIntervalCount', 'allowed_payment_methods' => 'getAllowedPaymentMethods', 'description' => 'getDescription', 'customer' => 'getCustomer', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'trial_period_end' => 'getTrialPeriodEnd', 'callback_url' => 'getCallbackUrl', 'payment_callback_url' => 'getPaymentCallbackUrl', 'pause_at_period_end' => 'getPauseAtPeriodEnd', 'cancel_at_period_end' => 'getCancelAtPeriodEnd', 'pause_interval_count' => 'getPauseIntervalCount', 'skip_interval_count' => 'getSkipIntervalCount', 'retry_schedule' => 'getRetrySchedule', 'metadata' => 'getMetadata'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -212,6 +210,7 @@ class UpdateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
         $this->setIfExists('interval_count', $data ?? [], null);
+        $this->setIfExists('allowed_payment_methods', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('customer', $data ?? [], null);
         $this->setIfExists('billing_details', $data ?? [], null);
@@ -332,6 +331,30 @@ class UpdateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable interval_count cannot be null');
         }
         $this->container['interval_count'] = $interval_count;
+        return $this;
+    }
+    /**
+     * Gets allowed_payment_methods
+     *
+     * @return \Monei\Model\SubscriptionPaymentMethods|null
+     */
+    public function getAllowedPaymentMethods()
+    {
+        return $this->container['allowed_payment_methods'];
+    }
+    /**
+     * Sets allowed_payment_methods
+     *
+     * @param \Monei\Model\SubscriptionPaymentMethods|null $allowed_payment_methods allowed_payment_methods
+     *
+     * @return self
+     */
+    public function setAllowedPaymentMethods($allowed_payment_methods)
+    {
+        if (is_null($allowed_payment_methods)) {
+            throw new \InvalidArgumentException('non-nullable allowed_payment_methods cannot be null');
+        }
+        $this->container['allowed_payment_methods'] = $allowed_payment_methods;
         return $this;
     }
     /**

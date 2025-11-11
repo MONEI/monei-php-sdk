@@ -5,7 +5,6 @@ namespace Monei\Internal\GuzzleHttp;
 use Monei\Internal\Psr\Http\Message\MessageInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
-
 /**
  * Formats log messages using variable substitutions for requests, responses,
  * and other transactional data.

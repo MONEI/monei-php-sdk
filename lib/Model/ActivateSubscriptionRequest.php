@@ -24,12 +24,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 namespace Monei\Model;
 
 use ArrayAccess;
 use Monei\ObjectSerializer;
-
 /**
  * ActivateSubscriptionRequest Class Doc Comment
  *
@@ -53,7 +51,7 @@ class ActivateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayA
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['payment_token' => 'string', 'session_id' => 'string', 'add_amount' => 'int', 'sequence_id' => 'string', 'complete_url' => 'string', 'fail_url' => 'string', 'cancel_url' => 'string', 'metadata' => 'object'];
+    protected static $openAPITypes = ['payment_token' => 'string', 'session_id' => 'string', 'add_amount' => 'int', 'allowed_payment_methods' => '\Monei\Model\SubscriptionPaymentMethods', 'sequence_id' => 'string', 'complete_url' => 'string', 'fail_url' => 'string', 'cancel_url' => 'string', 'metadata' => 'object'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +59,13 @@ class ActivateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayA
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['payment_token' => null, 'session_id' => null, 'add_amount' => 'int32', 'sequence_id' => null, 'complete_url' => null, 'fail_url' => null, 'cancel_url' => null, 'metadata' => null];
+    protected static $openAPIFormats = ['payment_token' => null, 'session_id' => null, 'add_amount' => 'int32', 'allowed_payment_methods' => null, 'sequence_id' => null, 'complete_url' => null, 'fail_url' => null, 'cancel_url' => null, 'metadata' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['payment_token' => \false, 'session_id' => \false, 'add_amount' => \false, 'sequence_id' => \false, 'complete_url' => \false, 'fail_url' => \false, 'cancel_url' => \false, 'metadata' => \false];
+    protected static array $openAPINullables = ['payment_token' => \false, 'session_id' => \false, 'add_amount' => \false, 'allowed_payment_methods' => \false, 'sequence_id' => \false, 'complete_url' => \false, 'fail_url' => \false, 'cancel_url' => \false, 'metadata' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +143,19 @@ class ActivateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayA
      *
      * @var string[]
      */
-    protected static $attributeMap = ['payment_token' => 'paymentToken', 'session_id' => 'sessionId', 'add_amount' => 'addAmount', 'sequence_id' => 'sequenceId', 'complete_url' => 'completeUrl', 'fail_url' => 'failUrl', 'cancel_url' => 'cancelUrl', 'metadata' => 'metadata'];
+    protected static $attributeMap = ['payment_token' => 'paymentToken', 'session_id' => 'sessionId', 'add_amount' => 'addAmount', 'allowed_payment_methods' => 'allowedPaymentMethods', 'sequence_id' => 'sequenceId', 'complete_url' => 'completeUrl', 'fail_url' => 'failUrl', 'cancel_url' => 'cancelUrl', 'metadata' => 'metadata'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['payment_token' => 'setPaymentToken', 'session_id' => 'setSessionId', 'add_amount' => 'setAddAmount', 'sequence_id' => 'setSequenceId', 'complete_url' => 'setCompleteUrl', 'fail_url' => 'setFailUrl', 'cancel_url' => 'setCancelUrl', 'metadata' => 'setMetadata'];
+    protected static $setters = ['payment_token' => 'setPaymentToken', 'session_id' => 'setSessionId', 'add_amount' => 'setAddAmount', 'allowed_payment_methods' => 'setAllowedPaymentMethods', 'sequence_id' => 'setSequenceId', 'complete_url' => 'setCompleteUrl', 'fail_url' => 'setFailUrl', 'cancel_url' => 'setCancelUrl', 'metadata' => 'setMetadata'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['payment_token' => 'getPaymentToken', 'session_id' => 'getSessionId', 'add_amount' => 'getAddAmount', 'sequence_id' => 'getSequenceId', 'complete_url' => 'getCompleteUrl', 'fail_url' => 'getFailUrl', 'cancel_url' => 'getCancelUrl', 'metadata' => 'getMetadata'];
+    protected static $getters = ['payment_token' => 'getPaymentToken', 'session_id' => 'getSessionId', 'add_amount' => 'getAddAmount', 'allowed_payment_methods' => 'getAllowedPaymentMethods', 'sequence_id' => 'getSequenceId', 'complete_url' => 'getCompleteUrl', 'fail_url' => 'getFailUrl', 'cancel_url' => 'getCancelUrl', 'metadata' => 'getMetadata'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -212,6 +210,7 @@ class ActivateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayA
         $this->setIfExists('payment_token', $data ?? [], null);
         $this->setIfExists('session_id', $data ?? [], null);
         $this->setIfExists('add_amount', $data ?? [], null);
+        $this->setIfExists('allowed_payment_methods', $data ?? [], null);
         $this->setIfExists('sequence_id', $data ?? [], null);
         $this->setIfExists('complete_url', $data ?? [], null);
         $this->setIfExists('fail_url', $data ?? [], null);
@@ -324,6 +323,30 @@ class ActivateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayA
             throw new \InvalidArgumentException('non-nullable add_amount cannot be null');
         }
         $this->container['add_amount'] = $add_amount;
+        return $this;
+    }
+    /**
+     * Gets allowed_payment_methods
+     *
+     * @return \Monei\Model\SubscriptionPaymentMethods|null
+     */
+    public function getAllowedPaymentMethods()
+    {
+        return $this->container['allowed_payment_methods'];
+    }
+    /**
+     * Sets allowed_payment_methods
+     *
+     * @param \Monei\Model\SubscriptionPaymentMethods|null $allowed_payment_methods allowed_payment_methods
+     *
+     * @return self
+     */
+    public function setAllowedPaymentMethods($allowed_payment_methods)
+    {
+        if (is_null($allowed_payment_methods)) {
+            throw new \InvalidArgumentException('non-nullable allowed_payment_methods cannot be null');
+        }
+        $this->container['allowed_payment_methods'] = $allowed_payment_methods;
         return $this;
     }
     /**
