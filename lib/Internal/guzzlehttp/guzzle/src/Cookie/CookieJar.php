@@ -4,6 +4,7 @@ namespace Monei\Internal\GuzzleHttp\Cookie;
 
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
+
 /**
  * Cookie jar that stores cookies as an array
  */
@@ -101,7 +102,7 @@ class CookieJar implements CookieJarInterface
             });
         } else {
             $this->cookies = \array_filter($this->cookies, static function (SetCookie $cookie) use ($path, $domain, $name) {
-                return !($cookie->getName() == $name && $cookie->matchesPath($path) && $cookie->matchesDomain($domain));
+                return !($cookie->getName() === $name && $cookie->matchesPath($path) && $cookie->matchesDomain($domain));
             });
         }
     }
@@ -132,7 +133,7 @@ class CookieJar implements CookieJarInterface
         foreach ($this->cookies as $i => $c) {
             // Two cookies are identical, when their path, and domain are
             // identical.
-            if ($c->getPath() != $cookie->getPath() || $c->getDomain() != $cookie->getDomain() || $c->getName() != $cookie->getName()) {
+            if ($c->getPath() !== $cookie->getPath() || $c->getDomain() !== $cookie->getDomain() || $c->getName() !== $cookie->getName()) {
                 continue;
             }
             // The previously set cookie is a discard cookie and this one is

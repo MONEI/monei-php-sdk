@@ -4,6 +4,7 @@ namespace Monei\Internal\GuzzleHttp\Handler;
 
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * HTTP handler that uses cURL easy handles as a transport layer.
  *
