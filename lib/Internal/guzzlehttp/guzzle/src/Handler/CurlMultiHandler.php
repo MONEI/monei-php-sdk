@@ -8,6 +8,7 @@ use Monei\Internal\GuzzleHttp\Promise\Promise;
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\GuzzleHttp\Utils;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * Returns an asynchronous response using curl_multi_* functions.
  *
@@ -77,10 +78,10 @@ class CurlMultiHandler
     /**
      * @param string $name
      *
-     * @return resource|\CurlMultiHandle
      *
      * @throws \BadMethodCallException when another field as `_mh` will be gotten
      * @throws \RuntimeException       when curl can not initialize a multi handle
+     * @return resource|\CurlMultiHandle
      */
     public function __get($name)
     {

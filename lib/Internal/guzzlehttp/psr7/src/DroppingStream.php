@@ -1,9 +1,11 @@
 <?php
 
 declare (strict_types=1);
+
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\StreamInterface;
+
 /**
  * Stream decorator that begins dropping data once the size of the underlying
  * stream becomes too full.

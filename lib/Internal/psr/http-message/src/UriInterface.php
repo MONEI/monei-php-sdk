@@ -178,8 +178,8 @@ interface UriInterface
      * An empty scheme is equivalent to removing the scheme.
      *
      * @param string $scheme The scheme to use with the new instance.
-     * @return static A new instance with the specified scheme.
      * @throws \InvalidArgumentException for invalid or unsupported schemes.
+     * @return static A new instance with the specified scheme.
      */
     public function withScheme(string $scheme): UriInterface;
     /**
@@ -206,8 +206,8 @@ interface UriInterface
      * An empty host value is equivalent to removing the host.
      *
      * @param string $host The hostname to use with the new instance.
-     * @return static A new instance with the specified host.
      * @throws \InvalidArgumentException for invalid hostnames.
+     * @return static A new instance with the specified host.
      */
     public function withHost(string $host): UriInterface;
     /**
@@ -224,8 +224,8 @@ interface UriInterface
      *
      * @param null|int $port The port to use with the new instance; a null value
      *     removes the port information.
-     * @return static A new instance with the specified port.
      * @throws \InvalidArgumentException for invalid ports.
+     * @return static A new instance with the specified port.
      */
     public function withPort(?int $port): UriInterface;
     /**
@@ -247,8 +247,8 @@ interface UriInterface
      * Implementations ensure the correct encoding as outlined in getPath().
      *
      * @param string $path The path to use with the new instance.
-     * @return static A new instance with the specified path.
      * @throws \InvalidArgumentException for invalid paths.
+     * @return static A new instance with the specified path.
      */
     public function withPath(string $path): UriInterface;
     /**
@@ -263,8 +263,8 @@ interface UriInterface
      * An empty query string value is equivalent to removing the query string.
      *
      * @param string $query The query string to use with the new instance.
-     * @return static A new instance with the specified query string.
      * @throws \InvalidArgumentException for invalid query strings.
+     * @return static A new instance with the specified query string.
      */
     public function withQuery(string $query): UriInterface;
     /**

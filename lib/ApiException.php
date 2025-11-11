@@ -23,9 +23,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 namespace Monei;
 
 use Exception;
+
 /**
  * ApiException Class Doc Comment
  *

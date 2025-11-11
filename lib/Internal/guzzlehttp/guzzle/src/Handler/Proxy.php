@@ -5,6 +5,7 @@ namespace Monei\Internal\GuzzleHttp\Handler;
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\GuzzleHttp\RequestOptions;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
+
 /**
  * Provides basic proxies for handlers.
  *
