@@ -1,12 +1,10 @@
 <?php
 
 declare (strict_types=1);
-
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
-
 /**
  * PSR-7 response implementation.
  */
@@ -34,7 +32,7 @@ class Response implements ResponseInterface
             $this->stream = Utils::streamFor($body);
         }
         $this->setHeaders($headers);
-        if ($reason === '' && isset(self::PHRASES[$this->statusCode])) {
+        if ($reason == '' && isset(self::PHRASES[$this->statusCode])) {
             $this->reasonPhrase = self::PHRASES[$this->statusCode];
         } else {
             $this->reasonPhrase = (string) $reason;
@@ -56,7 +54,7 @@ class Response implements ResponseInterface
         $this->assertStatusCodeRange($code);
         $new = clone $this;
         $new->statusCode = $code;
-        if ($reasonPhrase === '' && isset(self::PHRASES[$new->statusCode])) {
+        if ($reasonPhrase == '' && isset(self::PHRASES[$new->statusCode])) {
             $reasonPhrase = self::PHRASES[$new->statusCode];
         }
         $new->reasonPhrase = (string) $reasonPhrase;

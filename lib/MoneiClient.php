@@ -10,7 +10,6 @@
  * @author   MONEI
  * @link     https://monei.com
  */
-
 namespace Monei;
 
 use Monei\Api\ApplePayDomainApi;
@@ -24,7 +23,6 @@ use Monei\Internal\GuzzleHttp\Middleware;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\ApiException;
 use Monei\Configuration;
-
 /**
  * PaymentsApi Class Doc Comment
  *

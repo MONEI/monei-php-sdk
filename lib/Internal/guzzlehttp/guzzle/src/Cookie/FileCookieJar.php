@@ -3,7 +3,6 @@
 namespace Monei\Internal\GuzzleHttp\Cookie;
 
 use Monei\Internal\GuzzleHttp\Utils;
-
 /**
  * Persists non-session cookies using a JSON formatted file
  */

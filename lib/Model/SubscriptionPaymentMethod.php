@@ -24,12 +24,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
 namespace Monei\Model;
 
 use ArrayAccess;
 use Monei\ObjectSerializer;
-
 /**
  * SubscriptionPaymentMethod Class Doc Comment
  *
@@ -54,7 +52,7 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['method' => 'string', 'card' => '\Monei\Model\PaymentPaymentMethodCard'];
+    protected static $openAPITypes = ['method' => 'string', 'card' => '\Monei\Model\PaymentPaymentMethodCard', 'bizum' => '\Monei\Model\PaymentPaymentMethodBizum'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -62,13 +60,13 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['method' => null, 'card' => null];
+    protected static $openAPIFormats = ['method' => null, 'card' => null, 'bizum' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['method' => \false, 'card' => \false];
+    protected static array $openAPINullables = ['method' => \false, 'card' => \false, 'bizum' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -146,19 +144,19 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['method' => 'method', 'card' => 'card'];
+    protected static $attributeMap = ['method' => 'method', 'card' => 'card', 'bizum' => 'bizum'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['method' => 'setMethod', 'card' => 'setCard'];
+    protected static $setters = ['method' => 'setMethod', 'card' => 'setCard', 'bizum' => 'setBizum'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['method' => 'getMethod', 'card' => 'getCard'];
+    protected static $getters = ['method' => 'getMethod', 'card' => 'getCard', 'bizum' => 'getBizum'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -197,6 +195,7 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
         return self::$openAPIModelName;
     }
     public const METHOD_CARD = 'card';
+    public const METHOD_BIZUM = 'bizum';
     /**
      * Gets allowable values of the enum
      *
@@ -204,7 +203,7 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
      */
     public function getMethodAllowableValues()
     {
-        return [self::METHOD_CARD];
+        return [self::METHOD_CARD, self::METHOD_BIZUM];
     }
     /**
      * Associative array for storing property values
@@ -222,6 +221,7 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
     {
         $this->setIfExists('method', $data ?? [], null);
         $this->setIfExists('card', $data ?? [], null);
+        $this->setIfExists('bizum', $data ?? [], null);
     }
     /**
      * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
@@ -313,6 +313,30 @@ class SubscriptionPaymentMethod implements \Monei\Model\ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable card cannot be null');
         }
         $this->container['card'] = $card;
+        return $this;
+    }
+    /**
+     * Gets bizum
+     *
+     * @return \Monei\Model\PaymentPaymentMethodBizum|null
+     */
+    public function getBizum()
+    {
+        return $this->container['bizum'];
+    }
+    /**
+     * Sets bizum
+     *
+     * @param \Monei\Model\PaymentPaymentMethodBizum|null $bizum bizum
+     *
+     * @return self
+     */
+    public function setBizum($bizum)
+    {
+        if (is_null($bizum)) {
+            throw new \InvalidArgumentException('non-nullable bizum cannot be null');
+        }
+        $this->container['bizum'] = $bizum;
         return $this;
     }
     /**

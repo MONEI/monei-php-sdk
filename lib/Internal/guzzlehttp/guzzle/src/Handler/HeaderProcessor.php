@@ -3,7 +3,6 @@
 namespace Monei\Internal\GuzzleHttp\Handler;
 
 use Monei\Internal\GuzzleHttp\Utils;
-
 /**
  * @internal
  */
@@ -14,9 +13,9 @@ final class HeaderProcessor
      *
      * @param string[] $headers
      *
+     * @return array{0:string, 1:int, 2:?string, 3:array}
      *
      * @throws \RuntimeException
-     * @return array{0:string, 1:int, 2:?string, 3:array}
      */
     public static function parseHeaders(array $headers): array
     {

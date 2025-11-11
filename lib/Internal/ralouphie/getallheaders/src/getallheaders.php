@@ -10,8 +10,8 @@ if (!\function_exists('getallheaders') && !\function_exists('Monei\Internal\geta
      */
     function getallheaders()
     {
-        $headers = [];
-        $copy_server = ['CONTENT_TYPE' => 'Content-Type', 'CONTENT_LENGTH' => 'Content-Length', 'CONTENT_MD5' => 'Content-Md5'];
+        $headers = array();
+        $copy_server = array('CONTENT_TYPE' => 'Content-Type', 'CONTENT_LENGTH' => 'Content-Length', 'CONTENT_MD5' => 'Content-Md5');
         foreach ($_SERVER as $key => $value) {
             if (\substr($key, 0, 5) === 'HTTP_') {
                 $key = \substr($key, 5);

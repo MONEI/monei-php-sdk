@@ -9,9 +9,7 @@ $loader = (static function () {
     $loader = require_once __DIR__.'/autoload.php';
     // Ensure InstalledVersions is available
     $installedVersionsPath = __DIR__.'/composer/InstalledVersions.php';
-    if (file_exists($installedVersionsPath)) {
-        require_once $installedVersionsPath;
-    }
+    if (file_exists($installedVersionsPath)) require_once $installedVersionsPath;
 
     // Restore the backup and ensure the excluded files are properly marked as loaded
     $GLOBALS['__composer_autoload_files'] = \array_merge(
@@ -24,11 +22,6 @@ $loader = (static function () {
 
 // Function aliases. For more information see:
 // https://github.com/humbug/php-scoper/blob/master/docs/further-reading.md#function-aliases
-if (!function_exists('getallheaders')) {
-    function getallheaders()
-    {
-        return \Monei\Internal\getallheaders(...func_get_args());
-    }
-}
+if (!function_exists('getallheaders')) { function getallheaders() { return \Monei\Internal\getallheaders(...func_get_args()); } }
 
 return $loader;

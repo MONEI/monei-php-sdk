@@ -6,7 +6,6 @@ use Monei\Internal\GuzzleHttp\Promise as P;
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
-
 /**
  * Middleware that retries requests based on the boolean result of
  * invoking the provided "decider" function.

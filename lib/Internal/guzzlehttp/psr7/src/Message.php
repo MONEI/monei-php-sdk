@@ -1,13 +1,11 @@
 <?php
 
 declare (strict_types=1);
-
 namespace Monei\Internal\GuzzleHttp\Psr7;
 
 use Monei\Internal\Psr\Http\Message\MessageInterface;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
-
 final class Message
 {
     /**

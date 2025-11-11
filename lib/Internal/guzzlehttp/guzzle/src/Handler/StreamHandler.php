@@ -14,7 +14,6 @@ use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
 use Monei\Internal\Psr\Http\Message\UriInterface;
-
 /**
  * HTTP handler that uses PHP's HTTP stream wrapper.
  *
@@ -174,9 +173,9 @@ class StreamHandler
      *
      * @param callable $callback Callable that returns stream resource
      *
+     * @return resource
      *
      * @throws \RuntimeException on error
-     * @return resource
      */
     private function createResource(callable $callback)
     {
@@ -210,7 +209,7 @@ class StreamHandler
         if (!$methods) {
             $methods = \array_flip(\get_class_methods(__CLASS__));
         }
-        if (!\in_array($request->getUri()->getScheme(), ['http', 'https'], true)) {
+        if (!\in_array($request->getUri()->getScheme(), ['http', 'https'])) {
             throw new RequestException(\sprintf("The scheme '%s' is not supported.", $request->getUri()->getScheme()), $request);
         }
         // HTTP/1.1 streams using the PHP stream wrapper require a
@@ -413,7 +412,7 @@ class StreamHandler
     private function add_progress(RequestInterface $request, array &$options, $value, array &$params): void
     {
         self::addNotification($params, static function ($code, $a, $b, $c, $transferred, $total) use ($value) {
-            if ($code === \STREAM_NOTIFY_PROGRESS) {
+            if ($code == \STREAM_NOTIFY_PROGRESS) {
                 // The upload progress cannot be determined. Use 0 for cURL compatibility:
                 // https://curl.se/libcurl/c/CURLOPT_PROGRESSFUNCTION.html
                 $value($total, $transferred, 0, 0);
