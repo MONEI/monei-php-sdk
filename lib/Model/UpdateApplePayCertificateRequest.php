@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PaymentPaymentMethodMbway
+ * UpdateApplePayCertificateRequest
  *
  * PHP version 8.1
  *
@@ -31,16 +31,15 @@ use ArrayAccess;
 use Monei\ObjectSerializer;
 
 /**
- * PaymentPaymentMethodMbway Class Doc Comment
+ * UpdateApplePayCertificateRequest Class Doc Comment
  *
  * @category Class
- * @description Details from MBWay order used as payment method at the time of the transaction.
  * @package  Monei
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
+class UpdateApplePayCertificateRequest implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     /**
@@ -48,13 +47,13 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string
      */
-    protected static $openAPIModelName = 'Payment-PaymentMethodMbway';
+    protected static $openAPIModelName = 'UpdateApplePayCertificateRequest';
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['phone_number' => 'string'];
+    protected static $openAPITypes = ['active' => 'bool'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -62,13 +61,13 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['phone_number' => null];
+    protected static $openAPIFormats = ['active' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['phone_number' => \false];
+    protected static array $openAPINullables = ['active' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -146,19 +145,19 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['phone_number' => 'phoneNumber'];
+    protected static $attributeMap = ['active' => 'active'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['phone_number' => 'setPhoneNumber'];
+    protected static $setters = ['active' => 'setActive'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['phone_number' => 'getPhoneNumber'];
+    protected static $getters = ['active' => 'getActive'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -210,7 +209,7 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('phone_number', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
     }
     /**
      * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
@@ -236,6 +235,9 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['active'] === null) {
+            $invalidProperties[] = "'active' can't be null";
+        }
         return $invalidProperties;
     }
     /**
@@ -249,27 +251,27 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
     /**
-     * Gets phone_number
+     * Gets active
      *
-     * @return string|null
+     * @return bool
      */
-    public function getPhoneNumber()
+    public function getActive()
     {
-        return $this->container['phone_number'];
+        return $this->container['active'];
     }
     /**
-     * Sets phone_number
+     * Sets active
      *
-     * @param string|null $phone_number Phone number in E.164 format used to pay with `mbway`.
+     * @param bool $active Set to true to enable or false to disable the certificate.
      *
      * @return self
      */
-    public function setPhoneNumber($phone_number)
+    public function setActive($active)
     {
-        if (is_null($phone_number)) {
-            throw new \InvalidArgumentException('non-nullable phone_number cannot be null');
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-        $this->container['phone_number'] = $phone_number;
+        $this->container['active'] = $active;
         return $this;
     }
     /**
