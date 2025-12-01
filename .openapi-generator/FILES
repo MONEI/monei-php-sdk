@@ -1,3 +1,4 @@
+lib/Api/ApplePayCertificateApi.php
 lib/Api/ApplePayDomainApi.php
 lib/Api/BizumApi.php
 lib/Api/PaymentMethodsApi.php
@@ -7,9 +8,11 @@ lib/ApiException.php
 lib/Configuration.php
 lib/FormDataProcessor.php
 lib/HeaderSelector.php
+lib/Model/ActivateApplePayCertificateRequest.php
 lib/Model/ActivateSubscriptionRequest.php
 lib/Model/Address.php
 lib/Model/ApiException.php
+lib/Model/ApplePayCertificate.php
 lib/Model/BadRequestError.php
 lib/Model/CancelPaymentRequest.php
 lib/Model/CancelSubscriptionRequest.php
@@ -92,6 +95,7 @@ lib/Model/SubscriptionRetryScheduleInner.php
 lib/Model/SubscriptionStatus.php
 lib/Model/UnauthorizedError.php
 lib/Model/UnprocessableEntityError.php
+lib/Model/UpdateApplePayCertificateRequest.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/Model/ValidateBizumPhoneRequest.php
 lib/ObjectSerializer.php
