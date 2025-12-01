@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PaymentPaymentMethodMbway
+ * ApplePayCertificate
  *
  * PHP version 8.1
  *
@@ -31,16 +31,16 @@ use ArrayAccess;
 use Monei\ObjectSerializer;
 
 /**
- * PaymentPaymentMethodMbway Class Doc Comment
+ * ApplePayCertificate Class Doc Comment
  *
  * @category Class
- * @description Details from MBWay order used as payment method at the time of the transaction.
+ * @description An Apple Pay certificate for iOS app integration.
  * @package  Monei
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
+class ApplePayCertificate implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     /**
@@ -48,13 +48,13 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string
      */
-    protected static $openAPIModelName = 'Payment-PaymentMethodMbway';
+    protected static $openAPIModelName = 'ApplePayCertificate';
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['phone_number' => 'string'];
+    protected static $openAPITypes = ['id' => 'string', 'account_id' => 'string', 'csr' => 'string', 'cert' => 'string', 'active' => 'bool', 'expire_at' => '\DateTime', 'created_at' => '\DateTime'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -62,13 +62,13 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['phone_number' => null];
+    protected static $openAPIFormats = ['id' => null, 'account_id' => null, 'csr' => null, 'cert' => null, 'active' => null, 'expire_at' => 'date-time', 'created_at' => 'date-time'];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['phone_number' => \false];
+    protected static array $openAPINullables = ['id' => \false, 'account_id' => \false, 'csr' => \false, 'cert' => \false, 'active' => \false, 'expire_at' => \false, 'created_at' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -146,19 +146,19 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['phone_number' => 'phoneNumber'];
+    protected static $attributeMap = ['id' => 'id', 'account_id' => 'accountId', 'csr' => 'csr', 'cert' => 'cert', 'active' => 'active', 'expire_at' => 'expireAt', 'created_at' => 'createdAt'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['phone_number' => 'setPhoneNumber'];
+    protected static $setters = ['id' => 'setId', 'account_id' => 'setAccountId', 'csr' => 'setCsr', 'cert' => 'setCert', 'active' => 'setActive', 'expire_at' => 'setExpireAt', 'created_at' => 'setCreatedAt'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['phone_number' => 'getPhoneNumber'];
+    protected static $getters = ['id' => 'getId', 'account_id' => 'getAccountId', 'csr' => 'getCsr', 'cert' => 'getCert', 'active' => 'getActive', 'expire_at' => 'getExpireAt', 'created_at' => 'getCreatedAt'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -210,7 +210,13 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('phone_number', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('csr', $data ?? [], null);
+        $this->setIfExists('cert', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('expire_at', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
     /**
      * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
@@ -236,6 +242,18 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['account_id'] === null) {
+            $invalidProperties[] = "'account_id' can't be null";
+        }
+        if ($this->container['active'] === null) {
+            $invalidProperties[] = "'active' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
         return $invalidProperties;
     }
     /**
@@ -249,27 +267,171 @@ class PaymentPaymentMethodMbway implements \Monei\Model\ModelInterface, ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
     /**
-     * Gets phone_number
+     * Gets id
      *
-     * @return string|null
+     * @return string
      */
-    public function getPhoneNumber()
+    public function getId()
     {
-        return $this->container['phone_number'];
+        return $this->container['id'];
     }
     /**
-     * Sets phone_number
+     * Sets id
      *
-     * @param string|null $phone_number Phone number in E.164 format used to pay with `mbway`.
+     * @param string $id Unique identifier of the certificate.
      *
      * @return self
      */
-    public function setPhoneNumber($phone_number)
+    public function setId($id)
     {
-        if (is_null($phone_number)) {
-            throw new \InvalidArgumentException('non-nullable phone_number cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['phone_number'] = $phone_number;
+        $this->container['id'] = $id;
+        return $this;
+    }
+    /**
+     * Gets account_id
+     *
+     * @return string
+     */
+    public function getAccountId()
+    {
+        return $this->container['account_id'];
+    }
+    /**
+     * Sets account_id
+     *
+     * @param string $account_id The account ID this certificate belongs to.
+     *
+     * @return self
+     */
+    public function setAccountId($account_id)
+    {
+        if (is_null($account_id)) {
+            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
+        }
+        $this->container['account_id'] = $account_id;
+        return $this;
+    }
+    /**
+     * Gets csr
+     *
+     * @return string|null
+     */
+    public function getCsr()
+    {
+        return $this->container['csr'];
+    }
+    /**
+     * Sets csr
+     *
+     * @param string|null $csr The Certificate Signing Request in base64url format (URL-safe base64). Only present before activation. To decode, replace - with + and _ with /, then use standard base64 decoder. Use this to create a certificate in Apple Developer Portal.
+     *
+     * @return self
+     */
+    public function setCsr($csr)
+    {
+        if (is_null($csr)) {
+            throw new \InvalidArgumentException('non-nullable csr cannot be null');
+        }
+        $this->container['csr'] = $csr;
+        return $this;
+    }
+    /**
+     * Gets cert
+     *
+     * @return string|null
+     */
+    public function getCert()
+    {
+        return $this->container['cert'];
+    }
+    /**
+     * Sets cert
+     *
+     * @param string|null $cert The certificate body in base64 format. Only present after activation.
+     *
+     * @return self
+     */
+    public function setCert($cert)
+    {
+        if (is_null($cert)) {
+            throw new \InvalidArgumentException('non-nullable cert cannot be null');
+        }
+        $this->container['cert'] = $cert;
+        return $this;
+    }
+    /**
+     * Gets active
+     *
+     * @return bool
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+    /**
+     * Sets active
+     *
+     * @param bool $active Whether the certificate is active for payment processing.
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+        $this->container['active'] = $active;
+        return $this;
+    }
+    /**
+     * Gets expire_at
+     *
+     * @return \DateTime|null
+     */
+    public function getExpireAt()
+    {
+        return $this->container['expire_at'];
+    }
+    /**
+     * Sets expire_at
+     *
+     * @param \DateTime|null $expire_at The certificate expiration date in ISO 8601 format. Only present after activation.
+     *
+     * @return self
+     */
+    public function setExpireAt($expire_at)
+    {
+        if (is_null($expire_at)) {
+            throw new \InvalidArgumentException('non-nullable expire_at cannot be null');
+        }
+        $this->container['expire_at'] = $expire_at;
+        return $this;
+    }
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime $created_at The certificate creation date in ISO 8601 format.
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
         return $this;
     }
     /**
