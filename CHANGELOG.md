@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.10.0 (2025-12-01)
+
+* chore: add header-max-length rule to commitlint configuration ([2a52acc](https://github.com/MONEI/monei-php-sdk/commit/2a52acc))
+* chore: release v2.9.0 ([be05252](https://github.com/MONEI/monei-php-sdk/commit/be05252))
+* chore: update OpenAPI document version to 1.8.0 and add new models for Apple Pay certificate managem ([6ecef2c](https://github.com/MONEI/monei-php-sdk/commit/6ecef2c))
+* chore: update OpenAPI document version to 1.8.0 and upgrade package manager to yarn@4.12.0 ([9ad9715](https://github.com/MONEI/monei-php-sdk/commit/9ad9715))
+* chore: update release-it configuration and downgrade conventional-changelog version ([223cb6f](https://github.com/MONEI/monei-php-sdk/commit/223cb6f))
+* chore: update release-it configuration to use object format for angular preset ([467aa66](https://github.com/MONEI/monei-php-sdk/commit/467aa66))
+* feat: add ApplePayCertificateApi and tests ([ef153eb](https://github.com/MONEI/monei-php-sdk/commit/ef153eb))
+* feat: add Bizum as a payment method to SubscriptionPaymentMethod interface ([33fc36d](https://github.com/MONEI/monei-php-sdk/commit/33fc36d))
+* feat: add Bizum as a payment method to SubscriptionPaymentMethod interface ([afdf04c](https://github.com/MONEI/monei-php-sdk/commit/afdf04c))
+* feat: add tests for ApplePayCertificateApi ([7774b15](https://github.com/MONEI/monei-php-sdk/commit/7774b15))
+* feat: implement Apple Pay certificate management API ([cfd5ab5](https://github.com/MONEI/monei-php-sdk/commit/cfd5ab5))
+
 ## 2.9.0 (2025-11-11)
 
 * feat: add Bizum as a payment method to SubscriptionPaymentMethod interface ([33fc36d](https://github.com/MONEI/monei-php-sdk/commit/33fc36d))
