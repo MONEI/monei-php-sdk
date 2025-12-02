@@ -7,7 +7,7 @@
   "scripts": {
     "generate": "openapi-generator-cli generate --generator-key monei-php",
     "generate:local": "openapi-generator-cli generate --generator-key monei-php-local",
-    "build": "yarn run build && yarn run scope && yarn run cs-fix",
+    "build": "yarn run generate && yarn run scope && yarn run cs-fix",
     "build:local": "yarn run generate:local && yarn run scope && yarn run cs-fix",
     "release": "release-it",
     "cs-fix": "composer cs-fix",
