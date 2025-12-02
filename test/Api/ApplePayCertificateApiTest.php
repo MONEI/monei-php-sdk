@@ -163,7 +163,7 @@ class ApplePayCertificateApiTest extends TestCase
      *
      * @return void
      */
-    public function testCallList()
+    public function testGetAll()
     {
         $this->mockHandler->append(
             new Response(
@@ -188,7 +188,7 @@ class ApplePayCertificateApiTest extends TestCase
             )
         );
 
-        $result = $this->api->callList();
+        $result = $this->api->getAll();
 
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
@@ -347,13 +347,13 @@ class ApplePayCertificateApiTest extends TestCase
     }
 
     /**
-     * Test case for delete
+     * Test case for remove
      *
-     * Delete Certificate.
+     * Remove Certificate.
      *
      * @return void
      */
-    public function testDelete()
+    public function testRemove()
     {
         $certId = 'cert_123456789';
 
@@ -369,7 +369,7 @@ class ApplePayCertificateApiTest extends TestCase
             )
         );
 
-        $result = $this->api->delete($certId);
+        $result = $this->api->remove($certId);
 
         $this->assertCount(1, $this->container);
         $request = $this->container[0]['request'];
@@ -402,14 +402,14 @@ class ApplePayCertificateApiTest extends TestCase
      *
      * @return void
      */
-    public function testDeleteWithMissingIdThrowsException()
+    public function testRemoveWithMissingIdThrowsException()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'Missing the required parameter $id when calling delete'
+            'Missing the required parameter $id when calling remove'
         );
 
-        $this->api->delete(null);
+        $this->api->remove(null);
     }
 
     /**
@@ -521,7 +521,7 @@ class ApplePayCertificateApiTest extends TestCase
         );
 
         try {
-            $this->api->callList();
+            $this->api->getAll();
             $this->fail('Expected ApiException was not thrown');
         } catch (ApiException $e) {
             $this->assertEquals(401, $e->getCode());

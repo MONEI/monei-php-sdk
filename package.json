@@ -5,8 +5,10 @@
   "author": "monei",
   "type": "module",
   "scripts": {
-    "build": "openapi-generator-cli generate --generator-key monei-php",
-    "build:local": "openapi-generator-cli generate --generator-key monei-php-local",
+    "generate": "openapi-generator-cli generate --generator-key monei-php",
+    "generate:local": "openapi-generator-cli generate --generator-key monei-php-local",
+    "build": "yarn run build && yarn run scope && yarn run cs-fix",
+    "build:local": "yarn run generate:local && yarn run scope && yarn run cs-fix",
     "release": "release-it",
     "cs-fix": "composer cs-fix",
     "test": "composer test",
