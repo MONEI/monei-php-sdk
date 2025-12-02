@@ -1,5 +1,11 @@
 # Changelog
 
+## <small>2.10.1 (2025-12-02)</small>
+
+* chore: simplify after:bump hook in release-it configuration ([0df6b69](https://github.com/MONEI/monei-php-sdk/commit/0df6b69))
+* chore: update build script to include generate step ([e089ed2](https://github.com/MONEI/monei-php-sdk/commit/e089ed2))
+* chore: update release-it config and fix tests ([9e66ba5](https://github.com/MONEI/monei-php-sdk/commit/9e66ba5))
+
 ## 2.10.0 (2025-12-01)
 
 * chore: add header-max-length rule to commitlint configuration ([2a52acc](https://github.com/MONEI/monei-php-sdk/commit/2a52acc))
