@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>2.10.2 (2026-01-21)</small>
+
+* chore: update OpenAPI document version to 1.8.3 across all relevant files ([45c6c00](https://github.com/MONEI/monei-php-sdk/commit/45c6c00))
+
 ## <small>2.10.1 (2025-12-02)</small>
 
 * chore: simplify after:bump hook in release-it configuration ([0df6b69](https://github.com/MONEI/monei-php-sdk/commit/0df6b69))
