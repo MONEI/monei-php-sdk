@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.4](https://github.com/MONEI/monei-php-sdk/compare/2.10.3...2.10.4) (2026-03-30)
+
+
+### Features
+
+* expose POSAuthTokenApi on MoneiClient ([01c4cf8](https://github.com/MONEI/monei-php-sdk/commit/01c4cf81e6a5cb73c257115cac8ceb800ca2c27f))
+
 ## [2.10.3](https://github.com/MONEI/monei-php-sdk/compare/2.10.2...2.10.3) (2026-03-30)
 
 ## <small>2.10.2 (2026-01-21)</small>
