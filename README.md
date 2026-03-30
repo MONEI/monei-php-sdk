@@ -565,13 +565,13 @@ The SDK is built using OpenAPI Generator. To build the SDK from the OpenAPI spec
 
 ```bash
 # Install dependencies
-yarn install
+pnpm install
 
 # Generate SDK from remote OpenAPI spec
-yarn build
+pnpm run build
 
 # Generate SDK from local OpenAPI spec
-yarn build:local
+pnpm run build:local
 ```
 
 ## Tests

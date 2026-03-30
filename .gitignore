@@ -487,10 +487,10 @@ test.php
 # PHPUnit cache
 .phpunit.result.cache
 
-# Yarn
-/.yarn/*
-!/.yarn/patches
-!/.yarn/plugins
-!/.yarn/releases
-!/.yarn/sdks
-!/.yarn/versions
+# Yarn (legacy)
+yarn.lock
+.yarn/
+.pnp.*
+
+# pnpm
+.pnpm-store/
