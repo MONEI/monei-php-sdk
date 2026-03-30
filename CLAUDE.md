@@ -31,16 +31,16 @@ composer cs-fix
 ### SDK Generation Commands (requires Node.js)
 ```bash
 # Install build dependencies
-yarn install
+pnpm install
 
 # Generate SDK from remote OpenAPI spec
-yarn build
+pnpm run build
 
 # Generate SDK from local OpenAPI spec
-yarn build:local
+pnpm run build:local
 
 # Create a new release
-yarn release
+pnpm release
 ```
 
 ## Architecture
@@ -96,7 +96,7 @@ This is an OpenAPI-driven PHP SDK for the MONEI payment platform. The codebase f
 ### Code Generation Workflow
 
 1. OpenAPI spec defines the API contract
-2. `yarn build` generates base SDK code
+2. `pnpm run build` generates base SDK code
 3. Post-build scripts apply formatting and run tests
 4. Custom code preserved in MoneiClient.php
 

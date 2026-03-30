@@ -1,1 +1,1 @@
-yarn cs-fix && yarn test
+pnpm cs-fix && pnpm test
