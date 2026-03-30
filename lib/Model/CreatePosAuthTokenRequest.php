@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PaymentMethodsMetadataEps
+ * CreatePosAuthTokenRequest
  *
  * PHP version 8.1
  *
@@ -31,7 +31,7 @@ use ArrayAccess;
 use Monei\ObjectSerializer;
 
 /**
- * PaymentMethodsMetadataEps Class Doc Comment
+ * CreatePosAuthTokenRequest Class Doc Comment
  *
  * @category Class
  * @package  Monei
@@ -39,7 +39,7 @@ use Monei\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
+class CreatePosAuthTokenRequest implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     /**
@@ -47,13 +47,13 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string
      */
-    protected static $openAPIModelName = 'PaymentMethods_Metadata_eps';
+    protected static $openAPIModelName = 'CreatePosAuthTokenRequest';
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['countries' => 'string[]'];
+    protected static $openAPITypes = ['point_of_sale_id' => 'string', 'store_id' => 'string'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +61,13 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['countries' => null];
+    protected static $openAPIFormats = ['point_of_sale_id' => null, 'store_id' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['countries' => \false];
+    protected static array $openAPINullables = ['point_of_sale_id' => \false, 'store_id' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +145,19 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['countries' => 'countries'];
+    protected static $attributeMap = ['point_of_sale_id' => 'pointOfSaleId', 'store_id' => 'storeId'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['countries' => 'setCountries'];
+    protected static $setters = ['point_of_sale_id' => 'setPointOfSaleId', 'store_id' => 'setStoreId'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['countries' => 'getCountries'];
+    protected static $getters = ['point_of_sale_id' => 'getPointOfSaleId', 'store_id' => 'getStoreId'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -209,7 +209,8 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('countries', $data ?? [], null);
+        $this->setIfExists('point_of_sale_id', $data ?? [], null);
+        $this->setIfExists('store_id', $data ?? [], null);
     }
     /**
      * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
@@ -248,27 +249,51 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
     /**
-     * Gets countries
+     * Gets point_of_sale_id
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getCountries()
+    public function getPointOfSaleId()
     {
-        return $this->container['countries'];
+        return $this->container['point_of_sale_id'];
     }
     /**
-     * Sets countries
+     * Sets point_of_sale_id
      *
-     * @param string[]|null $countries List of countries where the payment method is available
+     * @param string|null $point_of_sale_id A unique identifier of the Point of Sale. If specified the payment is attached to this Point of Sale. If there is a QR code attached to the same Point of Sale, this payment will be available by scanning the QR code.
      *
      * @return self
      */
-    public function setCountries($countries)
+    public function setPointOfSaleId($point_of_sale_id)
     {
-        if (is_null($countries)) {
-            throw new \InvalidArgumentException('non-nullable countries cannot be null');
+        if (is_null($point_of_sale_id)) {
+            throw new \InvalidArgumentException('non-nullable point_of_sale_id cannot be null');
         }
-        $this->container['countries'] = $countries;
+        $this->container['point_of_sale_id'] = $point_of_sale_id;
+        return $this;
+    }
+    /**
+     * Gets store_id
+     *
+     * @return string|null
+     */
+    public function getStoreId()
+    {
+        return $this->container['store_id'];
+    }
+    /**
+     * Sets store_id
+     *
+     * @param string|null $store_id A unique identifier of the Store. If specified the payment is attached to this Store.
+     *
+     * @return self
+     */
+    public function setStoreId($store_id)
+    {
+        if (is_null($store_id)) {
+            throw new \InvalidArgumentException('non-nullable store_id cannot be null');
+        }
+        $this->container['store_id'] = $store_id;
         return $this;
     }
     /**

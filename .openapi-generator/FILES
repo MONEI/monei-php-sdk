@@ -1,6 +1,7 @@
 lib/Api/ApplePayCertificateApi.php
 lib/Api/ApplePayDomainApi.php
 lib/Api/BizumApi.php
+lib/Api/POSAuthTokenApi.php
 lib/Api/PaymentMethodsApi.php
 lib/Api/PaymentsApi.php
 lib/Api/SubscriptionsApi.php
@@ -21,9 +22,11 @@ lib/Model/ConfirmPaymentRequest.php
 lib/Model/ConfirmPaymentRequestPaymentMethod.php
 lib/Model/ConfirmPaymentRequestPaymentMethodCard.php
 lib/Model/CreatePaymentRequest.php
+lib/Model/CreatePosAuthTokenRequest.php
 lib/Model/CreateSubscriptionRequest.php
 lib/Model/InlineObject.php
 lib/Model/InlineObject1.php
+lib/Model/InlineObject2.php
 lib/Model/InternalServerError.php
 lib/Model/ModelInterface.php
 lib/Model/NotFoundError.php

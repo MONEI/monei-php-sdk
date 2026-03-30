@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PaymentMethodsMetadataEps
+ * InlineObject2
  *
  * PHP version 8.1
  *
@@ -31,7 +31,7 @@ use ArrayAccess;
 use Monei\ObjectSerializer;
 
 /**
- * PaymentMethodsMetadataEps Class Doc Comment
+ * InlineObject2 Class Doc Comment
  *
  * @category Class
  * @package  Monei
@@ -39,7 +39,7 @@ use Monei\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
+class InlineObject2 implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
     /**
@@ -47,13 +47,13 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string
      */
-    protected static $openAPIModelName = 'PaymentMethods_Metadata_eps';
+    protected static $openAPIModelName = 'inline_object_2';
     /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['countries' => 'string[]'];
+    protected static $openAPITypes = ['token' => 'string'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +61,13 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['countries' => null];
+    protected static $openAPIFormats = ['token' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['countries' => \false];
+    protected static array $openAPINullables = ['token' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +145,19 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['countries' => 'countries'];
+    protected static $attributeMap = ['token' => 'token'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['countries' => 'setCountries'];
+    protected static $setters = ['token' => 'setToken'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['countries' => 'getCountries'];
+    protected static $getters = ['token' => 'getToken'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -209,7 +209,7 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('countries', $data ?? [], null);
+        $this->setIfExists('token', $data ?? [], null);
     }
     /**
      * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
@@ -235,6 +235,9 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['token'] === null) {
+            $invalidProperties[] = "'token' can't be null";
+        }
         return $invalidProperties;
     }
     /**
@@ -248,27 +251,27 @@ class PaymentMethodsMetadataEps implements \Monei\Model\ModelInterface, ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
     /**
-     * Gets countries
+     * Gets token
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getCountries()
+    public function getToken()
     {
-        return $this->container['countries'];
+        return $this->container['token'];
     }
     /**
-     * Sets countries
+     * Sets token
      *
-     * @param string[]|null $countries List of countries where the payment method is available
+     * @param string $token RS256-signed JWT token for POS authentication. Valid for 24 hours.
      *
      * @return self
      */
-    public function setCountries($countries)
+    public function setToken($token)
     {
-        if (is_null($countries)) {
-            throw new \InvalidArgumentException('non-nullable countries cannot be null');
+        if (is_null($token)) {
+            throw new \InvalidArgumentException('non-nullable token cannot be null');
         }
-        $this->container['countries'] = $countries;
+        $this->container['token'] = $token;
         return $this;
     }
     /**

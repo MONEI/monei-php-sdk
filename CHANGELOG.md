@@ -1,5 +1,7 @@
 # Changelog
 
+## [2.10.3](https://github.com/MONEI/monei-php-sdk/compare/2.10.2...2.10.3) (2026-03-30)
+
 ## <small>2.10.2 (2026-01-21)</small>
 
 * chore: update OpenAPI document version to 1.8.3 across all relevant files ([45c6c00](https://github.com/MONEI/monei-php-sdk/commit/45c6c00))

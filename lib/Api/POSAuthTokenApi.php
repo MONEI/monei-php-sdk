@@ -1,7 +1,7 @@
 <?php
 
 /**
- * BizumApi
+ * POSAuthTokenApi
  * PHP version 8.1
  *
  * @category Class
@@ -42,14 +42,14 @@ use Monei\HeaderSelector;
 use Monei\ObjectSerializer;
 
 /**
- * BizumApi Class Doc Comment
+ * POSAuthTokenApi Class Doc Comment
  *
  * @category Class
  * @package  Monei
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class BizumApi
+class POSAuthTokenApi
 {
     /**
      * @var ClientInterface
@@ -68,7 +68,7 @@ class BizumApi
      */
     protected $hostIndex;
     /** @var string[] $contentTypes **/
-    public const contentTypes = ['validatePhone' => ['application/json']];
+    public const contentTypes = ['create' => ['application/json']];
     /**
      * @param ClientInterface $client
      * @param Configuration   $config
@@ -108,37 +108,37 @@ class BizumApi
         return $this->config;
     }
     /**
-     * Operation validatePhone
+     * Operation create
      *
-     * Validate Phone
+     * Create POS Auth Token
      *
-     * @param  \Monei\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request validate_bizum_phone_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhone'] to see the possible values for this operation
+     * @param  \Monei\Model\CreatePosAuthTokenRequest $create_pos_auth_token_request create_pos_auth_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \Monei\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Monei\Model\InlineObject1|\Monei\Model\BadRequestError|\Monei\Model\UnauthorizedError|\Monei\Model\NotFoundError|\Monei\Model\UnprocessableEntityError|\Monei\Model\InternalServerError|\Monei\Model\ServiceUnavailableError
+     * @return \Monei\Model\InlineObject2|\Monei\Model\BadRequestError|\Monei\Model\UnauthorizedError|\Monei\Model\InternalServerError|\Monei\Model\ServiceUnavailableError
      */
-    public function validatePhone($validate_bizum_phone_request, string $contentType = self::contentTypes['validatePhone'][0])
+    public function create($create_pos_auth_token_request, string $contentType = self::contentTypes['create'][0])
     {
-        list($response) = $this->validatePhoneWithHttpInfo($validate_bizum_phone_request, $contentType);
+        list($response) = $this->createWithHttpInfo($create_pos_auth_token_request, $contentType);
         return $response;
     }
     /**
-     * Operation validatePhoneWithHttpInfo
+     * Operation createWithHttpInfo
      *
-     * Validate Phone
+     * Create POS Auth Token
      *
-     * @param  \Monei\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhone'] to see the possible values for this operation
+     * @param  \Monei\Model\CreatePosAuthTokenRequest $create_pos_auth_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \Monei\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Monei\Model\InlineObject1|\Monei\Model\BadRequestError|\Monei\Model\UnauthorizedError|\Monei\Model\NotFoundError|\Monei\Model\UnprocessableEntityError|\Monei\Model\InternalServerError|\Monei\Model\ServiceUnavailableError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Monei\Model\InlineObject2|\Monei\Model\BadRequestError|\Monei\Model\UnauthorizedError|\Monei\Model\InternalServerError|\Monei\Model\ServiceUnavailableError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function validatePhoneWithHttpInfo($validate_bizum_phone_request, string $contentType = self::contentTypes['validatePhone'][0])
+    public function createWithHttpInfo($create_pos_auth_token_request, string $contentType = self::contentTypes['create'][0])
     {
-        $request = $this->validatePhoneRequest($validate_bizum_phone_request, $contentType);
+        $request = $this->createRequest($create_pos_auth_token_request, $contentType);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -151,15 +151,11 @@ class BizumApi
             $statusCode = $response->getStatusCode();
             switch ($statusCode) {
                 case 200:
-                    return $this->handleResponseWithDataType('\Monei\Model\InlineObject1', $request, $response);
+                    return $this->handleResponseWithDataType('\Monei\Model\InlineObject2', $request, $response);
                 case 400:
                     return $this->handleResponseWithDataType('\Monei\Model\BadRequestError', $request, $response);
                 case 401:
                     return $this->handleResponseWithDataType('\Monei\Model\UnauthorizedError', $request, $response);
-                case 404:
-                    return $this->handleResponseWithDataType('\Monei\Model\NotFoundError', $request, $response);
-                case 422:
-                    return $this->handleResponseWithDataType('\Monei\Model\UnprocessableEntityError', $request, $response);
                 case 500:
                     return $this->handleResponseWithDataType('\Monei\Model\InternalServerError', $request, $response);
                 case 503:
@@ -168,11 +164,11 @@ class BizumApi
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()), $statusCode, $response->getHeaders(), (string) $response->getBody());
             }
-            return $this->handleResponseWithDataType('\Monei\Model\InlineObject1', $request, $response);
+            return $this->handleResponseWithDataType('\Monei\Model\InlineObject2', $request, $response);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Monei\Model\InlineObject1', $e->getResponseHeaders());
+                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Monei\Model\InlineObject2', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     throw $e;
                 case 400:
@@ -181,14 +177,6 @@ class BizumApi
                     throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Monei\Model\UnauthorizedError', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Monei\Model\NotFoundError', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 422:
-                    $data = ObjectSerializer::deserialize($e->getResponseBody(), '\Monei\Model\UnprocessableEntityError', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     throw $e;
                 case 500:
@@ -204,37 +192,37 @@ class BizumApi
         }
     }
     /**
-     * Operation validatePhoneAsync
+     * Operation createAsync
      *
-     * Validate Phone
+     * Create POS Auth Token
      *
-     * @param  \Monei\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhone'] to see the possible values for this operation
+     * @param  \Monei\Model\CreatePosAuthTokenRequest $create_pos_auth_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function validatePhoneAsync($validate_bizum_phone_request, string $contentType = self::contentTypes['validatePhone'][0])
+    public function createAsync($create_pos_auth_token_request, string $contentType = self::contentTypes['create'][0])
     {
-        return $this->validatePhoneAsyncWithHttpInfo($validate_bizum_phone_request, $contentType)->then(function ($response) {
+        return $this->createAsyncWithHttpInfo($create_pos_auth_token_request, $contentType)->then(function ($response) {
             return $response[0];
         });
     }
     /**
-     * Operation validatePhoneAsyncWithHttpInfo
+     * Operation createAsyncWithHttpInfo
      *
-     * Validate Phone
+     * Create POS Auth Token
      *
-     * @param  \Monei\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhone'] to see the possible values for this operation
+     * @param  \Monei\Model\CreatePosAuthTokenRequest $create_pos_auth_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function validatePhoneAsyncWithHttpInfo($validate_bizum_phone_request, string $contentType = self::contentTypes['validatePhone'][0])
+    public function createAsyncWithHttpInfo($create_pos_auth_token_request, string $contentType = self::contentTypes['create'][0])
     {
-        $returnType = '\Monei\Model\InlineObject1';
-        $request = $this->validatePhoneRequest($validate_bizum_phone_request, $contentType);
+        $returnType = '\Monei\Model\InlineObject2';
+        $request = $this->createRequest($create_pos_auth_token_request, $contentType);
         return $this->client->sendAsync($request, $this->createHttpClientOption())->then(function ($response) use ($returnType) {
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody();
@@ -253,21 +241,21 @@ class BizumApi
         });
     }
     /**
-     * Create request for operation 'validatePhone'
+     * Create request for operation 'create'
      *
-     * @param  \Monei\Model\ValidateBizumPhoneRequest $validate_bizum_phone_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['validatePhone'] to see the possible values for this operation
+     * @param  \Monei\Model\CreatePosAuthTokenRequest $create_pos_auth_token_request (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function validatePhoneRequest($validate_bizum_phone_request, string $contentType = self::contentTypes['validatePhone'][0])
+    public function createRequest($create_pos_auth_token_request, string $contentType = self::contentTypes['create'][0])
     {
-        // verify the required parameter 'validate_bizum_phone_request' is set
-        if ($validate_bizum_phone_request === null || is_array($validate_bizum_phone_request) && count($validate_bizum_phone_request) === 0) {
-            throw new \InvalidArgumentException('Missing the required parameter $validate_bizum_phone_request when calling validatePhone');
+        // verify the required parameter 'create_pos_auth_token_request' is set
+        if ($create_pos_auth_token_request === null || is_array($create_pos_auth_token_request) && count($create_pos_auth_token_request) === 0) {
+            throw new \InvalidArgumentException('Missing the required parameter $create_pos_auth_token_request when calling create');
         }
-        $resourcePath = '/bizum/validate-phone';
+        $resourcePath = '/pos/auth-token';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -275,12 +263,12 @@ class BizumApi
         $multipart = \false;
         $headers = $this->headerSelector->selectHeaders(['application/json'], $contentType, $multipart);
         // for model (json/xml)
-        if (isset($validate_bizum_phone_request)) {
+        if (isset($create_pos_auth_token_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== \false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($validate_bizum_phone_request));
+                $httpBody = \Monei\Internal\GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_pos_auth_token_request));
             } else {
-                $httpBody = $validate_bizum_phone_request;
+                $httpBody = $create_pos_auth_token_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
