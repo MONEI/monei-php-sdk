@@ -18,6 +18,7 @@ use Monei\Api\ApplePayDomainApi;
 use Monei\Api\BizumApi;
 use Monei\Api\PaymentMethodsApi;
 use Monei\Api\PaymentsApi;
+use Monei\Api\POSAuthTokenApi;
 use Monei\Api\SubscriptionsApi;
 use Monei\Internal\GuzzleHttp\Client;
 use Monei\Internal\GuzzleHttp\HandlerStack;
@@ -54,6 +55,8 @@ class MoneiClient
     public $bizum;
     /** @var ApplePayCertificateApi */
     public $applePayCertificate;
+    /** @var POSAuthTokenApi */
+    public $posAuthToken;
     /** @var string|null */
     protected $accountId;
     /** @var Client */
@@ -90,6 +93,7 @@ class MoneiClient
         $this->applePayDomain = new ApplePayDomainApi($this->httpClient, $this->config);
         $this->applePayCertificate = new ApplePayCertificateApi($this->httpClient, $this->config);
         $this->bizum = new BizumApi($this->httpClient, $this->config);
+        $this->posAuthToken = new POSAuthTokenApi($this->httpClient, $this->config);
     }
     /**
      * @return Configuration
