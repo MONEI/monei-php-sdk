@@ -84,7 +84,9 @@ class PaymentStatusTest extends TestCase
             'REFUNDED',
             'PARTIALLY_REFUNDED',
             'AUTHORIZED',
-            'EXPIRED'
+            'EXPIRED',
+            'PENDING_PROCESSING',
+            'PAID_OUT'
         ];
 
         $this->assertEquals($expected, PaymentStatus::getAllowableEnumValues());
@@ -98,5 +100,7 @@ class PaymentStatusTest extends TestCase
         $this->assertEquals('PARTIALLY_REFUNDED', PaymentStatus::PARTIALLY_REFUNDED);
         $this->assertEquals('AUTHORIZED', PaymentStatus::AUTHORIZED);
         $this->assertEquals('EXPIRED', PaymentStatus::EXPIRED);
+        $this->assertEquals('PENDING_PROCESSING', PaymentStatus::PENDING_PROCESSING);
+        $this->assertEquals('PAID_OUT', PaymentStatus::PAID_OUT);
     }
 }

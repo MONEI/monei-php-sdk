@@ -79,6 +79,7 @@ class PaymentCancellationReasonTest extends TestCase
             'duplicated',
             'fraudulent',
             'requested_by_customer',
+            'order_canceled',
         ];
 
         $this->assertEquals($expected, \Monei\Model\PaymentCancellationReason::getAllowableEnumValues());
@@ -87,5 +88,6 @@ class PaymentCancellationReasonTest extends TestCase
         $this->assertEquals('duplicated', \Monei\Model\PaymentCancellationReason::DUPLICATED);
         $this->assertEquals('fraudulent', \Monei\Model\PaymentCancellationReason::FRAUDULENT);
         $this->assertEquals('requested_by_customer', \Monei\Model\PaymentCancellationReason::REQUESTED_BY_CUSTOMER);
+        $this->assertEquals('order_canceled', \Monei\Model\PaymentCancellationReason::ORDER_CANCELED);
     }
 }

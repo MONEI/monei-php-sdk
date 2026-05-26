@@ -79,6 +79,7 @@ class PaymentLastRefundReasonTest extends TestCase
             'duplicated',
             'fraudulent',
             'requested_by_customer',
+            'order_canceled',
         ];
 
         $this->assertEquals($expected, \Monei\Model\PaymentLastRefundReason::getAllowableEnumValues());
@@ -87,5 +88,6 @@ class PaymentLastRefundReasonTest extends TestCase
         $this->assertEquals('duplicated', \Monei\Model\PaymentLastRefundReason::DUPLICATED);
         $this->assertEquals('fraudulent', \Monei\Model\PaymentLastRefundReason::FRAUDULENT);
         $this->assertEquals('requested_by_customer', \Monei\Model\PaymentLastRefundReason::REQUESTED_BY_CUSTOMER);
+        $this->assertEquals('order_canceled', \Monei\Model\PaymentLastRefundReason::ORDER_CANCELED);
     }
 }

@@ -81,6 +81,7 @@ class SubscriptionIntervalTest extends TestCase
             'day',
             'week',
             'month',
+            'quarter',
             'year',
         ];
 
@@ -92,6 +93,7 @@ class SubscriptionIntervalTest extends TestCase
         $this->assertEquals('day', \Monei\Model\SubscriptionInterval::DAY);
         $this->assertEquals('week', \Monei\Model\SubscriptionInterval::WEEK);
         $this->assertEquals('month', \Monei\Model\SubscriptionInterval::MONTH);
+        $this->assertEquals('quarter', \Monei\Model\SubscriptionInterval::QUARTER);
         $this->assertEquals('year', \Monei\Model\SubscriptionInterval::YEAR);
     }
 }
