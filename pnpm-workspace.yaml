@@ -1,0 +1,3 @@
+allowBuilds:
+  '@openapitools/openapi-generator-cli': true
+  '@nestjs/core': false
