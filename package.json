@@ -1,6 +1,6 @@
 {
   "name": "monei-php-sdk",
-  "version": "2.10.4",
+  "version": "2.10.5",
   "description": "MONEI PHP SDK",
   "author": "monei",
   "type": "module",

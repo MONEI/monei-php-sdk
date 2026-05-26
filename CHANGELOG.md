@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.5](https://github.com/MONEI/monei-php-sdk/compare/2.10.4...2.10.5) (2026-05-26)
+
+
+### Bug Fixes
+
+* regenerate from openapi v1.9.0 ([b95476a](https://github.com/MONEI/monei-php-sdk/commit/b95476a0cbc3f5ebd633364b29ba65a57dd01844))
+
 ## [2.10.4](https://github.com/MONEI/monei-php-sdk/compare/2.10.3...2.10.4) (2026-03-30)
 
 
