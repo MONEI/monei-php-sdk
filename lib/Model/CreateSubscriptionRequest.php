@@ -53,7 +53,7 @@ class CreateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['amount' => 'int', 'currency' => 'string', 'interval' => '\Monei\Model\SubscriptionInterval', 'interval_count' => 'int', 'allowed_payment_methods' => '\Monei\Model\SubscriptionPaymentMethods', 'description' => 'string', 'customer' => '\Monei\Model\PaymentCustomer', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'trial_period_end' => 'float', 'trial_period_days' => 'int', 'retry_schedule' => '\Monei\Model\SubscriptionRetryScheduleInner[]', 'callback_url' => 'string', 'payment_callback_url' => 'string', 'metadata' => 'object'];
+    protected static $openAPITypes = ['amount' => 'int', 'currency' => 'string', 'interval' => '\Monei\Model\SubscriptionInterval', 'interval_count' => 'int', 'allowed_payment_methods' => '\Monei\Model\SubscriptionPaymentMethods', 'description' => 'string', 'customer' => '\Monei\Model\PaymentCustomer', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'trial_period_end' => 'float', 'trial_period_days' => 'int', 'trial_amount' => 'int', 'trial_interval_count' => 'int', 'retry_schedule' => '\Monei\Model\SubscriptionRetryScheduleInner[]', 'callback_url' => 'string', 'payment_callback_url' => 'string', 'metadata' => 'object'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +61,13 @@ class CreateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['amount' => 'int32', 'currency' => null, 'interval' => null, 'interval_count' => 'int32', 'allowed_payment_methods' => null, 'description' => null, 'customer' => null, 'billing_details' => null, 'shipping_details' => null, 'trial_period_end' => 'int64', 'trial_period_days' => 'int32', 'retry_schedule' => null, 'callback_url' => null, 'payment_callback_url' => null, 'metadata' => null];
+    protected static $openAPIFormats = ['amount' => 'int32', 'currency' => null, 'interval' => null, 'interval_count' => 'int32', 'allowed_payment_methods' => null, 'description' => null, 'customer' => null, 'billing_details' => null, 'shipping_details' => null, 'trial_period_end' => 'int64', 'trial_period_days' => 'int32', 'trial_amount' => 'int32', 'trial_interval_count' => 'int32', 'retry_schedule' => null, 'callback_url' => null, 'payment_callback_url' => null, 'metadata' => null];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['amount' => \false, 'currency' => \false, 'interval' => \false, 'interval_count' => \false, 'allowed_payment_methods' => \false, 'description' => \false, 'customer' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'trial_period_end' => \false, 'trial_period_days' => \false, 'retry_schedule' => \false, 'callback_url' => \false, 'payment_callback_url' => \false, 'metadata' => \false];
+    protected static array $openAPINullables = ['amount' => \false, 'currency' => \false, 'interval' => \false, 'interval_count' => \false, 'allowed_payment_methods' => \false, 'description' => \false, 'customer' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'trial_period_end' => \false, 'trial_period_days' => \false, 'trial_amount' => \false, 'trial_interval_count' => \false, 'retry_schedule' => \false, 'callback_url' => \false, 'payment_callback_url' => \false, 'metadata' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +145,19 @@ class CreateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
      *
      * @var string[]
      */
-    protected static $attributeMap = ['amount' => 'amount', 'currency' => 'currency', 'interval' => 'interval', 'interval_count' => 'intervalCount', 'allowed_payment_methods' => 'allowedPaymentMethods', 'description' => 'description', 'customer' => 'customer', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'trial_period_end' => 'trialPeriodEnd', 'trial_period_days' => 'trialPeriodDays', 'retry_schedule' => 'retrySchedule', 'callback_url' => 'callbackUrl', 'payment_callback_url' => 'paymentCallbackUrl', 'metadata' => 'metadata'];
+    protected static $attributeMap = ['amount' => 'amount', 'currency' => 'currency', 'interval' => 'interval', 'interval_count' => 'intervalCount', 'allowed_payment_methods' => 'allowedPaymentMethods', 'description' => 'description', 'customer' => 'customer', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'trial_period_end' => 'trialPeriodEnd', 'trial_period_days' => 'trialPeriodDays', 'trial_amount' => 'trialAmount', 'trial_interval_count' => 'trialIntervalCount', 'retry_schedule' => 'retrySchedule', 'callback_url' => 'callbackUrl', 'payment_callback_url' => 'paymentCallbackUrl', 'metadata' => 'metadata'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['amount' => 'setAmount', 'currency' => 'setCurrency', 'interval' => 'setInterval', 'interval_count' => 'setIntervalCount', 'allowed_payment_methods' => 'setAllowedPaymentMethods', 'description' => 'setDescription', 'customer' => 'setCustomer', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'trial_period_end' => 'setTrialPeriodEnd', 'trial_period_days' => 'setTrialPeriodDays', 'retry_schedule' => 'setRetrySchedule', 'callback_url' => 'setCallbackUrl', 'payment_callback_url' => 'setPaymentCallbackUrl', 'metadata' => 'setMetadata'];
+    protected static $setters = ['amount' => 'setAmount', 'currency' => 'setCurrency', 'interval' => 'setInterval', 'interval_count' => 'setIntervalCount', 'allowed_payment_methods' => 'setAllowedPaymentMethods', 'description' => 'setDescription', 'customer' => 'setCustomer', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'trial_period_end' => 'setTrialPeriodEnd', 'trial_period_days' => 'setTrialPeriodDays', 'trial_amount' => 'setTrialAmount', 'trial_interval_count' => 'setTrialIntervalCount', 'retry_schedule' => 'setRetrySchedule', 'callback_url' => 'setCallbackUrl', 'payment_callback_url' => 'setPaymentCallbackUrl', 'metadata' => 'setMetadata'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['amount' => 'getAmount', 'currency' => 'getCurrency', 'interval' => 'getInterval', 'interval_count' => 'getIntervalCount', 'allowed_payment_methods' => 'getAllowedPaymentMethods', 'description' => 'getDescription', 'customer' => 'getCustomer', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'trial_period_end' => 'getTrialPeriodEnd', 'trial_period_days' => 'getTrialPeriodDays', 'retry_schedule' => 'getRetrySchedule', 'callback_url' => 'getCallbackUrl', 'payment_callback_url' => 'getPaymentCallbackUrl', 'metadata' => 'getMetadata'];
+    protected static $getters = ['amount' => 'getAmount', 'currency' => 'getCurrency', 'interval' => 'getInterval', 'interval_count' => 'getIntervalCount', 'allowed_payment_methods' => 'getAllowedPaymentMethods', 'description' => 'getDescription', 'customer' => 'getCustomer', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'trial_period_end' => 'getTrialPeriodEnd', 'trial_period_days' => 'getTrialPeriodDays', 'trial_amount' => 'getTrialAmount', 'trial_interval_count' => 'getTrialIntervalCount', 'retry_schedule' => 'getRetrySchedule', 'callback_url' => 'getCallbackUrl', 'payment_callback_url' => 'getPaymentCallbackUrl', 'metadata' => 'getMetadata'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -220,6 +220,8 @@ class CreateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
         $this->setIfExists('shipping_details', $data ?? [], null);
         $this->setIfExists('trial_period_end', $data ?? [], null);
         $this->setIfExists('trial_period_days', $data ?? [], null);
+        $this->setIfExists('trial_amount', $data ?? [], null);
+        $this->setIfExists('trial_interval_count', $data ?? [], null);
         $this->setIfExists('retry_schedule', $data ?? [], null);
         $this->setIfExists('callback_url', $data ?? [], null);
         $this->setIfExists('payment_callback_url', $data ?? [], null);
@@ -257,6 +259,15 @@ class CreateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
         }
         if ($this->container['interval'] === null) {
             $invalidProperties[] = "'interval' can't be null";
+        }
+        if (!is_null($this->container['trial_amount']) && $this->container['trial_amount'] < 1) {
+            $invalidProperties[] = "invalid value for 'trial_amount', must be bigger than or equal to 1.";
+        }
+        if (!is_null($this->container['trial_interval_count']) && $this->container['trial_interval_count'] > 31) {
+            $invalidProperties[] = "invalid value for 'trial_interval_count', must be smaller than or equal to 31.";
+        }
+        if (!is_null($this->container['trial_interval_count']) && $this->container['trial_interval_count'] < 1) {
+            $invalidProperties[] = "invalid value for 'trial_interval_count', must be bigger than or equal to 1.";
         }
         return $invalidProperties;
     }
@@ -532,6 +543,63 @@ class CreateSubscriptionRequest implements \Monei\Model\ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable trial_period_days cannot be null');
         }
         $this->container['trial_period_days'] = $trial_period_days;
+        return $this;
+    }
+    /**
+     * Gets trial_amount
+     *
+     * @return int|null
+     */
+    public function getTrialAmount()
+    {
+        return $this->container['trial_amount'];
+    }
+    /**
+     * Sets trial_amount
+     *
+     * @param int|null $trial_amount Amount charged on each billing cycle during the trial period, as a positive integer in the smallest currency unit (e.g., 100 cents to charge 1.00 USD). Once the trial ends, the subscription's regular `amount` is charged. Use this to offer discounted introductory pricing. Can be combined with `trialIntervalCount` (charged each cycle for that many cycles) or with `trialPeriodDays`/`trialPeriodEnd` (charged once at activation, covering the subscription until the trial period ends).
+     *
+     * @return self
+     */
+    public function setTrialAmount($trial_amount)
+    {
+        if (is_null($trial_amount)) {
+            throw new \InvalidArgumentException('non-nullable trial_amount cannot be null');
+        }
+        if ($trial_amount < 1) {
+            throw new \InvalidArgumentException('invalid value for $trial_amount when calling CreateSubscriptionRequest., must be bigger than or equal to 1.');
+        }
+        $this->container['trial_amount'] = $trial_amount;
+        return $this;
+    }
+    /**
+     * Gets trial_interval_count
+     *
+     * @return int|null
+     */
+    public function getTrialIntervalCount()
+    {
+        return $this->container['trial_interval_count'];
+    }
+    /**
+     * Sets trial_interval_count
+     *
+     * @param int|null $trial_interval_count Number of billing cycles charged at `trialAmount` before the regular `amount` applies, using the subscription's `interval` (e.g., `interval` of `month` with a `trialIntervalCount` of 3 charges the `trialAmount` for the first 3 months). Requires `trialAmount` and cannot be combined with `trialPeriodDays` or `trialPeriodEnd`. In responses, the value decrements after each trial payment and is removed once the trial ends.
+     *
+     * @return self
+     */
+    public function setTrialIntervalCount($trial_interval_count)
+    {
+        if (is_null($trial_interval_count)) {
+            throw new \InvalidArgumentException('non-nullable trial_interval_count cannot be null');
+        }
+        if ($trial_interval_count > 31) {
+            throw new \InvalidArgumentException('invalid value for $trial_interval_count when calling CreateSubscriptionRequest., must be smaller than or equal to 31.');
+        }
+        if ($trial_interval_count < 1) {
+            throw new \InvalidArgumentException('invalid value for $trial_interval_count when calling CreateSubscriptionRequest., must be bigger than or equal to 1.');
+        }
+        $this->container['trial_interval_count'] = $trial_interval_count;
         return $this;
     }
     /**

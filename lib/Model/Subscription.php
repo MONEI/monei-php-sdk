@@ -53,7 +53,7 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['id' => 'string', 'amount' => 'int', 'currency' => 'string', 'allowed_payment_methods' => '\Monei\Model\SubscriptionPaymentMethods', 'description' => 'string', 'account_id' => 'string', 'livemode' => 'bool', 'status' => '\Monei\Model\SubscriptionStatus', 'customer' => '\Monei\Model\PaymentCustomer', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'interval' => '\Monei\Model\SubscriptionInterval', 'interval_count' => 'int', 'pause_interval_count' => 'int', 'skip_interval_count' => 'int', 'last_order_id' => 'string', 'last_payment' => '\Monei\Model\SubscriptionLastPayment', 'payment_method' => '\Monei\Model\SubscriptionPaymentMethod', 'current_period_start' => 'float', 'current_period_end' => 'float', 'trial_period_end' => 'float', 'next_payment_at' => 'int', 'retry_count' => 'int', 'retry_schedule' => '\Monei\Model\SubscriptionRetryScheduleInner[]', 'cancel_at_period_end' => 'bool', 'pause_at_period_end' => 'bool', 'trace_details' => '\Monei\Model\PaymentTraceDetails', 'sequence_id' => 'string', 'callback_url' => 'string', 'payment_callback_url' => 'string', 'metadata' => 'object', 'created_at' => 'int', 'updated_at' => 'int'];
+    protected static $openAPITypes = ['id' => 'string', 'amount' => 'int', 'currency' => 'string', 'allowed_payment_methods' => '\Monei\Model\SubscriptionPaymentMethods', 'description' => 'string', 'account_id' => 'string', 'livemode' => 'bool', 'status' => '\Monei\Model\SubscriptionStatus', 'customer' => '\Monei\Model\PaymentCustomer', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'interval' => '\Monei\Model\SubscriptionInterval', 'interval_count' => 'int', 'pause_interval_count' => 'int', 'skip_interval_count' => 'int', 'last_order_id' => 'string', 'last_payment' => '\Monei\Model\SubscriptionLastPayment', 'payment_method' => '\Monei\Model\SubscriptionPaymentMethod', 'current_period_start' => 'float', 'current_period_end' => 'float', 'trial_period_end' => 'float', 'trial_amount' => 'int', 'trial_interval_count' => 'int', 'next_payment_at' => 'int', 'retry_count' => 'int', 'retry_schedule' => '\Monei\Model\SubscriptionRetryScheduleInner[]', 'cancel_at_period_end' => 'bool', 'pause_at_period_end' => 'bool', 'trace_details' => '\Monei\Model\PaymentTraceDetails', 'sequence_id' => 'string', 'callback_url' => 'string', 'payment_callback_url' => 'string', 'metadata' => 'object', 'created_at' => 'int', 'updated_at' => 'int'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +61,13 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['id' => null, 'amount' => 'int32', 'currency' => null, 'allowed_payment_methods' => null, 'description' => null, 'account_id' => null, 'livemode' => null, 'status' => null, 'customer' => null, 'billing_details' => null, 'shipping_details' => null, 'interval' => null, 'interval_count' => 'int32', 'pause_interval_count' => 'int32', 'skip_interval_count' => 'int32', 'last_order_id' => null, 'last_payment' => null, 'payment_method' => null, 'current_period_start' => 'int64', 'current_period_end' => 'int64', 'trial_period_end' => 'int64', 'next_payment_at' => 'int64', 'retry_count' => 'int32', 'retry_schedule' => null, 'cancel_at_period_end' => null, 'pause_at_period_end' => null, 'trace_details' => null, 'sequence_id' => null, 'callback_url' => null, 'payment_callback_url' => null, 'metadata' => null, 'created_at' => 'int64', 'updated_at' => 'int64'];
+    protected static $openAPIFormats = ['id' => null, 'amount' => 'int32', 'currency' => null, 'allowed_payment_methods' => null, 'description' => null, 'account_id' => null, 'livemode' => null, 'status' => null, 'customer' => null, 'billing_details' => null, 'shipping_details' => null, 'interval' => null, 'interval_count' => 'int32', 'pause_interval_count' => 'int32', 'skip_interval_count' => 'int32', 'last_order_id' => null, 'last_payment' => null, 'payment_method' => null, 'current_period_start' => 'int64', 'current_period_end' => 'int64', 'trial_period_end' => 'int64', 'trial_amount' => 'int32', 'trial_interval_count' => 'int32', 'next_payment_at' => 'int64', 'retry_count' => 'int32', 'retry_schedule' => null, 'cancel_at_period_end' => null, 'pause_at_period_end' => null, 'trace_details' => null, 'sequence_id' => null, 'callback_url' => null, 'payment_callback_url' => null, 'metadata' => null, 'created_at' => 'int64', 'updated_at' => 'int64'];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['id' => \false, 'amount' => \false, 'currency' => \false, 'allowed_payment_methods' => \false, 'description' => \false, 'account_id' => \false, 'livemode' => \false, 'status' => \false, 'customer' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'interval' => \false, 'interval_count' => \false, 'pause_interval_count' => \false, 'skip_interval_count' => \false, 'last_order_id' => \false, 'last_payment' => \false, 'payment_method' => \false, 'current_period_start' => \false, 'current_period_end' => \false, 'trial_period_end' => \false, 'next_payment_at' => \false, 'retry_count' => \false, 'retry_schedule' => \false, 'cancel_at_period_end' => \false, 'pause_at_period_end' => \false, 'trace_details' => \false, 'sequence_id' => \false, 'callback_url' => \false, 'payment_callback_url' => \false, 'metadata' => \false, 'created_at' => \false, 'updated_at' => \false];
+    protected static array $openAPINullables = ['id' => \false, 'amount' => \false, 'currency' => \false, 'allowed_payment_methods' => \false, 'description' => \false, 'account_id' => \false, 'livemode' => \false, 'status' => \false, 'customer' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'interval' => \false, 'interval_count' => \false, 'pause_interval_count' => \false, 'skip_interval_count' => \false, 'last_order_id' => \false, 'last_payment' => \false, 'payment_method' => \false, 'current_period_start' => \false, 'current_period_end' => \false, 'trial_period_end' => \false, 'trial_amount' => \false, 'trial_interval_count' => \false, 'next_payment_at' => \false, 'retry_count' => \false, 'retry_schedule' => \false, 'cancel_at_period_end' => \false, 'pause_at_period_end' => \false, 'trace_details' => \false, 'sequence_id' => \false, 'callback_url' => \false, 'payment_callback_url' => \false, 'metadata' => \false, 'created_at' => \false, 'updated_at' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +145,19 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
      *
      * @var string[]
      */
-    protected static $attributeMap = ['id' => 'id', 'amount' => 'amount', 'currency' => 'currency', 'allowed_payment_methods' => 'allowedPaymentMethods', 'description' => 'description', 'account_id' => 'accountId', 'livemode' => 'livemode', 'status' => 'status', 'customer' => 'customer', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'interval' => 'interval', 'interval_count' => 'intervalCount', 'pause_interval_count' => 'pauseIntervalCount', 'skip_interval_count' => 'skipIntervalCount', 'last_order_id' => 'lastOrderId', 'last_payment' => 'lastPayment', 'payment_method' => 'paymentMethod', 'current_period_start' => 'currentPeriodStart', 'current_period_end' => 'currentPeriodEnd', 'trial_period_end' => 'trialPeriodEnd', 'next_payment_at' => 'nextPaymentAt', 'retry_count' => 'retryCount', 'retry_schedule' => 'retrySchedule', 'cancel_at_period_end' => 'cancelAtPeriodEnd', 'pause_at_period_end' => 'pauseAtPeriodEnd', 'trace_details' => 'traceDetails', 'sequence_id' => 'sequenceId', 'callback_url' => 'callbackUrl', 'payment_callback_url' => 'paymentCallbackUrl', 'metadata' => 'metadata', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt'];
+    protected static $attributeMap = ['id' => 'id', 'amount' => 'amount', 'currency' => 'currency', 'allowed_payment_methods' => 'allowedPaymentMethods', 'description' => 'description', 'account_id' => 'accountId', 'livemode' => 'livemode', 'status' => 'status', 'customer' => 'customer', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'interval' => 'interval', 'interval_count' => 'intervalCount', 'pause_interval_count' => 'pauseIntervalCount', 'skip_interval_count' => 'skipIntervalCount', 'last_order_id' => 'lastOrderId', 'last_payment' => 'lastPayment', 'payment_method' => 'paymentMethod', 'current_period_start' => 'currentPeriodStart', 'current_period_end' => 'currentPeriodEnd', 'trial_period_end' => 'trialPeriodEnd', 'trial_amount' => 'trialAmount', 'trial_interval_count' => 'trialIntervalCount', 'next_payment_at' => 'nextPaymentAt', 'retry_count' => 'retryCount', 'retry_schedule' => 'retrySchedule', 'cancel_at_period_end' => 'cancelAtPeriodEnd', 'pause_at_period_end' => 'pauseAtPeriodEnd', 'trace_details' => 'traceDetails', 'sequence_id' => 'sequenceId', 'callback_url' => 'callbackUrl', 'payment_callback_url' => 'paymentCallbackUrl', 'metadata' => 'metadata', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['id' => 'setId', 'amount' => 'setAmount', 'currency' => 'setCurrency', 'allowed_payment_methods' => 'setAllowedPaymentMethods', 'description' => 'setDescription', 'account_id' => 'setAccountId', 'livemode' => 'setLivemode', 'status' => 'setStatus', 'customer' => 'setCustomer', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'interval' => 'setInterval', 'interval_count' => 'setIntervalCount', 'pause_interval_count' => 'setPauseIntervalCount', 'skip_interval_count' => 'setSkipIntervalCount', 'last_order_id' => 'setLastOrderId', 'last_payment' => 'setLastPayment', 'payment_method' => 'setPaymentMethod', 'current_period_start' => 'setCurrentPeriodStart', 'current_period_end' => 'setCurrentPeriodEnd', 'trial_period_end' => 'setTrialPeriodEnd', 'next_payment_at' => 'setNextPaymentAt', 'retry_count' => 'setRetryCount', 'retry_schedule' => 'setRetrySchedule', 'cancel_at_period_end' => 'setCancelAtPeriodEnd', 'pause_at_period_end' => 'setPauseAtPeriodEnd', 'trace_details' => 'setTraceDetails', 'sequence_id' => 'setSequenceId', 'callback_url' => 'setCallbackUrl', 'payment_callback_url' => 'setPaymentCallbackUrl', 'metadata' => 'setMetadata', 'created_at' => 'setCreatedAt', 'updated_at' => 'setUpdatedAt'];
+    protected static $setters = ['id' => 'setId', 'amount' => 'setAmount', 'currency' => 'setCurrency', 'allowed_payment_methods' => 'setAllowedPaymentMethods', 'description' => 'setDescription', 'account_id' => 'setAccountId', 'livemode' => 'setLivemode', 'status' => 'setStatus', 'customer' => 'setCustomer', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'interval' => 'setInterval', 'interval_count' => 'setIntervalCount', 'pause_interval_count' => 'setPauseIntervalCount', 'skip_interval_count' => 'setSkipIntervalCount', 'last_order_id' => 'setLastOrderId', 'last_payment' => 'setLastPayment', 'payment_method' => 'setPaymentMethod', 'current_period_start' => 'setCurrentPeriodStart', 'current_period_end' => 'setCurrentPeriodEnd', 'trial_period_end' => 'setTrialPeriodEnd', 'trial_amount' => 'setTrialAmount', 'trial_interval_count' => 'setTrialIntervalCount', 'next_payment_at' => 'setNextPaymentAt', 'retry_count' => 'setRetryCount', 'retry_schedule' => 'setRetrySchedule', 'cancel_at_period_end' => 'setCancelAtPeriodEnd', 'pause_at_period_end' => 'setPauseAtPeriodEnd', 'trace_details' => 'setTraceDetails', 'sequence_id' => 'setSequenceId', 'callback_url' => 'setCallbackUrl', 'payment_callback_url' => 'setPaymentCallbackUrl', 'metadata' => 'setMetadata', 'created_at' => 'setCreatedAt', 'updated_at' => 'setUpdatedAt'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['id' => 'getId', 'amount' => 'getAmount', 'currency' => 'getCurrency', 'allowed_payment_methods' => 'getAllowedPaymentMethods', 'description' => 'getDescription', 'account_id' => 'getAccountId', 'livemode' => 'getLivemode', 'status' => 'getStatus', 'customer' => 'getCustomer', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'interval' => 'getInterval', 'interval_count' => 'getIntervalCount', 'pause_interval_count' => 'getPauseIntervalCount', 'skip_interval_count' => 'getSkipIntervalCount', 'last_order_id' => 'getLastOrderId', 'last_payment' => 'getLastPayment', 'payment_method' => 'getPaymentMethod', 'current_period_start' => 'getCurrentPeriodStart', 'current_period_end' => 'getCurrentPeriodEnd', 'trial_period_end' => 'getTrialPeriodEnd', 'next_payment_at' => 'getNextPaymentAt', 'retry_count' => 'getRetryCount', 'retry_schedule' => 'getRetrySchedule', 'cancel_at_period_end' => 'getCancelAtPeriodEnd', 'pause_at_period_end' => 'getPauseAtPeriodEnd', 'trace_details' => 'getTraceDetails', 'sequence_id' => 'getSequenceId', 'callback_url' => 'getCallbackUrl', 'payment_callback_url' => 'getPaymentCallbackUrl', 'metadata' => 'getMetadata', 'created_at' => 'getCreatedAt', 'updated_at' => 'getUpdatedAt'];
+    protected static $getters = ['id' => 'getId', 'amount' => 'getAmount', 'currency' => 'getCurrency', 'allowed_payment_methods' => 'getAllowedPaymentMethods', 'description' => 'getDescription', 'account_id' => 'getAccountId', 'livemode' => 'getLivemode', 'status' => 'getStatus', 'customer' => 'getCustomer', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'interval' => 'getInterval', 'interval_count' => 'getIntervalCount', 'pause_interval_count' => 'getPauseIntervalCount', 'skip_interval_count' => 'getSkipIntervalCount', 'last_order_id' => 'getLastOrderId', 'last_payment' => 'getLastPayment', 'payment_method' => 'getPaymentMethod', 'current_period_start' => 'getCurrentPeriodStart', 'current_period_end' => 'getCurrentPeriodEnd', 'trial_period_end' => 'getTrialPeriodEnd', 'trial_amount' => 'getTrialAmount', 'trial_interval_count' => 'getTrialIntervalCount', 'next_payment_at' => 'getNextPaymentAt', 'retry_count' => 'getRetryCount', 'retry_schedule' => 'getRetrySchedule', 'cancel_at_period_end' => 'getCancelAtPeriodEnd', 'pause_at_period_end' => 'getPauseAtPeriodEnd', 'trace_details' => 'getTraceDetails', 'sequence_id' => 'getSequenceId', 'callback_url' => 'getCallbackUrl', 'payment_callback_url' => 'getPaymentCallbackUrl', 'metadata' => 'getMetadata', 'created_at' => 'getCreatedAt', 'updated_at' => 'getUpdatedAt'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -230,6 +230,8 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('current_period_start', $data ?? [], null);
         $this->setIfExists('current_period_end', $data ?? [], null);
         $this->setIfExists('trial_period_end', $data ?? [], null);
+        $this->setIfExists('trial_amount', $data ?? [], null);
+        $this->setIfExists('trial_interval_count', $data ?? [], null);
         $this->setIfExists('next_payment_at', $data ?? [], null);
         $this->setIfExists('retry_count', $data ?? [], null);
         $this->setIfExists('retry_schedule', $data ?? [], null);
@@ -287,6 +289,15 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
         }
         if ($this->container['interval_count'] === null) {
             $invalidProperties[] = "'interval_count' can't be null";
+        }
+        if (!is_null($this->container['trial_amount']) && $this->container['trial_amount'] < 1) {
+            $invalidProperties[] = "invalid value for 'trial_amount', must be bigger than or equal to 1.";
+        }
+        if (!is_null($this->container['trial_interval_count']) && $this->container['trial_interval_count'] > 31) {
+            $invalidProperties[] = "invalid value for 'trial_interval_count', must be smaller than or equal to 31.";
+        }
+        if (!is_null($this->container['trial_interval_count']) && $this->container['trial_interval_count'] < 1) {
+            $invalidProperties[] = "invalid value for 'trial_interval_count', must be bigger than or equal to 1.";
         }
         return $invalidProperties;
     }
@@ -802,6 +813,63 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable trial_period_end cannot be null');
         }
         $this->container['trial_period_end'] = $trial_period_end;
+        return $this;
+    }
+    /**
+     * Gets trial_amount
+     *
+     * @return int|null
+     */
+    public function getTrialAmount()
+    {
+        return $this->container['trial_amount'];
+    }
+    /**
+     * Sets trial_amount
+     *
+     * @param int|null $trial_amount Amount charged on each billing cycle during the trial period, as a positive integer in the smallest currency unit (e.g., 100 cents to charge 1.00 USD). Once the trial ends, the subscription's regular `amount` is charged. Use this to offer discounted introductory pricing. Can be combined with `trialIntervalCount` (charged each cycle for that many cycles) or with `trialPeriodDays`/`trialPeriodEnd` (charged once at activation, covering the subscription until the trial period ends).
+     *
+     * @return self
+     */
+    public function setTrialAmount($trial_amount)
+    {
+        if (is_null($trial_amount)) {
+            throw new \InvalidArgumentException('non-nullable trial_amount cannot be null');
+        }
+        if ($trial_amount < 1) {
+            throw new \InvalidArgumentException('invalid value for $trial_amount when calling Subscription., must be bigger than or equal to 1.');
+        }
+        $this->container['trial_amount'] = $trial_amount;
+        return $this;
+    }
+    /**
+     * Gets trial_interval_count
+     *
+     * @return int|null
+     */
+    public function getTrialIntervalCount()
+    {
+        return $this->container['trial_interval_count'];
+    }
+    /**
+     * Sets trial_interval_count
+     *
+     * @param int|null $trial_interval_count Number of billing cycles charged at `trialAmount` before the regular `amount` applies, using the subscription's `interval` (e.g., `interval` of `month` with a `trialIntervalCount` of 3 charges the `trialAmount` for the first 3 months). Requires `trialAmount` and cannot be combined with `trialPeriodDays` or `trialPeriodEnd`. In responses, the value decrements after each trial payment and is removed once the trial ends.
+     *
+     * @return self
+     */
+    public function setTrialIntervalCount($trial_interval_count)
+    {
+        if (is_null($trial_interval_count)) {
+            throw new \InvalidArgumentException('non-nullable trial_interval_count cannot be null');
+        }
+        if ($trial_interval_count > 31) {
+            throw new \InvalidArgumentException('invalid value for $trial_interval_count when calling Subscription., must be smaller than or equal to 31.');
+        }
+        if ($trial_interval_count < 1) {
+            throw new \InvalidArgumentException('invalid value for $trial_interval_count when calling Subscription., must be bigger than or equal to 1.');
+        }
+        $this->container['trial_interval_count'] = $trial_interval_count;
         return $this;
     }
     /**
