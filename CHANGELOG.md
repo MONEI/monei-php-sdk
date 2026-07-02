@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.11.0](https://github.com/MONEI/monei-php-sdk/compare/2.10.5...2.11.0) (2026-07-02)
+
+
+### Features
+
+* add trialAmount and trialIntervalCount to subscriptions ([c5f201a](https://github.com/MONEI/monei-php-sdk/commit/c5f201a5b6068f37dcd2ed3e9aeefd50fe2b2d9c))
+
 ## [2.10.5](https://github.com/MONEI/monei-php-sdk/compare/2.10.4...2.10.5) (2026-05-26)
 
 
