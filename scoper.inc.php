@@ -45,6 +45,7 @@ return [
             ->in('vendor/psr/http-client')
             ->in('vendor/psr/http-factory')
             ->in('vendor/ralouphie')
+            ->in('vendor/symfony/deprecation-contracts')
             ->name('*.php'),
 
         // ALSO process the SDK files to update their imports

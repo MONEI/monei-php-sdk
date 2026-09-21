@@ -45,7 +45,8 @@
             "lib/Internal/"
         ],
         "files": [
-            "lib/Internal/guzzlehttp/guzzle/src/functions_include.php"
+            "lib/Internal/guzzlehttp/guzzle/src/functions_include.php",
+            "lib/Internal/symfony/deprecation-contracts/function.php"
         ]
     },
     "autoload-dev": {
