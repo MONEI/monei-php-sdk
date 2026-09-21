@@ -1,5 +1,19 @@
 # Changelog
 
+# [2.12.0](https://github.com/MONEI/monei-php-sdk/compare/2.11.0...2.12.0) (2026-09-21)
+
+
+### Bug Fixes
+
+* bundle deprecation-contracts 2.5 for PHP 7.4 ([042c5c7](https://github.com/MONEI/monei-php-sdk/commit/042c5c7cbe3a9590f4c29a7bbfb493b247e9846c))
+* bundle symfony/deprecation-contracts with the scoped Guzzle ([afd2d92](https://github.com/MONEI/monei-php-sdk/commit/afd2d92e53aaeed9a203c1a4f455ae8d49ae15cc))
+
+
+### Features
+
+* add subscription proration and the preview endpoint ([58782b0](https://github.com/MONEI/monei-php-sdk/commit/58782b0b2446194d79f5a55e9d46392a9368b836))
+* regenerate from OpenAPI v1.12.2 ([e31cd0a](https://github.com/MONEI/monei-php-sdk/commit/e31cd0aa9172952b3290997e6ec19b265017cf64))
+
 # [2.11.0](https://github.com/MONEI/monei-php-sdk/compare/2.10.5...2.11.0) (2026-07-02)
 
 
