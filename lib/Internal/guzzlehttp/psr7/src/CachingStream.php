@@ -21,6 +21,8 @@ final class CachingStream implements StreamInterface
      * @var StreamInterface
      */
     private $stream;
+    /** @var bool */
+    private $detached = \false;
     /**
      * We will treat the buffer object as the body of the stream
      *
@@ -34,6 +36,9 @@ final class CachingStream implements StreamInterface
     }
     public function getSize(): ?int
     {
+        if ($this->detached) {
+            return null;
+        }
         $remoteSize = $this->remoteStream->getSize();
         if (null === $remoteSize) {
             return null;
@@ -46,6 +51,12 @@ final class CachingStream implements StreamInterface
     }
     public function seek($offset, $whence = \SEEK_SET): void
     {
+        if (!\is_int($offset)) {
+            \Monei\Internal\trigger_deprecation('guzzlehttp/psr7', '2.11', 'Passing %s to StreamInterface::seek() is deprecated; guzzlehttp/psr7 3.0 requires int for $offset.', \get_debug_type($offset));
+        }
+        if (!\is_int($whence)) {
+            \Monei\Internal\trigger_deprecation('guzzlehttp/psr7', '2.11', 'Passing %s to StreamInterface::seek() is deprecated; guzzlehttp/psr7 3.0 requires int for $whence.', \get_debug_type($whence));
+        }
         if ($whence === \SEEK_SET) {
             $byte = $offset;
         } elseif ($whence === \SEEK_CUR) {
@@ -64,8 +75,14 @@ final class CachingStream implements StreamInterface
             // Read the remoteStream until we have read in at least the amount
             // of bytes requested, or we reach the end of the file.
             while ($diff > 0 && !$this->remoteStream->eof()) {
-                $this->read($diff);
-                $diff = $byte - $this->stream->getSize();
+                $previousSize = $this->stream->getSize();
+                $previousSkipReadBytes = $this->skipReadBytes;
+                $data = $this->read($diff);
+                $currentSize = $this->stream->getSize();
+                if ($data === '' && $currentSize === $previousSize && $this->skipReadBytes === $previousSkipReadBytes) {
+                    break;
+                }
+                $diff = $byte - $currentSize;
             }
         } else {
             // We can just do a normal seek since we've already seen this byte.
@@ -74,6 +91,9 @@ final class CachingStream implements StreamInterface
     }
     public function read($length): string
     {
+        if (!\is_int($length)) {
+            \Monei\Internal\trigger_deprecation('guzzlehttp/psr7', '2.11', 'Passing %s to StreamInterface::read() is deprecated; guzzlehttp/psr7 3.0 requires int for $length.', \get_debug_type($length));
+        }
         // Perform a regular read on any previously read data from the buffer
         $data = $this->stream->read($length);
         $remaining = $length - strlen($data);
@@ -90,12 +110,18 @@ final class CachingStream implements StreamInterface
                 $this->skipReadBytes = max(0, $this->skipReadBytes - $len);
             }
             $data .= $remoteData;
-            $this->stream->write($remoteData);
+            // A short cache write would silently corrupt later replays, so fail loudly.
+            if ($this->stream->write($remoteData) !== strlen($remoteData)) {
+                throw new \RuntimeException('Unable to cache the entire read from the remote stream');
+            }
         }
         return $data;
     }
     public function write($string): int
     {
+        if (!\is_string($string)) {
+            \Monei\Internal\trigger_deprecation('guzzlehttp/psr7', '2.11', 'Passing %s to StreamInterface::write() is deprecated; guzzlehttp/psr7 3.0 requires string for $string.', \get_debug_type($string));
+        }
         // When appending to the end of the currently read stream, you'll want
         // to skip bytes from being read from the remote stream to emulate
         // other stream wrappers. Basically replacing bytes of data of a fixed
@@ -110,6 +136,18 @@ final class CachingStream implements StreamInterface
     {
         return $this->stream->eof() && $this->remoteStream->eof();
     }
+    public function detach()
+    {
+        if ($this->detached) {
+            return null;
+        }
+        $position = $this->tell();
+        $this->cacheEntireStream();
+        $this->stream->seek($position);
+        $resource = $this->stream->detach();
+        $this->detached = \true;
+        return $resource;
+    }
     /**
      * Close both the remote stream and buffer stream
      */
@@ -117,6 +155,7 @@ final class CachingStream implements StreamInterface
     {
         $this->remoteStream->close();
         $this->stream->close();
+        $this->detached = \true;
     }
     private function cacheEntireStream(): int
     {

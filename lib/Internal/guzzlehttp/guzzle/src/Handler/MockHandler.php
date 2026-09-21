@@ -7,7 +7,6 @@ use Monei\Internal\GuzzleHttp\HandlerStack;
 use Monei\Internal\GuzzleHttp\Promise as P;
 use Monei\Internal\GuzzleHttp\Promise\PromiseInterface;
 use Monei\Internal\GuzzleHttp\TransferStats;
-use Monei\Internal\GuzzleHttp\Utils;
 use Monei\Internal\Psr\Http\Message\RequestInterface;
 use Monei\Internal\Psr\Http\Message\ResponseInterface;
 use Monei\Internal\Psr\Http\Message\StreamInterface;
@@ -132,7 +131,7 @@ class MockHandler implements \Countable
             if ($value instanceof ResponseInterface || $value instanceof \Throwable || $value instanceof PromiseInterface || \is_callable($value)) {
                 $this->queue[] = $value;
             } else {
-                throw new \TypeError('Expected a Response, Promise, Throwable or callable. Found ' . Utils::describeType($value));
+                throw new \TypeError('Expected a Response, Promise, Throwable or callable. Found ' . \get_debug_type($value));
             }
         }
     }

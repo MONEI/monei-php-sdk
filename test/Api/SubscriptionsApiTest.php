@@ -494,4 +494,46 @@ class SubscriptionsApiTest extends TestCase
         $this->assertEquals(2000, $requestBody['amount']);
         $this->assertEquals(['plan' => 'premium'], $requestBody['metadata']);
     }
+
+    /**
+     * Preview Subscription Update. A preview quotes a proration without moving money,
+     * so it must POST to the preview endpoint and never PUT the subscription.
+     */
+    public function testPreview()
+    {
+        $subscriptionId = 'sub_123456789';
+
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'credit' => 500,
+                'charge' => 1200,
+                'net' => 700,
+                'direction' => 'charge',
+                'refundCapped' => false,
+                'effectiveAt' => 1790000000,
+                'currentPeriodEnd' => 1792000000
+            ])
+        ));
+
+        $previewRequest = new \Monei\Model\PreviewSubscriptionUpdateRequest([
+            'amount' => 1200,
+            'interval' => 'year',
+            'interval_count' => 1
+        ]);
+
+        $preview = $this->subscriptionsApi->preview($subscriptionId, $previewRequest);
+
+        $this->assertCount(1, $this->container);
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringEndsWith("subscriptions/{$subscriptionId}/preview", $request->getUri()->getPath());
+
+        // The model's snake_case keys must reach the API as the camelCase the spec defines
+        $requestBody = json_decode($request->getBody()->getContents(), true);
+        $this->assertEquals(['amount' => 1200, 'interval' => 'year', 'intervalCount' => 1], $requestBody);
+
+        $this->assertEquals(700, $preview->getNet());
+    }
 }
