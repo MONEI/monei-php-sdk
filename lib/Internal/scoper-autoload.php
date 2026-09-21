@@ -30,5 +30,11 @@ if (!function_exists('getallheaders')) {
         return \Monei\Internal\getallheaders(...func_get_args());
     }
 }
+if (!function_exists('trigger_deprecation')) {
+    function trigger_deprecation()
+    {
+        return \Monei\Internal\trigger_deprecation(...func_get_args());
+    }
+}
 
 return $loader;

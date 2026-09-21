@@ -19,7 +19,7 @@ final class UriComparator
      */
     public static function isCrossOrigin(UriInterface $original, UriInterface $modified): bool
     {
-        if (\strcasecmp($original->getHost(), $modified->getHost()) !== 0) {
+        if (!Utils::caselessEquals($original->getHost(), $modified->getHost())) {
             return \true;
         }
         if ($original->getScheme() !== $modified->getScheme()) {
@@ -30,13 +30,19 @@ final class UriComparator
         }
         return \false;
     }
-    private static function computePort(UriInterface $uri): int
+    private static function computePort(UriInterface $uri): ?int
     {
         $port = $uri->getPort();
         if (null !== $port) {
             return $port;
         }
-        return 'https' === $uri->getScheme() ? 443 : 80;
+        if ('http' === $uri->getScheme()) {
+            return 80;
+        }
+        if ('https' === $uri->getScheme()) {
+            return 443;
+        }
+        return null;
     }
     private function __construct()
     {

@@ -80,6 +80,7 @@ lib/Model/PaymentShop.php
 lib/Model/PaymentStatus.php
 lib/Model/PaymentTraceDetails.php
 lib/Model/PaymentTransactionType.php
+lib/Model/PreviewSubscriptionUpdateRequest.php
 lib/Model/RecurringPaymentRequest.php
 lib/Model/RefundPaymentRequest.php
 lib/Model/RegisterApplePayDomainRequest.php
@@ -92,10 +93,12 @@ lib/Model/ServiceUnavailableError.php
 lib/Model/Subscription.php
 lib/Model/SubscriptionInterval.php
 lib/Model/SubscriptionLastPayment.php
+lib/Model/SubscriptionLastProration.php
 lib/Model/SubscriptionPaymentMethod.php
 lib/Model/SubscriptionPaymentMethodCard.php
 lib/Model/SubscriptionRetryScheduleInner.php
 lib/Model/SubscriptionStatus.php
+lib/Model/SubscriptionUpdatePreview.php
 lib/Model/UnauthorizedError.php
 lib/Model/UnprocessableEntityError.php
 lib/Model/UpdateApplePayCertificateRequest.php

@@ -35,7 +35,8 @@
         "phpunit/phpunit": "^9.6",
         "squizlabs/php_codesniffer": "^3.13",
         "friendsofphp/php-cs-fixer": "^3.64",
-        "phpunit/php-code-coverage": "^9.2"
+        "phpunit/php-code-coverage": "^9.2",
+        "symfony/deprecation-contracts": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -45,7 +46,8 @@
             "lib/Internal/"
         ],
         "files": [
-            "lib/Internal/guzzlehttp/guzzle/src/functions_include.php"
+            "lib/Internal/guzzlehttp/guzzle/src/functions_include.php",
+            "lib/Internal/symfony/deprecation-contracts/function.php"
         ]
     },
     "autoload-dev": {
