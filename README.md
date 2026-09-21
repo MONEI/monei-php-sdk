@@ -200,7 +200,7 @@ use Monei\ApiException;
 $monei = new Monei\MoneiClient('YOUR_API_KEY');
 
 try {
-    $payment = $monei->payments->getPayment('pay_123456789');
+    $payment = $monei->payments->get('pay_123456789');
     echo "Payment status: " . $payment->getStatus() . PHP_EOL;
 } catch (ApiException $e) {
     echo 'Error retrieving payment: ', $e->getMessage(), PHP_EOL;
@@ -224,11 +224,11 @@ $monei = new Monei\MoneiClient('YOUR_API_KEY');
 try {
     $refundRequest = new RefundPaymentRequest([
         'amount' => 500, // Partial refund of 5.00€
-        'refund_reason' => 'Customer request'
+        'refund_reason' => 'requested_by_customer'
     ]);
     
     $result = $monei->payments->refund('pay_123456789', $refundRequest);
-    echo "Refund created with ID: " . $result->getId() . PHP_EOL;
+    echo "Payment status after refund: " . $result->getStatus() . PHP_EOL;
 } catch (ApiException $e) {
     echo 'Error refunding payment: ', $e->getMessage(), PHP_EOL;
 }
