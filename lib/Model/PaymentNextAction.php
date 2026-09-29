@@ -200,6 +200,7 @@ class PaymentNextAction implements \Monei\Model\ModelInterface, ArrayAccess, \Js
     public const TYPE_CHALLENGE = 'CHALLENGE';
     public const TYPE_FRICTIONLESS_CHALLENGE = 'FRICTIONLESS_CHALLENGE';
     public const TYPE_BIZUM_CHALLENGE = 'BIZUM_CHALLENGE';
+    public const TYPE_INSTALLMENT_SELECT = 'INSTALLMENT_SELECT';
     public const TYPE_COMPLETE = 'COMPLETE';
     /**
      * Gets allowable values of the enum
@@ -208,7 +209,7 @@ class PaymentNextAction implements \Monei\Model\ModelInterface, ArrayAccess, \Js
      */
     public function getTypeAllowableValues()
     {
-        return [self::TYPE_CONFIRM, self::TYPE_CHALLENGE, self::TYPE_FRICTIONLESS_CHALLENGE, self::TYPE_BIZUM_CHALLENGE, self::TYPE_COMPLETE];
+        return [self::TYPE_CONFIRM, self::TYPE_CHALLENGE, self::TYPE_FRICTIONLESS_CHALLENGE, self::TYPE_BIZUM_CHALLENGE, self::TYPE_INSTALLMENT_SELECT, self::TYPE_COMPLETE];
     }
     /**
      * Associative array for storing property values
@@ -280,7 +281,7 @@ class PaymentNextAction implements \Monei\Model\ModelInterface, ArrayAccess, \Js
     /**
      * Sets type
      *
-     * @param string|null $type - `CONFIRM` - Your customer needs to be redirected to a   [hosted payment page](https://docs.monei.com/integrations/use-prebuilt-payment-page/)   or confirm payment using   [payment token](https://docs.monei.com/integrations/build-custom-checkout/#3-confirm-the-payment-client-side).   The **redirectUrl** will point to the hosted payment page. - `FRICTIONLESS_CHALLENGE` - Your customer needs to be redirected to the frictionless    3d secure challenge page provided by the bank. The **redirectUrl**    will point to the frictionless 3d secure challenge page provided by the bank. - `CHALLENGE` - Your customer needs to be redirected to the   3d secure challenge page provided by the bank. The **redirectUrl**   will point to the 3d secure challenge page provided by the bank. - `COMPLETE` - The payment is completed. The **redirectUrl** will be   the **completeUrl** if it was provided when the payment was created. - `BIZUM_CHALLENGE` - Your customer will be redirected to the Bizum hosted payment page.
+     * @param string|null $type - `CONFIRM` - Your customer needs to be redirected to a   [hosted payment page](https://docs.monei.com/integrations/use-prebuilt-payment-page/)   or confirm payment using   [payment token](https://docs.monei.com/integrations/build-custom-checkout/#3-confirm-the-payment-client-side).   The **redirectUrl** will point to the hosted payment page. - `FRICTIONLESS_CHALLENGE` - Your customer needs to be redirected to the frictionless    3d secure challenge page provided by the bank. The **redirectUrl**    will point to the frictionless 3d secure challenge page provided by the bank. - `CHALLENGE` - Your customer needs to be redirected to the   3d secure challenge page provided by the bank. The **redirectUrl**   will point to the 3d secure challenge page provided by the bank. - `COMPLETE` - The payment is completed. The **redirectUrl** will be   the **completeUrl** if it was provided when the payment was created. - `BIZUM_CHALLENGE` - Your customer will be redirected to the Bizum hosted payment page. - `INSTALLMENT_SELECT` - Your customer needs to choose how to pay (in full or in   installments with MONEI Flex) on the page at **redirectUrl**.
      *
      * @return self
      */
