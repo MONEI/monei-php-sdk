@@ -38,7 +38,7 @@ use Monei\Configuration;
 class MoneiClient
 {
     /** @var string */
-    public const SDK_VERSION = '2.12.0';
+    public const SDK_VERSION = '2.12.1';
     /** @var string */
     public const DEFAULT_USER_AGENT = 'MONEI/PHP/';
     /** @var Configuration */

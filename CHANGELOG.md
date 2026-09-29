@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.1](https://github.com/MONEI/monei-php-sdk/compare/2.12.0...2.12.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* accept the INSTALLMENT_SELECT next action type ([#31](https://github.com/MONEI/monei-php-sdk/issues/31)) ([6fc93cd](https://github.com/MONEI/monei-php-sdk/commit/6fc93cdbf6fb60afe25504f16ceeed1832da748b))
+
 # [2.12.0](https://github.com/MONEI/monei-php-sdk/compare/2.11.0...2.12.0) (2026-09-21)
 
 
