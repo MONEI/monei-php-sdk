@@ -71,4 +71,25 @@ class PaymentNextActionTest extends TestCase
         $this->assertInstanceOf(\Monei\Model\PaymentNextAction::class, $model);
     }
 
+    /**
+     * A payment eligible for MONEI Flex comes back with INSTALLMENT_SELECT.
+     * The enum check in setType() threw on it, so such a payment could not be read.
+     */
+    public function testDeserializesInstallmentSelectPayment()
+    {
+        $data = json_decode(json_encode([
+            'id' => 'af6029f80f5fc73a8ad2753eea0b1be0',
+            'status' => 'PENDING',
+            'nextAction' => [
+                'type' => 'INSTALLMENT_SELECT',
+                'redirectUrl' => 'https://secure.monei.com/payments/af6029f80f5fc73a8ad2753eea0b1be0/installments',
+            ],
+        ]));
+
+        $payment = \Monei\ObjectSerializer::deserialize($data, '\Monei\Model\Payment');
+
+        $this->assertSame(\Monei\Model\PaymentNextAction::TYPE_INSTALLMENT_SELECT, $payment->getNextAction()->getType());
+        $this->assertNull($payment->getNextAction()->getMustRedirect());
+    }
+
 }
