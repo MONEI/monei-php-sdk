@@ -25,6 +25,10 @@ For collecting customer and payment information in the browser, use [monei.js](h
     - [Creating a Payment](#creating-a-payment)
     - [Retrieving a Payment](#retrieving-a-payment)
     - [Refunding a Payment](#refunding-a-payment)
+  - [Customer Operations](#customer-operations)
+    - [Creating a Customer](#creating-a-customer)
+    - [Charging a Customer's Default Payment Method](#charging-a-customers-default-payment-method)
+    - [Managing Saved Payment Methods](#managing-saved-payment-methods)
   - [Integration Methods](#integration-methods)
     - [Using the Prebuilt Payment Page](#using-the-prebuilt-payment-page)
       - [Features](#features)
@@ -232,6 +236,91 @@ try {
 } catch (ApiException $e) {
     echo 'Error refunding payment: ', $e->getMessage(), PHP_EOL;
 }
+?>
+```
+
+## Customer Operations
+
+### Creating a Customer
+
+Create the customer once and keep its `id`. Pass it as `customer_id` on payments and subscriptions to link them to this buyer:
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Monei\Model\CreateCustomerRequest;
+use Monei\Model\CreatePaymentRequest;
+use Monei\ApiException;
+
+$monei = new Monei\MoneiClient('YOUR_API_KEY');
+
+try {
+    $customer = $monei->customers->create(new CreateCustomerRequest([
+        'email' => 'john.doe@monei.com',
+        'name' => 'John Doe',
+        'metadata' => ['userId' => '42']
+    ]));
+
+    // The payment method saved with this payment is stored under the customer
+    $payment = $monei->payments->create(new CreatePaymentRequest([
+        'amount' => 1250,
+        'currency' => 'EUR',
+        'order_id' => '100100000001',
+        'customer_id' => $customer->getId(),
+        'generate_payment_token' => true
+    ]));
+} catch (ApiException $e) {
+    echo 'Error creating customer: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Charging a Customer's Default Payment Method
+
+Set `use_default_payment_method` to charge the customer's default payment method without looking up its token. It requires `customer_id` and cannot be combined with `payment_token` or `payment_method`:
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Monei\Model\CreatePaymentRequest;
+
+$monei = new Monei\MoneiClient('YOUR_API_KEY');
+
+$payment = $monei->payments->create(new CreatePaymentRequest([
+    'amount' => 1250,
+    'currency' => 'EUR',
+    'order_id' => '100100000002',
+    'customer_id' => 'a4e1d1dd-e0c2-4f7a-a2b1-2b0f1f9b6b1e',
+    'use_default_payment_method' => true
+]));
+?>
+```
+
+### Managing Saved Payment Methods
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Monei\Model\UpdateCustomerRequest;
+
+$monei = new Monei\MoneiClient('YOUR_API_KEY');
+$customerId = 'a4e1d1dd-e0c2-4f7a-a2b1-2b0f1f9b6b1e';
+
+// List saved payment methods (expired ones are left out)
+foreach ($monei->customers->listPaymentMethods($customerId) as $method) {
+    echo $method->getId(), ' ', $method->getType(), PHP_EOL;
+}
+
+// Change the default payment method
+$monei->customers->update($customerId, new UpdateCustomerRequest([
+    'default_token_id' => '7cc38b08ff471ccd313ad62b23b9f362b107560b'
+]));
+
+// Delete a saved payment method
+$monei->customers->deletePaymentMethod($customerId, '7cc38b08ff471ccd313ad62b23b9f362b107560b');
 ?>
 ```
 
