@@ -52,6 +52,7 @@ This is an OpenAPI-driven PHP SDK for the MONEI payment platform. The codebase f
 1. **MoneiClient** (`lib/MoneiClient.php`): Main entry point, provides access to all API resources via properties:
    - `$monei->payments` - Payment operations
    - `$monei->subscriptions` - Subscription management
+   - `$monei->customers` - Customers and their saved payment methods
    - `$monei->paymentMethods` - Payment method operations
    - `$monei->bizum` - Bizum-specific endpoints
    - `$monei->applePay` - Apple Pay domain registration
