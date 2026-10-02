@@ -112,10 +112,3 @@ lib/Model/UpdateCustomerRequest.php
 lib/Model/UpdateSubscriptionRequest.php
 lib/Model/ValidateBizumPhoneRequest.php
 lib/ObjectSerializer.php
-test/Api/CustomersApiTest.php
-test/Model/ConflictErrorTest.php
-test/Model/CreateCustomerRequestTest.php
-test/Model/CustomerPaymentMethodTest.php
-test/Model/CustomerTest.php
-test/Model/DeletedResourceTest.php
-test/Model/UpdateCustomerRequestTest.php

@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.13.0](https://github.com/MONEI/monei-php-sdk/compare/2.12.1...2.13.0) (2026-10-02)
+
+
+### Features
+
+* add the Customers API and customerId fields ([cb26595](https://github.com/MONEI/monei-php-sdk/commit/cb26595232bac154c50f7a13db33f56ff476f9a7))
+
 ## [2.12.1](https://github.com/MONEI/monei-php-sdk/compare/2.12.0...2.12.1) (2026-09-29)
 
 
