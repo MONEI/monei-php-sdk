@@ -206,7 +206,20 @@ class MoneiClientTest extends TestCase
             'element without equals sign' => ['invalid_format_without_equals_sign'],
             // v1 is valid for t=1794643200: only the missing t makes it fail.
             'no t' => ['v1=' . self::V1_SIGNATURE],
+            // v1 is the HMAC of '.' . V2_BODY with the API key: only the empty t makes it fail.
+            'empty t' => ['t=,v1=396280c32eb352e86a99154b697a0c8c61d9fc0a7953c8121374bfc577edfd67'],
         ];
+    }
+
+    /**
+     * A missing header gives null. It must fail as an invalid signature (401), not with a TypeError.
+     */
+    public function testVerifySignatureWithNullSignatureFails(): void
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(401);
+
+        $this->moneiClient->verifySignature(self::V2_BODY, null);
     }
 
     private const V2_BODY = '{"id":"af6029f80f5fc73a8ad2753eea0b1be0","status":"SUCCEEDED"}';
