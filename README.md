@@ -35,6 +35,7 @@ For collecting customer and payment information in the browser, use [monei.js](h
       - [Integration Flow](#integration-flow)
   - [Webhooks](#webhooks)
     - [Signature Verification](#signature-verification)
+    - [Signing Secrets](#signing-secrets)
     - [Handling Payment Callbacks](#handling-payment-callbacks)
       - [Important Notes About Webhooks](#important-notes-about-webhooks)
   - [MONEI Connect for Partners](#monei-connect-for-partners)
@@ -461,6 +462,35 @@ try {
     echo json_encode(['error' => 'Invalid signature']);
 }
 ?>
+```
+
+### Signing Secrets
+
+The `MONEI-Signature` header has the form `t=<timestamp>,v1=<hex>[,v2=<hex>...]`. The header can contain more elements than `t` and `v1`. Do not parse it with a strict pattern.
+
+- `v1` is signed with your API key. `verifySignature($rawBody, $signature)` checks `v1`.
+- `v2` is signed with a signing secret. Each webhook endpoint has its own secret (`whsec_...`). A callback of a payment or a subscription that you create with a scoped API key (`mk_...`) is signed with the signing secret of that key (`mksec_...`).
+
+To check `v2`, give the secret as the third argument. When you give a secret, the SDK does not use `v1`:
+
+```php
+// $signingSecret is the whsec_ or mksec_ secret from your configuration
+$payload = $monei->verifySignature($rawBody, $signature, $signingSecret);
+```
+
+When you roll the secret of a webhook endpoint, MONEI signs each request with the new and the old secret for 24 hours. The header then has two `v2` values. The signature is valid when one of them matches the secret that you give, so you can change to the new secret during this period. If you roll the secret again in these 24 hours, the oldest secret stops at once. Roll again only after a leak.
+
+When you create a webhook endpoint, MONEI sends a `webhook.test` request before you can see the secret of the endpoint. Your handler must answer `webhook.test` with a 2xx status, also when it cannot verify the signature yet. Do not process this request:
+
+```php
+try {
+    $payload = $monei->verifySignature($rawBody, $signature, $signingSecret);
+} catch (ApiException $e) {
+    $event = json_decode($rawBody);
+    // Acknowledge the test request, but do not process it
+    http_response_code(isset($event->type) && $event->type === 'webhook.test' ? 200 : 401);
+    exit;
+}
 ```
 
 ### Handling Payment Callbacks
