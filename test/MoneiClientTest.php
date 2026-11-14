@@ -227,6 +227,20 @@ class MoneiClientTest extends TestCase
     }
 
     /**
+     * A header without v1 comes from an account without an API key.
+     */
+    public function testVerifySignatureWithSecretAcceptsOneV2WithoutV1(): void
+    {
+        $result = $this->moneiClient->verifySignature(
+            self::V2_BODY,
+            't=1794643200,v2=' . self::V2_SIGNATURE,
+            self::oldSecret()
+        );
+
+        $this->assertEquals(json_decode(self::V2_BODY), $result);
+    }
+
+    /**
      * During a roll the header holds two v2 values, newest first. A parser that keeps only the last
      * value fails with the new secret.
      *
