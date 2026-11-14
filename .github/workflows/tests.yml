@@ -57,6 +57,7 @@ jobs:
           mkdir -p /tmp/guzzle-test && cd /tmp/guzzle-test
           
           # Create test environment with Guzzle 6
+          # Guzzle 6 and its psr7 1.x have security advisories, which Composer 2.11 blocks
           cat > composer.json << 'EOF'
           {
               "require": {
@@ -69,6 +70,9 @@ jobs:
                       "url": "${{ github.workspace }}"
                   }
               ],
+              "config": {
+                  "policy": {"advisories": {"block": false}}
+              },
               "minimum-stability": "dev",
               "prefer-stable": true
           }
@@ -109,6 +113,7 @@ jobs:
           mkdir -p /tmp/compat-test && cd /tmp/compat-test
           
           # Create test environment
+          # Guzzle 5 and 6 have security advisories, which Composer 2.11 blocks
           cat > composer.json << EOF
           {
               "name": "test/guzzle-compat",
@@ -126,6 +131,9 @@ jobs:
                       }
                   }
               ],
+              "config": {
+                  "policy": {"advisories": {"block": false}}
+              },
               "minimum-stability": "dev",
               "prefer-stable": true
           }
