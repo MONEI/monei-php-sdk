@@ -188,27 +188,136 @@ class MoneiClientTest extends TestCase
         $this->moneiClient->verifySignature($rawBody, $signature);
     }
 
-    public function testVerifySignatureWithMalformedSignature(): void
+    /**
+     * @dataProvider provideMalformedSignatures
+     */
+    public function testVerifySignatureWithMalformedSignature(string $signature): void
     {
-        // Create a test payload
-        $rawBody = '{"id":"3690bd3f7294db82fed08c7371bace32","amount":11700,"currency":"EUR","orderId":"588439","status":"SUCCEEDED","message":"Transaction Approved"}';
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(401);
 
-        // Create a malformed signature that will cause an exception in the explode/array access
-        $signature = 'invalid_format_without_equals_sign';
+        $this->moneiClient->verifySignature(self::V2_BODY, $signature);
+    }
 
-        // Expect an exception when verifying
-        $this->expectException(\ErrorException::class);
+    public function provideMalformedSignatures(): array
+    {
+        return [
+            'empty' => [''],
+            'element without equals sign' => ['invalid_format_without_equals_sign'],
+            // v1 is valid for t=1794643200: only the missing t makes it fail.
+            'no t' => ['v1=' . self::V1_SIGNATURE],
+            // v1 is the HMAC of '.' . V2_BODY with the API key: only the empty t makes it fail.
+            'empty t' => ['t=,v1=396280c32eb352e86a99154b697a0c8c61d9fc0a7953c8121374bfc577edfd67'],
+        ];
+    }
 
-        // Call the method with error suppression to convert PHP notice to exception
-        set_error_handler(function ($errno, $errstr) {
-            throw new \ErrorException($errstr, 0, $errno);
-        });
+    /**
+     * A missing header gives null. It must fail as an invalid signature (401), not with a TypeError.
+     */
+    public function testVerifySignatureWithNullSignatureFails(): void
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(401);
 
-        try {
-            $this->moneiClient->verifySignature($rawBody, $signature);
-        } finally {
-            restore_error_handler();
-        }
+        $this->moneiClient->verifySignature(self::V2_BODY, null);
+    }
+
+    private const V2_BODY = '{"id":"af6029f80f5fc73a8ad2753eea0b1be0","status":"SUCCEEDED"}';
+    // The v2 test vector of the signing v2 plan: HMAC-SHA256 of '1794643200.' . V2_BODY keyed with oldSecret().
+    private const V2_SIGNATURE = '8a1968e508d090894e64e50a3162dd9920feec2d4c1d04c385e80f08532226cf';
+    // HMAC-SHA256 of '1794643200.' . V2_BODY keyed with $this->apiKey.
+    private const V1_SIGNATURE = 'b9439a39a999e8e73223b864d288bb27256c916c50706d4dee6c3bdd20e9dc36';
+
+    // The secrets are concatenated so that secret scanners do not flag these test values.
+    private static function oldSecret(): string
+    {
+        return 'whsec' . '_dGVzdC1zaWduaW5nLXNlY3JldC1mb3ItdjItdmVjdG9y';
+    }
+
+    private static function newSecret(): string
+    {
+        return 'whsec' . '_bmV3LXNpZ25pbmctc2VjcmV0LWFmdGVyLXRoZS1yb2xs';
+    }
+
+    /**
+     * A header without v1 comes from an account without an API key.
+     */
+    public function testVerifySignatureWithSecretAcceptsOneV2WithoutV1(): void
+    {
+        $result = $this->moneiClient->verifySignature(
+            self::V2_BODY,
+            't=1794643200,v2=' . self::V2_SIGNATURE,
+            self::oldSecret()
+        );
+
+        $this->assertEquals(json_decode(self::V2_BODY), $result);
+    }
+
+    /**
+     * During a roll the header holds two v2 values, newest first. A parser that keeps only the last
+     * value fails with the new secret.
+     *
+     * @dataProvider provideRolledSecrets
+     */
+    public function testVerifySignatureDuringRollAcceptsEachV2(string $secret): void
+    {
+        $signature = 't=1794643200,v1=' . self::V1_SIGNATURE
+            . ',v2=e32c238b644e5786f51b2b7205994f2a0d44d56375df5d8bf86d9579a96e0210'
+            . ',v2=' . self::V2_SIGNATURE;
+
+        $result = $this->moneiClient->verifySignature(self::V2_BODY, $signature, $secret);
+
+        $this->assertEquals(json_decode(self::V2_BODY), $result);
+    }
+
+    public function provideRolledSecrets(): array
+    {
+        return [
+            'new secret' => [self::newSecret()],
+            'old secret' => [self::oldSecret()],
+        ];
+    }
+
+    /**
+     * @dataProvider provideInvalidSignaturesWithSecret
+     */
+    public function testVerifySignatureWithSecretFails(string $signature, $secret): void
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(401);
+
+        $this->moneiClient->verifySignature(self::V2_BODY, $signature, $secret);
+    }
+
+    public function provideInvalidSignaturesWithSecret(): array
+    {
+        return [
+            'wrong secret' => ['t=1794643200,v2=' . self::V2_SIGNATURE, self::newSecret()],
+            // v1 is valid for the API key, so a fallback to v1 passes.
+            'only v1' => ['t=1794643200,v1=' . self::V1_SIGNATURE, self::oldSecret()],
+            // v2 is HMAC-SHA256 keyed with an empty string, which anyone can make.
+            'empty secret' => ['t=1794643200,v2=ef198247309de9b0cd6cd622f2cd96b2e292f578aa7108bc21e5fd8e0aa4e5d1', ''],
+            // getenv() gives false for an unset variable.
+            'false secret' => ['t=1794643200,v1=' . self::V1_SIGNATURE, false],
+        ];
+    }
+
+    public function testVerifySignatureWithoutSecretUsesV1WhenV2IsPresent(): void
+    {
+        $result = $this->moneiClient->verifySignature(
+            self::V2_BODY,
+            't=1794643200,v1=' . self::V1_SIGNATURE . ',v2=' . self::V2_SIGNATURE
+        );
+
+        $this->assertEquals(json_decode(self::V2_BODY), $result);
+    }
+
+    public function testVerifySignatureWithoutSecretFailsWithOnlyV2(): void
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(401);
+
+        $this->moneiClient->verifySignature(self::V2_BODY, 't=1794643200,v2=' . self::V2_SIGNATURE);
     }
 
     public function testApiInstancesAreInitialized(): void

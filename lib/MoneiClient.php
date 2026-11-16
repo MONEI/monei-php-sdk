@@ -136,21 +136,55 @@ class MoneiClient
         $this->config->setUserAgent($userAgent);
     }
     /**
-     * @param string    $body
-     * @param string    $signature
+     * Verify the MONEI-Signature header of a callback or a webhook.
+     *
+     * Without a secret, v1 must match the API key.
+     * With a secret (whsec_ or mksec_), one v2 must match the secret. v1 is not used then.
+     *
+     * @param string      $body      Raw request body
+     * @param string      $signature MONEI-Signature header
+     * @param string|null $secret    Signing secret for v2
+     * @throws ApiException When the signature is not valid
      * @return object
      */
-    public function verifySignature($body, $signature)
+    public function verifySignature($body, $signature, $secret = null)
     {
-        $parts = array_reduce(explode(',', $signature), function ($result, $part) {
-            [$key, $value] = explode('=', $part);
-            $result[$key] = $value;
-            return $result;
-        }, []);
-        $hmac = hash_hmac('SHA256', $parts['t'] . '.' . $body, $this->config->getApiKey('Authorization'));
-        if ($hmac !== $parts['v1']) {
-            throw new ApiException('[401] Signature verification failed', 401);
+        $failure = new ApiException('[401] Signature verification failed', 401);
+        // An empty key gives an HMAC that anyone can make, for example from an unset getenv().
+        if ($secret !== null && (!is_string($secret) || $secret === '')) {
+            throw $failure;
         }
-        return json_decode($body);
+        if (!is_string($signature)) {
+            throw $failure;
+        }
+        $parts = ['v2' => []];
+        foreach (explode(',', $signature) as $element) {
+            $pair = explode('=', $element, 2);
+            if (count($pair) !== 2) {
+                throw $failure;
+            }
+            if ($pair[0] === 'v2') {
+                $parts['v2'][] = $pair[1];
+            } else {
+                $parts[$pair[0]] = $pair[1];
+            }
+        }
+        if (!isset($parts['t']) || $parts['t'] === '') {
+            throw $failure;
+        }
+        $payload = $parts['t'] . '.' . $body;
+        if ($secret === null) {
+            $hmac = hash_hmac('SHA256', $payload, $this->config->getApiKey('Authorization'));
+            $signatures = isset($parts['v1']) ? [$parts['v1']] : [];
+        } else {
+            $hmac = hash_hmac('SHA256', $payload, $secret);
+            $signatures = $parts['v2'];
+        }
+        foreach ($signatures as $candidate) {
+            if (hash_equals($hmac, $candidate)) {
+                return json_decode($body);
+            }
+        }
+        throw $failure;
     }
 }
