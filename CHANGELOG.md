@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.15.0](https://github.com/MONEI/monei-php-sdk/compare/2.14.0...2.15.0) (2026-11-16)
+
+
+### Bug Fixes
+
+* regenerate from the fixed spec ([043135f](https://github.com/MONEI/monei-php-sdk/commit/043135f75a7f516a34a7180266f7ec85b1752a7e))
+
+
+### Features
+
+* add the Products, Prices and Tax rates APIs ([151afcc](https://github.com/MONEI/monei-php-sdk/commit/151afcc4db272101a3ab5b94fd741834ca2394a0))
+
 # [2.14.0](https://github.com/MONEI/monei-php-sdk/compare/2.13.0...2.14.0) (2026-11-16)
 
 
