@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.14.0](https://github.com/MONEI/monei-php-sdk/compare/2.13.0...2.14.0) (2026-11-16)
+
+
+### Bug Fixes
+
+* address code review findings ([f06160f](https://github.com/MONEI/monei-php-sdk/commit/f06160fc894b7f51951a4f7af88191fe51f61968))
+
+
+### Features
+
+* verify v2 webhook and callback signatures with a signing secret ([b6bc2d2](https://github.com/MONEI/monei-php-sdk/commit/b6bc2d2bdd65eba9aa438ae8e7e065b27bde09d5))
+
 # [2.13.0](https://github.com/MONEI/monei-php-sdk/compare/2.12.1...2.13.0) (2026-10-02)
 
 
