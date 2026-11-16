@@ -6,7 +6,10 @@ use Monei\Api\ApplePayDomainApi;
 use Monei\Api\CustomersApi;
 use Monei\Api\PaymentMethodsApi;
 use Monei\Api\PaymentsApi;
+use Monei\Api\PricesApi;
+use Monei\Api\ProductsApi;
 use Monei\Api\SubscriptionsApi;
+use Monei\Api\TaxRatesApi;
 use Monei\Internal\GuzzleHttp\Handler\MockHandler;
 use Monei\Internal\GuzzleHttp\Psr7\Response;
 use Monei\Internal\GuzzleHttp\Client;
@@ -327,6 +330,9 @@ class MoneiClientTest extends TestCase
         $this->assertInstanceOf(PaymentMethodsApi::class, $this->moneiClient->paymentMethods);
         $this->assertInstanceOf(SubscriptionsApi::class, $this->moneiClient->subscriptions);
         $this->assertInstanceOf(CustomersApi::class, $this->moneiClient->customers);
+        $this->assertInstanceOf(ProductsApi::class, $this->moneiClient->products);
+        $this->assertInstanceOf(PricesApi::class, $this->moneiClient->prices);
+        $this->assertInstanceOf(TaxRatesApi::class, $this->moneiClient->taxRates);
         $this->assertInstanceOf(ApplePayDomainApi::class, $this->moneiClient->applePayDomain);
     }
 

@@ -53,6 +53,9 @@ This is an OpenAPI-driven PHP SDK for the MONEI payment platform. The codebase f
    - `$monei->payments` - Payment operations
    - `$monei->subscriptions` - Subscription management
    - `$monei->customers` - Customers and their saved payment methods
+   - `$monei->products` - Products (what you sell)
+   - `$monei->prices` - Prices of products, used to start subscriptions
+   - `$monei->taxRates` - Tax rates applied to product prices
    - `$monei->paymentMethods` - Payment method operations
    - `$monei->bizum` - Bizum-specific endpoints
    - `$monei->applePay` - Apple Pay domain registration
