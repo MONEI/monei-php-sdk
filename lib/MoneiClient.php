@@ -20,7 +20,10 @@ use Monei\Api\CustomersApi;
 use Monei\Api\PaymentMethodsApi;
 use Monei\Api\PaymentsApi;
 use Monei\Api\POSAuthTokenApi;
+use Monei\Api\PricesApi;
+use Monei\Api\ProductsApi;
 use Monei\Api\SubscriptionsApi;
+use Monei\Api\TaxRatesApi;
 use Monei\Internal\GuzzleHttp\Client;
 use Monei\Internal\GuzzleHttp\HandlerStack;
 use Monei\Internal\GuzzleHttp\Middleware;
@@ -52,6 +55,12 @@ class MoneiClient
     public $subscriptions;
     /** @var CustomersApi */
     public $customers;
+    /** @var ProductsApi */
+    public $products;
+    /** @var PricesApi */
+    public $prices;
+    /** @var TaxRatesApi */
+    public $taxRates;
     /** @var ApplePayDomainApi */
     public $applePayDomain;
     /** @var BizumApi */
@@ -94,6 +103,9 @@ class MoneiClient
         $this->paymentMethods = new PaymentMethodsApi($this->httpClient, $this->config);
         $this->subscriptions = new SubscriptionsApi($this->httpClient, $this->config);
         $this->customers = new CustomersApi($this->httpClient, $this->config);
+        $this->products = new ProductsApi($this->httpClient, $this->config);
+        $this->prices = new PricesApi($this->httpClient, $this->config);
+        $this->taxRates = new TaxRatesApi($this->httpClient, $this->config);
         $this->applePayDomain = new ApplePayDomainApi($this->httpClient, $this->config);
         $this->applePayCertificate = new ApplePayCertificateApi($this->httpClient, $this->config);
         $this->bizum = new BizumApi($this->httpClient, $this->config);

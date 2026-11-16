@@ -29,6 +29,8 @@ For collecting customer and payment information in the browser, use [monei.js](h
     - [Creating a Customer](#creating-a-customer)
     - [Charging a Customer's Default Payment Method](#charging-a-customers-default-payment-method)
     - [Managing Saved Payment Methods](#managing-saved-payment-methods)
+  - [Products, Prices and Tax Rates](#products-prices-and-tax-rates)
+    - [Creating a Product with a Price](#creating-a-product-with-a-price)
   - [Integration Methods](#integration-methods)
     - [Using the Prebuilt Payment Page](#using-the-prebuilt-payment-page)
       - [Features](#features)
@@ -322,6 +324,56 @@ $monei->customers->update($customerId, new UpdateCustomerRequest([
 
 // Delete a saved payment method
 $monei->customers->deletePaymentMethod($customerId, '7cc38b08ff471ccd313ad62b23b9f362b107560b');
+?>
+```
+
+## Products, Prices and Tax Rates
+
+### Creating a Product with a Price
+
+A product describes what you sell, and a price sets how much and how often it bills. Start a subscription from a `RECURRING` price with `price_id`: the subscription copies the price's amount, currency and interval. A later change to the price does not change the subscription.
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Monei\Model\CreatePriceRequest;
+use Monei\Model\CreateProductRequest;
+use Monei\Model\CreateSubscriptionRequest;
+use Monei\Model\CreateTaxRateRequest;
+use Monei\Model\PriceRecurring;
+use Monei\ApiException;
+
+$monei = new Monei\MoneiClient('YOUR_API_KEY');
+
+try {
+    $taxRate = $monei->taxRates->create(new CreateTaxRateRequest([
+        'display_name' => 'IVA',
+        'percentage' => 21
+    ]));
+
+    $product = $monei->products->create(new CreateProductRequest([
+        'name' => 'Gold plan',
+        'tax_rate_id' => $taxRate->getId()
+    ]));
+
+    $price = $monei->prices->create(new CreatePriceRequest([
+        'product_id' => $product->getId(),
+        'unit_amount' => 1990,
+        'currency' => 'EUR',
+        'recurring' => new PriceRecurring([
+            'interval' => 'month',
+            'interval_count' => 1
+        ])
+    ]));
+
+    $subscription = $monei->subscriptions->create(new CreateSubscriptionRequest([
+        'price_id' => $price->getId(),
+        'customer_id' => 'a4e1d1dd-e0c2-4f7a-a2b1-2b0f1f9b6b1e'
+    ]));
+} catch (ApiException $e) {
+    echo 'Error creating the price: ', $e->getMessage(), PHP_EOL;
+}
 ?>
 ```
 
