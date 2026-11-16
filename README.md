@@ -371,6 +371,11 @@ try {
         'price_id' => $price->getId(),
         'customer_id' => 'a4e1d1dd-e0c2-4f7a-a2b1-2b0f1f9b6b1e'
     ]));
+
+    // List the product's prices
+    foreach ($monei->prices->callList($product->getId())->getItems() as $item) {
+        echo $item->getId(), ' ', $item->getUnitAmount(), PHP_EOL;
+    }
 } catch (ApiException $e) {
     echo 'Error creating the price: ', $e->getMessage(), PHP_EOL;
 }

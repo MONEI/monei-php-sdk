@@ -270,15 +270,6 @@ class CreatePaymentRequest implements \Monei\Model\ModelInterface, ArrayAccess, 
         if ($this->container['order_id'] === null) {
             $invalidProperties[] = "'order_id' can't be null";
         }
-        if (mb_strlen($this->container['order_id']) > 40) {
-            $invalidProperties[] = "invalid value for 'order_id', the character length must be smaller than or equal to 40.";
-        }
-        if (mb_strlen($this->container['order_id']) < 1) {
-            $invalidProperties[] = "invalid value for 'order_id', the character length must be bigger than or equal to 1.";
-        }
-        if (!preg_match("/^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/", $this->container['order_id'])) {
-            $invalidProperties[] = "invalid value for 'order_id', must be conform to the pattern /^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/.";
-        }
         return $invalidProperties;
     }
     /**
@@ -359,15 +350,6 @@ class CreatePaymentRequest implements \Monei\Model\ModelInterface, ArrayAccess, 
     {
         if (is_null($order_id)) {
             throw new \InvalidArgumentException('non-nullable order_id cannot be null');
-        }
-        if (mb_strlen($order_id) > 40) {
-            throw new \InvalidArgumentException('invalid length for $order_id when calling CreatePaymentRequest., must be smaller than or equal to 40.');
-        }
-        if (mb_strlen($order_id) < 1) {
-            throw new \InvalidArgumentException('invalid length for $order_id when calling CreatePaymentRequest., must be bigger than or equal to 1.');
-        }
-        if (!preg_match("/^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/", ObjectSerializer::toString($order_id))) {
-            throw new \InvalidArgumentException("invalid value for \$order_id when calling CreatePaymentRequest., must conform to the pattern /^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/.");
         }
         $this->container['order_id'] = $order_id;
         return $this;

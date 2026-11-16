@@ -216,7 +216,7 @@ class Price implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('type', $data ?? [], 'RECURRING');
         $this->setIfExists('recurring', $data ?? [], null);
         $this->setIfExists('tax_behavior', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], \true);
+        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('nickname', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -468,7 +468,7 @@ class Price implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets active
      *
-     * @param bool $active Whether the price is active. An inactive price cannot start a subscription, and a subscription cannot switch to it. Prices are never deleted: set `active` to `false` to archive one. Subscriptions that already use it keep their copy of its values.
+     * @param bool $active Whether the price is active. An inactive price cannot start a subscription, and a subscription cannot switch to it. Prices are never deleted: set `active` to `false` to archive one. Subscriptions that already use it keep their copy of its values. A new price is active unless created with `active: false`.
      *
      * @return self
      */

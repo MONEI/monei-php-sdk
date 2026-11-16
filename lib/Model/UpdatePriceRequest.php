@@ -210,7 +210,7 @@ class UpdatePriceRequest implements \Monei\Model\ModelInterface, ArrayAccess, \J
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('active', $data ?? [], \true);
+        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('nickname', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
     }
@@ -265,7 +265,7 @@ class UpdatePriceRequest implements \Monei\Model\ModelInterface, ArrayAccess, \J
     /**
      * Sets active
      *
-     * @param bool|null $active Whether the price is active. An inactive price cannot start a subscription, and a subscription cannot switch to it. Prices are never deleted: set `active` to `false` to archive one. Subscriptions that already use it keep their copy of its values.
+     * @param bool|null $active Whether the price is active. An inactive price cannot start a subscription, and a subscription cannot switch to it. Prices are never deleted: set `active` to `false` to archive one. Subscriptions that already use it keep their copy of its values. A new price is active unless created with `active: false`.
      *
      * @return self
      */

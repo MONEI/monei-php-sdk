@@ -110,7 +110,9 @@ class ProductsApiTest extends TestCase
 
     /**
      * Update Product. Setting the default price is the main reason to update,
-     * so default_price_id must be sent as defaultPriceId.
+     * so default_price_id must be sent as defaultPriceId. Nothing else may be sent:
+     * an unset field such as active must not be filled with a default, or the
+     * update would re-activate an archived product.
      */
     public function testUpdate()
     {
@@ -129,8 +131,10 @@ class ProductsApiTest extends TestCase
         $request = $this->container[0]['request'];
         $this->assertEquals('PUT', $request->getMethod());
         $this->assertStringEndsWith("/products/{$productId}", $request->getUri()->getPath());
-        $body = json_decode($request->getBody()->getContents(), true);
-        $this->assertEquals($priceId, $body['defaultPriceId']);
+        $this->assertSame(
+            ['defaultPriceId' => $priceId],
+            json_decode($request->getBody()->getContents(), true)
+        );
         $this->assertEquals($priceId, $product->getDefaultPriceId());
     }
 }

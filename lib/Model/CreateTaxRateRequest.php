@@ -212,7 +212,7 @@ class CreateTaxRateRequest implements \Monei\Model\ModelInterface, ArrayAccess, 
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('percentage', $data ?? [], null);
         $this->setIfExists('tax_type', $data ?? [], 'VAT');
-        $this->setIfExists('active', $data ?? [], \true);
+        $this->setIfExists('active', $data ?? [], null);
     }
     /**
      * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
@@ -364,7 +364,7 @@ class CreateTaxRateRequest implements \Monei\Model\ModelInterface, ArrayAccess, 
     /**
      * Sets active
      *
-     * @param bool|null $active Whether the tax rate is active. Tax rates are never deleted: set `active` to `false` to archive one. An archived rate cannot be set on a product. While a product still has it, the product cannot get new prices and its prices cannot start or switch a subscription. Subscriptions that already use it keep their copy.
+     * @param bool|null $active Whether the tax rate is active. Tax rates are never deleted: set `active` to `false` to archive one. An archived rate cannot be set on a product. While a product still has it, the product cannot get new prices and its prices cannot start or switch a subscription. Subscriptions that already use it keep their copy. A new tax rate is active unless created with `active: false`.
      *
      * @return self
      */

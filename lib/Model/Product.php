@@ -219,7 +219,7 @@ class Product implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('descriptor', $data ?? [], null);
         $this->setIfExists('default_price_id', $data ?? [], null);
         $this->setIfExists('tax_rate_id', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], \true);
+        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -572,7 +572,7 @@ class Product implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets active
      *
-     * @param bool $active Whether the product is active. Products are never deleted: set `active` to `false` to archive one. Archiving a product does not archive its prices, and its prices can still start subscriptions.
+     * @param bool $active Whether the product is active. Products are never deleted: set `active` to `false` to archive one. Archiving a product does not archive its prices, and its prices can still start subscriptions. A new product is active unless created with `active: false`.
      *
      * @return self
      */

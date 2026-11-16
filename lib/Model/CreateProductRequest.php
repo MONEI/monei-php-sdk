@@ -217,7 +217,7 @@ class CreateProductRequest implements \Monei\Model\ModelInterface, ArrayAccess, 
         $this->setIfExists('unit_label', $data ?? [], null);
         $this->setIfExists('descriptor', $data ?? [], null);
         $this->setIfExists('tax_rate_id', $data ?? [], null);
-        $this->setIfExists('active', $data ?? [], \true);
+        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
     }
     /**
@@ -511,7 +511,7 @@ class CreateProductRequest implements \Monei\Model\ModelInterface, ArrayAccess, 
     /**
      * Sets active
      *
-     * @param bool|null $active Whether the product is active. Products are never deleted: set `active` to `false` to archive one. Archiving a product does not archive its prices, and its prices can still start subscriptions.
+     * @param bool|null $active Whether the product is active. Products are never deleted: set `active` to `false` to archive one. Archiving a product does not archive its prices, and its prices can still start subscriptions. A new product is active unless created with `active: false`.
      *
      * @return self
      */

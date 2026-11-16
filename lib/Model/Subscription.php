@@ -296,15 +296,6 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['interval_count'] === null) {
             $invalidProperties[] = "'interval_count' can't be null";
         }
-        if (!is_null($this->container['last_order_id']) && mb_strlen($this->container['last_order_id']) > 40) {
-            $invalidProperties[] = "invalid value for 'last_order_id', the character length must be smaller than or equal to 40.";
-        }
-        if (!is_null($this->container['last_order_id']) && mb_strlen($this->container['last_order_id']) < 1) {
-            $invalidProperties[] = "invalid value for 'last_order_id', the character length must be bigger than or equal to 1.";
-        }
-        if (!is_null($this->container['last_order_id']) && !preg_match("/^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/", $this->container['last_order_id'])) {
-            $invalidProperties[] = "invalid value for 'last_order_id', must be conform to the pattern /^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/.";
-        }
         if (!is_null($this->container['trial_amount']) && $this->container['trial_amount'] < 1) {
             $invalidProperties[] = "invalid value for 'trial_amount', must be bigger than or equal to 1.";
         }
@@ -802,15 +793,6 @@ class Subscription implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSer
     {
         if (is_null($last_order_id)) {
             throw new \InvalidArgumentException('non-nullable last_order_id cannot be null');
-        }
-        if (mb_strlen($last_order_id) > 40) {
-            throw new \InvalidArgumentException('invalid length for $last_order_id when calling Subscription., must be smaller than or equal to 40.');
-        }
-        if (mb_strlen($last_order_id) < 1) {
-            throw new \InvalidArgumentException('invalid length for $last_order_id when calling Subscription., must be bigger than or equal to 1.');
-        }
-        if (!preg_match("/^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/", ObjectSerializer::toString($last_order_id))) {
-            throw new \InvalidArgumentException("invalid value for \$last_order_id when calling Subscription., must conform to the pattern /^[a-zA-Z0-9_@.\\/#&+-]{1,40}\$/.");
         }
         $this->container['last_order_id'] = $last_order_id;
         return $this;
