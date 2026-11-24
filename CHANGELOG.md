@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.17.0](https://github.com/MONEI/monei-php-sdk/compare/2.16.0...2.17.0) (2026-11-24)
+
+
+### Features
+
+* add the Checkout Sessions API ([ad7aed4](https://github.com/MONEI/monei-php-sdk/commit/ad7aed4006d2871a0fb7c90a136972c5335b65e1))
+
 # [2.16.0](https://github.com/MONEI/monei-php-sdk/compare/2.15.0...2.16.0) (2026-11-24)
 
 
