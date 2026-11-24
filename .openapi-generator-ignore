@@ -20,6 +20,8 @@ composer.json
 .gitignore
 README.md
 lib/MoneiClient.php
+lib/Connect.php
+lib/ConnectException.php
 phpunit.xml.dist
 docs/**
 node_modules/**
