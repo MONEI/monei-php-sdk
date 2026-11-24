@@ -16,6 +16,7 @@ namespace Monei;
 use Monei\Api\ApplePayCertificateApi;
 use Monei\Api\ApplePayDomainApi;
 use Monei\Api\BizumApi;
+use Monei\Api\CheckoutSessionsApi;
 use Monei\Api\CustomersApi;
 use Monei\Api\PaymentMethodsApi;
 use Monei\Api\PaymentsApi;
@@ -61,6 +62,8 @@ class MoneiClient
     public $prices;
     /** @var TaxRatesApi */
     public $taxRates;
+    /** @var CheckoutSessionsApi */
+    public $checkoutSessions;
     /** @var ApplePayDomainApi */
     public $applePayDomain;
     /** @var BizumApi */
@@ -106,6 +109,7 @@ class MoneiClient
         $this->products = new ProductsApi($this->httpClient, $this->config);
         $this->prices = new PricesApi($this->httpClient, $this->config);
         $this->taxRates = new TaxRatesApi($this->httpClient, $this->config);
+        $this->checkoutSessions = new CheckoutSessionsApi($this->httpClient, $this->config);
         $this->applePayDomain = new ApplePayDomainApi($this->httpClient, $this->config);
         $this->applePayCertificate = new ApplePayCertificateApi($this->httpClient, $this->config);
         $this->bizum = new BizumApi($this->httpClient, $this->config);
