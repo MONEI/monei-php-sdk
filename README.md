@@ -46,6 +46,9 @@ For collecting customer and payment information in the browser, use [monei.js](h
     - [Custom User-Agent](#custom-user-agent)
       - [Examples with Proper User-Agent Format](#examples-with-proper-user-agent-format)
     - [Managing Multiple Merchant Accounts](#managing-multiple-merchant-accounts)
+  - [Connect with MONEI for Shop Plugins](#connect-with-monei-for-shop-plugins)
+    - [Starting a Connect](#starting-a-connect)
+    - [Handling the Callback](#handling-the-callback)
   - [Development](#development)
     - [Building the SDK](#building-the-sdk)
   - [Tests](#tests)
@@ -734,6 +737,69 @@ $results = processPaymentsForMerchants($monei, $merchantAccounts);
 print_r($results);
 ?>
 ```
+
+## Connect with MONEI for Shop Plugins
+
+`Monei\Connect` runs the "Connect with MONEI" flow of the WooCommerce, PrestaShop and Magento plugins. The merchant signs in to MONEI and consents. The shop then gets its own scoped API key (`mk_...`) and signing secret (`mksec_...`) for each mode, Live and Test. Each method is static. The client is `woocommerce`, `prestashop` or `magento`.
+
+### Starting a Connect
+
+When the settings page renders, check the callback URL that the start route will send. Show "Use manual keys" instead of the Connect button when `callbackProblem` returns a code or `canonicalRedirectUri` throws:
+
+```php
+use Monei\Connect;
+
+try {
+    $redirectUri = Connect::canonicalRedirectUri($callbackUrl);
+    $problem = Connect::callbackProblem('woocommerce', $redirectUri);
+} catch (\InvalidArgumentException $e) {
+    $problem = 'invalid';
+}
+$showConnectButton = $problem === null;
+```
+
+- `canonicalRedirectUri` gives the canonical form that MONEI requires: lower-case scheme and host, an IDN host as punycode, no default port and `/` for an empty path. A non-ASCII host needs ext-intl; without it, the method throws.
+- `callbackProblem` returns the code that MONEI would refuse the URI with, such as `notHttps`, `localhost`, `moneiHost`, `callbackDepth` or `nameLength`, or `null`. It makes no request. MONEI can still refuse a URI that passes, for example a blocked host. The merchant then sees the error on the MONEI page.
+
+Run `start` only when an admin clicks the button, never when the page renders:
+
+```php
+$start = Connect::start('woocommerce', $redirectUri);
+// Store $start['verifier'] and $redirectUri under $start['state'] for 20 minutes
+header('Location: ' . $start['url']);
+```
+
+### Handling the Callback
+
+MONEI redirects to the callback URL with `code` and `state`. Accept the request only when `state` is stored and younger than 20 minutes, and delete the entry before you continue, so that a `state` is used once. Continue only when your delete removed the entry: of two callbacks at the same time, only one may continue. Only an admin route of the shop may store an entry, so that each `state` comes from an admin of that shop. Keep the shop (or store scope) in the entry, and save the keys for that shop. Then exchange the code:
+
+```php
+use Monei\ConnectException;
+
+try {
+    $result = Connect::exchange($_GET['code'], $entry['verifier'], 'woocommerce', $entry['redirectUri']);
+} catch (ConnectException $e) {
+    // $e->getError(): invalid_request, invalid_client, invalid_grant, access_denied or temporarily_unavailable
+}
+```
+
+The result has a `live` and a `test` entry for each mode that got a key, and `errors` for each mode that did not:
+
+```php
+[
+    'test' => ['accountId' => '...', 'apiKey' => 'mk_...', 'signingSecret' => 'mksec_...'],
+    'errors' => ['live' => 'not_approved'],
+]
+```
+
+- `test.accountId` is the test account of the merchant, not the live account.
+- An `errors` code is `blocked`, `ineligible`, `cap` (the account has too many keys: revoke unused keys in the MONEI Dashboard), `not_approved` (no Live key before the account is approved) or `temporarily_unavailable`.
+- A result can have only `errors`, when MONEI refuses both modes.
+- Make one test call with each new key before you replace the stored credentials.
+- Verify callbacks with the new signing secret, as in [Signing Secrets](#signing-secrets). A callback of a payment made with an older key has no `v2` of the new secret. When `v2` does not verify, take only the payment `id` from the body, get that payment with your key (`$monei->payments->get($id)`), and use the payment you got, not the body.
+- The exchange waits up to 35 seconds. The message of a `ConnectException` never holds a key or a secret.
+
+`start` and `exchange` take the broker base URL as an optional last argument. The default is `https://oauth.monei.com` (`Connect::BASE_URL`). Change it only to test against a development broker.
 
 ## Development
 
