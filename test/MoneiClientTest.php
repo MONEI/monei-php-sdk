@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Monei\Api\ApplePayDomainApi;
+use Monei\Api\CheckoutSessionsApi;
 use Monei\Api\CustomersApi;
 use Monei\Api\PaymentMethodsApi;
 use Monei\Api\PaymentsApi;
@@ -333,6 +334,7 @@ class MoneiClientTest extends TestCase
         $this->assertInstanceOf(ProductsApi::class, $this->moneiClient->products);
         $this->assertInstanceOf(PricesApi::class, $this->moneiClient->prices);
         $this->assertInstanceOf(TaxRatesApi::class, $this->moneiClient->taxRates);
+        $this->assertInstanceOf(CheckoutSessionsApi::class, $this->moneiClient->checkoutSessions);
         $this->assertInstanceOf(ApplePayDomainApi::class, $this->moneiClient->applePayDomain);
     }
 

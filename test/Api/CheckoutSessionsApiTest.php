@@ -28,9 +28,15 @@
 
 namespace Monei\Test\Api;
 
-use \Monei\Configuration;
-use \Monei\ApiException;
-use \Monei\ObjectSerializer;
+use Monei\Api\CheckoutSessionsApi;
+use Monei\Configuration;
+use Monei\Internal\GuzzleHttp\Client;
+use Monei\Internal\GuzzleHttp\Handler\MockHandler;
+use Monei\Internal\GuzzleHttp\HandlerStack;
+use Monei\Internal\GuzzleHttp\Middleware;
+use Monei\Internal\GuzzleHttp\Psr7\Response;
+use Monei\Model\CheckoutSessionLineItemRequest;
+use Monei\Model\CreateCheckoutSessionRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -44,66 +50,125 @@ use PHPUnit\Framework\TestCase;
 class CheckoutSessionsApiTest extends TestCase
 {
     /**
-     * Setup before running any test cases
+     * @var CheckoutSessionsApi
      */
-    public static function setUpBeforeClass(): void
-    {
-    }
+    protected $checkoutSessionsApi;
 
     /**
-     * Setup before running each test case
+     * @var MockHandler
      */
+    protected $mockHandler;
+
+    /**
+     * @var array
+     */
+    protected $container = [];
+
     public function setUp(): void
     {
+        $this->mockHandler = new MockHandler();
+        $handlerStack = HandlerStack::create($this->mockHandler);
+        $handlerStack->push(Middleware::history($this->container));
+        $client = new Client(['handler' => $handlerStack]);
+
+        $config = Configuration::getDefaultConfiguration();
+        $config->setApiKey('Authorization', 'test_api_key');
+
+        $this->checkoutSessionsApi = new CheckoutSessionsApi($client, $config);
     }
 
-    /**
-     * Clean up after running each test case
-     */
     public function tearDown(): void
     {
+        $this->mockHandler->reset();
+        $this->container = [];
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass(): void
-    {
-    }
-
-    /**
-     * Test case for callList
-     *
-     * List Checkout Sessions.
-     *
-     */
-    public function testCallList()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for create
-     *
-     * Create Checkout Session.
-     *
+     * Create Checkout Session. The nested line items must reach the API in camelCase,
+     * or the API rejects the cart.
      */
     public function testCreate()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'id' => '4b1f7c2e-9d3a-4e6b-8f05-1a2c3d4e5f60',
+                'url' => 'https://checkout.monei.com/4b1f7c2e-9d3a-4e6b-8f05-1a2c3d4e5f60',
+                'status' => 'OPEN',
+                'mode' => 'PAYMENT',
+                'currency' => 'EUR',
+                'amountTotal' => 4180
+            ])
+        ));
+
+        $session = $this->checkoutSessionsApi->create(new CreateCheckoutSessionRequest([
+            'line_items' => [
+                new CheckoutSessionLineItemRequest([
+                    'price_id' => '7d4e2a91-3c6b-4f8e-a5d0-2b9c1e7f6a34',
+                    'quantity' => 2
+                ])
+            ],
+            'success_url' => 'https://example.com/checkout/success',
+            'business_purchase' => 'OPTIONAL'
+        ]));
+
+        $request = $this->container[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertStringEndsWith('/checkout-sessions', $request->getUri()->getPath());
+        $body = json_decode($request->getBody()->getContents(), true);
+        $this->assertEquals(
+            [['priceId' => '7d4e2a91-3c6b-4f8e-a5d0-2b9c1e7f6a34', 'quantity' => 2]],
+            $body['lineItems']
+        );
+        $this->assertEquals('https://example.com/checkout/success', $body['successUrl']);
+        $this->assertEquals('OPTIONAL', $body['businessPurchase']);
+        $this->assertEquals(
+            'https://checkout.monei.com/4b1f7c2e-9d3a-4e6b-8f05-1a2c3d4e5f60',
+            $session->getUrl()
+        );
     }
 
     /**
-     * Test case for get
-     *
+     * List Checkout Sessions. The cursor must be sent as a query parameter,
+     * or every call returns the first page again.
+     */
+    public function testCallList()
+    {
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode(['items' => []])
+        ));
+
+        $this->checkoutSessionsApi->callList(50, 'eyJpZCI6IjRiMWY3YzJlIn0');
+
+        $request = $this->container[0]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertStringEndsWith('/checkout-sessions', $request->getUri()->getPath());
+        parse_str($request->getUri()->getQuery(), $query);
+        $this->assertEquals('50', $query['limit']);
+        $this->assertEquals('eyJpZCI6IjRiMWY3YzJlIn0', $query['cursor']);
+    }
+
+    /**
      * Get Checkout Session.
-     *
      */
     public function testGet()
     {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
+        $id = '4b1f7c2e-9d3a-4e6b-8f05-1a2c3d4e5f60';
+        $this->mockHandler->append(new Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode(['id' => $id, 'status' => 'COMPLETE', 'paymentId' => 'af6029f80f5fc73a8ad2753eea0b1be0'])
+        ));
+
+        $session = $this->checkoutSessionsApi->get($id);
+
+        $request = $this->container[0]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertStringEndsWith('/checkout-sessions/' . $id, $request->getUri()->getPath());
+        $this->assertEquals('COMPLETE', $session->getStatus());
+        $this->assertEquals('af6029f80f5fc73a8ad2753eea0b1be0', $session->getPaymentId());
     }
 }

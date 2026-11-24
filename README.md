@@ -31,6 +31,8 @@ For collecting customer and payment information in the browser, use [monei.js](h
     - [Managing Saved Payment Methods](#managing-saved-payment-methods)
   - [Products, Prices and Tax Rates](#products-prices-and-tax-rates)
     - [Creating a Product with a Price](#creating-a-product-with-a-price)
+  - [Checkout Sessions](#checkout-sessions)
+    - [Creating a Checkout Session](#creating-a-checkout-session)
   - [Integration Methods](#integration-methods)
     - [Using the Prebuilt Payment Page](#using-the-prebuilt-payment-page)
       - [Features](#features)
@@ -381,6 +383,58 @@ try {
     }
 } catch (ApiException $e) {
     echo 'Error creating the price: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+## Checkout Sessions
+
+### Creating a Checkout Session
+
+A checkout session is a cart of prices that a buyer pays on one MONEI page. Send price IDs and quantities: MONEI computes every amount with the tax of each product and returns the session with its `url`. Send the buyer to the `url` to pay.
+
+A cart has from 1 to 20 lines, all in the same currency. At most one price is `RECURRING`: with one, paying the session also creates a subscription (`SUBSCRIPTION` mode). A session is `OPEN` until the buyer pays it (`COMPLETE`) or it reaches `expires_at` unpaid (`EXPIRED`). Subscribe a webhook to `checkout_session.completed` and `checkout_session.expired` to learn when a session ends. The payment and the subscription it creates carry its ID in `checkout_session_id`.
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Monei\Model\CheckoutSessionLineItemRequest;
+use Monei\Model\CreateCheckoutSessionRequest;
+use Monei\ApiException;
+
+$monei = new Monei\MoneiClient('YOUR_API_KEY');
+
+try {
+    $session = $monei->checkoutSessions->create(new CreateCheckoutSessionRequest([
+        'line_items' => [
+            new CheckoutSessionLineItemRequest([
+                'price_id' => '7d4e2a91-3c6b-4f8e-a5d0-2b9c1e7f6a34',
+                'quantity' => 2
+            ]),
+            new CheckoutSessionLineItemRequest([
+                'price_id' => '3c5a1f8e-2b7d-4e9a-9c41-7d2e6b0f5a13',
+                'quantity' => 1
+            ])
+        ],
+        'success_url' => 'https://example.com/checkout/success',
+        'cancel_url' => 'https://example.com/cart',
+        'business_purchase' => 'OPTIONAL'
+    ]));
+
+    // Send the buyer to this page to pay
+    $checkoutUrl = $session->getUrl();
+
+    // Read the session again to check its status
+    $session = $monei->checkoutSessions->get($session->getId());
+    echo $session->getStatus(), ' ', $session->getAmountTotal(), PHP_EOL;
+
+    // List the latest sessions
+    foreach ($monei->checkoutSessions->callList(20)->getItems() as $item) {
+        echo $item->getId(), ' ', $item->getStatus(), PHP_EOL;
+    }
+} catch (ApiException $e) {
+    echo 'Error creating the checkout session: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
