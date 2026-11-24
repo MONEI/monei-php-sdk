@@ -53,7 +53,7 @@ class Payment implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @var string[]
      */
-    protected static $openAPITypes = ['id' => 'string', 'amount' => 'int', 'currency' => 'string', 'order_id' => 'string', 'description' => 'string', 'account_id' => 'string', 'authorization_code' => 'string', 'livemode' => 'bool', 'status' => '\Monei\Model\PaymentStatus', 'status_code' => 'string', 'status_message' => 'string', 'customer_id' => 'string', 'customer' => '\Monei\Model\PaymentCustomer', 'shop' => '\Monei\Model\PaymentShop', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'refunded_amount' => 'int', 'last_refund_amount' => 'int', 'last_refund_reason' => '\Monei\Model\PaymentLastRefundReason', 'cancellation_reason' => '\Monei\Model\PaymentCancellationReason', 'session_details' => '\Monei\Model\PaymentSessionDetails', 'trace_details' => '\Monei\Model\PaymentTraceDetails', 'payment_token' => 'string', 'payment_method' => '\Monei\Model\PaymentPaymentMethod', 'sequence' => '\Monei\Model\PaymentSequence', 'sequence_id' => 'string', 'store_id' => 'string', 'point_of_sale_id' => 'string', 'metadata' => 'object', 'next_action' => '\Monei\Model\PaymentNextAction', 'created_at' => 'int', 'updated_at' => 'int'];
+    protected static $openAPITypes = ['id' => 'string', 'amount' => 'int', 'currency' => 'string', 'order_id' => 'string', 'description' => 'string', 'account_id' => 'string', 'authorization_code' => 'string', 'livemode' => 'bool', 'status' => '\Monei\Model\PaymentStatus', 'status_code' => 'string', 'status_message' => 'string', 'customer_id' => 'string', 'customer' => '\Monei\Model\PaymentCustomer', 'shop' => '\Monei\Model\PaymentShop', 'billing_details' => '\Monei\Model\PaymentBillingDetails', 'shipping_details' => '\Monei\Model\PaymentShippingDetails', 'refunded_amount' => 'int', 'last_refund_amount' => 'int', 'last_refund_reason' => '\Monei\Model\PaymentLastRefundReason', 'cancellation_reason' => '\Monei\Model\PaymentCancellationReason', 'session_details' => '\Monei\Model\PaymentSessionDetails', 'trace_details' => '\Monei\Model\PaymentTraceDetails', 'payment_token' => 'string', 'payment_method' => '\Monei\Model\PaymentPaymentMethod', 'sequence' => '\Monei\Model\PaymentSequence', 'sequence_id' => 'string', 'store_id' => 'string', 'point_of_sale_id' => 'string', 'checkout_session_id' => 'string', 'metadata' => 'object', 'next_action' => '\Monei\Model\PaymentNextAction', 'created_at' => 'int', 'updated_at' => 'int'];
     /**
      * Array of property to format mappings. Used for (de)serialization
      *
@@ -61,13 +61,13 @@ class Payment implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
      * @phpstan-var array<string, string|null>
      * @psalm-var array<string, string|null>
      */
-    protected static $openAPIFormats = ['id' => null, 'amount' => 'int32', 'currency' => null, 'order_id' => null, 'description' => null, 'account_id' => null, 'authorization_code' => null, 'livemode' => null, 'status' => null, 'status_code' => null, 'status_message' => null, 'customer_id' => 'uuid', 'customer' => null, 'shop' => null, 'billing_details' => null, 'shipping_details' => null, 'refunded_amount' => 'int32', 'last_refund_amount' => 'int32', 'last_refund_reason' => null, 'cancellation_reason' => null, 'session_details' => null, 'trace_details' => null, 'payment_token' => null, 'payment_method' => null, 'sequence' => null, 'sequence_id' => null, 'store_id' => null, 'point_of_sale_id' => null, 'metadata' => null, 'next_action' => null, 'created_at' => 'int64', 'updated_at' => 'int64'];
+    protected static $openAPIFormats = ['id' => null, 'amount' => 'int32', 'currency' => null, 'order_id' => null, 'description' => null, 'account_id' => null, 'authorization_code' => null, 'livemode' => null, 'status' => null, 'status_code' => null, 'status_message' => null, 'customer_id' => 'uuid', 'customer' => null, 'shop' => null, 'billing_details' => null, 'shipping_details' => null, 'refunded_amount' => 'int32', 'last_refund_amount' => 'int32', 'last_refund_reason' => null, 'cancellation_reason' => null, 'session_details' => null, 'trace_details' => null, 'payment_token' => null, 'payment_method' => null, 'sequence' => null, 'sequence_id' => null, 'store_id' => null, 'point_of_sale_id' => null, 'checkout_session_id' => 'uuid', 'metadata' => null, 'next_action' => null, 'created_at' => 'int64', 'updated_at' => 'int64'];
     /**
      * Array of nullable properties. Used for (de)serialization
      *
      * @var boolean[]
      */
-    protected static array $openAPINullables = ['id' => \false, 'amount' => \false, 'currency' => \false, 'order_id' => \false, 'description' => \false, 'account_id' => \false, 'authorization_code' => \false, 'livemode' => \false, 'status' => \false, 'status_code' => \false, 'status_message' => \false, 'customer_id' => \false, 'customer' => \false, 'shop' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'refunded_amount' => \false, 'last_refund_amount' => \false, 'last_refund_reason' => \false, 'cancellation_reason' => \false, 'session_details' => \false, 'trace_details' => \false, 'payment_token' => \false, 'payment_method' => \false, 'sequence' => \false, 'sequence_id' => \false, 'store_id' => \false, 'point_of_sale_id' => \false, 'metadata' => \false, 'next_action' => \false, 'created_at' => \false, 'updated_at' => \false];
+    protected static array $openAPINullables = ['id' => \false, 'amount' => \false, 'currency' => \false, 'order_id' => \false, 'description' => \false, 'account_id' => \false, 'authorization_code' => \false, 'livemode' => \false, 'status' => \false, 'status_code' => \false, 'status_message' => \false, 'customer_id' => \false, 'customer' => \false, 'shop' => \false, 'billing_details' => \false, 'shipping_details' => \false, 'refunded_amount' => \false, 'last_refund_amount' => \false, 'last_refund_reason' => \false, 'cancellation_reason' => \false, 'session_details' => \false, 'trace_details' => \false, 'payment_token' => \false, 'payment_method' => \false, 'sequence' => \false, 'sequence_id' => \false, 'store_id' => \false, 'point_of_sale_id' => \false, 'checkout_session_id' => \false, 'metadata' => \false, 'next_action' => \false, 'created_at' => \false, 'updated_at' => \false];
     /**
      * If a nullable field gets set to null, insert it here
      *
@@ -145,19 +145,19 @@ class Payment implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @var string[]
      */
-    protected static $attributeMap = ['id' => 'id', 'amount' => 'amount', 'currency' => 'currency', 'order_id' => 'orderId', 'description' => 'description', 'account_id' => 'accountId', 'authorization_code' => 'authorizationCode', 'livemode' => 'livemode', 'status' => 'status', 'status_code' => 'statusCode', 'status_message' => 'statusMessage', 'customer_id' => 'customerId', 'customer' => 'customer', 'shop' => 'shop', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'refunded_amount' => 'refundedAmount', 'last_refund_amount' => 'lastRefundAmount', 'last_refund_reason' => 'lastRefundReason', 'cancellation_reason' => 'cancellationReason', 'session_details' => 'sessionDetails', 'trace_details' => 'traceDetails', 'payment_token' => 'paymentToken', 'payment_method' => 'paymentMethod', 'sequence' => 'sequence', 'sequence_id' => 'sequenceId', 'store_id' => 'storeId', 'point_of_sale_id' => 'pointOfSaleId', 'metadata' => 'metadata', 'next_action' => 'nextAction', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt'];
+    protected static $attributeMap = ['id' => 'id', 'amount' => 'amount', 'currency' => 'currency', 'order_id' => 'orderId', 'description' => 'description', 'account_id' => 'accountId', 'authorization_code' => 'authorizationCode', 'livemode' => 'livemode', 'status' => 'status', 'status_code' => 'statusCode', 'status_message' => 'statusMessage', 'customer_id' => 'customerId', 'customer' => 'customer', 'shop' => 'shop', 'billing_details' => 'billingDetails', 'shipping_details' => 'shippingDetails', 'refunded_amount' => 'refundedAmount', 'last_refund_amount' => 'lastRefundAmount', 'last_refund_reason' => 'lastRefundReason', 'cancellation_reason' => 'cancellationReason', 'session_details' => 'sessionDetails', 'trace_details' => 'traceDetails', 'payment_token' => 'paymentToken', 'payment_method' => 'paymentMethod', 'sequence' => 'sequence', 'sequence_id' => 'sequenceId', 'store_id' => 'storeId', 'point_of_sale_id' => 'pointOfSaleId', 'checkout_session_id' => 'checkoutSessionId', 'metadata' => 'metadata', 'next_action' => 'nextAction', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt'];
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      *
      * @var string[]
      */
-    protected static $setters = ['id' => 'setId', 'amount' => 'setAmount', 'currency' => 'setCurrency', 'order_id' => 'setOrderId', 'description' => 'setDescription', 'account_id' => 'setAccountId', 'authorization_code' => 'setAuthorizationCode', 'livemode' => 'setLivemode', 'status' => 'setStatus', 'status_code' => 'setStatusCode', 'status_message' => 'setStatusMessage', 'customer_id' => 'setCustomerId', 'customer' => 'setCustomer', 'shop' => 'setShop', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'refunded_amount' => 'setRefundedAmount', 'last_refund_amount' => 'setLastRefundAmount', 'last_refund_reason' => 'setLastRefundReason', 'cancellation_reason' => 'setCancellationReason', 'session_details' => 'setSessionDetails', 'trace_details' => 'setTraceDetails', 'payment_token' => 'setPaymentToken', 'payment_method' => 'setPaymentMethod', 'sequence' => 'setSequence', 'sequence_id' => 'setSequenceId', 'store_id' => 'setStoreId', 'point_of_sale_id' => 'setPointOfSaleId', 'metadata' => 'setMetadata', 'next_action' => 'setNextAction', 'created_at' => 'setCreatedAt', 'updated_at' => 'setUpdatedAt'];
+    protected static $setters = ['id' => 'setId', 'amount' => 'setAmount', 'currency' => 'setCurrency', 'order_id' => 'setOrderId', 'description' => 'setDescription', 'account_id' => 'setAccountId', 'authorization_code' => 'setAuthorizationCode', 'livemode' => 'setLivemode', 'status' => 'setStatus', 'status_code' => 'setStatusCode', 'status_message' => 'setStatusMessage', 'customer_id' => 'setCustomerId', 'customer' => 'setCustomer', 'shop' => 'setShop', 'billing_details' => 'setBillingDetails', 'shipping_details' => 'setShippingDetails', 'refunded_amount' => 'setRefundedAmount', 'last_refund_amount' => 'setLastRefundAmount', 'last_refund_reason' => 'setLastRefundReason', 'cancellation_reason' => 'setCancellationReason', 'session_details' => 'setSessionDetails', 'trace_details' => 'setTraceDetails', 'payment_token' => 'setPaymentToken', 'payment_method' => 'setPaymentMethod', 'sequence' => 'setSequence', 'sequence_id' => 'setSequenceId', 'store_id' => 'setStoreId', 'point_of_sale_id' => 'setPointOfSaleId', 'checkout_session_id' => 'setCheckoutSessionId', 'metadata' => 'setMetadata', 'next_action' => 'setNextAction', 'created_at' => 'setCreatedAt', 'updated_at' => 'setUpdatedAt'];
     /**
      * Array of attributes to getter functions (for serialization of requests)
      *
      * @var string[]
      */
-    protected static $getters = ['id' => 'getId', 'amount' => 'getAmount', 'currency' => 'getCurrency', 'order_id' => 'getOrderId', 'description' => 'getDescription', 'account_id' => 'getAccountId', 'authorization_code' => 'getAuthorizationCode', 'livemode' => 'getLivemode', 'status' => 'getStatus', 'status_code' => 'getStatusCode', 'status_message' => 'getStatusMessage', 'customer_id' => 'getCustomerId', 'customer' => 'getCustomer', 'shop' => 'getShop', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'refunded_amount' => 'getRefundedAmount', 'last_refund_amount' => 'getLastRefundAmount', 'last_refund_reason' => 'getLastRefundReason', 'cancellation_reason' => 'getCancellationReason', 'session_details' => 'getSessionDetails', 'trace_details' => 'getTraceDetails', 'payment_token' => 'getPaymentToken', 'payment_method' => 'getPaymentMethod', 'sequence' => 'getSequence', 'sequence_id' => 'getSequenceId', 'store_id' => 'getStoreId', 'point_of_sale_id' => 'getPointOfSaleId', 'metadata' => 'getMetadata', 'next_action' => 'getNextAction', 'created_at' => 'getCreatedAt', 'updated_at' => 'getUpdatedAt'];
+    protected static $getters = ['id' => 'getId', 'amount' => 'getAmount', 'currency' => 'getCurrency', 'order_id' => 'getOrderId', 'description' => 'getDescription', 'account_id' => 'getAccountId', 'authorization_code' => 'getAuthorizationCode', 'livemode' => 'getLivemode', 'status' => 'getStatus', 'status_code' => 'getStatusCode', 'status_message' => 'getStatusMessage', 'customer_id' => 'getCustomerId', 'customer' => 'getCustomer', 'shop' => 'getShop', 'billing_details' => 'getBillingDetails', 'shipping_details' => 'getShippingDetails', 'refunded_amount' => 'getRefundedAmount', 'last_refund_amount' => 'getLastRefundAmount', 'last_refund_reason' => 'getLastRefundReason', 'cancellation_reason' => 'getCancellationReason', 'session_details' => 'getSessionDetails', 'trace_details' => 'getTraceDetails', 'payment_token' => 'getPaymentToken', 'payment_method' => 'getPaymentMethod', 'sequence' => 'getSequence', 'sequence_id' => 'getSequenceId', 'store_id' => 'getStoreId', 'point_of_sale_id' => 'getPointOfSaleId', 'checkout_session_id' => 'getCheckoutSessionId', 'metadata' => 'getMetadata', 'next_action' => 'getNextAction', 'created_at' => 'getCreatedAt', 'updated_at' => 'getUpdatedAt'];
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
@@ -237,6 +237,7 @@ class Payment implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('sequence_id', $data ?? [], null);
         $this->setIfExists('store_id', $data ?? [], null);
         $this->setIfExists('point_of_sale_id', $data ?? [], null);
+        $this->setIfExists('checkout_session_id', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('next_action', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -966,6 +967,30 @@ class Payment implements \Monei\Model\ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable point_of_sale_id cannot be null');
         }
         $this->container['point_of_sale_id'] = $point_of_sale_id;
+        return $this;
+    }
+    /**
+     * Gets checkout_session_id
+     *
+     * @return string|null
+     */
+    public function getCheckoutSessionId()
+    {
+        return $this->container['checkout_session_id'];
+    }
+    /**
+     * Sets checkout_session_id
+     *
+     * @param string|null $checkout_session_id The [checkout session](https://docs.monei.com/apis/rest/checkout-sessions-get/) the payment pays. Absent on a payment created without one.
+     *
+     * @return self
+     */
+    public function setCheckoutSessionId($checkout_session_id)
+    {
+        if (is_null($checkout_session_id)) {
+            throw new \InvalidArgumentException('non-nullable checkout_session_id cannot be null');
+        }
+        $this->container['checkout_session_id'] = $checkout_session_id;
         return $this;
     }
     /**

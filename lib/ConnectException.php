@@ -21,7 +21,6 @@ class ConnectException extends \RuntimeException
 {
     /** @var string */
     private $error;
-
     /**
      * @param string          $error    OAuth error code, such as invalid_grant
      * @param int             $status   HTTP status, or 0 when no answer came
@@ -32,7 +31,6 @@ class ConnectException extends \RuntimeException
         parent::__construct('MONEI connect failed: ' . $error, $status, $previous);
         $this->error = $error;
     }
-
     /**
      * The OAuth error code: invalid_request, invalid_client, invalid_grant, access_denied or
      * temporarily_unavailable.

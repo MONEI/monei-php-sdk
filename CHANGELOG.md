@@ -1,5 +1,18 @@
 # Changelog
 
+# [2.16.0](https://github.com/MONEI/monei-php-sdk/compare/2.15.0...2.16.0) (2026-11-24)
+
+
+### Bug Fixes
+
+* address code review findings ([8fa32d7](https://github.com/MONEI/monei-php-sdk/commit/8fa32d74343db20d66e3ed9417878b47c0b36806))
+* decode host escapes and refuse empty refusal codes ([33d5c27](https://github.com/MONEI/monei-php-sdk/commit/33d5c27542b86184ddd8fc3d91b3fd9a8a1f29a1))
+
+
+### Features
+
+* add the Connect with MONEI helpers for the shop plugins ([0793aae](https://github.com/MONEI/monei-php-sdk/commit/0793aae1cb9c31e72d5d9796e9afb37d15b3b2a0))
+
 # [2.15.0](https://github.com/MONEI/monei-php-sdk/compare/2.14.0...2.15.0) (2026-11-16)
 
 

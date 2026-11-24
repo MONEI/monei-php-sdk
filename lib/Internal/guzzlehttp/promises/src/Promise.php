@@ -18,6 +18,7 @@ class Promise implements PromiseInterface
     private $cancelFn;
     private $waitFn;
     private $waitList;
+    private $handlersBefore = [];
     private $handlers = [];
     /**
      * @param callable $waitFn   Fn that when invoked resolves the promise.
@@ -114,11 +115,30 @@ class Promise implements PromiseInterface
         $this->state = $state;
         $this->result = $value;
         $handlers = $this->handlers;
-        $this->handlers = null;
+        $before = $this->handlersBefore;
+        $this->handlers = $this->handlersBefore = null;
         $this->waitList = $this->waitFn = null;
         $this->cancelFn = null;
         if (!$handlers) {
             return;
+        }
+        if ($value instanceof Promise && State::isPending($value)) {
+            // We can just hand our handlers to the next promise. Merging would
+            // copy both lists every time, so only the shorter one is moved.
+            if ($value->handlers === []) {
+                $value->handlers = $handlers;
+                $value->handlersBefore = $before;
+            } elseif (count($value->handlers) + count($value->handlersBefore) < count($handlers) + count($before)) {
+                array_push($before, ...array_reverse($value->handlers), ...$value->handlersBefore);
+                $value->handlers = $handlers;
+                $value->handlersBefore = $before;
+            } else {
+                array_push($value->handlers, ...array_reverse($before), ...$handlers);
+            }
+            return;
+        }
+        if ($before) {
+            $handlers = array_merge(array_reverse($before), $handlers);
         }
         // If the value was not a settled promise or a thenable, then resolve
         // it in the task queue using the correct ID.
@@ -130,20 +150,27 @@ class Promise implements PromiseInterface
                     self::callHandler($id, $value, $handler);
                 }
             });
-        } elseif ($value instanceof Promise && Is::pending($value)) {
-            // We can just merge our handlers onto the next promise.
-            $value->handlers = array_merge($value->handlers, $handlers);
         } else {
             // Resolve the handlers when the forwarded promise is resolved.
-            $value->then(static function ($value) use ($handlers): void {
-                foreach ($handlers as $handler) {
-                    self::callHandler(1, $value, $handler);
-                }
-            }, static function ($reason) use ($handlers): void {
-                foreach ($handlers as $handler) {
-                    self::callHandler(2, $reason, $handler);
-                }
-            });
+            try {
+                $value->then(static function ($value) use (&$handlers): void {
+                    foreach ($handlers as $handler) {
+                        self::callHandler(1, $value, $handler);
+                    }
+                }, static function ($reason) use (&$handlers): void {
+                    foreach ($handlers as $handler) {
+                        self::callHandler(2, $reason, $handler);
+                    }
+                });
+            } catch (\Throwable $e) {
+                Utils::queue()->add(static function () use ($e, $handlers): void {
+                    foreach ($handlers as $handler) {
+                        self::callHandler(2, $e, $handler);
+                    }
+                });
+                // The thenable may still hold the callbacks.
+                $handlers = [];
+            }
         }
     }
     /**
@@ -159,7 +186,7 @@ class Promise implements PromiseInterface
         $promise = $handler[0];
         // The promise may have been cancelled or resolved before placing
         // this thunk in the queue.
-        if (Is::settled($promise)) {
+        if (State::isSettled($promise)) {
             return;
         }
         try {
@@ -181,7 +208,10 @@ class Promise implements PromiseInterface
                 $promise->reject($value);
             }
         } catch (\Throwable $reason) {
-            $promise->reject($reason);
+            // The handler may have settled the promise itself.
+            if (State::isPending($promise)) {
+                $promise->reject($reason);
+            }
         }
     }
     private function waitIfPending(): void

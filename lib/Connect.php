@@ -25,7 +25,6 @@ final class Connect
 {
     /** @var string */
     public const BASE_URL = 'https://oauth.monei.com';
-
     /**
      * Seconds. The broker Lambda times out at 25 s: a shorter wait gives up while the broker still
      * makes the keys.
@@ -33,49 +32,15 @@ final class Connect
      * @var int
      */
     public const EXCHANGE_TIMEOUT = 35;
-
     private const MAX_URI_LENGTH = 512;
     private const MAX_HOST_LENGTH = 253;
     private const MAX_KEY_NAME_LENGTH = 300;
     private const MONEI_EXEMPT_DOMAIN = 'monei-dev-tunnel.com';
-
     // The zod 4 `z.hostname()` pattern, which the broker uses for the key's host.
-    private const HOST_PATTERN = '/^(?=.{1,253}\.?\z)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?'
-        . '(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?\z/';
-
+    private const HOST_PATTERN = '/^(?=.{1,253}\.?\z)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?' . '(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?\z/';
     // The callback forms that the broker pins per client (authorization-service
     // src/broker/integrations.ts). `search` is matched against `URL.search`.
-    private const CLIENTS = [
-        'woocommerce' => [
-            'name' => 'WooCommerce',
-            'callbacks' => [
-                ['path' => '/wp-admin/admin-post.php', 'search' => '/^\?action=monei_connect\z/'],
-            ],
-            'maxPrefix' => 3,
-            'indexPhp' => 0,
-        ],
-        'prestashop' => [
-            'name' => 'PrestaShop',
-            'callbacks' => [
-                ['path' => '/module/monei/connect', 'search' => '/^\z/'],
-                [
-                    'path' => '/index.php',
-                    'search' => '/^\?fc=module&module=monei&controller=connect(?:&id_lang=[0-9]+)?\z/',
-                ],
-            ],
-            'maxPrefix' => 3,
-            'indexPhp' => 0,
-        ],
-        'magento' => [
-            'name' => 'Magento',
-            'callbacks' => [
-                ['path' => '/monei/payment/connect/', 'search' => '/^\z/'],
-            ],
-            'maxPrefix' => 2,
-            'indexPhp' => 1,
-        ],
-    ];
-
+    private const CLIENTS = ['woocommerce' => ['name' => 'WooCommerce', 'callbacks' => [['path' => '/wp-admin/admin-post.php', 'search' => '/^\?action=monei_connect\z/']], 'maxPrefix' => 3, 'indexPhp' => 0], 'prestashop' => ['name' => 'PrestaShop', 'callbacks' => [['path' => '/module/monei/connect', 'search' => '/^\z/'], ['path' => '/index.php', 'search' => '/^\?fc=module&module=monei&controller=connect(?:&id_lang=[0-9]+)?\z/']], 'maxPrefix' => 3, 'indexPhp' => 0], 'magento' => ['name' => 'Magento', 'callbacks' => [['path' => '/monei/payment/connect/', 'search' => '/^\z/']], 'maxPrefix' => 2, 'indexPhp' => 1]];
     /**
      * Start a connect. Store `state` with `verifier` and the redirect URI, then redirect the
      * merchant to `url`.
@@ -89,21 +54,9 @@ final class Connect
     {
         $state = self::base64Url(random_bytes(32));
         $verifier = self::base64Url(random_bytes(48));
-        $query = http_build_query([
-            'client_id' => $client,
-            'redirect_uri' => $redirectUri,
-            'state' => $state,
-            'code_challenge' => self::codeChallenge($verifier),
-            'code_challenge_method' => 'S256',
-        ], '', '&', PHP_QUERY_RFC3986);
-
-        return [
-            'url' => rtrim($baseUrl, '/') . '/integrations/authorize?' . $query,
-            'state' => $state,
-            'verifier' => $verifier,
-        ];
+        $query = http_build_query(['client_id' => $client, 'redirect_uri' => $redirectUri, 'state' => $state, 'code_challenge' => self::codeChallenge($verifier), 'code_challenge_method' => 'S256'], '', '&', \PHP_QUERY_RFC3986);
+        return ['url' => rtrim($baseUrl, '/') . '/integrations/authorize?' . $query, 'state' => $state, 'verifier' => $verifier];
     }
-
     /**
      * The PKCE S256 challenge of a verifier (RFC 7636).
      *
@@ -112,9 +65,8 @@ final class Connect
      */
     public static function codeChallenge(string $verifier): string
     {
-        return self::base64Url(hash('sha256', $verifier, true));
+        return self::base64Url(hash('sha256', $verifier, \true));
     }
-
     /**
      * Exchange the callback code for the keys.
      *
@@ -131,52 +83,30 @@ final class Connect
      * @throws ConnectException With the OAuth error code of the broker
      * @return array<string, array<string, string>> Keys `live`, `test` and `errors`, each optional
      */
-    public static function exchange(
-        string $code,
-        string $verifier,
-        string $client,
-        string $redirectUri,
-        string $baseUrl = self::BASE_URL,
-        ?ClientInterface $httpClient = null
-    ): array {
+    public static function exchange(string $code, string $verifier, string $client, string $redirectUri, string $baseUrl = self::BASE_URL, ?ClientInterface $httpClient = null): array
+    {
         $httpClient = $httpClient ?: new Client();
         try {
-            $response = $httpClient->request('POST', rtrim($baseUrl, '/') . '/integrations/token', [
-                'form_params' => [
-                    'code' => $code,
-                    'code_verifier' => $verifier,
-                    'client_id' => $client,
-                    'redirect_uri' => $redirectUri,
-                ],
-                'timeout' => self::EXCHANGE_TIMEOUT,
-                'http_errors' => false,
-                'allow_redirects' => false,
-            ]);
+            $response = $httpClient->request('POST', rtrim($baseUrl, '/') . '/integrations/token', ['form_params' => ['code' => $code, 'code_verifier' => $verifier, 'client_id' => $client, 'redirect_uri' => $redirectUri], 'timeout' => self::EXCHANGE_TIMEOUT, 'http_errors' => \false, 'allow_redirects' => \false]);
         } catch (GuzzleException $e) {
             // A transfer cut in the body keeps the partial response, which can hold keys.
             $previous = $e instanceof RequestException && $e->hasResponse() ? null : $e;
-            throw new ConnectException('temporarily_unavailable', 0, $previous);
+            throw new \Monei\ConnectException('temporarily_unavailable', 0, $previous);
         }
-
         $status = $response->getStatusCode();
-        $body = json_decode((string) $response->getBody(), true);
+        $body = json_decode((string) $response->getBody(), \true);
         if ($status < 200 || $status >= 300) {
             // A gateway answer ({"message": ...}), a non-JSON body or a 404 of the switched-off
             // broker has no OAuth error code.
-            $error = is_array($body) && isset($body['error']) && is_string($body['error'])
-                && preg_match('/^[a-z_]{1,64}\z/', $body['error'])
-                ? $body['error']
-                : 'temporarily_unavailable';
-            throw new ConnectException($error, $status);
+            $error = is_array($body) && isset($body['error']) && is_string($body['error']) && preg_match('/^[a-z_]{1,64}\z/', $body['error']) ? $body['error'] : 'temporarily_unavailable';
+            throw new \Monei\ConnectException($error, $status);
         }
-
         $result = is_array($body) ? self::tokenResult($body) : null;
         if ($result === null) {
-            throw new ConnectException('temporarily_unavailable', $status);
+            throw new \Monei\ConnectException('temporarily_unavailable', $status);
         }
         return $result;
     }
-
     /**
      * The redirect URI in the canonical WHATWG form that the broker requires: lower-case scheme and
      * host, percent escapes of the host decoded, an IDN host as punycode, no default port, `/` for an
@@ -196,10 +126,10 @@ final class Connect
         $scheme = strtolower($parts['scheme']);
         $authority = self::splitAuthority($parts['authority']);
         $host = $authority['host'];
-        if (strpos($host, '%') !== false && substr($host, 0, 1) !== '[') {
+        if (strpos($host, '%') !== \false && substr($host, 0, 1) !== '[') {
             $host = rawurldecode($host);
             // The forbidden domain code points of WHATWG: such a host does not parse.
-            if (preg_match('~[\x00-\x20#%/:<>?@[\\\\\]^|\x7F]~', $host)) {
+            if (preg_match('~[\x00-\x20#%/:<>?@[\\\\\\]^|\x7F]~', $host)) {
                 throw new \InvalidArgumentException('The host is not valid');
             }
         }
@@ -207,14 +137,13 @@ final class Connect
             if (!function_exists('idn_to_ascii')) {
                 throw new \InvalidArgumentException('A non-ASCII host needs ext-intl');
             }
-            $ascii = idn_to_ascii($host, IDNA_NONTRANSITIONAL_TO_ASCII, INTL_IDNA_VARIANT_UTS46);
-            if ($ascii === false) {
+            $ascii = idn_to_ascii($host, \IDNA_NONTRANSITIONAL_TO_ASCII, \INTL_IDNA_VARIANT_UTS46);
+            if ($ascii === \false) {
                 throw new \InvalidArgumentException('The host is not a valid IDN');
             }
             $host = $ascii;
         }
         $host = strtolower($host);
-
         $port = $authority['port'];
         $defaultPorts = ['http' => 80, 'https' => 443];
         if ($port !== null && $port !== '') {
@@ -223,21 +152,12 @@ final class Connect
             }
             $port = (string) (int) $port;
         }
-        if ($port === '' || (isset($defaultPorts[$scheme]) && $port === (string) $defaultPorts[$scheme])) {
+        if ($port === '' || isset($defaultPorts[$scheme]) && $port === (string) $defaultPorts[$scheme]) {
             $port = null;
         }
-
         $path = $parts['path'] === '' ? '/' : $parts['path'];
-
-        return $scheme . '://'
-            . ($authority['userinfo'] !== null ? $authority['userinfo'] . '@' : '')
-            . $host
-            . ($port !== null ? ':' . $port : '')
-            . self::percentEncode($path)
-            . ($parts['query'] !== null ? '?' . self::percentEncode($parts['query']) : '')
-            . ($parts['fragment'] !== null ? '#' . $parts['fragment'] : '');
+        return $scheme . '://' . ($authority['userinfo'] !== null ? $authority['userinfo'] . '@' : '') . $host . ($port !== null ? ':' . $port : '') . self::percentEncode($path) . ($parts['query'] !== null ? '?' . self::percentEncode($parts['query']) : '') . ($parts['fragment'] !== null ? '#' . $parts['fragment'] : '');
     }
-
     /**
      * Why the broker refuses the redirect URI, or null.
      *
@@ -265,7 +185,7 @@ final class Connect
         if ($authority !== null && $authority['userinfo'] !== null) {
             return 'userinfo';
         }
-        if (strpos($redirectUri, '#') !== false) {
+        if (strpos($redirectUri, '#') !== \false) {
             return 'fragment';
         }
         // The broker gives httpHost, query or scheme for some of these; a plugin shows the same
@@ -273,7 +193,6 @@ final class Connect
         if ($parts === null || $parts['scheme'] !== 'https') {
             return 'notHttps';
         }
-
         $hostname = $authority['host'];
         // WHATWG parses a host whose last label is a number as IPv4 (`127.1` too), or refuses it.
         $labels = explode('.', $hostname);
@@ -286,7 +205,7 @@ final class Connect
         if ($hostname === 'localhost' || substr($hostname, -strlen('.localhost')) === '.localhost') {
             return 'localhost';
         }
-        if (strpos($hostname, '.') === false) {
+        if (strpos($hostname, '.') === \false) {
             return 'noDot';
         }
         if (strlen($hostname) > self::MAX_HOST_LENGTH || !preg_match(self::HOST_PATTERN, $hostname)) {
@@ -295,7 +214,6 @@ final class Connect
         if (self::isMoneiLike($hostname)) {
             return 'moneiHost';
         }
-
         $path = $parts['path'] === '' ? '/' : $parts['path'];
         $search = $parts['query'] === null || $parts['query'] === '' ? '' : '?' . $parts['query'];
         $prefix = self::prefixOf($client, $path, $search);
@@ -303,7 +221,6 @@ final class Connect
         if ($problem !== null) {
             return $problem;
         }
-
         $host = $hostname . ($authority['port'] !== null ? ':' . $authority['port'] : '');
         $keyName = self::CLIENTS[$client]['name'] . ': ' . $host . $prefix;
         if (strlen($keyName) > self::MAX_KEY_NAME_LENGTH) {
@@ -311,7 +228,6 @@ final class Connect
         }
         return null;
     }
-
     /**
      * @param array $body
      * @return array|null
@@ -329,11 +245,7 @@ final class Connect
                     return null;
                 }
             }
-            $result[$mode] = [
-                'accountId' => $keys['accountId'],
-                'apiKey' => $keys['apiKey'],
-                'signingSecret' => $keys['signingSecret'],
-            ];
+            $result[$mode] = ['accountId' => $keys['accountId'], 'apiKey' => $keys['apiKey'], 'signingSecret' => $keys['signingSecret']];
         }
         if (array_key_exists('errors', $body)) {
             if (!is_array($body['errors'])) {
@@ -356,7 +268,6 @@ final class Connect
         }
         return $result;
     }
-
     /**
      * The install path before the client's callback suffix, or null for a URI with no callback form.
      *
@@ -375,7 +286,6 @@ final class Connect
         }
         return null;
     }
-
     /**
      * @param string      $client
      * @param string|null $prefix
@@ -393,17 +303,17 @@ final class Connect
         if (count($plain) > self::CLIENTS[$client]['maxPrefix']) {
             return 'callbackDepth';
         }
-        if (strpos($prefix, '%') !== false) {
+        if (strpos($prefix, '%') !== \false) {
             return 'callbackEncoded';
         }
-        if (in_array('', $segments, true)) {
+        if (in_array('', $segments, \true)) {
             return 'callbackEmptySegment';
         }
         if (count($segments) - count($plain) > self::CLIENTS[$client]['indexPhp']) {
             return 'callbackIndexPhp';
         }
         foreach ($plain as $segment) {
-            if (strpos($segment, '.') !== false) {
+            if (strpos($segment, '.') !== \false) {
                 return 'callbackDot';
             }
         }
@@ -414,7 +324,6 @@ final class Connect
         }
         return null;
     }
-
     /**
      * A label part, split on `-`, starts or ends with `monei`. Hosts under the exempt domain pass.
      *
@@ -425,18 +334,17 @@ final class Connect
     {
         $exempt = '.' . self::MONEI_EXEMPT_DOMAIN;
         if (substr($hostname, -strlen($exempt)) === $exempt) {
-            return false;
+            return \false;
         }
         foreach (explode('.', $hostname) as $label) {
             foreach (explode('-', $label) as $part) {
                 if (strpos($part, 'monei') === 0 || substr($part, -5) === 'monei') {
-                    return true;
+                    return \true;
                 }
             }
         }
-        return false;
+        return \false;
     }
-
     /**
      * The RFC 3986 parts of a URI with a scheme and an authority, or null.
      *
@@ -448,15 +356,8 @@ final class Connect
         if (!preg_match('~^([A-Za-z][A-Za-z0-9+.-]*)://([^/?#]*)([^?#]*)(\?[^#]*)?(#.*)?\z~s', $uri, $m)) {
             return null;
         }
-        return [
-            'scheme' => $m[1],
-            'authority' => $m[2],
-            'path' => $m[3],
-            'query' => isset($m[4]) && $m[4] !== '' ? substr($m[4], 1) : null,
-            'fragment' => isset($m[5]) && $m[5] !== '' ? substr($m[5], 1) : null,
-        ];
+        return ['scheme' => $m[1], 'authority' => $m[2], 'path' => $m[3], 'query' => isset($m[4]) && $m[4] !== '' ? substr($m[4], 1) : null, 'fragment' => isset($m[5]) && $m[5] !== '' ? substr($m[5], 1) : null];
     }
-
     /**
      * @param string $authority
      * @return array{userinfo: string|null, host: string, port: string|null}
@@ -465,20 +366,19 @@ final class Connect
     {
         $userinfo = null;
         $at = strrpos($authority, '@');
-        if ($at !== false) {
+        if ($at !== \false) {
             $userinfo = substr($authority, 0, $at);
             $authority = substr($authority, $at + 1);
         }
         $port = null;
         $colon = strrpos($authority, ':');
         $bracket = strrpos($authority, ']');
-        if ($colon !== false && ($bracket === false || $colon > $bracket)) {
+        if ($colon !== \false && ($bracket === \false || $colon > $bracket)) {
             $port = substr($authority, $colon + 1);
             $authority = substr($authority, 0, $colon);
         }
         return ['userinfo' => $userinfo, 'host' => $authority, 'port' => $port];
     }
-
     /**
      * Percent-encodes the bytes that WHATWG encodes in both a path and a query: controls, space,
      * `"`, `<`, `>` and non-ASCII.
@@ -492,7 +392,6 @@ final class Connect
             return sprintf('%%%02X', ord($m[0]));
         }, $value);
     }
-
     /**
      * @param string $bytes
      * @return string
