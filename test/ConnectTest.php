@@ -250,6 +250,7 @@ class ConnectTest extends TestCase
             '200 without keys or errors' => [200, '{}'],
             // The plugin would have neither keys to store nor a code to show.
             '200 with an empty errors map' => [200, '{"errors":{}}'],
+            '200 with an empty refusal code' => [200, '{"errors":{"live":""}}'],
         ];
     }
 
@@ -335,6 +336,7 @@ class ConnectTest extends TestCase
         return [
             'upper case, default port, empty path' => ['HTTPS://Shop.com:443', 'https://shop.com/'],
             'another port' => ['https://shop.example:8443/cb', 'https://shop.example:8443/cb'],
+            'percent escape in the host' => ['https://%73hop.example/cb', 'https://shop.example/cb'],
             'non-ASCII path' => [
                 'https://shop.example/tienda-ñ' . self::WOO_PATH,
                 'https://shop.example/tienda-%C3%B1' . self::WOO_PATH,
@@ -345,20 +347,22 @@ class ConnectTest extends TestCase
     /**
      * The broker cannot parse such a URI: the plugin must show "Use manual keys", not the button.
      *
-     * @dataProvider provideInvalidPorts
+     * @dataProvider provideInvalidAuthorities
      */
-    public function testCanonicalRedirectUriRefusesAnInvalidPort(string $uri): void
+    public function testCanonicalRedirectUriRefusesAnInvalidAuthority(string $uri): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
         Connect::canonicalRedirectUri($uri);
     }
 
-    public function provideInvalidPorts(): array
+    public function provideInvalidAuthorities(): array
     {
         return [
             'not a number' => ['https://shop.example:44a/cb'],
             'over 65535' => ['https://shop.example:65536/cb'],
+            // %2F decodes to /, which no host may hold.
+            'a host escape of a forbidden character' => ['https://shop%2Fevil.example/cb'],
         ];
     }
 

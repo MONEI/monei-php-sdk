@@ -179,8 +179,8 @@ final class Connect
 
     /**
      * The redirect URI in the canonical WHATWG form that the broker requires: lower-case scheme and
-     * host, an IDN host as punycode, no default port, `/` for an empty path, and non-ASCII
-     * characters of the path and the query percent-encoded.
+     * host, percent escapes of the host decoded, an IDN host as punycode, no default port, `/` for an
+     * empty path, and non-ASCII characters of the path and the query percent-encoded.
      *
      * @param string $uri
      * @throws \InvalidArgumentException When the URI has no host, when the port is not a number up to
@@ -196,6 +196,13 @@ final class Connect
         $scheme = strtolower($parts['scheme']);
         $authority = self::splitAuthority($parts['authority']);
         $host = $authority['host'];
+        if (strpos($host, '%') !== false && substr($host, 0, 1) !== '[') {
+            $host = rawurldecode($host);
+            // The forbidden domain code points of WHATWG: such a host does not parse.
+            if (preg_match('~[\x00-\x20#%/:<>?@[\\\\\]^|\x7F]~', $host)) {
+                throw new \InvalidArgumentException('The host is not valid');
+            }
+        }
         if (preg_match('/[^\x00-\x7F]/', $host)) {
             if (!function_exists('idn_to_ascii')) {
                 throw new \InvalidArgumentException('A non-ASCII host needs ext-intl');
@@ -335,7 +342,7 @@ final class Connect
             $errors = [];
             foreach (['live', 'test'] as $mode) {
                 if (isset($body['errors'][$mode])) {
-                    if (!is_string($body['errors'][$mode])) {
+                    if (!is_string($body['errors'][$mode]) || $body['errors'][$mode] === '') {
                         return null;
                     }
                     $errors[$mode] = $body['errors'][$mode];
