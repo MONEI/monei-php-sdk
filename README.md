@@ -771,7 +771,7 @@ header('Location: ' . $start['url']);
 
 ### Handling the Callback
 
-MONEI redirects to the callback URL with `code` and `state`. Accept the request only when `state` is stored and younger than 20 minutes, and delete the entry before you continue, so that a `state` is used once. Then exchange the code:
+MONEI redirects to the callback URL with `code` and `state`. Accept the request only when `state` is stored and younger than 20 minutes, and delete the entry before you continue, so that a `state` is used once. Only an admin route of the shop may store an entry, so that each `state` comes from an admin of that shop. Keep the shop (or store scope) in the entry, and save the keys for that shop. Then exchange the code:
 
 ```php
 use Monei\ConnectException;
@@ -787,7 +787,6 @@ The result has a `live` and a `test` entry for each mode that got a key, and `er
 
 ```php
 [
-    'live' => ['accountId' => '...', 'apiKey' => 'mk_...', 'signingSecret' => 'mksec_...'],
     'test' => ['accountId' => '...', 'apiKey' => 'mk_...', 'signingSecret' => 'mksec_...'],
     'errors' => ['live' => 'not_approved'],
 ]
@@ -796,7 +795,8 @@ The result has a `live` and a `test` entry for each mode that got a key, and `er
 - `test.accountId` is the test account of the merchant, not the live account.
 - An `errors` code is `blocked`, `ineligible`, `cap` (the account has too many keys: revoke unused keys in the MONEI Dashboard), `not_approved` (no Live key before the account is approved) or `temporarily_unavailable`.
 - A result can have only `errors`, when MONEI refuses both modes.
-- Make one test call with each new key before you replace the stored credentials. Verify callbacks with the new signing secret, as in [Signing Secrets](#signing-secrets).
+- Make one test call with each new key before you replace the stored credentials.
+- Verify callbacks with the new signing secret, as in [Signing Secrets](#signing-secrets). A callback of a payment made with an older key has no `v2` of the new secret. When `v2` does not verify, ignore the body and get the payment with your key.
 - The exchange waits up to 35 seconds. The message of a `ConnectException` never holds a key or a secret.
 
 `start` and `exchange` take the broker base URL as an optional last argument. The default is `https://oauth.monei.com` (`Connect::BASE_URL`). Change it only to test against a development broker.

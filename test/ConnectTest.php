@@ -227,9 +227,13 @@ class ConnectTest extends TestCase
         array $headers = []
     ): void {
         // The answer of the redirect target, should a redirect be followed.
-        $this->mockHandler->append(new Response($status, $headers, $body), new Response(200, [], '{"errors":{}}'));
+        $this->mockHandler->append(
+            new Response($status, $headers, $body),
+            new Response(200, [], '{"errors":{"live":"cap"}}')
+        );
 
         $this->expectConnectError('temporarily_unavailable');
+        $this->expectExceptionCode($status);
 
         $this->exchange();
     }
@@ -244,6 +248,8 @@ class ConnectTest extends TestCase
             // A followed redirect would turn this into the answer of another URL.
             'redirect' => [302, '', ['Location' => 'https://oauth.monei.com/elsewhere']],
             '200 without keys or errors' => [200, '{}'],
+            // The plugin would have neither keys to store nor a code to show.
+            '200 with an empty errors map' => [200, '{"errors":{}}'],
         ];
     }
 
@@ -328,10 +334,31 @@ class ConnectTest extends TestCase
     {
         return [
             'upper case, default port, empty path' => ['HTTPS://Shop.com:443', 'https://shop.com/'],
+            'another port' => ['https://shop.example:8443/cb', 'https://shop.example:8443/cb'],
             'non-ASCII path' => [
                 'https://shop.example/tienda-ñ' . self::WOO_PATH,
                 'https://shop.example/tienda-%C3%B1' . self::WOO_PATH,
             ],
+        ];
+    }
+
+    /**
+     * The broker cannot parse such a URI: the plugin must show "Use manual keys", not the button.
+     *
+     * @dataProvider provideInvalidPorts
+     */
+    public function testCanonicalRedirectUriRefusesAnInvalidPort(string $uri): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Connect::canonicalRedirectUri($uri);
+    }
+
+    public function provideInvalidPorts(): array
+    {
+        return [
+            'not a number' => ['https://shop.example:44a/cb'],
+            'over 65535' => ['https://shop.example:65536/cb'],
         ];
     }
 
@@ -470,6 +497,8 @@ class ConnectTest extends TestCase
             // redirectUri.test.ts asserts a refusal; the codes come from redirectUri.ts.
             'an IPv4 literal' => ['woocommerce', 'https://93.184.215.14/cb', 'ipLiteral'],
             'an IPv6 literal' => ['woocommerce', 'https://[2606:2800:220:1::1]/cb', 'ipLiteral'],
+            // SDK only: WHATWG reads 127.1 as 127.0.0.1, so the broker refuses it.
+            'an IPv4 shorthand' => ['woocommerce', 'https://127.1/cb', 'ipLiteral'],
             'any trailing-dot host' => ['woocommerce', 'https://evil.com./cb', 'trailingDot'],
             'userinfo' => ['woocommerce', 'https://user@x.com/cb', 'userinfo'],
             'a fragment' => ['woocommerce', 'https://x.com/cb#x', 'fragment'],

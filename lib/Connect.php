@@ -183,8 +183,8 @@ final class Connect
      * characters of the path and the query percent-encoded.
      *
      * @param string $uri
-     * @throws \InvalidArgumentException When the URI has no host, or when the host is not ASCII and
-     *     ext-intl is missing or refuses it
+     * @throws \InvalidArgumentException When the URI has no host, when the port is not a number up to
+     *     65535, or when the host is not ASCII and ext-intl is missing or refuses it
      * @return string
      */
     public static function canonicalRedirectUri(string $uri): string
@@ -210,7 +210,10 @@ final class Connect
 
         $port = $authority['port'];
         $defaultPorts = ['http' => 80, 'https' => 443];
-        if ($port !== null && ctype_digit($port)) {
+        if ($port !== null && $port !== '') {
+            if (!preg_match('/^[0-9]+\z/', $port) || (int) $port > 65535) {
+                throw new \InvalidArgumentException('The port is not valid');
+            }
             $port = (string) (int) $port;
         }
         if ($port === '' || (isset($defaultPorts[$scheme]) && $port === (string) $defaultPorts[$scheme])) {
@@ -265,10 +268,9 @@ final class Connect
         }
 
         $hostname = $authority['host'];
-        if (
-            substr($hostname, 0, 1) === '['
-            || filter_var($hostname, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false
-        ) {
+        // WHATWG parses a host whose last label is a number as IPv4 (`127.1` too), or refuses it.
+        $labels = explode('.', $hostname);
+        if (substr($hostname, 0, 1) === '[' || preg_match('/^(?:[0-9]+|0x[0-9a-f]*)\z/i', end($labels))) {
             return 'ipLiteral';
         }
         if (substr($hostname, -1) === '.') {
@@ -341,7 +343,11 @@ final class Connect
             }
             $result['errors'] = $errors;
         }
-        return $result === [] ? null : $result;
+        // The broker answers 200 only when a mode got a key or a refusal code.
+        if (!isset($result['live']) && !isset($result['test']) && empty($result['errors'])) {
+            return null;
+        }
+        return $result;
     }
 
     /**
