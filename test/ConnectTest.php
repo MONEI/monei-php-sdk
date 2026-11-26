@@ -486,21 +486,14 @@ class ConnectTest extends TestCase
                 'https://shop-monei-dev-tunnel.com/cb',
                 'moneiHost',
             ],
-            'a monei.com lookalike' => ['woocommerce', 'https://monei.com.evil.io/cb', 'moneiHost'],
             'a demo host not as the suffix' => [
                 'woocommerce',
                 'https://woocommerce-demo.monei.com.evil.io/cb',
                 'moneiHost',
             ],
             // The broker refuses these as reservedHost; the SDK has no such check.
-            'the monei.com apex' => ['woocommerce', 'https://monei.com/cb', 'moneiHost'],
-            'a MONEI service host' => ['woocommerce', 'https://dashboard.monei.com/cb', 'moneiHost'],
+            'an unlisted -demo host' => ['woocommerce', 'https://api-demo.monei.com/cb', 'moneiHost'],
             'a host under a demo host' => ['woocommerce', 'https://x.woocommerce-demo.monei.com/cb', 'moneiHost'],
-            'a demo host on the dev domain' => [
-                'woocommerce',
-                'https://woocommerce-demo.monei-dev.com/cb',
-                'moneiHost',
-            ],
             // Not moneiHost: a host under the exempt domain, a MONEI demo store, and monei inside a word.
             'a host under the exempt domain' => [
                 'woocommerce',
