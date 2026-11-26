@@ -107,6 +107,14 @@ class ConnectTest extends TestCase
         $this->assertSame('S256', $query['code_challenge_method']);
     }
 
+    public function testStartUrlCarriesTheSyliusClientId(): void
+    {
+        $start = Connect::start('sylius', 'https://shop.example/monei/connect');
+
+        parse_str((string) parse_url($start['url'], PHP_URL_QUERY), $query);
+        $this->assertSame('sylius', $query['client_id']);
+    }
+
     /**
      * A reused state lets a callback of one flow land in another; a reused verifier weakens PKCE.
      * The state is 32 random bytes and the verifier has 64 characters.
@@ -397,6 +405,10 @@ class ConnectTest extends TestCase
                 'magento',
                 'https://shop.example/a/index.php/default/monei/payment/connect/',
             ],
+            'medusa callback on a subdomain' => ['medusa', 'https://api.shop.example/monei/connect'],
+            'medusa two prefix segments' => ['medusa', 'https://shop.example/a/b/monei/connect'],
+            'sylius callback on a subdomain' => ['sylius', 'https://api.shop.example/monei/connect'],
+            'sylius two prefix segments' => ['sylius', 'https://shop.example/a/b/monei/connect'],
             // `WooCommerce: shop.example/` is 26 characters: the key name has 300.
             'a key name of 300 characters' => [
                 'woocommerce',
@@ -430,6 +442,46 @@ class ConnectTest extends TestCase
                 'magento',
                 'https://shop.example/a/b/c/monei/payment/connect/',
                 'callbackDepth',
+            ],
+            'medusa three prefix segments' => [
+                'medusa',
+                'https://shop.example/a/b/c/monei/connect',
+                'callbackDepth',
+            ],
+            'medusa query parameter' => [
+                'medusa',
+                'https://shop.example/monei/connect?x=1',
+                'callbackPath',
+            ],
+            'medusa trailing slash' => [
+                'medusa',
+                'https://shop.example/monei/connect/',
+                'callbackPath',
+            ],
+            'medusa index.php prefix' => [
+                'medusa',
+                'https://shop.example/index.php/monei/connect',
+                'callbackIndexPhp',
+            ],
+            'sylius three prefix segments' => [
+                'sylius',
+                'https://shop.example/a/b/c/monei/connect',
+                'callbackDepth',
+            ],
+            'sylius query parameter' => [
+                'sylius',
+                'https://shop.example/monei/connect?x=1',
+                'callbackPath',
+            ],
+            'sylius trailing slash' => [
+                'sylius',
+                'https://shop.example/monei/connect/',
+                'callbackPath',
+            ],
+            'sylius index.php prefix' => [
+                'sylius',
+                'https://shop.example/index.php/monei/connect',
+                'callbackIndexPhp',
             ],
             'four prefix segments' => ['woocommerce', 'https://shop.example/a/b/c/d' . self::WOO_PATH, 'callbackDepth'],
             'another path with the right query' => [

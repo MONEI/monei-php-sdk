@@ -40,12 +40,12 @@ final class Connect
     private const HOST_PATTERN = '/^(?=.{1,253}\.?\z)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?' . '(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?\z/';
     // The callback forms that the broker pins per client (authorization-service
     // src/broker/integrations.ts). `search` is matched against `URL.search`.
-    private const CLIENTS = ['woocommerce' => ['name' => 'WooCommerce', 'callbacks' => [['path' => '/wp-admin/admin-post.php', 'search' => '/^\?action=monei_connect\z/']], 'maxPrefix' => 3, 'indexPhp' => 0], 'prestashop' => ['name' => 'PrestaShop', 'callbacks' => [['path' => '/module/monei/connect', 'search' => '/^\z/'], ['path' => '/index.php', 'search' => '/^\?fc=module&module=monei&controller=connect(?:&id_lang=[0-9]+)?\z/']], 'maxPrefix' => 3, 'indexPhp' => 0], 'magento' => ['name' => 'Magento', 'callbacks' => [['path' => '/monei/payment/connect/', 'search' => '/^\z/']], 'maxPrefix' => 2, 'indexPhp' => 1]];
+    private const CLIENTS = ['woocommerce' => ['name' => 'WooCommerce', 'callbacks' => [['path' => '/wp-admin/admin-post.php', 'search' => '/^\?action=monei_connect\z/']], 'maxPrefix' => 3, 'indexPhp' => 0], 'prestashop' => ['name' => 'PrestaShop', 'callbacks' => [['path' => '/module/monei/connect', 'search' => '/^\z/'], ['path' => '/index.php', 'search' => '/^\?fc=module&module=monei&controller=connect(?:&id_lang=[0-9]+)?\z/']], 'maxPrefix' => 3, 'indexPhp' => 0], 'magento' => ['name' => 'Magento', 'callbacks' => [['path' => '/monei/payment/connect/', 'search' => '/^\z/']], 'maxPrefix' => 2, 'indexPhp' => 1], 'medusa' => ['name' => 'Medusa', 'callbacks' => [['path' => '/monei/connect', 'search' => '/^\z/']], 'maxPrefix' => 2, 'indexPhp' => 0], 'sylius' => ['name' => 'Sylius', 'callbacks' => [['path' => '/monei/connect', 'search' => '/^\z/']], 'maxPrefix' => 2, 'indexPhp' => 0]];
     /**
      * Start a connect. Store `state` with `verifier` and the redirect URI, then redirect the
      * merchant to `url`.
      *
-     * @param string $client      woocommerce, prestashop or magento
+     * @param string $client      woocommerce, prestashop, magento, medusa or sylius
      * @param string $redirectUri The output of canonicalRedirectUri()
      * @param string $baseUrl     The broker base URL
      * @return array{url: string, state: string, verifier: string}
@@ -76,7 +76,7 @@ final class Connect
      *
      * @param string               $code        The code of the callback
      * @param string               $verifier    The verifier that start() gave
-     * @param string               $client      woocommerce, prestashop or magento
+     * @param string               $client      woocommerce, prestashop, magento, medusa or sylius
      * @param string               $redirectUri The redirect URI that start() sent
      * @param string               $baseUrl     The broker base URL
      * @param ClientInterface|null $httpClient  The HTTP client, for tests
@@ -167,7 +167,7 @@ final class Connect
      * callbackEncoded, callbackEmptySegment, callbackIndexPhp, callbackDot, callbackSegment), then
      * nameLength. The broker can still refuse a URI that passes, for example a blocklisted host.
      *
-     * @param string $client      woocommerce, prestashop or magento
+     * @param string $client      woocommerce, prestashop, magento, medusa or sylius
      * @param string $redirectUri The output of canonicalRedirectUri()
      * @throws \InvalidArgumentException For an unknown client
      * @return string|null
