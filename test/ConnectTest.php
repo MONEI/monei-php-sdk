@@ -405,8 +405,6 @@ class ConnectTest extends TestCase
                 'magento',
                 'https://shop.example/a/index.php/default/monei/payment/connect/',
             ],
-            'medusa callback on a subdomain' => ['medusa', 'https://api.shop.example/monei/connect'],
-            'medusa two prefix segments' => ['medusa', 'https://shop.example/a/b/monei/connect'],
             'sylius callback on a subdomain' => ['sylius', 'https://api.shop.example/monei/connect'],
             'sylius two prefix segments' => ['sylius', 'https://shop.example/a/b/monei/connect'],
             // `WooCommerce: shop.example/` is 26 characters: the key name has 300.
@@ -442,26 +440,6 @@ class ConnectTest extends TestCase
                 'magento',
                 'https://shop.example/a/b/c/monei/payment/connect/',
                 'callbackDepth',
-            ],
-            'medusa three prefix segments' => [
-                'medusa',
-                'https://shop.example/a/b/c/monei/connect',
-                'callbackDepth',
-            ],
-            'medusa query parameter' => [
-                'medusa',
-                'https://shop.example/monei/connect?x=1',
-                'callbackPath',
-            ],
-            'medusa trailing slash' => [
-                'medusa',
-                'https://shop.example/monei/connect/',
-                'callbackPath',
-            ],
-            'medusa index.php prefix' => [
-                'medusa',
-                'https://shop.example/index.php/monei/connect',
-                'callbackIndexPhp',
             ],
             'sylius three prefix segments' => [
                 'sylius',

@@ -794,7 +794,7 @@ print_r($results);
 
 ## Connect with MONEI for Shop Plugins
 
-`Monei\Connect` runs the "Connect with MONEI" flow of the WooCommerce, PrestaShop, Magento, Medusa and Sylius plugins. The merchant signs in to MONEI and consents. The shop then gets its own scoped API key (`mk_...`) and signing secret (`mksec_...`) for each mode, Live and Test. Each method is static. The client is `woocommerce`, `prestashop`, `magento`, `medusa` or `sylius`.
+`Monei\Connect` runs the "Connect with MONEI" flow of the WooCommerce, PrestaShop, Magento and Sylius plugins. The merchant signs in to MONEI and consents. The shop then gets its own scoped API key (`mk_...`) and signing secret (`mksec_...`) for each mode, Live and Test. Each method is static. The client is `woocommerce`, `prestashop`, `magento` or `sylius`.
 
 ### Starting a Connect
 
