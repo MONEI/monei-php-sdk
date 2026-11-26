@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.18.0](https://github.com/MONEI/monei-php-sdk/compare/2.17.0...2.18.0) (2026-11-26)
+
+
+### Features
+
+* add Medusa and Sylius Connect clients ([9402f3f](https://github.com/MONEI/monei-php-sdk/commit/9402f3f5e6db4b628375e6706b0fb1253cd132c3))
+
 # [2.17.0](https://github.com/MONEI/monei-php-sdk/compare/2.16.0...2.17.0) (2026-11-24)
 
 
