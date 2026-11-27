@@ -195,6 +195,20 @@ class ConnectTest extends TestCase
         ], $this->exchange());
     }
 
+    public function testExchangeReturnsTheKeysOfOneModeAndTheRefusalOfTheOther(): void
+    {
+        $body = json_encode([
+            'test' => ['accountId' => 'acc-test', 'apiKey' => self::testKey(), 'signingSecret' => self::testSecret()],
+            'errors' => ['live' => 'not_approved'],
+        ]);
+        $this->mockHandler->append(new Response(200, [], $body));
+
+        $this->assertSame([
+            'test' => ['accountId' => 'acc-test', 'apiKey' => self::testKey(), 'signingSecret' => self::testSecret()],
+            'errors' => ['live' => 'not_approved'],
+        ], $this->exchange());
+    }
+
     /**
      * Both modes refused is a 200, not an error answer. Treating it as a failure hides the codes
      * that tell the merchant what to do (cap: revoke unused keys).
@@ -259,6 +273,14 @@ class ConnectTest extends TestCase
             // The plugin would have neither keys to store nor a code to show.
             '200 with an empty errors map' => [200, '{"errors":{}}'],
             '200 with an empty refusal code' => [200, '{"errors":{"live":""}}'],
+            // A stored empty key cannot authenticate.
+            '200 with an empty API key' => [200, json_encode([
+                'test' => ['accountId' => 'acc-test', 'apiKey' => '', 'signingSecret' => self::testSecret()],
+            ])],
+            '200 with keys and a refusal for the same mode' => [200, json_encode([
+                'test' => ['accountId' => 'acc-test', 'apiKey' => self::testKey(), 'signingSecret' => self::testSecret()],
+                'errors' => ['test' => 'cap'],
+            ])],
         ];
     }
 

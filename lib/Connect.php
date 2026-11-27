@@ -243,7 +243,7 @@ final class Connect
             }
             $keys = $body[$mode];
             foreach (['accountId', 'apiKey', 'signingSecret'] as $field) {
-                if (!is_array($keys) || !isset($keys[$field]) || !is_string($keys[$field])) {
+                if (!is_array($keys) || !isset($keys[$field]) || !is_string($keys[$field]) || $keys[$field] === '') {
                     return null;
                 }
             }
@@ -256,7 +256,8 @@ final class Connect
             $errors = [];
             foreach (['live', 'test'] as $mode) {
                 if (isset($body['errors'][$mode])) {
-                    if (!is_string($body['errors'][$mode]) || $body['errors'][$mode] === '') {
+                    // A mode gets either keys or a refusal code, never both.
+                    if (isset($result[$mode]) || !is_string($body['errors'][$mode]) || $body['errors'][$mode] === '') {
                         return null;
                     }
                     $errors[$mode] = $body['errors'][$mode];
