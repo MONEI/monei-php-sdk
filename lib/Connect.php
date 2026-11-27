@@ -37,7 +37,7 @@ final class Connect
     private const MAX_KEY_NAME_LENGTH = 300;
     private const MONEI_EXEMPT_DOMAIN = 'monei-dev-tunnel.com';
     // MONEI's public demo stores: an exact list, as the broker's `MONEI_DEMO_HOSTS`.
-    private const MONEI_DEMO_HOSTS = ['woocommerce-demo.monei.com', 'prestashop-demo.monei.com', 'magento2-demo.monei.com'];
+    private const MONEI_DEMO_HOSTS = ['woocommerce-demo.monei.com', 'prestashop-demo.monei.com', 'magento2-demo.monei.com', 'sylius-demo.monei.com'];
     // The zod 4 `z.hostname()` pattern, which the broker uses for the key's host.
     private const HOST_PATTERN = '/^(?=.{1,253}\.?\z)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?' . '(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?\z/';
     // The callback forms that the broker pins per client (authorization-service

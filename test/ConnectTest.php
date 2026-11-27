@@ -394,6 +394,7 @@ class ConnectTest extends TestCase
             'woocommerce on its demo store' => ['woocommerce', 'https://woocommerce-demo.monei.com' . self::WOO_PATH],
             'prestashop on its demo store' => ['prestashop', 'https://prestashop-demo.monei.com/module/monei/connect'],
             'magento on its demo store' => ['magento', 'https://magento2-demo.monei.com/monei/payment/connect/'],
+            'sylius on its demo store' => ['sylius', 'https://sylius-demo.monei.com/monei/connect'],
             'woocommerce three prefix segments' => ['woocommerce', 'https://shop.example/a/b/c' . self::WOO_PATH],
             'prestashop friendly, with a language' => ['prestashop', 'https://shop.example/en/module/monei/connect'],
             'prestashop index.php, with id_lang' => [
