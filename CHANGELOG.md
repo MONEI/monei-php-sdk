@@ -1,5 +1,7 @@
 # Changelog
 
+## [2.18.1](https://github.com/MONEI/monei-php-sdk/compare/2.18.0...2.18.1) (2026-11-27)
+
 # [2.18.0](https://github.com/MONEI/monei-php-sdk/compare/2.17.0...2.18.0) (2026-11-26)
 
 
