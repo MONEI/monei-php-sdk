@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.18.2](https://github.com/MONEI/monei-php-sdk/compare/2.18.1...2.18.2) (2026-11-27)
+
+
+### Bug Fixes
+
+* use an exact list of demo store hosts ([4769901](https://github.com/MONEI/monei-php-sdk/commit/47699013960056f534173e944046782f7cef8ab0))
+
+
+### Features
+
+* accept MONEI demo stores in Connect::callbackProblem ([60edde9](https://github.com/MONEI/monei-php-sdk/commit/60edde93cc7dd8cd62316ed4d0ffc100a1ee5dd4))
+* accept the Sylius demo store in Connect::callbackProblem ([76ba209](https://github.com/MONEI/monei-php-sdk/commit/76ba209f3182322fe59b3525879c1a0095465b07))
+
 ## [2.18.1](https://github.com/MONEI/monei-php-sdk/compare/2.18.0...2.18.1) (2026-11-27)
 
 # [2.18.0](https://github.com/MONEI/monei-php-sdk/compare/2.17.0...2.18.0) (2026-11-26)
