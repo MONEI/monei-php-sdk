@@ -36,6 +36,8 @@ final class Connect
     private const MAX_HOST_LENGTH = 253;
     private const MAX_KEY_NAME_LENGTH = 300;
     private const MONEI_EXEMPT_DOMAIN = 'monei-dev-tunnel.com';
+    // MONEI's public demo stores: an exact list, as the broker's `MONEI_DEMO_HOSTS`.
+    private const MONEI_DEMO_HOSTS = ['woocommerce-demo.monei.com', 'prestashop-demo.monei.com', 'magento2-demo.monei.com', 'sylius-demo.monei.com'];
     // The zod 4 `z.hostname()` pattern, which the broker uses for the key's host.
     private const HOST_PATTERN = '/^(?=.{1,253}\.?\z)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?' . '(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?\z/';
     // The callback forms that the broker pins per client (authorization-service
@@ -325,7 +327,8 @@ final class Connect
         return null;
     }
     /**
-     * A label part, split on `-`, starts or ends with `monei`. Hosts under the exempt domain pass.
+     * A label part, split on `-`, starts or ends with `monei`. Hosts under the exempt domain and
+     * MONEI's demo stores pass.
      *
      * @param string $hostname
      * @return bool
@@ -333,7 +336,7 @@ final class Connect
     private static function isMoneiLike(string $hostname): bool
     {
         $exempt = '.' . self::MONEI_EXEMPT_DOMAIN;
-        if (substr($hostname, -strlen($exempt)) === $exempt) {
+        if (substr($hostname, -strlen($exempt)) === $exempt || in_array($hostname, self::MONEI_DEMO_HOSTS, \true)) {
             return \false;
         }
         foreach (explode('.', $hostname) as $label) {
