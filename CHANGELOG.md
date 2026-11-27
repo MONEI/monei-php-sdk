@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.18.3](https://github.com/MONEI/monei-php-sdk/compare/2.18.2...2.18.3) (2026-11-27)
+
+
+### Bug Fixes
+
+* refuse a token answer with an empty key or keys and a refusal for one mode ([104fccf](https://github.com/MONEI/monei-php-sdk/commit/104fccfa875d1278e95987a67dd3c2da78cbb1fc))
+
 ## [2.18.2](https://github.com/MONEI/monei-php-sdk/compare/2.18.1...2.18.2) (2026-11-27)
 
 
